@@ -1,4 +1,4 @@
-package foot.footprint.repository;
+package foot.footprint.repository.article;
 
 import foot.footprint.domain.Article;
 import org.apache.ibatis.annotations.Mapper;

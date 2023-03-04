@@ -1,7 +1,7 @@
-package foot.footprint.controller;
+package foot.footprint.controller.article;
 
 import foot.footprint.domain.Article;
-import foot.footprint.repository.ArticleMapperRepository;
+import foot.footprint.repository.article.ArticleMapperRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
