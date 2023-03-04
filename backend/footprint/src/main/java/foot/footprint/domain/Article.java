@@ -1,12 +1,16 @@
 package foot.footprint.domain;
 
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import java.sql.Timestamp;
 
 @Getter
 @ToString
+@Builder
+@NoArgsConstructor
 public class Article {
     private Long id;
     private String content;
@@ -17,6 +21,7 @@ public class Article {
     private boolean public_map;
     private String title;
     private Long user_id;
+
 
     public Article(Long id, String content, Timestamp create_date, Double latitude, Double longitude,
                    boolean private_map, boolean public_map, String title, Long user_id) {
