@@ -10,7 +10,8 @@ import java.util.List;
 @Mapper
 @Repository
 public interface findArticleRepository {
-    List<Article> findPublicMapArticles(
+    List<Article> findArticles(
+            @Param("userId") Long userId,
             @Param("upperLatitude") double upperLatitude,
             @Param("lowerLatitude") double lowerLatitude,
             @Param("upperLongitude") double upperLongitude,
