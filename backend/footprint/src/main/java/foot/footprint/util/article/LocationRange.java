@@ -1,4 +1,4 @@
-package foot.footprint.util;
+package foot.footprint.util.article;
 
 import lombok.Getter;
 

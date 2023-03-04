@@ -10,9 +10,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class FIndArticleRepositoryTest extends RepositoryTest{
     @Autowired
-    private findArticleRepository findArticleRepository;
+    private FindArticleRepository findArticleRepository;
     @Test
-    public void findArticles(){
+    public void findArticlesTest(){
         //when
         //publicMapArticles
         List<Article> articlesN = findArticleRepository.findArticles(

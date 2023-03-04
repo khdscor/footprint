@@ -9,7 +9,7 @@ import java.util.List;
 
 @Mapper
 @Repository
-public interface findArticleRepository {
+public interface FindArticleRepository {
     List<Article> findArticles(
             @Param("userId") Long userId,
             @Param("upperLatitude") double upperLatitude,
