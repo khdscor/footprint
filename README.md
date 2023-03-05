@@ -6,7 +6,7 @@
 https://github.com/rush-f/RUSH-C
 
 노션 주소: 
-https://www.notion.so/0de20f6d1da04d8485df5bec9382fc52
+https://pickled-slip-03d.notion.site/0de20f6d1da04d8485df5bec9382fc52
 
 
 ## ERD
