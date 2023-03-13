@@ -5,7 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-import java.sql.Timestamp;
+import java.util.Date;
+
 
 @Getter
 @ToString
@@ -15,14 +16,14 @@ public class User {
     private Long id;
     private String email;
     private String image_url;
-    private Timestamp join_date;
+    private Date join_date;
     private String nick_name;
     private String password;
     private AuthProvider provider;
     private String provider_id;
     private Role role;
 
-    public User(Long id, String email, String image_url, Timestamp join_date, String nick_name, String password,
+    public User(Long id, String email, String image_url, Date join_date, String nick_name, String password,
                 AuthProvider provider, String provider_id, Role role) {
         this.id = id;
         this.email = email;
