@@ -6,6 +6,9 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+import java.util.Optional;
+
 @Mapper
 @Repository
 public interface UserRepository {
@@ -14,5 +17,8 @@ public interface UserRepository {
     int saveUser(User user);
 
     @Select("SELECT * FROM user WHERE id=#{id}")
-    User findUser(Long id);
+    User findById(Long id);
+
+    @Select("SELECT * FROM user WHERE email=#{email}")
+    Optional<User> findByEmail(String email);
 }

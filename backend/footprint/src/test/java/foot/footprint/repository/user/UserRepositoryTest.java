@@ -17,21 +17,21 @@ public class UserRepositoryTest extends RepositoryTest {
     @Test
     public void saveUser() {
         //given
-//        Date date = new Date();
-//        User user = User.builder()
-//                .id(100L)
-//                .email("test")
-//                .image_url(null)
-//                .provider_id("test")
-//                .provider(AuthProvider.google)
-//                .nick_name("tset")
-//                .role(Role.USER)
-//                .join_date(date)
-//                .password("tset").build();
-//        //when
-//        assertThat(userRepository.saveUser(user)).isEqualTo(1);
+        Date date = new Date();
+        User user = User.builder()
+                .id(100L)
+                .email("test")
+                .image_url(null)
+                .provider_id("test")
+                .provider(AuthProvider.google)
+                .nick_name("tset")
+                .role(Role.USER)
+                .join_date(date)
+                .password("tset").build();
+        //when
+        assertThat(userRepository.saveUser(user)).isEqualTo(1);
 
-       User foundUser = userRepository.findUser(34L);
+       User foundUser = userRepository.findById(34L);
 
         System.out.println("fffffffffffffffffffffffff");
         System.out.println(foundUser.getProvider());
