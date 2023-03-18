@@ -23,8 +23,10 @@ public class User {
     private String provider_id;
     private Role role;
 
+    private String refresh_token;
+
     public User(Long id, String email, String image_url, Date join_date, String nick_name, String password,
-                AuthProvider provider, String provider_id, Role role) {
+                AuthProvider provider, String provider_id, Role role, String refresh_token) {
         this.id = id;
         this.email = email;
         this.image_url = image_url;
@@ -34,5 +36,6 @@ public class User {
         this.provider = provider;
         this.provider_id = provider_id;
         this.role = role;
+        this.refresh_token = refresh_token;
     }
 }

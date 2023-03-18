@@ -4,9 +4,9 @@ import foot.footprint.domain.user.User;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
 import java.util.Optional;
 
 @Mapper
@@ -21,4 +21,7 @@ public interface UserRepository {
 
     @Select("SELECT * FROM user WHERE email=#{email}")
     Optional<User> findByEmail(String email);
+
+    @Update("UPDATE user SET refresh_token=#{token} WHERE id=#{id}")
+    void updateRefreshToken(Long id, String token);
 }
