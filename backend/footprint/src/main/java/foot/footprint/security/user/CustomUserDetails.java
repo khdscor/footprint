@@ -1,4 +1,4 @@
-package foot.footprint.security;
+package foot.footprint.security.user;
 
 import foot.footprint.domain.user.User;
 import org.springframework.security.core.GrantedAuthority;
@@ -12,12 +12,14 @@ import java.util.List;
 import java.util.Map;
 
 public class CustomUserDetails implements UserDetails, OAuth2User {
-    private User user;
+    private Long id;
+    private String email;
     private Collection<? extends GrantedAuthority> authorities;
     private Map<String, Object> attributes;
 
-    public CustomUserDetails(User user, Collection<? extends GrantedAuthority> authorities) {
-        this.user = user;
+    public CustomUserDetails(Long id, String email, Collection<? extends GrantedAuthority> authorities) {
+        this.id = id;
+        this.email = email;
         this.authorities = authorities;
     }
 
@@ -26,7 +28,8 @@ public class CustomUserDetails implements UserDetails, OAuth2User {
                 singletonList(new SimpleGrantedAuthority("ROLE_USER"));
 
         return new CustomUserDetails(
-                user,
+                user.getId(),
+                user.getEmail(),
                 authorities
         );
     }
@@ -38,26 +41,19 @@ public class CustomUserDetails implements UserDetails, OAuth2User {
     }
 
     // UserDetail Override
-    public User getUser() {
-        return this.user;
-    }
-
-    public Long getId() {
-        return user.getId();
-    }
-
-    public String getEmail() {
-        return user.getEmail();
-    }
-
     @Override
-    public String getPassword() {
-        return user.getPassword();
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return authorities;
     }
 
     @Override
     public String getUsername() {
-        return user.getEmail();
+        return email;
+    }
+
+    @Override
+    public String getPassword() {
+        return null;
     }
 
     @Override
@@ -80,9 +76,10 @@ public class CustomUserDetails implements UserDetails, OAuth2User {
         return true;
     }
 
+    // OAuth2User Override
     @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return authorities;
+    public String getName() {
+        return String.valueOf(id);
     }
 
     @Override
@@ -92,10 +89,5 @@ public class CustomUserDetails implements UserDetails, OAuth2User {
 
     public void setAttributes(Map<String, Object> attributes) {
         this.attributes = attributes;
-    }
-
-    @Override
-    public String getName() {
-        return String.valueOf(user.getId());
     }
 }

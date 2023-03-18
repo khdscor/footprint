@@ -1,4 +1,4 @@
-package foot.footprint.security;
+package foot.footprint.security.user;
 
 import java.util.Arrays;
 import java.util.Map;
