@@ -3,24 +3,21 @@ package foot.footprint.security.service;
 import foot.footprint.domain.user.AuthProvider;
 import foot.footprint.domain.user.Role;
 import foot.footprint.domain.user.User;
+import foot.footprint.exception.OAuth2AuthenticationProcessingException;
 import foot.footprint.repository.user.UserRepository;
+import foot.footprint.security.CustomUserDetails;
 import foot.footprint.security.OAuthAttributes;
 import foot.footprint.security.UserProfile;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
 import org.springframework.security.oauth2.client.userinfo.OAuth2UserRequest;
 import org.springframework.security.oauth2.client.userinfo.OAuth2UserService;
 import org.springframework.security.oauth2.core.OAuth2AuthenticationException;
-import org.springframework.security.oauth2.core.user.DefaultOAuth2User;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
-import java.util.Date;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 @RequiredArgsConstructor
@@ -36,6 +33,7 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
         OAuth2UserService delegate = new DefaultOAuth2UserService();
         OAuth2User oAuth2User = delegate.loadUser(userRequest); // OAuth 서비스(github, google, naver)에서 가져온 유저 정보를 담고있음
 
+
         String registrationId = userRequest.getClientRegistration()
                 .getRegistrationId(); // OAuth 서비스 이름(ex. github, naver, google)
         String userNameAttributeName = userRequest.getClientRegistration().getProviderDetails()
@@ -44,13 +42,12 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
 
         // registrationId에 따라 유저 정보를 통해 공통된 UserProfile 객체로 만들어 줌
         UserProfile userProfile = OAuthAttributes.extract(registrationId, attributes);
-
+        if (Objects.isNull(userProfile.getEmail()) || userProfile.getEmail().isEmpty()) {
+            throw new OAuth2AuthenticationProcessingException("해당하는 이메일이 존재하지 않습니다.");
+        }
         User user = saveOrUpdate(userProfile, registrationId);  // DB에 저장
 
-        return new DefaultOAuth2User(
-                Collections.singleton(new SimpleGrantedAuthority(user.getRole().getCode())),
-                attributes,
-                userNameAttributeName);
+        return CustomUserDetails.create(user, oAuth2User.getAttributes());
     }
 
     private User saveOrUpdate(UserProfile userProfile, String registrationId) {
