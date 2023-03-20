@@ -31,7 +31,7 @@ public class UserRepositoryTest extends RepositoryTest {
         //when
         assertThat(userRepository.saveUser(user)).isEqualTo(1);
 
-       User foundUser = userRepository.findById(34L);
+       User foundUser = userRepository.findById(34L).get();
 
         System.out.println("fffffffffffffffffffffffff");
         System.out.println(foundUser.getProvider());

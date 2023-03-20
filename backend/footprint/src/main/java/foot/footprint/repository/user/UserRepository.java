@@ -17,7 +17,7 @@ public interface UserRepository {
     int saveUser(User user);
 
     @Select("SELECT * FROM user WHERE id=#{id}")
-    User findById(Long id);
+    Optional<User> findById(Long id);
 
     @Select("SELECT * FROM user WHERE email=#{email}")
     Optional<User> findByEmail(String email);
