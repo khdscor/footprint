@@ -1,5 +1,6 @@
 package foot.footprint.security;
 
+import foot.footprint.domain.user.Role;
 import foot.footprint.repository.user.UserRepository;
 import foot.footprint.security.user.CustomUserDetails;
 import io.jsonwebtoken.*;
@@ -40,16 +41,9 @@ public class JwtTokenProvider {
         this.COOKIE_REFRESH_TOKEN_KEY = cookieKey;
     }
 
-    public String createAccessToken(Authentication authentication) {
+    public String createAccessToken(String userId, Role role) {
         Date now = new Date();
         Date validity = new Date(now.getTime() + ACCESS_TOKEN_EXPIRE_LENGTH);
-
-        CustomUserDetails user = (CustomUserDetails) authentication.getPrincipal();
-
-        String userId = user.getName();
-        String role = authentication.getAuthorities().stream()
-                .map(GrantedAuthority::getAuthority)
-                .collect(Collectors.joining(","));
 
         return Jwts.builder()
                 .signWith(SECRET_KEY, SignatureAlgorithm.HS512)
