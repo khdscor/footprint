@@ -39,4 +39,12 @@ public class UserRepositoryTest extends RepositoryTest {
         System.out.println("fffffffffffffffffffffffff");
 
     }
+
+    @Test
+    public void existsByEmail(){
+        boolean test1 = userRepository.existsByEmail("testsfd");
+        boolean test2 = userRepository.existsByEmail("khdscor@gmail.com");
+        System.out.println(";;;;;;;;;;;;;;;;;;;;" +test1);
+        System.out.println(";;;;;;;;;;;;;;;;;;;;" +test2);
+    }
 }

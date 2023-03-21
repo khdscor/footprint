@@ -24,4 +24,7 @@ public interface UserRepository {
 
     @Update("UPDATE user SET refresh_token=#{token} WHERE id=#{id}")
     void updateRefreshToken(Long id, String token);
+
+    @Select("SELECT EXISTS (SELECT 1 FROM user WHERE email = #{email})")
+    boolean existsByEmail(String email);
 }
