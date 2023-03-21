@@ -22,6 +22,12 @@ public class AuthService {
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
+    private final JwtTokenProvider tokenProvider;
+
+    public String login(LoginRequest loginRequest) {
+        User user = userRepository.findByEmail(loginRequest.getEmail()).get();
+        return tokenProvider.createAccessToken(String.valueOf(user.getId()), Role.USER);
+    }
 
     public void signUp(SignUpRequest signUpRequest) {
         if (userRepository.existsByEmail(signUpRequest.getEmail())) {
