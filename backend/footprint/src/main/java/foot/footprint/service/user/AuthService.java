@@ -25,7 +25,11 @@ public class AuthService {
     private final JwtTokenProvider tokenProvider;
 
     public String login(LoginRequest loginRequest) {
-        User user = userRepository.findByEmail(loginRequest.getEmail()).get();
+        User user = userRepository.findByEmail(loginRequest.getEmail())
+                .orElseThrow(() -> new NotExistsException("존재하지 않는 이메일입니다."));
+        if (!passwordEncoder.matches(loginRequest.getPassword(), user.getPassword())) {
+            throw new NotMatchPasswordException("비밀번호가 틀렸습니다.");
+        }
         return tokenProvider.createAccessToken(String.valueOf(user.getId()), Role.USER);
     }
 
