@@ -1,6 +1,8 @@
 package foot.footprint.security;
 
+import foot.footprint.domain.user.Role;
 import foot.footprint.exception.NotAuthorizedRedirectUriException;
+import foot.footprint.security.user.CustomUserDetails;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Value;
@@ -49,7 +51,8 @@ public class OAuth2AuthenticationSuccessHandler extends SimpleUrlAuthenticationS
             throw new NotAuthorizedRedirectUriException(redirectUri + "는 허용되지 않은 redirect uri 입니다.");
         }
         // JWT 생성
-        String accessToken = tokenProvider.createAccessToken(authentication);
+        CustomUserDetails user = (CustomUserDetails) authentication.getPrincipal();
+        String accessToken = tokenProvider.createAccessToken(user.getName(), Role.USER);
         tokenProvider.createRefreshToken(authentication, response);
 
         return UriComponentsBuilder.fromUriString(redirectUri)

@@ -31,12 +31,20 @@ public class UserRepositoryTest extends RepositoryTest {
         //when
         assertThat(userRepository.saveUser(user)).isEqualTo(1);
 
-       User foundUser = userRepository.findById(34L);
+       User foundUser = userRepository.findById(34L).get();
 
         System.out.println("fffffffffffffffffffffffff");
         System.out.println(foundUser.getProvider());
         System.out.println(foundUser.getRole());
         System.out.println("fffffffffffffffffffffffff");
 
+    }
+
+    @Test
+    public void existsByEmail(){
+        boolean test1 = userRepository.existsByEmail("testsfd");
+        boolean test2 = userRepository.existsByEmail("khdscor@gmail.com");
+        System.out.println(";;;;;;;;;;;;;;;;;;;;" +test1);
+        System.out.println(";;;;;;;;;;;;;;;;;;;;" +test2);
     }
 }
