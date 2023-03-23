@@ -5,6 +5,9 @@
 이전 프로젝트:
 https://github.com/rush-f/RUSH-C
 
+
+진행일지 및 상세 내용은 아래의 노션을 확인하길 바란다.
+
 노션 주소: 
 https://pickled-slip-03d.notion.site/0de20f6d1da04d8485df5bec9382fc52
 
