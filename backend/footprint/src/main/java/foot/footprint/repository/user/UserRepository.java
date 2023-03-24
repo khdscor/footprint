@@ -1,6 +1,6 @@
 package foot.footprint.repository.user;
 
-import foot.footprint.domain.user.User;
+import foot.footprint.domain2.user.User;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;

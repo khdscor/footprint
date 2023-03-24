@@ -1,7 +1,7 @@
-package foot.footprint.domain.user;
+package foot.footprint.domain2.user;
 
-import foot.footprint.domain.typeHandler.CodeEnum;
-import foot.footprint.domain.typeHandler.CodeEnumTypeHandler;
+import foot.footprint.domain2.typeHandler.CodeEnum;
+import foot.footprint.domain2.typeHandler.CodeEnumTypeHandler;
 import org.apache.ibatis.type.MappedTypes;
 
 public enum AuthProvider implements CodeEnum {

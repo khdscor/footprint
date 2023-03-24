@@ -1,6 +1,6 @@
 package foot.footprint.security;
 
-import foot.footprint.domain.user.Role;
+import foot.footprint.domain2.user.Role;
 import foot.footprint.exception.NotAuthorizedRedirectUriException;
 import foot.footprint.security.user.CustomUserDetails;
 import lombok.RequiredArgsConstructor;

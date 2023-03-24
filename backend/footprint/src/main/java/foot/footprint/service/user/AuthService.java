@@ -1,8 +1,8 @@
 package foot.footprint.service.user;
 
-import foot.footprint.domain.user.AuthProvider;
-import foot.footprint.domain.user.Role;
-import foot.footprint.domain.user.User;
+import foot.footprint.domain2.user.AuthProvider;
+import foot.footprint.domain2.user.Role;
+import foot.footprint.domain2.user.User;
 import foot.footprint.dto.user.LoginRequest;
 import foot.footprint.dto.user.SignUpRequest;
 import foot.footprint.exception.AlreadyExistedEmailException;

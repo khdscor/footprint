@@ -1,6 +1,6 @@
 package foot.footprint.security;
 
-import foot.footprint.domain.user.Role;
+import foot.footprint.domain2.user.Role;
 import foot.footprint.repository.user.UserRepository;
 import foot.footprint.security.user.CustomUserDetails;
 import io.jsonwebtoken.*;

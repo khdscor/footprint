@@ -1,6 +1,6 @@
 package foot.footprint.repository.article;
 
-import foot.footprint.domain.Article;
+import foot.footprint.domain2.Article;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;

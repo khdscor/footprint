@@ -1,6 +1,6 @@
 package foot.footprint.security.user;
 
-import foot.footprint.domain.user.User;
+import foot.footprint.domain2.user.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

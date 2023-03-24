@@ -1,4 +1,4 @@
-package foot.footprint.domain;
+package foot.footprint.domain2;
 
 import lombok.Builder;
 import lombok.Getter;

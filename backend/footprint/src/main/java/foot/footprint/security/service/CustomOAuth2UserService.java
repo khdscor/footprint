@@ -1,8 +1,8 @@
 package foot.footprint.security.service;
 
-import foot.footprint.domain.user.AuthProvider;
-import foot.footprint.domain.user.Role;
-import foot.footprint.domain.user.User;
+import foot.footprint.domain2.user.AuthProvider;
+import foot.footprint.domain2.user.Role;
+import foot.footprint.domain2.user.User;
 import foot.footprint.exception.OAuth2AuthenticationProcessingException;
 import foot.footprint.repository.user.UserRepository;
 import foot.footprint.security.user.CustomUserDetails;

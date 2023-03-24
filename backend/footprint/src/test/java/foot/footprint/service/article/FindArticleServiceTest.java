@@ -1,6 +1,6 @@
 package foot.footprint.service.article;
 
-import foot.footprint.domain.Article;
+import foot.footprint.domain2.Article;
 import foot.footprint.dto.article.ArticleMapResponse;
 import foot.footprint.repository.article.FindArticleRepository;
 import org.junit.jupiter.api.DisplayName;

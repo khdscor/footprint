@@ -1,4 +1,4 @@
-package foot.footprint.domain.typeHandler;
+package foot.footprint.domain2.typeHandler;
 
 import org.apache.ibatis.type.JdbcType;
 import org.apache.ibatis.type.TypeHandler;

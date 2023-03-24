@@ -1,4 +1,4 @@
-package foot.footprint.domain.user;
+package foot.footprint.domain2.user;
 
 import lombok.Builder;
 import lombok.Getter;
