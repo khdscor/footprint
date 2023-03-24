@@ -1,6 +1,7 @@
 package foot.footprint.repository.article;
 
-import foot.footprint.domain2.Article;
+import foot.footprint.domain.article.dao.FindArticleRepository;
+import foot.footprint.domain.article.domain.Article;
 import foot.footprint.repository.RepositoryTest;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,8 +1,9 @@
 package foot.footprint.service.article;
 
-import foot.footprint.domain2.Article;
-import foot.footprint.dto.article.ArticleMapResponse;
-import foot.footprint.repository.article.FindArticleRepository;
+import foot.footprint.domain.article.application.FindArticleService;
+import foot.footprint.domain.article.domain.Article;
+import foot.footprint.domain.article.dto.ArticleMapResponse;
+import foot.footprint.domain.article.dao.FindArticleRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
