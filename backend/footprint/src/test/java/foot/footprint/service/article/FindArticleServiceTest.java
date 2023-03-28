@@ -2,6 +2,7 @@ package foot.footprint.service.article;
 
 import foot.footprint.domain.article.application.FindArticleService;
 import foot.footprint.domain.article.domain.Article;
+import foot.footprint.domain.article.domain.LocationRange;
 import foot.footprint.domain.article.dto.ArticleMapResponse;
 import foot.footprint.domain.article.dao.FindArticleRepository;
 import org.junit.jupiter.api.DisplayName;
@@ -31,7 +32,7 @@ public class FindArticleServiceTest {
 
     @Test
     @DisplayName("전체지도 내 게시글 찾기 테스트")
-    public void findArticleServiceTest(
+    public void findPublicMapArticlesTest(
     ) {
         //given
         Article article = Article.builder()
@@ -45,15 +46,17 @@ public class FindArticleServiceTest {
                 .user_id(1L).build();
         List<Article> articles = new ArrayList<>();
         articles.add(article);
-        given(findArticleRepository.findArticles(1L, 20.0, 0.0, 20.0, 0.0))
+        Long userId = null;
+        given(findArticleRepository.findArticles(userId, 20.0, 0.0, 20.0, 0.0))
                 .willReturn(articles);
+        LocationRange locationRange = new LocationRange(10.0, 10.0, 10.0, 10.0);
 
         //when
-        List<ArticleMapResponse> responses = findArticleService.findMapArticles(1L, 10.0, 10.0, 10.0, 10.0);
+        List<ArticleMapResponse> responses = findArticleService.findPublicMapArticles(locationRange);
 
         //then
-        verify(findArticleRepository).findArticles(1L, 20.0, 0.0, 20.0, 0.0);
-        verify(findArticleService).findMapArticles(1L, 10.0, 10.0, 10.0, 10.0);
+        verify(findArticleRepository).findArticles(userId, 20.0, 0.0, 20.0, 0.0);
+        verify(findArticleService).findPublicMapArticles(locationRange);
         assertThat(responses).hasSize(1);
         assertThat(responses.get(0).getTitle()).isEqualTo(article.getTitle());
     }
