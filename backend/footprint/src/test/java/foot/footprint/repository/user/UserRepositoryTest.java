@@ -1,8 +1,9 @@
 package foot.footprint.repository.user;
 
-import foot.footprint.domain.user.AuthProvider;
-import foot.footprint.domain.user.Role;
-import foot.footprint.domain.user.User;
+import foot.footprint.domain.user.dao.UserRepository;
+import foot.footprint.domain.user.domain.AuthProvider;
+import foot.footprint.domain.user.domain.Role;
+import foot.footprint.domain.user.domain.User;
 import foot.footprint.repository.RepositoryTest;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

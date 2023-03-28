@@ -11,8 +11,8 @@
     </settings>
 
     <typeHandlers>
-        <typeHandler handler="foot.footprint.domain.user.Role$TypeHandler"/>
-        <typeHandler handler="foot.footprint.domain.user.AuthProvider$TypeHandler"/>
-        <typeHandler handler="foot.footprint.domain.typeHandler.CodeEnumTypeHandler"/>
+        <typeHandler handler="foot.footprint.domain.user.domain.Role$TypeHandler"/>
+        <typeHandler handler="foot.footprint.domain.user.domain.AuthProvider$TypeHandler"/>
+        <typeHandler handler="foot.footprint.global.typeHandler.CodeEnumTypeHandler"/>
     </typeHandlers>
 </configuration>
