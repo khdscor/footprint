@@ -7,7 +7,6 @@ import foot.footprint.domain.article.domain.LocationRange;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
@@ -19,15 +18,21 @@ public class FindArticleService {
     private final FindArticleRepository findArticleRepository;
 
     @Transactional(readOnly = true)
-    public List<ArticleMapResponse> findMapArticles(Long userId,
-            Double latitude, Double latitudeRange, Double longitude, Double longitudeRange) {
-        LocationRange locationRange = new LocationRange(latitude, latitudeRange, longitude,
-                longitudeRange);
-        List<Article> articles = findArticleRepository
-                .findArticles(userId,
-                        locationRange.getUpperLatitude(), locationRange.getLowerLatitude(),
-                        locationRange.getUpperLongitude(), locationRange.getLowerLongitude());
-        return toResponses(articles);
+    public List<ArticleMapResponse> findPublicMapArticles(
+            LocationRange locationRange) {
+        Long userId = null;
+        return toResponses(findArticles(userId, locationRange));
+    }
+    @Transactional(readOnly = true)
+    public List<ArticleMapResponse> findPrivateMapArticles(
+            Long userId, LocationRange locationRange) {
+        return toResponses(findArticles(userId, locationRange));
+    }
+
+    private List<Article> findArticles(Long userId, LocationRange locationRange) {
+        return findArticleRepository.findArticles(userId,
+                locationRange.getUpperLatitude(), locationRange.getLowerLatitude(),
+                locationRange.getUpperLongitude(), locationRange.getLowerLongitude());
     }
 
     private List<ArticleMapResponse> toResponses(List<Article> articles) {
