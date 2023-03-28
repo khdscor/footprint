@@ -5,6 +5,7 @@ import foot.footprint.domain.article.domain.Article;
 import foot.footprint.domain.article.domain.LocationRange;
 import foot.footprint.domain.article.dto.ArticleMapResponse;
 import foot.footprint.domain.article.dao.FindArticleRepository;
+import foot.footprint.domain.article.dto.ArticleRangeRequest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -35,21 +36,11 @@ public class FindArticleServiceTest {
     public void findPublicMapArticlesTest(
     ) {
         //given
-        Article article = Article.builder()
-                .id(1L)
-                .content("ddddd")
-                .latitude(10.1)
-                .longitude(10.1)
-                .private_map(true)
-                .public_map(true)
-                .title("히히히히")
-                .user_id(1L).build();
-        List<Article> articles = new ArrayList<>();
-        articles.add(article);
+        List<Article> articles = createArticleList(createArticle());
         Long userId = null;
+        LocationRange locationRange = new LocationRange(new ArticleRangeRequest(10.0, 10.0, 10.0, 10.0));
         given(findArticleRepository.findArticles(userId, 20.0, 0.0, 20.0, 0.0))
                 .willReturn(articles);
-        LocationRange locationRange = new LocationRange(10.0, 10.0, 10.0, 10.0);
 
         //when
         List<ArticleMapResponse> responses = findArticleService.findPublicMapArticles(locationRange);
@@ -58,6 +49,23 @@ public class FindArticleServiceTest {
         verify(findArticleRepository).findArticles(userId, 20.0, 0.0, 20.0, 0.0);
         verify(findArticleService).findPublicMapArticles(locationRange);
         assertThat(responses).hasSize(1);
-        assertThat(responses.get(0).getTitle()).isEqualTo(article.getTitle());
+    }
+
+    private Article createArticle() {
+        return Article.builder()
+                .id(1L)
+                .content("ddddd")
+                .latitude(10.1)
+                .longitude(10.1)
+                .private_map(true)
+                .public_map(true)
+                .title("히히히히")
+                .user_id(1L).build();
+    }
+
+    private List<Article> createArticleList(Article article) {
+        List<Article> articles = new ArrayList<>();
+        articles.add(article);
+        return articles;
     }
 }

@@ -21,11 +21,7 @@ public class FindArticleController {
 
     @GetMapping("/public")
     public ResponseEntity<List<ArticleMapResponse>> findPublicMapArticles(ArticleRangeRequest request) {
-        LocationRange locationRange = new LocationRange(
-                request.getLatitude(),
-                request.getLatitudeRange(),
-                request.getLongitude(),
-                request.getLongitudeRange());
+        LocationRange locationRange = new LocationRange(request);
         List<ArticleMapResponse> publicMapArticles = findArticleService.findPublicMapArticles(locationRange);
         return ResponseEntity.ok()
                 .body(publicMapArticles);
