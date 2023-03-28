@@ -1,5 +1,6 @@
 package foot.footprint.domain.article.api;
 
+import foot.footprint.domain.article.domain.LocationRange;
 import foot.footprint.domain.article.dto.ArticleMapResponse;
 import foot.footprint.domain.article.dto.ArticleRangeRequest;
 import foot.footprint.domain.article.application.FindArticleService;
@@ -20,10 +21,12 @@ public class FindArticleController {
 
     @GetMapping("/public")
     public ResponseEntity<List<ArticleMapResponse>> findPublicMapArticles(ArticleRangeRequest request) {
-        Long userId = null; // publicMap 조회
-        List<ArticleMapResponse> publicMapArticles = findArticleService.findMapArticles(userId,
-                request.getLatitude(), request.getLatitudeRange(), request.getLongitude(), request.getLongitudeRange()
-        );
+        LocationRange locationRange = new LocationRange(
+                request.getLatitude(),
+                request.getLatitudeRange(),
+                request.getLongitude(),
+                request.getLongitudeRange());
+        List<ArticleMapResponse> publicMapArticles = findArticleService.findPublicMapArticles(locationRange);
         return ResponseEntity.ok()
                 .body(publicMapArticles);
     }
