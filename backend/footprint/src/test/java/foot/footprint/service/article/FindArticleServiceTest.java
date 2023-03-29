@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -46,8 +47,8 @@ public class FindArticleServiceTest {
         List<ArticleMapResponse> responses = findArticleService.findPublicMapArticles(locationRange);
 
         //then
-        verify(findArticleRepository).findArticles(userId, 20.0, 0.0, 20.0, 0.0);
-        verify(findArticleService).findPublicMapArticles(locationRange);
+        verify(findArticleRepository,times(1)).findArticles(userId, 20.0, 0.0, 20.0, 0.0);
+        verify(findArticleService, times(1)).findPublicMapArticles(locationRange);
         assertThat(responses).hasSize(1);
     }
 
