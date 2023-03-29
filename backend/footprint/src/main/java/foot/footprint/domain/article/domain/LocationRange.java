@@ -1,5 +1,6 @@
 package foot.footprint.domain.article.domain;
 
+import foot.footprint.domain.article.dto.ArticleRangeRequest;
 import lombok.Getter;
 
 @Getter
@@ -10,11 +11,10 @@ public class LocationRange {
     private final double lowerLongitude;
     private final double upperLongitude;
 
-    public LocationRange(Double startLatitude, Double latitudeRange,
-                         Double startLongitude, Double longitudeRange) {
-        this.lowerLatitude = startLatitude - latitudeRange;
-        this.upperLatitude = startLatitude + latitudeRange;
-        this.lowerLongitude = startLongitude - longitudeRange;
-        this.upperLongitude = startLongitude + longitudeRange;
+    public LocationRange(ArticleRangeRequest request) {
+        this.lowerLatitude = request.getLatitude() - request.getLatitudeRange();
+        this.upperLatitude = request.getLatitude() + request.getLatitudeRange();
+        this.lowerLongitude = request.getLongitude() - request.getLongitudeRange();
+        this.upperLongitude = request.getLongitude() + request.getLongitudeRange();
     }
 }
