@@ -9,4 +9,5 @@ import org.springframework.test.context.junit4.SpringRunner;
 @MybatisTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 public class RepositoryTest {
+
 }

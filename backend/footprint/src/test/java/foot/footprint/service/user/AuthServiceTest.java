@@ -31,102 +31,103 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 @ExtendWith(MockitoExtension.class)
 public class AuthServiceTest {
 
-    @Mock
-    private UserRepository userRepository;
+  @Mock
+  private UserRepository userRepository;
 
-    @Mock
-    private PasswordEncoder passwordEncoder;
+  @Mock
+  private PasswordEncoder passwordEncoder;
 
-    @Mock
-    private JwtTokenProvider tokenProvider;
+  @Mock
+  private JwtTokenProvider tokenProvider;
 
-    @Spy
-    @InjectMocks
-    private AuthService authService;
+  @Spy
+  @InjectMocks
+  private AuthService authService;
 
-    private User user;
-    @Test
-    @DisplayName("로그인시")
-    public void Login() {
-        //given
-        String testToken = "testtset";
-        setUser();
-        LoginRequest loginRequest = new LoginRequest("email", "password");
-        given(userRepository.findByEmail("email")).willReturn(Optional.ofNullable(user));
-        given(passwordEncoder.matches(loginRequest.getPassword(), user.getPassword())).willReturn(true);
-        given(tokenProvider.createAccessToken(any(), any())).willReturn(testToken);
+  private User user;
 
-        //when
-        String token = authService.login(loginRequest);
+  @Test
+  @DisplayName("로그인시")
+  public void Login() {
+    //given
+    String testToken = "testtset";
+    setUser();
+    LoginRequest loginRequest = new LoginRequest("email", "password");
+    given(userRepository.findByEmail("email")).willReturn(Optional.ofNullable(user));
+    given(passwordEncoder.matches(loginRequest.getPassword(), user.getPassword())).willReturn(true);
+    given(tokenProvider.createAccessToken(any(), any())).willReturn(testToken);
 
-        //then
-        assertThat(token).isEqualTo(testToken);
-    }
+    //when
+    String token = authService.login(loginRequest);
 
-    @Test
-    @DisplayName("로그인 실패할 경우")
-    public void Login_IfNotExistsEmail() {
-        //given
-        LoginRequest loginRequest = new LoginRequest("email", "password");
+    //then
+    assertThat(token).isEqualTo(testToken);
+  }
 
-        //when & then
-        assertThatThrownBy(
-                () -> authService.login(loginRequest))
-                .isInstanceOf(NotExistsEmailException.class);
+  @Test
+  @DisplayName("로그인 실패할 경우")
+  public void Login_IfNotExistsEmail() {
+    //given
+    LoginRequest loginRequest = new LoginRequest("email", "password");
 
-        //given
-        setUser();
-        given(userRepository.findByEmail("email")).willReturn(Optional.ofNullable(user));
-        given(passwordEncoder.matches(any(), any())).willReturn(false);
+    //when & then
+    assertThatThrownBy(
+        () -> authService.login(loginRequest))
+        .isInstanceOf(NotExistsEmailException.class);
 
-        //when & then
-        assertThatThrownBy(
-                () -> authService.login(loginRequest))
-                .isInstanceOf(NotMatchPasswordException.class);
-    }
+    //given
+    setUser();
+    given(userRepository.findByEmail("email")).willReturn(Optional.ofNullable(user));
+    given(passwordEncoder.matches(any(), any())).willReturn(false);
 
-    @Test
-    @DisplayName("회원가입 진행시")
-    public void SignUp() {
-        //given
-        ArgumentCaptor<User> captor = ArgumentCaptor.forClass(User.class);
-        SignUpRequest signUpRequest = new SignUpRequest("nickName", "email", "password");
-        given(userRepository.saveUser(any())).willReturn(1);
-        given(userRepository.existsByEmail("email")).willReturn(false);
-        given(passwordEncoder.encode("password")).willReturn("password");
+    //when & then
+    assertThatThrownBy(
+        () -> authService.login(loginRequest))
+        .isInstanceOf(NotMatchPasswordException.class);
+  }
 
-        //when
-        authService.signUp(signUpRequest);
+  @Test
+  @DisplayName("회원가입 진행시")
+  public void SignUp() {
+    //given
+    ArgumentCaptor<User> captor = ArgumentCaptor.forClass(User.class);
+    SignUpRequest signUpRequest = new SignUpRequest("nickName", "email", "password");
+    given(userRepository.saveUser(any())).willReturn(1);
+    given(userRepository.existsByEmail("email")).willReturn(false);
+    given(passwordEncoder.encode("password")).willReturn("password");
 
-        //then
-        verify(userRepository, times(1)).saveUser(captor.capture());
-        User user = captor.getValue();
-        assertThat(signUpRequest.getNickName()).isEqualTo(user.getNick_name());
-    }
+    //when
+    authService.signUp(signUpRequest);
 
-    @Test
-    @DisplayName("회원가입 진행시 이미 이메일이 가입되어 있는경우")
-    public void SignUp_IfExistsEmail() {
-        //given
-        SignUpRequest signUpRequest = new SignUpRequest("nickName", "email", "password");
-        given(userRepository.existsByEmail("email")).willReturn(true);
+    //then
+    verify(userRepository, times(1)).saveUser(captor.capture());
+    User user = captor.getValue();
+    assertThat(signUpRequest.getNickName()).isEqualTo(user.getNick_name());
+  }
 
-        //when & then
-        assertThatThrownBy(
-                () -> authService.signUp(signUpRequest))
-                .isInstanceOf(AlreadyExistedEmailException.class);
-    }
+  @Test
+  @DisplayName("회원가입 진행시 이미 이메일이 가입되어 있는경우")
+  public void SignUp_IfExistsEmail() {
+    //given
+    SignUpRequest signUpRequest = new SignUpRequest("nickName", "email", "password");
+    given(userRepository.existsByEmail("email")).willReturn(true);
 
-    private void setUser(){
-        user = User.builder()
-                .id(20L)
-                .email("test")
-                .image_url(null)
-                .provider_id("test")
-                .provider(AuthProvider.google)
-                .nick_name("tset")
-                .role(Role.USER)
-                .join_date(new Date())
-                .password("password").build();
-    }
+    //when & then
+    assertThatThrownBy(
+        () -> authService.signUp(signUpRequest))
+        .isInstanceOf(AlreadyExistedEmailException.class);
+  }
+
+  private void setUser() {
+    user = User.builder()
+        .id(20L)
+        .email("test")
+        .image_url(null)
+        .provider_id("test")
+        .provider(AuthProvider.google)
+        .nick_name("tset")
+        .role(Role.USER)
+        .join_date(new Date())
+        .password("password").build();
+  }
 }
