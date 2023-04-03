@@ -1,15 +1,15 @@
 package foot.footprint.service.user;
 
-import foot.footprint.domain.user.application.AuthService;
-import foot.footprint.domain.user.dao.UserRepository;
-import foot.footprint.domain.user.domain.AuthProvider;
-import foot.footprint.domain.user.domain.Role;
-import foot.footprint.domain.user.domain.User;
-import foot.footprint.domain.user.dto.LoginRequest;
-import foot.footprint.domain.user.dto.SignUpRequest;
-import foot.footprint.domain.user.exception.AlreadyExistedEmailException;
-import foot.footprint.domain.user.exception.NotExistsEmailException;
-import foot.footprint.domain.user.exception.NotMatchPasswordException;
+import foot.footprint.domain.member.application.AuthService;
+import foot.footprint.domain.member.dao.MemberRepository;
+import foot.footprint.domain.member.domain.AuthProvider;
+import foot.footprint.domain.member.domain.Role;
+import foot.footprint.domain.member.domain.Member;
+import foot.footprint.domain.member.dto.LoginRequest;
+import foot.footprint.domain.member.dto.SignUpRequest;
+import foot.footprint.domain.member.exception.AlreadyExistedEmailException;
+import foot.footprint.domain.member.exception.NotExistsEmailException;
+import foot.footprint.domain.member.exception.NotMatchPasswordException;
 import foot.footprint.global.security.JwtTokenProvider;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -32,7 +32,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 public class AuthServiceTest {
 
   @Mock
-  private UserRepository userRepository;
+  private MemberRepository memberRepository;
 
   @Mock
   private PasswordEncoder passwordEncoder;
@@ -44,7 +44,7 @@ public class AuthServiceTest {
   @InjectMocks
   private AuthService authService;
 
-  private User user;
+  private Member member;
 
   @Test
   @DisplayName("로그인시")
@@ -53,8 +53,8 @@ public class AuthServiceTest {
     String testToken = "testtset";
     setUser();
     LoginRequest loginRequest = new LoginRequest("email", "password");
-    given(userRepository.findByEmail("email")).willReturn(Optional.ofNullable(user));
-    given(passwordEncoder.matches(loginRequest.getPassword(), user.getPassword())).willReturn(true);
+    given(memberRepository.findByEmail("email")).willReturn(Optional.ofNullable(member));
+    given(passwordEncoder.matches(loginRequest.getPassword(), member.getPassword())).willReturn(true);
     given(tokenProvider.createAccessToken(any(), any())).willReturn(testToken);
 
     //when
@@ -77,7 +77,7 @@ public class AuthServiceTest {
 
     //given
     setUser();
-    given(userRepository.findByEmail("email")).willReturn(Optional.ofNullable(user));
+    given(memberRepository.findByEmail("email")).willReturn(Optional.ofNullable(member));
     given(passwordEncoder.matches(any(), any())).willReturn(false);
 
     //when & then
@@ -90,19 +90,19 @@ public class AuthServiceTest {
   @DisplayName("회원가입 진행시")
   public void SignUp() {
     //given
-    ArgumentCaptor<User> captor = ArgumentCaptor.forClass(User.class);
+    ArgumentCaptor<Member> captor = ArgumentCaptor.forClass(Member.class);
     SignUpRequest signUpRequest = new SignUpRequest("nickName", "email", "password");
-    given(userRepository.saveUser(any())).willReturn(1);
-    given(userRepository.existsByEmail("email")).willReturn(false);
+    given(memberRepository.saveMember(any())).willReturn(1);
+    given(memberRepository.existsByEmail("email")).willReturn(false);
     given(passwordEncoder.encode("password")).willReturn("password");
 
     //when
     authService.signUp(signUpRequest);
 
     //then
-    verify(userRepository, times(1)).saveUser(captor.capture());
-    User user = captor.getValue();
-    assertThat(signUpRequest.getNickName()).isEqualTo(user.getNick_name());
+    verify(memberRepository, times(1)).saveMember(captor.capture());
+    Member member = captor.getValue();
+    assertThat(signUpRequest.getNickName()).isEqualTo(member.getNick_name());
   }
 
   @Test
@@ -110,7 +110,7 @@ public class AuthServiceTest {
   public void SignUp_IfExistsEmail() {
     //given
     SignUpRequest signUpRequest = new SignUpRequest("nickName", "email", "password");
-    given(userRepository.existsByEmail("email")).willReturn(true);
+    given(memberRepository.existsByEmail("email")).willReturn(true);
 
     //when & then
     assertThatThrownBy(
@@ -119,7 +119,7 @@ public class AuthServiceTest {
   }
 
   private void setUser() {
-    user = User.builder()
+    member = Member.builder()
         .id(20L)
         .email("test")
         .image_url(null)

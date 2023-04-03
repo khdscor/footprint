@@ -1,4 +1,4 @@
-create table user (
+create table member (
     id bigint not null auto_increment,
     email varchar(100) not null,
     image_url varchar(255),

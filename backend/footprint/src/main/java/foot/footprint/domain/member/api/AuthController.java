@@ -1,9 +1,9 @@
-package foot.footprint.domain.user.api;
+package foot.footprint.domain.member.api;
 
-import foot.footprint.domain.user.dto.AuthResponse;
-import foot.footprint.domain.user.dto.LoginRequest;
-import foot.footprint.domain.user.dto.SignUpRequest;
-import foot.footprint.domain.user.application.AuthService;
+import foot.footprint.domain.member.dto.AuthResponse;
+import foot.footprint.domain.member.dto.LoginRequest;
+import foot.footprint.domain.member.dto.SignUpRequest;
+import foot.footprint.domain.member.application.AuthService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +20,7 @@ public class AuthController {
   private final AuthService authService;
 
   @PostMapping("/login")
-  public ResponseEntity<AuthResponse> authenticateUser(
+  public ResponseEntity<AuthResponse> authenticateMember(
       @RequestBody LoginRequest loginRequest) {
     String token = authService.login(loginRequest);
 
@@ -28,7 +28,7 @@ public class AuthController {
   }
 
   @PostMapping("/signup")
-  public ResponseEntity<Void> registerUser(@RequestBody SignUpRequest signUpRequest) {
+  public ResponseEntity<Void> registerMember(@RequestBody SignUpRequest signUpRequest) {
     authService.signUp(signUpRequest);
 
     return ResponseEntity.status(HttpStatus.CREATED)

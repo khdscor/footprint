@@ -1,6 +1,6 @@
 package foot.footprint.global.security.user;
 
-import foot.footprint.domain.user.domain.User;
+import foot.footprint.domain.member.domain.Member;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -24,23 +24,26 @@ public class CustomUserDetails implements UserDetails, OAuth2User {
     this.authorities = authorities;
   }
 
-  public static CustomUserDetails create(User user) {
+  public static CustomUserDetails create(Member member) {
     List<GrantedAuthority> authorities = Collections.
         singletonList(new SimpleGrantedAuthority("ROLE_USER"));
 
     return new CustomUserDetails(
-        user.getId(),
-        user.getEmail(),
+        member.getId(),
+        member.getEmail(),
         authorities
     );
   }
 
-  public static CustomUserDetails create(User user, Map<String, Object> attributes) {
-    CustomUserDetails userDetails = CustomUserDetails.create(user);
+  public static CustomUserDetails create(Member member, Map<String, Object> attributes) {
+    CustomUserDetails userDetails = CustomUserDetails.create(member);
     userDetails.setAttributes(attributes);
     return userDetails;
   }
 
+  public Long getId(){
+    return this.id;
+  }
   // UserDetail Override
   @Override
   public Collection<? extends GrantedAuthority> getAuthorities() {

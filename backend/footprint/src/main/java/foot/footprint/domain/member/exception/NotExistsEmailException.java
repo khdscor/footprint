@@ -1,4 +1,4 @@
-package foot.footprint.domain.user.exception;
+package foot.footprint.domain.member.exception;
 
 public class NotExistsEmailException extends RuntimeException {
 

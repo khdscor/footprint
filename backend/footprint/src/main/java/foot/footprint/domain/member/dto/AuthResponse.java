@@ -1,4 +1,4 @@
-package foot.footprint.domain.user.dto;
+package foot.footprint.domain.member.dto;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;

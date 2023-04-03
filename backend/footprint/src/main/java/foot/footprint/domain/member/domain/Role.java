@@ -1,4 +1,4 @@
-package foot.footprint.domain.user.domain;
+package foot.footprint.domain.member.domain;
 
 import foot.footprint.global.typeHandler.CodeEnum;
 import foot.footprint.global.typeHandler.CodeEnumTypeHandler;

@@ -1,13 +1,12 @@
-package foot.footprint.domain.user.dto;
+package foot.footprint.domain.member.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @AllArgsConstructor
 @Getter
-public class SignUpRequest {
+public class LoginRequest {
 
-  private String nickName;
   private String email;
   private String password;
 }

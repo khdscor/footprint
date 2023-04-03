@@ -62,7 +62,7 @@ public class FindArticleServiceTest {
         .private_map(true)
         .public_map(true)
         .title("히히히히")
-        .user_id(1L).build();
+        .member_id(1L).build();
   }
 
   private List<Article> createArticleList(Article article) {

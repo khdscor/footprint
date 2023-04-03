@@ -9,6 +9,6 @@ create table article (
     private_map bit not null,
     public_map bit not null,
     title varchar(50) not null,
-    user_id bigint not null,
+    member_id bigint not null,
     primary key (id)
 );

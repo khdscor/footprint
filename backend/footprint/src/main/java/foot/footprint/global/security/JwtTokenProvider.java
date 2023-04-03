@@ -1,8 +1,8 @@
 package foot.footprint.global.security;
 
-import foot.footprint.domain.user.domain.Role;
+import foot.footprint.domain.member.domain.Role;
 import foot.footprint.global.security.user.CustomUserDetails;
-import foot.footprint.domain.user.dao.UserRepository;
+import foot.footprint.domain.member.dao.MemberRepository;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
@@ -34,7 +34,7 @@ public class JwtTokenProvider {
   private final String AUTHORITIES_KEY = "role";
 
   @Autowired
-  private UserRepository userRepository;
+  private MemberRepository memberRepository;
 
   public JwtTokenProvider(@Value("${app.auth.tokenSecret}") String secretKey,
       @Value("${app.auth.refreshCookieKey}") String cookieKey) {
@@ -43,13 +43,13 @@ public class JwtTokenProvider {
     this.COOKIE_REFRESH_TOKEN_KEY = cookieKey;
   }
 
-  public String createAccessToken(String userId, Role role) {
+  public String createAccessToken(String memberId, Role role) {
     Date now = new Date();
     Date validity = new Date(now.getTime() + ACCESS_TOKEN_EXPIRE_LENGTH);
 
     return Jwts.builder()
         .signWith(SECRET_KEY, SignatureAlgorithm.HS512)
-        .setSubject(userId)
+        .setSubject(memberId)
         .claim(AUTHORITIES_KEY, role)
         .setIssuer("khds")
         .setIssuedAt(now)
@@ -85,7 +85,7 @@ public class JwtTokenProvider {
     CustomUserDetails user = (CustomUserDetails) authentication.getPrincipal();
     Long id = Long.valueOf(user.getName());
 
-    userRepository.updateRefreshToken(id, refreshToken);
+    memberRepository.updateRefreshToken(id, refreshToken);
   }
 
   // Access Token을 검사하고 얻은 정보로 Authentication 객체 생성

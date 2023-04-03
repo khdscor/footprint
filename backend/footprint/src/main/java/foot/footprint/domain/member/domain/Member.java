@@ -1,4 +1,4 @@
-package foot.footprint.domain.user.domain;
+package foot.footprint.domain.member.domain;
 
 import lombok.Builder;
 import lombok.Getter;
@@ -10,7 +10,7 @@ import java.util.Date;
 @ToString
 @Builder
 @NoArgsConstructor
-public class User {
+public class Member {
 
   private Long id;
   private String email;
@@ -23,9 +23,8 @@ public class User {
   private Role role;
   private String refresh_token;
 
-  public User(Long id, String email, String image_url, Date join_date, String nick_name,
-      String password,
-      AuthProvider provider, String provider_id, Role role, String refresh_token) {
+  public Member(Long id, String email, String image_url, Date join_date, String nick_name,
+      String password, AuthProvider provider, String provider_id, Role role, String refresh_token) {
     this.id = id;
     this.email = email;
     this.image_url = image_url;

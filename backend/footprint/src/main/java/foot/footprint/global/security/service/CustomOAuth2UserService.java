@@ -1,11 +1,11 @@
 package foot.footprint.global.security.service;
 
-import foot.footprint.domain.user.domain.AuthProvider;
-import foot.footprint.domain.user.domain.Role;
-import foot.footprint.domain.user.domain.User;
+import foot.footprint.domain.member.domain.AuthProvider;
+import foot.footprint.domain.member.domain.Member;
+import foot.footprint.domain.member.domain.Role;
 import foot.footprint.global.security.exception.OAuth2AuthenticationProcessingException;
 import foot.footprint.global.security.user.CustomUserDetails;
-import foot.footprint.domain.user.dao.UserRepository;
+import foot.footprint.domain.member.dao.MemberRepository;
 import foot.footprint.global.security.user.OAuthAttributes;
 import foot.footprint.global.security.user.UserProfile;
 import lombok.RequiredArgsConstructor;
@@ -25,7 +25,7 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
   private static final String DUMMY_PASSWORD = "무의미한 패스워드";
 
   private final PasswordEncoder passwordEncoder;
-  private final UserRepository userRepository;
+  private final MemberRepository memberRepository;
 
   @Override
   public OAuth2User loadUser(OAuth2UserRequest userRequest) throws OAuth2AuthenticationException {
@@ -44,19 +44,19 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
     if (Objects.isNull(userProfile.getEmail()) || userProfile.getEmail().isEmpty()) {
       throw new OAuth2AuthenticationProcessingException("해당하는 이메일이 존재하지 않습니다.");
     }
-    User user = saveOrUpdate(userProfile, registrationId);  // DB에 저장
+    Member member = saveOrUpdate(userProfile, registrationId);  // DB에 저장
 
-    return CustomUserDetails.create(user, oAuth2User.getAttributes());
+    return CustomUserDetails.create(member, oAuth2User.getAttributes());
   }
 
-  private User saveOrUpdate(UserProfile userProfile, String registrationId) {
-    Optional<User> userOptional = userRepository.findByEmail(userProfile.getEmail());
-    User user;
+  private Member saveOrUpdate(UserProfile userProfile, String registrationId) {
+    Optional<Member> userOptional = memberRepository.findByEmail(userProfile.getEmail());
+    Member member;
     if (userOptional.isPresent()) {
-      user = userOptional.get();
+      member = userOptional.get();
     } else {
       Date date = new Date();
-      user = User.builder()
+      member = Member.builder()
           .nick_name(userProfile.getName())
           .email(userProfile.getEmail())
           .provider(AuthProvider.valueOf(registrationId))
@@ -66,9 +66,9 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
           .join_date(date)
           .role(Role.USER)
           .build();
-      userRepository.saveUser(user);
+      memberRepository.saveMember(member);
     }
 
-    return user;
+    return member;
   }
 }
