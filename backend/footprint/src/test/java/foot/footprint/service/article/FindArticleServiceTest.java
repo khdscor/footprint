@@ -41,14 +41,14 @@ public class FindArticleServiceTest {
     Long userId = null;
     LocationRange locationRange = new LocationRange(
         new ArticleRangeRequest(10.0, 10.0, 10.0, 10.0));
-    given(findArticleRepository.findArticles(userId, 20.0, 0.0, 20.0, 0.0))
+    given(findArticleRepository.findArticles(userId, locationRange))
         .willReturn(articles);
 
     //when
     List<ArticleMapResponse> responses = findArticleService.findPublicMapArticles(locationRange);
 
     //then
-    verify(findArticleRepository, times(1)).findArticles(userId, 20.0, 0.0, 20.0, 0.0);
+    verify(findArticleRepository, times(1)).findArticles(userId, locationRange);
     verify(findArticleService, times(1)).findPublicMapArticles(locationRange);
     assertThat(responses).hasSize(1);
   }

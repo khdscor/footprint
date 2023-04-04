@@ -13,7 +13,7 @@
             </otherwise>
         </choose>
         and
-        latitude between #{lowerLatitude} and #{upperLatitude} and
-        longitude between #{lowerLongitude} and #{upperLongitude}
+        latitude between #{locationRange.lowerLatitude} and #{locationRange.upperLatitude} and
+        longitude between #{locationRange.lowerLongitude} and #{locationRange.upperLongitude}
     </select>
 </mapper>

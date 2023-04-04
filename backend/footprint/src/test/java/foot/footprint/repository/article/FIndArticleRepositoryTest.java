@@ -38,42 +38,32 @@ public class FIndArticleRepositoryTest extends RepositoryTest {
     //publicMapArticles
     List<Article> articlesN = findArticleRepository.findArticles(
         null,
-        20.0,
-        0.0,
-        20.0,
-        0.0
+        new LocationRange(
+            new ArticleRangeRequest(10.0, 10.0, 10.0, 10.0))
     );
     //publicMapArticles, but private 글
     List<Article> articlesN2 = findArticleRepository.findArticles(
         1L,
-        20.0,
-        0.0,
-        20.0,
-        0.0
+        new LocationRange(
+            new ArticleRangeRequest(10.0, 10.0, 10.0, 10.0))
     );
     //privateMapArticles 다른 유저
     List<Article> articles1 = findArticleRepository.findArticles(
         1L,
-        40.0,
-        30.0,
-        130.0,
-        120.0
+        new LocationRange(
+            new ArticleRangeRequest(35.0, 5.0, 125.0, 5.0))
     );
     //privateMapArticles 해당 유저
     List<Article> articles2 = findArticleRepository.findArticles(
         2L,
-        40.0,
-        30.0,
-        130.0,
-        120.0
+        new LocationRange(
+            new ArticleRangeRequest(35.0, 5.0, 125.0, 5.0))
     );
     //publicMapArticles 전체지도 but privateArticle만 존재
     List<Article> articles3 = findArticleRepository.findArticles(
         null,
-        40.0,
-        30.0,
-        130.0,
-        120.0
+        new LocationRange(
+            new ArticleRangeRequest(35.0, 5.0, 125.0, 5.0))
     );
     //then
     assertThat(articlesN).hasSize(1);

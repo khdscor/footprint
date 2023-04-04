@@ -29,8 +29,6 @@ public class FindArticleService {
   }
 
   private List<Article> findArticles(Long userId, LocationRange locationRange) {
-    return findArticleRepository.findArticles(userId,
-        locationRange.getUpperLatitude(), locationRange.getLowerLatitude(),
-        locationRange.getUpperLongitude(), locationRange.getLowerLongitude());
+    return findArticleRepository.findArticles(userId, locationRange);
   }
 }
