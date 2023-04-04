@@ -4,9 +4,9 @@
     <select id="findArticles" resultType="Article">
         select * from article where
         <choose>
-            <when test="userId != null">
+            <when test="memberId != null">
                 private_map = true
-                and user_id = #{userId}
+                and member_id = #{memberId}
             </when>
             <otherwise>
                 public_map = true

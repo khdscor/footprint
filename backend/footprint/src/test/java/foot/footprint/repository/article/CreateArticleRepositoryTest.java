@@ -34,8 +34,8 @@ public class CreateArticleRepositoryTest extends RepositoryTest {
         .title("test")
         .create_date(new Date())
         .member_id(memberId).build();
-
-    assertThat(articleRepository.saveArticle(article)).isNotNull();
+    articleRepository.saveArticle(article);
+    assertThat(article.getId()).isNotNull();
   }
 
   private Long saveOne() {

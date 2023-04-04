@@ -11,10 +11,12 @@ import java.util.List;
 public interface FindArticleRepository {
 
   List<Article> findArticles(
-      @Param("userId") Long userId,
+      @Param("memberId") Long memberId,
       @Param("upperLatitude") double upperLatitude,
       @Param("lowerLatitude") double lowerLatitude,
       @Param("upperLongitude") double upperLongitude,
       @Param("lowerLongitude") double lowerLongitude
   );
+
+
 }

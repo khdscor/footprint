@@ -22,9 +22,9 @@ public class MemberRepositoryTest extends RepositoryTest {
   public void saveMember() {
     //given
     Member member = buildMember();
-
+    memberRepository.saveMember(member);
     //when & then
-    assertThat(memberRepository.saveMember(member)).isNotNull();
+    assertThat(member.getId()).isNotNull();
   }
 
   @Test
