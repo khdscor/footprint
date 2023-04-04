@@ -34,7 +34,12 @@ public class CreateArticleRepositoryTest extends RepositoryTest {
         .title("test")
         .create_date(new Date())
         .member_id(memberId).build();
+
+    //when & then
+    assertThat(article.getId()).isNull();
     articleRepository.saveArticle(article);
+
+    //then
     assertThat(article.getId()).isNotNull();
   }
 
