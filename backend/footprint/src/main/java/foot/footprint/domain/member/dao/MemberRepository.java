@@ -12,11 +12,8 @@ import java.util.Optional;
 @Repository
 public interface MemberRepository {
 
-  @Insert(
-      "INSERT INTO member(email, image_url, join_date, nick_name, password, provider, provider_id, role) "
-          +
-          "VALUES (#{email}, #{image_url}, #{join_date}, #{nick_name}, #{password}, #{provider}, #{provider_id}, #{role})")
-  int saveMember(Member member);
+
+  Long saveMember(Member member);
 
   @Select("SELECT * FROM member WHERE id=#{id}")
   Optional<Member> findById(Long id);

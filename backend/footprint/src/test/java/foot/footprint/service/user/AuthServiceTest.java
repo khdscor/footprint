@@ -92,7 +92,7 @@ public class AuthServiceTest {
     //given
     ArgumentCaptor<Member> captor = ArgumentCaptor.forClass(Member.class);
     SignUpRequest signUpRequest = new SignUpRequest("nickName", "email", "password");
-    given(memberRepository.saveMember(any())).willReturn(1);
+    given(memberRepository.saveMember(any())).willReturn(1L);
     given(memberRepository.existsByEmail("email")).willReturn(false);
     given(passwordEncoder.encode("password")).willReturn("password");
 
