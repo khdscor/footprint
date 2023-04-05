@@ -17,49 +17,49 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @RequiredArgsConstructor
 public class SecurityConfig {
 
-    private final CustomOAuth2UserService customOAuth2UserService;
-    private final CookieAuthorizationRequestRepository cookieAuthorizationRequestRepository;
-    private final OAuth2AuthenticationSuccessHandler authenticationSuccessHandler;
-    private final OAuth2AuthenticationFailureHandler authenticationFailureHandler;
-    private final JwtAuthenticationFilter jwtAuthenticationFilter;
-    private final JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
-    private final JwtAccessDeniedHandler jwtAccessDeniedHandler;
+  private final CustomOAuth2UserService customOAuth2UserService;
+  private final CookieAuthorizationRequestRepository cookieAuthorizationRequestRepository;
+  private final OAuth2AuthenticationSuccessHandler authenticationSuccessHandler;
+  private final OAuth2AuthenticationFailureHandler authenticationFailureHandler;
+  private final JwtAuthenticationFilter jwtAuthenticationFilter;
+  private final JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
+  private final JwtAccessDeniedHandler jwtAccessDeniedHandler;
 
-    @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.httpBasic().disable()
-                .cors()
-                .and()
-                .csrf().disable()
-                .formLogin().disable()
-                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                .and()
-                .authorizeRequests()
-                .antMatchers("/token/**").permitAll()
-                .antMatchers(HttpMethod.GET, "/articles/public/**").permitAll()
-                .antMatchers(HttpMethod.POST, "/auth/**").permitAll()
-                .anyRequest().authenticated()
-                .and()
-                .oauth2Login()
-                .authorizationEndpoint()
-                .baseUri("/oauth2/authorize")
-                .authorizationRequestRepository(cookieAuthorizationRequestRepository)
-                .and()
-                .redirectionEndpoint()
-                .baseUri("/oauth2/callback/*")
-                .and()
-                .userInfoEndpoint()
-                .userService(customOAuth2UserService)
-                .and()
-                .successHandler(authenticationSuccessHandler)
-                .failureHandler(authenticationFailureHandler);
+  @Bean
+  public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+    http.httpBasic().disable()
+        .cors()
+        .and()
+        .csrf().disable()
+        .formLogin().disable()
+        .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+        .and()
+        .authorizeRequests()
+        .antMatchers("/token/**").permitAll()
+        .antMatchers(HttpMethod.GET, "/articles/public/**").permitAll()
+        .antMatchers(HttpMethod.POST, "/auth/**").permitAll()
+        .anyRequest().authenticated()
+        .and()
+        .oauth2Login()
+        .authorizationEndpoint()
+        .baseUri("/oauth2/authorize")
+        .authorizationRequestRepository(cookieAuthorizationRequestRepository)
+        .and()
+        .redirectionEndpoint()
+        .baseUri("/oauth2/callback/*")
+        .and()
+        .userInfoEndpoint()
+        .userService(customOAuth2UserService)
+        .and()
+        .successHandler(authenticationSuccessHandler)
+        .failureHandler(authenticationFailureHandler);
 
-        http.exceptionHandling()
-                .authenticationEntryPoint(jwtAuthenticationEntryPoint)	// 401
-                .accessDeniedHandler(jwtAccessDeniedHandler);		// 403
+    http.exceptionHandling()
+        .authenticationEntryPoint(jwtAuthenticationEntryPoint)  // 401
+        .accessDeniedHandler(jwtAccessDeniedHandler);    // 403
 
-        http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
+    http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
 
-        return http.build();
-    }
+    return http.build();
+  }
 }

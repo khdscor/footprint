@@ -12,23 +12,23 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class FindArticleService {
-    private final FindArticleRepository findArticleRepository;
 
-    @Transactional(readOnly = true)
-    public List<ArticleMapResponse> findPublicMapArticles(
-            LocationRange locationRange) {
-        Long userId = null;
-        return ArticleMapResponse.toResponses(findArticles(userId, locationRange));
-    }
-    @Transactional(readOnly = true)
-    public List<ArticleMapResponse> findPrivateMapArticles(
-            Long userId, LocationRange locationRange) {
-        return ArticleMapResponse.toResponses(findArticles(userId, locationRange));
-    }
+  private final FindArticleRepository findArticleRepository;
 
-    private List<Article> findArticles(Long userId, LocationRange locationRange) {
-        return findArticleRepository.findArticles(userId,
-                locationRange.getUpperLatitude(), locationRange.getLowerLatitude(),
-                locationRange.getUpperLongitude(), locationRange.getLowerLongitude());
-    }
+  @Transactional(readOnly = true)
+  public List<ArticleMapResponse> findPublicMapArticles(
+      LocationRange locationRange) {
+    Long userId = null;
+    return ArticleMapResponse.toResponses(findArticles(userId, locationRange));
+  }
+
+  @Transactional(readOnly = true)
+  public List<ArticleMapResponse> findPrivateMapArticles(
+      Long userId, LocationRange locationRange) {
+    return ArticleMapResponse.toResponses(findArticles(userId, locationRange));
+  }
+
+  private List<Article> findArticles(Long userId, LocationRange locationRange) {
+    return findArticleRepository.findArticles(userId, locationRange);
+  }
 }

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="foot.footprint.domain.article.dao.CreateArticleRepository">
+  <insert id="saveArticle" parameterType="Article" useGeneratedKeys="true" keyProperty="id">
+    INSERT INTO article(
+    content, latitude, longitude, public_map, private_map, title, create_date, member_id
+    ) VALUES (#{content}, #{latitude}, #{longitude}, #{public_map}, #{private_map}, #{title},
+    #{create_date}, #{member_id})
+  </insert>
+</mapper>
