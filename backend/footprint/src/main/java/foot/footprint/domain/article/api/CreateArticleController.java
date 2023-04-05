@@ -20,7 +20,7 @@ public class CreateArticleController {
 
   private final CreateArticleService createArticleService;
 
-  @PostMapping
+  @PostMapping("/create")
   public ResponseEntity<Void> create(@RequestBody CreateArticleRequest request,
       @AuthenticationPrincipal CustomUserDetails userDetails) {
     Long articleId = createArticleService.create(request, userDetails.getId());
