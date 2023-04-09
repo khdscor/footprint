@@ -6,7 +6,6 @@ import foot.footprint.domain.article.domain.Article;
 import foot.footprint.domain.article.exception.NotMatchMemberException;
 import foot.footprint.global.error.exception.NotExistsException;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,11 +20,11 @@ public class DeleteArticleService {
   @Transactional
   public void delete(Long articleId, Long memberId) {
     validate(articleId, memberId);
-    deleteArticleRepository.deleteArticle(articleId);
+    deleteArticleRepository.deleteById(articleId);
   }
 
   private void validate(Long articleId, Long memberId) {
-    Article article = findArticleRepository.findArticle(articleId)
+    Article article = findArticleRepository.findById(articleId)
         .orElseThrow(() -> new NotExistsException("삭제하려는 게시글이 존재하지 않습니다."));
     validateMember(memberId, article.getMember_id());
   }

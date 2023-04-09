@@ -9,5 +9,5 @@ import org.springframework.stereotype.Repository;
 public interface DeleteArticleRepository {
 
   @Delete("DELETE FROM article WHERE id=#{articleId}")
-  int deleteArticle(Long articleId);
+  int deleteById(Long articleId);
 }

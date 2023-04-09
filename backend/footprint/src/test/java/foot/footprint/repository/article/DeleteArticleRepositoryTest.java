@@ -23,16 +23,13 @@ public class DeleteArticleRepositoryTest extends RepositoryTest {
   @Autowired
   private CreateArticleRepository createArticleRepository;
 
-  @Autowired
-  private FindArticleRepository findArticleRepository;
-
   @Test
   public void deleteArticle() {
     //given
     Article createdArticle = setUp();
 
     //when & then
-    assertThat(deleteArticleRepository.deleteArticle(createdArticle.getId())).isEqualTo(1);
+    assertThat(deleteArticleRepository.deleteById(createdArticle.getId())).isEqualTo(1);
   }
 
   private Article setUp() {

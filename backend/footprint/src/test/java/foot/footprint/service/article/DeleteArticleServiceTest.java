@@ -51,7 +51,7 @@ public class DeleteArticleServiceTest {
     Long memberId = 1L;
     Long writerId = 2L;
     Article article = createArticle(articleId, writerId);
-    given(findArticleRepository.findArticle(any()))
+    given(findArticleRepository.findById(any()))
         .willReturn(Optional.ofNullable(article));
 
     //when & then
