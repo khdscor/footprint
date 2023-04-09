@@ -55,6 +55,7 @@ public class CreateArticleServiceTest {
     CreateArticleRequest createArticleRequest = new CreateArticleRequest("title", "content",
         10.0, 10.0, false, false, new ArrayList<>());
 
+    //when & then
     assertThatThrownBy(
         () -> createArticleService.create(createArticleRequest, memberId))
         .isInstanceOf(NotIncludedMapException.class);

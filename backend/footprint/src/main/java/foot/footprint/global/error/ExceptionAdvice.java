@@ -1,6 +1,7 @@
 package foot.footprint.global.error;
 
 import foot.footprint.domain.article.exception.NotIncludedMapException;
+import foot.footprint.domain.article.exception.NotMatchMemberException;
 import foot.footprint.domain.member.exception.AlreadyExistedEmailException;
 import foot.footprint.domain.member.exception.NotMatchPasswordException;
 import foot.footprint.global.error.exception.NotExistsException;
@@ -39,6 +40,14 @@ public class ExceptionAdvice {
   @ExceptionHandler(NotMatchPasswordException.class)
   public ResponseEntity<ErrorResponse> handleNotMatchPasswordException(
       NotMatchPasswordException e) {
+
+    return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+        .body(new ErrorResponse(e.getMessage()));
+  }
+
+  @ExceptionHandler(NotMatchMemberException.class)
+  public ResponseEntity<ErrorResponse> handleNotMatchMemberException(
+      NotMatchMemberException e) {
 
     return ResponseEntity.status(HttpStatus.BAD_REQUEST)
         .body(new ErrorResponse(e.getMessage()));

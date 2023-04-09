@@ -27,7 +27,7 @@ public class DeleteArticleRepositoryTest extends RepositoryTest {
   private FindArticleRepository findArticleRepository;
 
   @Test
-  public void DeleteArticle() {
+  public void deleteArticle() {
     //given
     Article createdArticle = setUp();
 
