@@ -6,9 +6,7 @@ import foot.footprint.domain.article.domain.Article;
 import foot.footprint.domain.article.domain.LocationRange;
 import foot.footprint.domain.article.dto.ArticleRangeRequest;
 import foot.footprint.domain.member.dao.MemberRepository;
-import foot.footprint.domain.member.domain.AuthProvider;
 import foot.footprint.domain.member.domain.Member;
-import foot.footprint.domain.member.domain.Role;
 import foot.footprint.repository.RepositoryTest;
 import java.util.Date;
 import org.junit.jupiter.api.Test;
@@ -31,7 +29,7 @@ public class FIndArticleRepositoryTest extends RepositoryTest {
   @Test
   public void findArticlesTest() {
     //given
-    saveArticle(10.0, 10.0, true,false);
+    saveArticle(10.0, 10.0, true, false);
     saveArticle(35.0, 125.0, false, true);
 
     //when
@@ -87,19 +85,5 @@ public class FIndArticleRepositoryTest extends RepositoryTest {
         .create_date(new Date())
         .member_id(member.getId()).build();
     createArticleRepository.saveArticle(article);
-    System.out.println("articleId: " + article.getId());
-  }
-
-  private Member buildMember() {
-    return Member.builder()
-        .nick_name("nifsfdsckName")
-        .email("emafdsfsdil")
-        .provider(AuthProvider.google)
-        .password("passfdsfsdword")
-        .provider_id("tedfsfsdfsdfsdfdsst")
-        .image_url(null)
-        .join_date(new Date())
-        .role(Role.USER)
-        .build();
   }
 }

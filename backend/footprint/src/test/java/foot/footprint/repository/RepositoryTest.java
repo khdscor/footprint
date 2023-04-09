@@ -1,5 +1,10 @@
 package foot.footprint.repository;
 
+import foot.footprint.domain.article.domain.Article;
+import foot.footprint.domain.member.domain.AuthProvider;
+import foot.footprint.domain.member.domain.Member;
+import foot.footprint.domain.member.domain.Role;
+import java.util.Date;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.runner.RunWith;
 import org.mybatis.spring.boot.test.autoconfigure.MybatisTest;
@@ -16,4 +21,28 @@ import org.springframework.test.context.junit4.SpringRunner;
 @Sql(value = "/init-table.sql", executionPhase = ExecutionPhase.BEFORE_TEST_METHOD)
 public class RepositoryTest {
 
+  protected Member buildMember() {
+    return Member.builder()
+        .nick_name("nickName")
+        .email("email")
+        .provider(AuthProvider.google)
+        .password("password")
+        .provider_id("test")
+        .image_url(null)
+        .join_date(new Date())
+        .role(Role.USER)
+        .build();
+  }
+
+  protected Article buildArticle(Long memberId) {
+    return Article.builder()
+        .content("test")
+        .latitude(10.0)
+        .longitude(10.0)
+        .public_map(true)
+        .private_map(true)
+        .title("test")
+        .create_date(new Date())
+        .member_id(memberId).build();
+  }
 }
