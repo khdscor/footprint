@@ -1,7 +1,6 @@
 package foot.footprint.domain.member.dao;
 
 import foot.footprint.domain.member.domain.Member;
-import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
