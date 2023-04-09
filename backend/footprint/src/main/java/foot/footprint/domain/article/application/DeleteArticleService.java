@@ -5,18 +5,18 @@ import foot.footprint.domain.article.dao.FindArticleRepository;
 import foot.footprint.domain.article.domain.Article;
 import foot.footprint.domain.article.exception.NotMatchMemberException;
 import foot.footprint.global.error.exception.NotExistsException;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@RequiredArgsConstructor
 public class DeleteArticleService {
 
-  @Autowired
-  private DeleteArticleRepository deleteArticleRepository;
+  private final DeleteArticleRepository deleteArticleRepository;
 
-  @Autowired
-  private FindArticleRepository findArticleRepository;
+  private final FindArticleRepository findArticleRepository;
 
   @Transactional
   public void delete(Long articleId, Long memberId) {
