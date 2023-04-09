@@ -5,17 +5,18 @@ import foot.footprint.domain.article.dao.FindArticleRepository;
 import foot.footprint.domain.article.domain.Article;
 import foot.footprint.domain.article.domain.LocationRange;
 import foot.footprint.domain.article.dto.ArticleRangeRequest;
+import foot.footprint.domain.article.exception.NotIncludedMapException;
 import foot.footprint.domain.member.dao.MemberRepository;
-import foot.footprint.domain.member.domain.AuthProvider;
 import foot.footprint.domain.member.domain.Member;
-import foot.footprint.domain.member.domain.Role;
 import foot.footprint.repository.RepositoryTest;
 import java.util.Date;
+import java.util.Optional;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class FIndArticleRepositoryTest extends RepositoryTest {
 
@@ -31,7 +32,7 @@ public class FIndArticleRepositoryTest extends RepositoryTest {
   @Test
   public void findArticlesTest() {
     //given
-    saveArticle(10.0, 10.0, true,false);
+    saveArticle(10.0, 10.0, true, false);
     saveArticle(35.0, 125.0, false, true);
 
     //when
@@ -73,6 +74,23 @@ public class FIndArticleRepositoryTest extends RepositoryTest {
     assertThat(articles3).hasSize(0);
   }
 
+  @Test
+  public void findArticle(){
+    //given
+    Member member = buildMember();
+    memberRepository.saveMember(member);
+    Article article = buildArticle(member.getId());
+    createArticleRepository.saveArticle(article);
+
+    //when
+    Optional<Article> savedArticle = findArticleRepository.findArticle(article.getId());
+
+    //then
+    assertThat(article.getId()).isEqualTo(savedArticle.get().getId());
+    assertThat(article.getCreate_date()).isEqualTo(savedArticle.get().getCreate_date());
+    assertThat(article.getTitle()).isEqualTo(savedArticle.get().getTitle());
+  }
+
   private void saveArticle(double lat, double lng, boolean publicMap, boolean privateMap) {
     Member member = buildMember();
     memberRepository.saveMember(member);
@@ -87,19 +105,5 @@ public class FIndArticleRepositoryTest extends RepositoryTest {
         .create_date(new Date())
         .member_id(member.getId()).build();
     createArticleRepository.saveArticle(article);
-    System.out.println("articleId: " + article.getId());
-  }
-
-  private Member buildMember() {
-    return Member.builder()
-        .nick_name("nifsfdsckName")
-        .email("emafdsfsdil")
-        .provider(AuthProvider.google)
-        .password("passfdsfsdword")
-        .provider_id("tedfsfsdfsdfsdfdsst")
-        .image_url(null)
-        .join_date(new Date())
-        .role(Role.USER)
-        .build();
   }
 }

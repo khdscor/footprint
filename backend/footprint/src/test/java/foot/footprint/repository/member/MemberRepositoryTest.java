@@ -50,17 +50,4 @@ public class MemberRepositoryTest extends RepositoryTest {
     Member member = buildMember();
     memberRepository.saveMember(member);
   }
-
-  private Member buildMember() {
-    return Member.builder()
-        .nick_name("nickName")
-        .email(Email)
-        .provider(AuthProvider.google)
-        .password("password")
-        .provider_id("test")
-        .image_url(null)
-        .join_date(new Date())
-        .role(Role.USER)
-        .build();
-  }
 }

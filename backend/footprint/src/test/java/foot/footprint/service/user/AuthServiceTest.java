@@ -8,8 +8,8 @@ import foot.footprint.domain.member.domain.Member;
 import foot.footprint.domain.member.dto.LoginRequest;
 import foot.footprint.domain.member.dto.SignUpRequest;
 import foot.footprint.domain.member.exception.AlreadyExistedEmailException;
-import foot.footprint.domain.member.exception.NotExistsEmailException;
 import foot.footprint.domain.member.exception.NotMatchPasswordException;
+import foot.footprint.global.error.exception.NotExistsException;
 import foot.footprint.global.security.JwtTokenProvider;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -73,7 +73,7 @@ public class AuthServiceTest {
     //when & then
     assertThatThrownBy(
         () -> authService.login(loginRequest))
-        .isInstanceOf(NotExistsEmailException.class);
+        .isInstanceOf(NotExistsException.class);
 
     //given
     setUser();

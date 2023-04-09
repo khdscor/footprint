@@ -6,9 +6,9 @@ import foot.footprint.domain.member.domain.Role;
 import foot.footprint.domain.member.dto.LoginRequest;
 import foot.footprint.domain.member.dto.SignUpRequest;
 import foot.footprint.domain.member.exception.AlreadyExistedEmailException;
-import foot.footprint.domain.member.exception.NotExistsEmailException;
 import foot.footprint.domain.member.exception.NotMatchPasswordException;
 import foot.footprint.domain.member.dao.MemberRepository;
+import foot.footprint.global.error.exception.NotExistsException;
 import foot.footprint.global.security.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -46,7 +46,7 @@ public class AuthService {
 
   private Member fidnMember(LoginRequest loginRequest) {
     return memberRepository.findByEmail(loginRequest.getEmail())
-        .orElseThrow(() -> new NotExistsEmailException("존재하지 않는 이메일입니다."));
+        .orElseThrow(() -> new NotExistsException("존재하지 않는 이메일입니다."));
   }
 
   private void verifyPassword(LoginRequest loginRequest, Member member) {
