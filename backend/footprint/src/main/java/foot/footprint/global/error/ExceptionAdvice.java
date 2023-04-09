@@ -2,9 +2,8 @@ package foot.footprint.global.error;
 
 import foot.footprint.domain.article.exception.NotIncludedMapException;
 import foot.footprint.domain.member.exception.AlreadyExistedEmailException;
-import foot.footprint.domain.member.exception.NotExistsEmailException;
-import foot.footprint.domain.member.exception.NotExistsMemberException;
 import foot.footprint.domain.member.exception.NotMatchPasswordException;
+import foot.footprint.global.error.exception.NotExistsException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -29,17 +28,9 @@ public class ExceptionAdvice {
         .body(new ErrorResponse(e.getMessage()));
   }
 
-  @ExceptionHandler(NotExistsEmailException.class)
-  public ResponseEntity<ErrorResponse> handleNotExistsEmailException(
-      NotExistsEmailException e) {
-
-    return ResponseEntity.status(HttpStatus.NOT_FOUND)
-        .body(new ErrorResponse(e.getMessage()));
-  }
-
-  @ExceptionHandler(NotExistsMemberException.class)
-  public ResponseEntity<ErrorResponse> handleNotExistsMemberException(
-      NotExistsMemberException e) {
+  @ExceptionHandler(NotExistsException.class)
+  public ResponseEntity<ErrorResponse> NotExistsEmailException(
+      NotExistsException e) {
 
     return ResponseEntity.status(HttpStatus.NOT_FOUND)
         .body(new ErrorResponse(e.getMessage()));
