@@ -34,8 +34,8 @@ public class AuthServiceTest {
   @Mock
   private MemberRepository memberRepository;
 
-  @Mock
-  private PasswordEncoder passwordEncoder;
+  @Spy
+  private PasswordEncoder passwordEncoder = new MockPasswordEncoder();
 
   @Mock
   private JwtTokenProvider tokenProvider;
@@ -78,7 +78,7 @@ public class AuthServiceTest {
     //given
     setUser();
     given(memberRepository.findByEmail("email")).willReturn(Optional.ofNullable(member));
-    given(passwordEncoder.matches(any(), any())).willReturn(false);
+    given(passwordEncoder.matches(loginRequest.getPassword(), member.getPassword())).willReturn(false);
 
     //when & then
     assertThatThrownBy(
@@ -94,7 +94,6 @@ public class AuthServiceTest {
     SignUpRequest signUpRequest = new SignUpRequest("nickName", "email", "password");
     given(memberRepository.saveMember(any())).willReturn(1L);
     given(memberRepository.existsByEmail("email")).willReturn(false);
-    given(passwordEncoder.encode("password")).willReturn("password");
 
     //when
     authService.signUp(signUpRequest);
@@ -129,5 +128,17 @@ public class AuthServiceTest {
         .role(Role.USER)
         .join_date(new Date())
         .password("password").build();
+  }
+
+  private class MockPasswordEncoder implements PasswordEncoder {
+    @Override
+    public String encode(CharSequence rawPassword) {
+      return new StringBuilder(rawPassword).reverse().toString();
+    }
+
+    @Override
+    public boolean matches(CharSequence rawPassword, String encodedPassword) {
+      return encode(rawPassword).equals(encodedPassword);
+    }
   }
 }

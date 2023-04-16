@@ -5,7 +5,9 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 
 import foot.footprint.domain.article.application.DeleteArticleService;
+import foot.footprint.domain.article.application.EditArticleService;
 import foot.footprint.domain.article.dao.DeleteArticleRepository;
+import foot.footprint.domain.article.dao.EditArticleRepository;
 import foot.footprint.domain.article.dao.FindArticleRepository;
 import foot.footprint.domain.article.domain.Article;
 import foot.footprint.domain.article.exception.NotMatchMemberException;
@@ -20,44 +22,47 @@ import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 @ExtendWith(MockitoExtension.class)
-public class DeleteArticleServiceTest {
+public class EditArticleServiceTest {
 
   @Mock
-  private DeleteArticleRepository deleteArticleRepository;
+  private EditArticleRepository editArticleRepository;
 
   @Spy
   private FindArticleRepository findArticleRepository;
 
   @InjectMocks
-  private DeleteArticleService deleteArticleService;
+  private EditArticleService editArticleService;
 
   @Test
-  @DisplayName("글 삭제시 - 해당하는 글이 존재하지 않을 때")
-  public void delete_IfNotExistsArticle() {
+  @DisplayName("글 수정시 - 해당하는 글이 존재하지 않을 때")
+  public void edit_IfNotExistsArticle() {
     //given
     Long articleId = 1L;
     Long memberId = 1L;
+    String newContent = "test";
+
     //when & then
     assertThatThrownBy(
-        () -> deleteArticleService.delete(articleId, memberId))
+        () -> editArticleService.edit(articleId, memberId, newContent))
         .isInstanceOf(NotExistsException.class);
   }
 
   @Test
-  @DisplayName("글 삭제시 - 작성자와 전달된 member의 id가 다를 때")
+  @DisplayName("글 수정시 - 작성자와 전달된 member의 id가 다를 때")
   public void delete_IfNotMatchMember() {
     //given
     Long articleId = 1L;
     Long memberId = 1L;
     Long writerId = 2L;
+    String newContent = "test";
     Article article = createArticle(articleId, writerId);
     given(findArticleRepository.findById(any()))
         .willReturn(Optional.ofNullable(article));
 
     //when & then
-    deleteArticleService.delete(articleId, writerId);
+    editArticleService.edit(articleId, writerId, newContent);
     assertThatThrownBy(
-        () -> deleteArticleService.delete(articleId, memberId))
+        () -> editArticleService.edit(articleId, memberId, newContent))
         .isInstanceOf(NotMatchMemberException.class);
   }
 

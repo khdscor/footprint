@@ -1,10 +1,12 @@
 package foot.footprint.domain.member.domain;
 
+import foot.footprint.domain.member.dto.SignUpRequest;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 import java.util.Date;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Getter
 @ToString
@@ -35,5 +37,15 @@ public class Member {
     this.provider_id = provider_id;
     this.role = role;
     this.refresh_token = refresh_token;
+  }
+
+  public static Member createMember(SignUpRequest request, PasswordEncoder passwordEncoder){
+    return Member.builder()
+        .email(request.getEmail())
+        .provider(AuthProvider.local)
+        .nick_name(request.getNickName())
+        .role(Role.USER)
+        .join_date(new Date())
+        .password(passwordEncoder.encode(request.getPassword())).build();
   }
 }

@@ -5,7 +5,6 @@ import foot.footprint.domain.article.dao.FindArticleRepository;
 import foot.footprint.domain.article.domain.Article;
 import foot.footprint.domain.article.domain.LocationRange;
 import foot.footprint.domain.article.dto.ArticleRangeRequest;
-import foot.footprint.domain.article.exception.NotIncludedMapException;
 import foot.footprint.domain.member.dao.MemberRepository;
 import foot.footprint.domain.member.domain.Member;
 import foot.footprint.repository.RepositoryTest;
@@ -83,7 +82,7 @@ public class FIndArticleRepositoryTest extends RepositoryTest {
     createArticleRepository.saveArticle(article);
 
     //when
-    Optional<Article> savedArticle = findArticleRepository.findArticle(article.getId());
+    Optional<Article> savedArticle = findArticleRepository.findById(article.getId());
 
     //then
     assertThat(article.getId()).isEqualTo(savedArticle.get().getId());

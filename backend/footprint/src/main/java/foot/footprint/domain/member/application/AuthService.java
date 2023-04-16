@@ -1,6 +1,5 @@
 package foot.footprint.domain.member.application;
 
-import foot.footprint.domain.member.domain.AuthProvider;
 import foot.footprint.domain.member.domain.Member;
 import foot.footprint.domain.member.domain.Role;
 import foot.footprint.domain.member.dto.LoginRequest;
@@ -14,7 +13,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import java.util.Date;
 
 @Service
 @RequiredArgsConstructor
@@ -26,7 +24,7 @@ public class AuthService {
 
   @Transactional(readOnly = true)
   public String login(LoginRequest loginRequest) {
-    Member member = fidnMember(loginRequest);
+    Member member = findMember(loginRequest);
     verifyPassword(loginRequest, member);
     return tokenProvider.createAccessToken(String.valueOf(member.getId()), Role.USER);
   }
@@ -34,17 +32,11 @@ public class AuthService {
   @Transactional
   public void signUp(SignUpRequest signUpRequest) {
     verifyEmail(signUpRequest);
-    Member member = Member.builder()
-        .email(signUpRequest.getEmail())
-        .provider(AuthProvider.local)
-        .nick_name(signUpRequest.getNickName())
-        .role(Role.USER)
-        .join_date(new Date())
-        .password(passwordEncoder.encode(signUpRequest.getPassword())).build();
+    Member member = Member.createMember(signUpRequest, passwordEncoder);
     memberRepository.saveMember(member);
   }
 
-  private Member fidnMember(LoginRequest loginRequest) {
+  private Member findMember(LoginRequest loginRequest) {
     return memberRepository.findByEmail(loginRequest.getEmail())
         .orElseThrow(() -> new NotExistsException("존재하지 않는 이메일입니다."));
   }

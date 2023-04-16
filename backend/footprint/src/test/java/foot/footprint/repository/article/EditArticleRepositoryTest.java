@@ -3,7 +3,7 @@ package foot.footprint.repository.article;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import foot.footprint.domain.article.dao.CreateArticleRepository;
-import foot.footprint.domain.article.dao.DeleteArticleRepository;
+import foot.footprint.domain.article.dao.EditArticleRepository;
 import foot.footprint.domain.article.dao.FindArticleRepository;
 import foot.footprint.domain.article.domain.Article;
 import foot.footprint.domain.member.dao.MemberRepository;
@@ -12,10 +12,10 @@ import foot.footprint.repository.RepositoryTest;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-public class DeleteArticleRepositoryTest extends RepositoryTest {
+public class EditArticleRepositoryTest extends RepositoryTest {
 
   @Autowired
-  private DeleteArticleRepository deleteArticleRepository;
+  private EditArticleRepository editArticleRepository;
 
   @Autowired
   private MemberRepository memberRepository;
@@ -27,16 +27,19 @@ public class DeleteArticleRepositoryTest extends RepositoryTest {
   private FindArticleRepository findArticleRepository;
 
   @Test
-  public void deleteArticle() {
+  public void editArticle() {
     //given
-    Article createdArticle = setUp();
+    Article article = setup();
+    String newContent = "수정된 내용";
 
     //when & then
-    assertThat(deleteArticleRepository.deleteById(createdArticle.getId())).isEqualTo(1);
-    assertThat(findArticleRepository.findById(createdArticle.getId())).isEmpty();
+    assertThat(editArticleRepository.editArticle(article.getId(), newContent))
+        .isEqualTo(1);
+    assertThat(findArticleRepository.findById(article.getId()).get().getContent())
+        .isEqualTo(newContent);
   }
 
-  private Article setUp() {
+  private Article setup(){
     Member member = buildMember();
     memberRepository.saveMember(member);
     Article article = buildArticle(member.getId());
