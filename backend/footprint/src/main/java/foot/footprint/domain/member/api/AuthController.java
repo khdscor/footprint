@@ -4,6 +4,7 @@ import foot.footprint.domain.member.dto.AuthResponse;
 import foot.footprint.domain.member.dto.LoginRequest;
 import foot.footprint.domain.member.dto.SignUpRequest;
 import foot.footprint.domain.member.application.AuthService;
+import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,14 +22,14 @@ public class AuthController {
 
   @PostMapping("/login")
   public ResponseEntity<AuthResponse> login(
-      @RequestBody LoginRequest loginRequest) {
+      @RequestBody @Valid LoginRequest loginRequest) {
     String token = authService.login(loginRequest);
 
     return ResponseEntity.ok(new AuthResponse(token));
   }
 
   @PostMapping("/signup")
-  public ResponseEntity<Void> registerMember(@RequestBody SignUpRequest signUpRequest) {
+  public ResponseEntity<Void> registerMember(@RequestBody @Valid SignUpRequest signUpRequest) {
     authService.signUp(signUpRequest);
 
     return ResponseEntity.status(HttpStatus.CREATED)
