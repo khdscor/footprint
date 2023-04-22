@@ -1,4 +1,4 @@
-package foot.footprint.service.user;
+package foot.footprint.service.member;
 
 import foot.footprint.domain.member.application.AuthService;
 import foot.footprint.domain.member.dao.MemberRepository;

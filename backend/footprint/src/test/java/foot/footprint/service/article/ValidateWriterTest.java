@@ -4,48 +4,44 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 
-import foot.footprint.domain.article.application.DeleteArticleService;
-import foot.footprint.domain.article.dao.DeleteArticleRepository;
 import foot.footprint.domain.article.dao.FindArticleRepository;
 import foot.footprint.domain.article.domain.Article;
+import foot.footprint.domain.article.domain.ArticleMethod;
 import foot.footprint.domain.article.exception.NotMatchMemberException;
+import foot.footprint.domain.article.util.ValidateWriter;
 import foot.footprint.global.error.exception.NotExistsException;
 import java.util.Optional;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
-import org.mockito.Mock;
 import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 @ExtendWith(MockitoExtension.class)
-public class DeleteArticleServiceTest {
-
-  @Mock
-  private DeleteArticleRepository deleteArticleRepository;
+public class ValidateWriterTest {
 
   @Spy
   private FindArticleRepository findArticleRepository;
 
   @InjectMocks
-  private DeleteArticleService deleteArticleService;
+  private ValidateWriter validateWriter;
 
   @Test
-  @DisplayName("글 삭제시 - 해당하는 글이 존재하지 않을 때")
-  public void delete_IfNotExistsArticle() {
+  @DisplayName("해당하는 글이 존재하지 않을 때")
+  public void ifNotExistsArticle() {
     //given
     Long articleId = 1L;
     Long memberId = 1L;
     //when & then
     assertThatThrownBy(
-        () -> deleteArticleService.delete(articleId, memberId))
+        () -> validateWriter.validate(ArticleMethod.Edit, articleId, memberId))
         .isInstanceOf(NotExistsException.class);
   }
 
   @Test
-  @DisplayName("글 삭제시 - 작성자와 전달된 member의 id가 다를 때")
-  public void delete_IfNotMatchMember() {
+  @DisplayName("작성자와 전달된 member의 id가 다를 때")
+  public void ifNotMatchMember() {
     //given
     Long articleId = 1L;
     Long memberId = 1L;
@@ -55,9 +51,9 @@ public class DeleteArticleServiceTest {
         .willReturn(Optional.ofNullable(article));
 
     //when & then
-    deleteArticleService.delete(articleId, writerId);
+    validateWriter.validate(ArticleMethod.Edit, articleId, writerId);
     assertThatThrownBy(
-        () -> deleteArticleService.delete(articleId, memberId))
+        () -> validateWriter.validate(ArticleMethod.Edit, articleId, memberId))
         .isInstanceOf(NotMatchMemberException.class);
   }
 
