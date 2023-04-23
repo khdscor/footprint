@@ -8,4 +8,8 @@
     WHERE article_id = #{articleId} and member_id =#{memberId}
     )
   </select>
+  <insert id="saveArticleLike" parameterType="ArticleLike" useGeneratedKeys="true" keyProperty="id">
+    INSERT INTO article_like (
+    article_id, member_id) VALUES (#{article_id}, #{member_id})
+  </insert>
 </mapper>

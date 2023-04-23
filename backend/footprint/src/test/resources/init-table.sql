@@ -1,6 +1,7 @@
+drop table article_like if exists;
 drop table article if exists;
 drop table member if exists;
-drop table article_like if exists;
+
 
 create table member (
     id bigint not null auto_increment,
