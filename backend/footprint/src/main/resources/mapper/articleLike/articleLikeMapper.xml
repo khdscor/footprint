@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="foot.footprint.domain.articleLike.dao.ArticleLikeRepository">
+  <select id="existsMyLike" resultType="boolean">
+    SELECT EXISTS (
+    SELECT 1 FROM article_like
+    WHERE article_id = #{articleId} and member_id =#{memberId}
+    )
+  </select>
+  <insert id="saveArticleLike" parameterType="ArticleLike" useGeneratedKeys="true" keyProperty="id">
+    INSERT INTO article_like (
+    article_id, member_id) VALUES (#{article_id}, #{member_id})
+  </insert>
+</mapper>

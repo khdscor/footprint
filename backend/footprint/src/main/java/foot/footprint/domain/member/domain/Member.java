@@ -42,6 +42,7 @@ public class Member {
   public static Member createMember(SignUpRequest request, PasswordEncoder passwordEncoder){
     return Member.builder()
         .email(request.getEmail())
+        .image_url("https://ifh.cc/g/2tAMnG.png")
         .provider(AuthProvider.local)
         .nick_name(request.getNickName())
         .role(Role.USER)

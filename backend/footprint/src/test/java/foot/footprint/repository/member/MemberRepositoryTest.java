@@ -1,13 +1,10 @@
 package foot.footprint.repository.member;
 
 import foot.footprint.domain.member.dao.MemberRepository;
-import foot.footprint.domain.member.domain.AuthProvider;
 import foot.footprint.domain.member.domain.Member;
-import foot.footprint.domain.member.domain.Role;
 import foot.footprint.repository.RepositoryTest;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import java.util.Date;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -22,8 +19,11 @@ public class MemberRepositoryTest extends RepositoryTest {
   public void saveMember() {
     //given
     Member member = buildMember();
+
+    //when
     memberRepository.saveMember(member);
-    //when & then
+
+    //then
     assertThat(member.getId()).isNotNull();
   }
 

@@ -4,13 +4,10 @@ import foot.footprint.domain.member.domain.Member;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
-import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Mapper
-@Repository
 public interface MemberRepository {
-
 
   Long saveMember(Member member);
 
