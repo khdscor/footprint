@@ -18,13 +18,15 @@ public class Group {
   private Date create_date;
   private String invitation_code;
   private String name;
+  private Long owner_id;
 
-  public Group(Long id, Date create_date, String invitation_code, String name) {
+  public Group(Long id, Date create_date, String invitation_code, String name, Long owner_id) {
     this.id = id;
     this.create_date = create_date;
     setInvitationCode(invitation_code);
     validate(name);
     this.name = name;
+    this.owner_id = owner_id;
   }
 
   private void validate(String name) {
