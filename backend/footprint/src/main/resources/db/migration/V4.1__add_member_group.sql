@@ -3,6 +3,7 @@ create table member_group (
     create_date datetime(6),
     group_id bigint not null,
     member_id bigint not null,
+    important boolean null,
     primary key (id)
 ) engine=InnoDB;
 
