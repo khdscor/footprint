@@ -23,7 +23,14 @@ public class Group {
   public Group(Long id, Date create_date, String invitation_code, String name, Long owner_id) {
     this.id = id;
     this.create_date = create_date;
-    setInvitationCode(invitation_code);
+    addInvitationCode(invitation_code);
+    validate(name);
+    this.name = name;
+    this.owner_id = owner_id;
+  }
+
+  public Group(String name, Long owner_id) {
+    this.create_date = new Date();
     validate(name);
     this.name = name;
     this.owner_id = owner_id;
@@ -35,7 +42,7 @@ public class Group {
     }
   }
 
-  public void setInvitationCode(String invitation_code) {
+  public void addInvitationCode(String invitation_code) {
     if (Objects.nonNull(this.invitation_code) && !this.invitation_code.isEmpty()) {
       throw new WrongInputException("초대코드는 처음 한번만 정할 수 있습니다. 이미 부여된 초대코드가 존재합니다.");
     }

@@ -27,6 +27,14 @@ public class MemberGroup {
     this.important = important;
   }
 
+  public static MemberGroup createMemberGroup(Group group){
+    return MemberGroup.builder()
+        .create_date(new Date())
+        .group_id(group.getId())
+        .member_id(group.getOwner_id())
+        .important(false).build();
+  }
+
   public void changeImportant() {
     if (Objects.isNull(important)) {
       important = true;
