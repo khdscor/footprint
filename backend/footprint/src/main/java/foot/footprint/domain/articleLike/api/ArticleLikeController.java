@@ -26,7 +26,7 @@ public class ArticleLikeController {
   public ResponseEntity<Void> changeMyLike(@PathVariable("articleId") Long articleId,
       @PathVariable("mapType") String mapType, @RequestParam(value = "hasiliked") Boolean hasILiked,
       @AuthenticationPrincipal CustomUserDetails userDetails) {
-    ArticleLikeDto articleLikeDto = new ArticleLikeDto(articleId, userDetails.getId());
+    ArticleLikeDto articleLikeDto = new ArticleLikeDto(articleId, userDetails.getId(), hasILiked);
     articleLikeService.changeArticleLike(articleLikeDto, MapType.from(mapType));
     return ResponseEntity.status(HttpStatus.CREATED).build();
   }

@@ -17,6 +17,6 @@ public enum MapType {
         .filter(value -> value.name.equalsIgnoreCase(mapType))
         .findFirst()
         .orElseThrow(() -> new WrongMapTypeException(
-            mapType + "에 해당하는 MapType이 존재하지 않습니다."));
+            mapType + "에 해당하는 맵타입이 존재하지 않습니다."));
   }
 }

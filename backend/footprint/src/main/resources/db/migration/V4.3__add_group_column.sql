@@ -1,0 +1,1 @@
+ALTER TABLE group_table ADD `owner_id` bigint not null;

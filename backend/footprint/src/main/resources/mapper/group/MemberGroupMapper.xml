@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="foot.footprint.domain.group.dao.MemberGroupRepository">
+  <insert id="saveMemberGroup" parameterType="MemberGroup" useGeneratedKeys="true" keyProperty="id">
+    INSERT INTO member_group(
+    create_date, group_id, member_id, important
+    ) VALUES (#{create_date}, #{group_id}, #{member_id}, #{important})
+  </insert>
+</mapper>
