@@ -26,9 +26,9 @@ public class CreateGroupController {
       @AuthenticationPrincipal CustomUserDetails userDetails) {
     String groupName = createGroupRequest.getGroupName();
     validateName(groupName);
-    Long groupId = createGroupService.createGroup(createGroupRequest, userDetails.getId());
+    Long groupId = createGroupService.createGroup(groupName, userDetails.getId());
 
-    return ResponseEntity.created(URI.create("/api/groups/" + groupId))
+    return ResponseEntity.created(URI.create("/groups/" + groupId))
         .build();
   }
 

@@ -4,7 +4,6 @@ import foot.footprint.domain.group.dao.GroupRepository;
 import foot.footprint.domain.group.dao.MemberGroupRepository;
 import foot.footprint.domain.group.domain.Group;
 import foot.footprint.domain.group.domain.MemberGroup;
-import foot.footprint.domain.group.dto.CreateGroupRequest;
 import foot.footprint.domain.group.util.RandomStringGenerator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -19,14 +18,14 @@ public class CreateGroupService {
   private final MemberGroupRepository memberGroupRepository;
 
   @Transactional
-  public Long createGroup(CreateGroupRequest request, Long creatorId) {
-    Group newGroup = saveGroup(request, creatorId);
+  public Long createGroup(String groupName, Long creatorId) {
+    Group newGroup = saveGroup(groupName, creatorId);
     memberGroupRepository.saveMemberGroup(MemberGroup.createMemberGroup(newGroup));
     return newGroup.getId();
   }
 
-  private Group saveGroup(CreateGroupRequest request, Long creatorId) {
-    Group newGroup = new Group(request.getGroupName(), creatorId);
+  private Group saveGroup(String groupName, Long creatorId) {
+    Group newGroup = new Group(groupName, creatorId);
     groupRepository.saveGroup(newGroup);
     newGroup.addInvitationCode(generateInvitationCode(newGroup.getId()));
     groupRepository.updateInvitationCode(newGroup);

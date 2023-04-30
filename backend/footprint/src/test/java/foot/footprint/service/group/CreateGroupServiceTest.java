@@ -4,7 +4,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import foot.footprint.domain.group.application.CreateGroupService;
 import foot.footprint.domain.group.dao.GroupRepository;
-import foot.footprint.domain.group.dto.CreateGroupRequest;
 import foot.footprint.domain.member.dao.MemberRepository;
 import foot.footprint.domain.member.domain.AuthProvider;
 import foot.footprint.domain.member.domain.Member;
@@ -30,10 +29,10 @@ public class CreateGroupServiceTest {
   public void createGroup() {
     //given
     Member creator = buildMember();
-    CreateGroupRequest request = new CreateGroupRequest("name");
+    String groupName = "테스트 그룹";
 
     //when
-    Long groupId = createGroupService.createGroup(request, creator.getId());
+    Long groupId = createGroupService.createGroup(groupName, creator.getId());
 
     //then
     assertThat(groupId).isNotNull();

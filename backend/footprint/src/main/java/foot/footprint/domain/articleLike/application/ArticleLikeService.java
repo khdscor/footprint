@@ -2,7 +2,6 @@ package foot.footprint.domain.articleLike.application;
 
 import foot.footprint.domain.article.dao.FindArticleRepository;
 import foot.footprint.domain.article.domain.Article;
-import foot.footprint.domain.article.exception.NotMatchMemberException;
 import foot.footprint.domain.articleLike.dao.ArticleLikeRepository;
 import foot.footprint.domain.articleLike.domain.ArticleLike;
 import foot.footprint.domain.articleLike.dto.ArticleLikeDto;
