@@ -6,6 +6,7 @@ import foot.footprint.domain.group.dao.GroupRepository;
 import foot.footprint.domain.group.domain.Group;
 import foot.footprint.repository.RepositoryTest;
 import java.util.Date;
+import java.util.Optional;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -47,5 +48,25 @@ public class GroupRepositoryTest extends RepositoryTest {
 
     //then
     assertThat(group.getInvitation_code()).isNotNull();
+  }
+
+  @Test
+  public void findByInvitationCode(){
+    //given
+    String invitationCode = "testCode";
+    String anotherCode = "testOrCode";
+    Group group = Group.builder()
+        .create_date(new Date())
+        .name("test_group")
+        .invitation_code(invitationCode)
+        .owner_id(1L).build();
+    groupRepository.saveGroup(group);
+
+    //when
+    Optional<Group> foundGroup = groupRepository.findByInvitationCode(invitationCode);
+    Optional<Group> anotherGroup = groupRepository.findByInvitationCode(anotherCode);
+    //then
+    assertThat(foundGroup).isPresent();
+    assertThat(anotherGroup).isNotPresent();
   }
 }
