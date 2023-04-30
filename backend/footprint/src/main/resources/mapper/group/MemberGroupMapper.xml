@@ -7,4 +7,10 @@
     create_date, group_id, member_id, important
     ) VALUES (#{create_date}, #{group_id}, #{member_id}, #{important})
   </insert>
+  <select id="checkAlreadyJoined" resultType="boolean">
+    SELECT EXISTS (
+    SELECT 1 FROM member_group
+    WHERE group_id = #{groupId} and member_id =#{memberId}
+    )
+  </select>
 </mapper>

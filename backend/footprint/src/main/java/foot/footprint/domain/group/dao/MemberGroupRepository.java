@@ -7,4 +7,6 @@ import org.apache.ibatis.annotations.Mapper;
 public interface MemberGroupRepository {
 
   Long saveMemberGroup(MemberGroup memberGroup);
+
+  boolean checkAlreadyJoined(Long groupId, Long memberId);
 }
