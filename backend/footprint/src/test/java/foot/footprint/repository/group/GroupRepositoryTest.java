@@ -84,7 +84,9 @@ public class GroupRepositoryTest extends RepositoryTest {
     //when & then
     assertThat(groupRepository.findById(group.getId())).isPresent();
     int result = groupRepository.deleteById(group.getId());
+    int dummy = groupRepository.deleteById(200L);
     assertThat(groupRepository.findById(group.getId())).isNotPresent();
     assertThat(result).isEqualTo(1);
+    assertThat(dummy).isEqualTo(0);
   }
 }

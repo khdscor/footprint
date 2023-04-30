@@ -86,6 +86,31 @@ public class MeemberGroupRepositoryTest extends RepositoryTest {
     assertThat(result2).isEqualTo(false);
   }
 
+  @Test
+  public void countMemberGroup() {
+    //given
+    Member member = buildMember();
+    Member member2 = buildMember();
+    memberRepository.saveMember(member);
+    memberRepository.saveMember(member2);
+    Group group = buildGroup(member.getId());
+    groupRepository.saveGroup(group);
+    MemberGroup memberGroup =  buildMemberGroup(group.getId(), member.getId());
+    memberGroupRepository.saveMemberGroup(memberGroup);
+    MemberGroup memberGroup2 =  buildMemberGroup(group.getId(), member2.getId());
+    memberGroupRepository.saveMemberGroup(memberGroup2);
+
+    //when
+    Long count = memberGroupRepository.countMemberGroup(group.getId());
+    memberGroupRepository.deleteMemberGroup(group.getId(), member.getId());
+    memberGroupRepository.deleteMemberGroup(group.getId(), member2.getId());
+    Long count2 = memberGroupRepository.countMemberGroup(group.getId());
+
+    //then
+    assertThat(count).isEqualTo(2);
+    assertThat(count2).isEqualTo(0);
+  }
+
   private Group buildGroup(Long ownerId) {
     return Group.builder()
         .create_date(new Date())
