@@ -40,6 +40,7 @@ public class ArticleLikeService {
   }
 
   private void changePublicArticleLike(ArticleLikeDto articleLikeDto) {
+    validateArticle(articleLikeDto);
     changeLike(articleLikeDto);
   }
 
@@ -49,9 +50,13 @@ public class ArticleLikeService {
   }
 
   private void validateMyArticle(ArticleLikeDto articleLikeDto) {
-    Article article = findArticleRepository.findById(articleLikeDto.getArticleId())
-        .orElseThrow(() -> new NotExistsException("해당하는 게시글이 존재하지 않습니다."));
+    Article article = validateArticle(articleLikeDto);
     articleLikeDto.validateArticleIsMine(article);
+  }
+
+  private Article validateArticle(ArticleLikeDto articleLikeDto) {
+    return findArticleRepository.findById(articleLikeDto.getArticleId())
+        .orElseThrow(() -> new NotExistsException("해당하는 게시글이 존재하지 않습니다."));
   }
 
   private void changeLike(ArticleLikeDto articleLikeDto) {
@@ -64,6 +69,7 @@ public class ArticleLikeService {
 
   private void deleteLike(ArticleLikeDto articleLikeDto) {
     int deleted = articleLikeRepository.deleteArticleLike(articleLikeDto);
+    System.out.println(deleted + " teststsetset");
     if (deleted == 0) {
       throw new NotExistsException("이미 좋아요를 취소하였거나 누르지 않았습니다.");
     }
