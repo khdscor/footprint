@@ -5,6 +5,7 @@ import foot.footprint.domain.article.exception.NotMatchMemberException;
 import foot.footprint.domain.member.exception.AlreadyExistedEmailException;
 import foot.footprint.domain.member.exception.NotMatchPasswordException;
 import foot.footprint.global.error.exception.NotExistsException;
+import foot.footprint.global.error.exception.WrongMapTypeException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -50,6 +51,14 @@ public class ExceptionAdvice {
       NotMatchMemberException e) {
 
     return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+        .body(new ErrorResponse(e.getMessage()));
+  }
+
+  @ExceptionHandler(WrongMapTypeException.class)
+  public ResponseEntity<ErrorResponse> handleWrongMapTypeException(
+      WrongMapTypeException e) {
+
+    return ResponseEntity.status(HttpStatus.NOT_FOUND)
         .body(new ErrorResponse(e.getMessage()));
   }
 }
