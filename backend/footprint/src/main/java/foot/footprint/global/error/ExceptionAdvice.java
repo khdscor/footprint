@@ -4,6 +4,8 @@ import foot.footprint.domain.article.exception.NotIncludedMapException;
 import foot.footprint.domain.article.exception.NotMatchMemberException;
 import foot.footprint.domain.member.exception.AlreadyExistedEmailException;
 import foot.footprint.domain.member.exception.NotMatchPasswordException;
+import foot.footprint.global.error.exception.ContentEmptyException;
+import foot.footprint.global.error.exception.LengthOverException;
 import foot.footprint.global.error.exception.NotExistsException;
 import foot.footprint.global.error.exception.WrongMapTypeException;
 import org.springframework.http.HttpStatus;
@@ -19,51 +21,53 @@ import org.springframework.web.method.annotation.MethodArgumentTypeMismatchExcep
 public class ExceptionAdvice {
 
   @ExceptionHandler(NotIncludedMapException.class)
-  public ResponseEntity<ErrorResponse> handleNotIncludedMapException(
-      NotIncludedMapException e) {
+  public ResponseEntity<ErrorResponse> handleNotIncludedMapException(NotIncludedMapException e) {
 
-    return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-        .body(new ErrorResponse(e.getMessage()));
+    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorResponse(e.getMessage()));
   }
 
   @ExceptionHandler(AlreadyExistedEmailException.class)
   public ResponseEntity<ErrorResponse> handleAlreadyExistedEmailException(
       AlreadyExistedEmailException e) {
 
-    return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-        .body(new ErrorResponse(e.getMessage()));
+    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorResponse(e.getMessage()));
   }
 
   @ExceptionHandler(NotExistsException.class)
-  public ResponseEntity<ErrorResponse> NotExistsEmailException(
-      NotExistsException e) {
+  public ResponseEntity<ErrorResponse> NotExistsEmailException(NotExistsException e) {
 
-    return ResponseEntity.status(HttpStatus.NOT_FOUND)
-        .body(new ErrorResponse(e.getMessage()));
+    return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ErrorResponse(e.getMessage()));
   }
 
   @ExceptionHandler(NotMatchPasswordException.class)
   public ResponseEntity<ErrorResponse> handleNotMatchPasswordException(
       NotMatchPasswordException e) {
 
-    return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-        .body(new ErrorResponse(e.getMessage()));
+    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorResponse(e.getMessage()));
   }
 
   @ExceptionHandler(NotMatchMemberException.class)
-  public ResponseEntity<ErrorResponse> handleNotMatchMemberException(
-      NotMatchMemberException e) {
+  public ResponseEntity<ErrorResponse> handleNotMatchMemberException(NotMatchMemberException e) {
 
-    return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-        .body(new ErrorResponse(e.getMessage()));
+    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorResponse(e.getMessage()));
+  }
+
+  @ExceptionHandler(ContentEmptyException.class)
+  public ResponseEntity<ErrorResponse> handleContentEmptyException(ContentEmptyException e) {
+
+    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorResponse(e.getMessage()));
+  }
+
+  @ExceptionHandler(LengthOverException.class)
+  public ResponseEntity<ErrorResponse> handleLengthOverException(LengthOverException e) {
+
+    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorResponse(e.getMessage()));
   }
 
   @ExceptionHandler(WrongMapTypeException.class)
-  public ResponseEntity<ErrorResponse> handleWrongMapTypeException(
-      WrongMapTypeException e) {
+  public ResponseEntity<ErrorResponse> handleWrongMapTypeException(WrongMapTypeException e) {
 
-    return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-        .body(new ErrorResponse(e.getMessage()));
+    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorResponse(e.getMessage()));
   }
 
   //아래 4가지는 기본적으로 설정된 에러
