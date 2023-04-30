@@ -53,7 +53,6 @@ public class MeemberGroupRepositoryTest extends RepositoryTest {
     Group group = buildGroup(member.getId());
     groupRepository.saveGroup(group);
     MemberGroup memberGroup =  buildMemberGroup(group.getId(), member.getId());
-    assertThat(memberGroup.getId()).isNull();
     memberGroupRepository.saveMemberGroup(memberGroup);
 
     //when
@@ -63,6 +62,28 @@ public class MeemberGroupRepositoryTest extends RepositoryTest {
     //then
     assertThat(result).isTrue();
     assertThat(result2).isFalse();
+  }
+
+  @Test
+  public void deleteMemberGroup() {
+    //given
+    Member member = buildMember();
+    memberRepository.saveMember(member);
+    Group group = buildGroup(member.getId());
+    groupRepository.saveGroup(group);
+    MemberGroup memberGroup =  buildMemberGroup(group.getId(), member.getId());
+    memberGroupRepository.saveMemberGroup(memberGroup);
+
+
+    //when
+    boolean result1 = memberGroupRepository.checkAlreadyJoined(group.getId(), member.getId());
+    int deleted = memberGroupRepository.deleteMemberGroup(group.getId(), member.getId());
+    boolean result2 = memberGroupRepository.checkAlreadyJoined(group.getId(), member.getId());
+
+    //then
+    assertThat(result1).isEqualTo(true);
+    assertThat(deleted).isEqualTo(1);
+    assertThat(result2).isEqualTo(false);
   }
 
   private Group buildGroup(Long ownerId) {
