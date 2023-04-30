@@ -35,6 +35,14 @@ public class MemberGroup {
         .important(false).build();
   }
 
+  public static MemberGroup createMemberGroup(Long groupId, Long memberId){
+    return MemberGroup.builder()
+        .create_date(new Date())
+        .group_id(groupId)
+        .member_id(memberId)
+        .important(false).build();
+  }
+
   public void changeImportant() {
     if (Objects.isNull(important)) {
       important = true;

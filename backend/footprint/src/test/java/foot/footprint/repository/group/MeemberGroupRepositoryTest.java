@@ -43,7 +43,26 @@ public class MeemberGroupRepositoryTest extends RepositoryTest {
 
     //then
     assertThat(memberGroup.getId()).isNotNull();
+  }
 
+  @Test
+  public void checkAlreadyJoined(){
+    //given
+    Member member = buildMember();
+    memberRepository.saveMember(member);
+    Group group = buildGroup(member.getId());
+    groupRepository.saveGroup(group);
+    MemberGroup memberGroup =  buildMemberGroup(group.getId(), member.getId());
+    assertThat(memberGroup.getId()).isNull();
+    memberGroupRepository.saveMemberGroup(memberGroup);
+
+    //when
+    boolean result = memberGroupRepository.checkAlreadyJoined(group.getId(), member.getId());
+    boolean result2 = memberGroupRepository.checkAlreadyJoined(200L, 100L);
+
+    //then
+    assertThat(result).isTrue();
+    assertThat(result2).isFalse();
   }
 
   private Group buildGroup(Long ownerId) {
@@ -52,5 +71,13 @@ public class MeemberGroupRepositoryTest extends RepositoryTest {
         .name("test_group")
         .invitation_code("testCode")
         .owner_id(ownerId).build();
+  }
+
+  private MemberGroup buildMemberGroup(Long groupId, Long memberId){
+    return MemberGroup.builder()
+        .create_date(new Date())
+        .group_id(groupId)
+        .member_id(memberId)
+        .important(true).build();
   }
 }

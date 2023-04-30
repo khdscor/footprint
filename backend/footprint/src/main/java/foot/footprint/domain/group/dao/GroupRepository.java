@@ -14,6 +14,9 @@ public interface GroupRepository {
   @Select("Select * from group_table where id=#{groupId}")
   Optional<Group> findById(Long groupId);
 
+  @Select("Select * from group_table where invitation_code=#{invitationCode}")
+  Optional<Group> findByInvitationCode(String invitationCode);
+
   @Update("UPDATE group_table SET invitation_code=#{invitation_code} WHERE id=#{id}")
   int updateInvitationCode(Group group);
 }
