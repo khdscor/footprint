@@ -6,7 +6,6 @@ import foot.footprint.domain.group.domain.Group;
 import foot.footprint.domain.group.domain.MemberGroup;
 import foot.footprint.domain.group.dto.CreateGroupRequest;
 import foot.footprint.domain.group.util.RandomStringGenerator;
-import foot.footprint.domain.member.domain.Member;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -30,7 +29,7 @@ public class CreateGroupService {
     Group newGroup = new Group(request.getGroupName(), creatorId);
     groupRepository.saveGroup(newGroup);
     newGroup.addInvitationCode(generateInvitationCode(newGroup.getId()));
-    groupRepository.saveGroup(newGroup);
+    groupRepository.updateInvitationCode(newGroup);
     return newGroup;
   }
 

@@ -30,4 +30,22 @@ public class GroupRepositoryTest extends RepositoryTest {
     //then
     assertThat(group.getId()).isNotNull();
   }
+
+  @Test
+  public void updateInvitationCode() {
+    //given
+    Group group = Group.builder()
+        .create_date(new Date())
+        .name("test_group")
+        .owner_id(1L).build();
+
+    //when & then
+    assertThat(group.getId()).isNull();
+    groupRepository.saveGroup(group);
+    group.addInvitationCode("testCode");
+    groupRepository.updateInvitationCode(group);
+
+    //then
+    assertThat(group.getInvitation_code()).isNotNull();
+  }
 }
