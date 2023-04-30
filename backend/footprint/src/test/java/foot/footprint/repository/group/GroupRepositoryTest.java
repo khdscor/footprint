@@ -69,4 +69,22 @@ public class GroupRepositoryTest extends RepositoryTest {
     assertThat(foundGroup).isPresent();
     assertThat(anotherGroup).isNotPresent();
   }
+
+  @Test
+  public void deleteById() {
+    //given
+    String invitationCode = "testCode";
+    Group group = Group.builder()
+        .create_date(new Date())
+        .name("test_group")
+        .invitation_code(invitationCode)
+        .owner_id(1L).build();
+    groupRepository.saveGroup(group);
+
+    //when & then
+    assertThat(groupRepository.findById(group.getId())).isPresent();
+    int result = groupRepository.deleteById(group.getId());
+    assertThat(groupRepository.findById(group.getId())).isNotPresent();
+    assertThat(result).isEqualTo(1);
+  }
 }

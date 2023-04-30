@@ -2,6 +2,7 @@ package foot.footprint.domain.group.dao;
 
 import foot.footprint.domain.group.domain.Group;
 import java.util.Optional;
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
@@ -19,4 +20,7 @@ public interface GroupRepository {
 
   @Update("UPDATE group_table SET invitation_code=#{invitation_code} WHERE id=#{id}")
   int updateInvitationCode(Group group);
+
+  @Delete("DELETE FROM group_table WHERE id=#{groupId}")
+  int deleteById(Long groupId);
 }
