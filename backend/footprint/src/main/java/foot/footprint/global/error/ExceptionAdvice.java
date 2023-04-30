@@ -2,6 +2,7 @@ package foot.footprint.global.error;
 
 import foot.footprint.domain.article.exception.NotIncludedMapException;
 import foot.footprint.domain.article.exception.NotMatchMemberException;
+import foot.footprint.domain.group.exception.AlreadyJoinedException;
 import foot.footprint.domain.member.exception.AlreadyExistedEmailException;
 import foot.footprint.domain.member.exception.NotMatchPasswordException;
 import foot.footprint.global.error.exception.ContentEmptyException;
@@ -66,6 +67,12 @@ public class ExceptionAdvice {
 
   @ExceptionHandler(WrongMapTypeException.class)
   public ResponseEntity<ErrorResponse> handleWrongMapTypeException(WrongMapTypeException e) {
+
+    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorResponse(e.getMessage()));
+  }
+
+  @ExceptionHandler(AlreadyJoinedException.class)
+  public ResponseEntity<ErrorResponse> handleAlreadyJoinedException(AlreadyJoinedException e) {
 
     return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorResponse(e.getMessage()));
   }

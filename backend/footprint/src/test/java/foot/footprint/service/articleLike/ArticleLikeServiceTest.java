@@ -42,10 +42,13 @@ public class ArticleLikeServiceTest {
     //given
     Long articleId = 1L;
     Long memberId = 1L;
+    Article article = buildArticle(memberId);
     ArticleLikeDto likedArticle = new ArticleLikeDto(articleId, memberId, true);
     ArticleLikeDto notLikedArticle = new ArticleLikeDto(articleId, memberId, false);
     given(articleLikeRepository.deleteArticleLike(any()))
         .willReturn(1);
+    given(findArticleRepository.findById(any()))
+        .willReturn(Optional.ofNullable(article));
 
     //when
     articleLikeService.changeArticleLike(likedArticle, MapType.PUBLIC);
