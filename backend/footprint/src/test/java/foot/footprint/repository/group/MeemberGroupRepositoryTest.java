@@ -79,11 +79,13 @@ public class MeemberGroupRepositoryTest extends RepositoryTest {
     boolean result1 = memberGroupRepository.checkAlreadyJoined(group.getId(), member.getId());
     int deleted = memberGroupRepository.deleteMemberGroup(group.getId(), member.getId());
     boolean result2 = memberGroupRepository.checkAlreadyJoined(group.getId(), member.getId());
+    int dummyDeleted = memberGroupRepository.deleteMemberGroup(group.getId(), 1000L);
 
     //then
     assertThat(result1).isEqualTo(true);
     assertThat(deleted).isEqualTo(1);
     assertThat(result2).isEqualTo(false);
+    assertThat(dummyDeleted).isEqualTo(0);
   }
 
   @Test
