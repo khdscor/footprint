@@ -68,7 +68,7 @@ public class SecessionGroupServiceTest {
     given(memberGroupRepository.countMemberGroup(any()))
         .willReturn(0L);
     given(groupRepository.deleteById(any()))
-        .willReturn(any());
+        .willReturn(1);
 
     //when
     secessionGroupService.secessionGroup(1L, 1L);
