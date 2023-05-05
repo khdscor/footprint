@@ -26,9 +26,12 @@ public class CreateArticleController {
     Long articleId = createArticleService.create(request, userDetails.getId());
 
     if (request.isPublicMap()) {
-      return buildArticleCreateResponse("/api/articles/public/" + articleId);
+      return buildArticleCreateResponse("/articles/public/" + articleId);
     }
-    return buildArticleCreateResponse("/api/articles/private/" + articleId);
+    if (request.isPrivateMap()) {
+      return buildArticleCreateResponse("/articles/private/" + articleId);
+    }
+    return buildArticleCreateResponse("/articles/grouped/" + articleId);
   }
 
   private ResponseEntity<Void> buildArticleCreateResponse(String uri) {
