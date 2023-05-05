@@ -15,6 +15,11 @@ public interface FindArticleRepository {
       LocationRange locationRange
   );
 
+  List<Article> findArticlesByGroup(
+      Long groupId,
+      LocationRange locationRange
+  );
+
   @Select("Select * from article where id=#{articleId}")
   Optional<Article> findById(Long articleId);
 }
