@@ -14,6 +14,7 @@ import foot.footprint.domain.article.domain.Article;
 import foot.footprint.domain.article.dto.CreateArticleRequest;
 import foot.footprint.domain.article.exception.NotIncludedMapException;
 import foot.footprint.domain.group.dao.ArticleGroupRepository;
+import foot.footprint.domain.group.dao.GroupRepository;
 import foot.footprint.domain.group.domain.ArticleGroup;
 import java.util.ArrayList;
 import java.util.List;
@@ -33,6 +34,9 @@ public class CreateArticleServiceTest {
 
   @Mock
   private ArticleGroupRepository articleGroupRepository;
+
+  @Mock
+  private GroupRepository groupRepository;
 
   @InjectMocks
   private CreateArticleService createArticleService;
@@ -57,6 +61,8 @@ public class CreateArticleServiceTest {
         .willReturn(1L);
     given(articleGroupRepository.saveArticleGroupList(anyList()))
         .willReturn(0);
+    given(groupRepository.findAllByMemberId(any()))
+        .willReturn(groupIdsToBeIncluded);
     //when
     createArticleService.create(createArticleRequest, memberId);
 
@@ -69,6 +75,18 @@ public class CreateArticleServiceTest {
     assertThat(createArticleRequest.getContent()).isEqualTo(article.getContent());
     assertThat(createArticleRequest.getGroupIdsToBeIncluded().size()).isEqualTo(articleGroups.size());
     assertThat(articleGroups.get(0).getArticle_id()).isEqualTo(article.getId());
+
+    //groupIds가 중 내 그룹이 아닌 groupId가 있을 시 예외 처리
+    //given
+    List<Long> groupIds = new ArrayList<>();
+    groupIds.add(groupId1);
+    groupIds.add(100L);
+    createArticleRequest.updateGroupIdList(groupIds);
+
+    //when & then
+    assertThatThrownBy(
+        () -> createArticleService.create(createArticleRequest, memberId))
+        .isInstanceOf(NotIncludedMapException.class);
   }
 
   @Test
