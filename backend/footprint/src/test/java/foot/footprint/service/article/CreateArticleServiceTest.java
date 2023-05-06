@@ -2,6 +2,9 @@ package foot.footprint.service.article;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyList;
+import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
@@ -10,7 +13,11 @@ import foot.footprint.domain.article.dao.CreateArticleRepository;
 import foot.footprint.domain.article.domain.Article;
 import foot.footprint.domain.article.dto.CreateArticleRequest;
 import foot.footprint.domain.article.exception.NotIncludedMapException;
+import foot.footprint.domain.group.dao.ArticleGroupRepository;
+import foot.footprint.domain.group.dao.GroupRepository;
+import foot.footprint.domain.group.domain.ArticleGroup;
 import java.util.ArrayList;
+import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -25,6 +32,12 @@ public class CreateArticleServiceTest {
   @Mock
   private CreateArticleRepository createArticleRepository;
 
+  @Mock
+  private ArticleGroupRepository articleGroupRepository;
+
+  @Mock
+  private GroupRepository groupRepository;
+
   @InjectMocks
   private CreateArticleService createArticleService;
 
@@ -33,18 +46,47 @@ public class CreateArticleServiceTest {
   public void create() {
     //given
     Long memberId = 1L;
-    ArgumentCaptor<Article> captor = ArgumentCaptor.forClass(Article.class);
-    CreateArticleRequest createArticleRequest = new CreateArticleRequest("title", "content",
-        10.0, 10.0, true, true, new ArrayList<>());
+    Long groupId1 = 1L;
+    Long groupId2 = 2L;
+    List<Long> groupIdsToBeIncluded = new ArrayList<>();
+    groupIdsToBeIncluded.add(groupId1);
+    groupIdsToBeIncluded.add(groupId2);
 
+    ArgumentCaptor<Article> captor = ArgumentCaptor.forClass(Article.class);
+    ArgumentCaptor<List<ArticleGroup>> captor2 = ArgumentCaptor.forClass(java.util.List.class);
+    CreateArticleRequest createArticleRequest = new CreateArticleRequest("title", "content",
+        10.0, 10.0, true, true, groupIdsToBeIncluded);
+
+    given(createArticleRepository.saveArticle(any()))
+        .willReturn(1L);
+    given(articleGroupRepository.saveArticleGroupList(anyList()))
+        .willReturn(0);
+    given(groupRepository.findAllByMemberId(any()))
+        .willReturn(groupIdsToBeIncluded);
     //when
     createArticleService.create(createArticleRequest, memberId);
 
     //then
     verify(createArticleRepository, times(1)).saveArticle(captor.capture());
+    verify(articleGroupRepository, times(1)).saveArticleGroupList(captor2.capture());
     Article article = captor.getValue();
+    List<ArticleGroup> articleGroups = captor2.getValue();
     assertThat(createArticleRequest.getTitle()).isEqualTo(article.getTitle());
     assertThat(createArticleRequest.getContent()).isEqualTo(article.getContent());
+    assertThat(createArticleRequest.getGroupIdsToBeIncluded().size()).isEqualTo(articleGroups.size());
+    assertThat(articleGroups.get(0).getArticle_id()).isEqualTo(article.getId());
+
+    //groupIds가 중 내 그룹이 아닌 groupId가 있을 시 예외 처리
+    //given
+    List<Long> groupIds = new ArrayList<>();
+    groupIds.add(groupId1);
+    groupIds.add(100L);
+    createArticleRequest.updateGroupIdList(groupIds);
+
+    //when & then
+    assertThatThrownBy(
+        () -> createArticleService.create(createArticleRequest, memberId))
+        .isInstanceOf(NotIncludedMapException.class);
   }
 
   @Test

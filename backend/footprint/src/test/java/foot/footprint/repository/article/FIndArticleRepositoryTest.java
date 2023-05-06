@@ -5,9 +5,14 @@ import foot.footprint.domain.article.dao.FindArticleRepository;
 import foot.footprint.domain.article.domain.Article;
 import foot.footprint.domain.article.domain.LocationRange;
 import foot.footprint.domain.article.dto.ArticleRangeRequest;
+import foot.footprint.domain.group.dao.ArticleGroupRepository;
+import foot.footprint.domain.group.dao.GroupRepository;
+import foot.footprint.domain.group.domain.ArticleGroup;
+import foot.footprint.domain.group.domain.Group;
 import foot.footprint.domain.member.dao.MemberRepository;
 import foot.footprint.domain.member.domain.Member;
 import foot.footprint.repository.RepositoryTest;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Optional;
 import org.junit.jupiter.api.Test;
@@ -27,6 +32,12 @@ public class FIndArticleRepositoryTest extends RepositoryTest {
 
   @Autowired
   private MemberRepository memberRepository;
+
+  @Autowired
+  private GroupRepository groupRepository;
+
+  @Autowired
+  private ArticleGroupRepository articleGroupRepository;
 
   @Test
   public void findArticlesTest() {
@@ -74,7 +85,32 @@ public class FIndArticleRepositoryTest extends RepositoryTest {
   }
 
   @Test
-  public void findArticle(){
+  public void findArticlesByGroupTest() {
+    //given
+    Member member = buildMember();
+    memberRepository.saveMember(member);
+    Article article = buildArticle(member.getId());
+    createArticleRepository.saveArticle(article);
+    Group group = buildGroup(member.getId());
+    groupRepository.saveGroup(group);
+    ArticleGroup articleGroup = ArticleGroup.createArticleGroup(group.getId(), article.getId());
+    List<ArticleGroup> articleGroups = new ArrayList<>();
+    articleGroups.add(articleGroup);
+    articleGroupRepository.saveArticleGroupList(articleGroups);
+
+    //when
+    List<Article> articles = findArticleRepository.findArticlesByGroup(group.getId(),
+        new LocationRange(new ArticleRangeRequest(5.0, 10.0, 5.0, 10.0)));
+    List<Article> articles2 = findArticleRepository.findArticlesByGroup(100L,
+        new LocationRange(new ArticleRangeRequest(5.0, 10.0, 5.0, 10.0)));
+
+    //then
+    assertThat(articles).hasSize(1);
+    assertThat(articles2).hasSize(0);
+  }
+
+  @Test
+  public void findArticle() {
     //given
     Member member = buildMember();
     memberRepository.saveMember(member);
