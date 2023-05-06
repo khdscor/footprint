@@ -7,4 +7,8 @@
     create_date, invitation_code, name, owner_id
     ) VALUES (#{create_date}, #{invitation_code}, #{name}, #{owner_id})
   </insert>
+  <select id="findAllByMemberId" resultType="Long">
+    select g.id from group_table g join member_group m on (g.id = m.group_id)
+    where m.member_id = #{memberId}
+  </select>
 </mapper>

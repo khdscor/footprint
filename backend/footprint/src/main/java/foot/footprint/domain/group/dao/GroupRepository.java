@@ -1,6 +1,7 @@
 package foot.footprint.domain.group.dao;
 
 import foot.footprint.domain.group.domain.Group;
+import java.util.List;
 import java.util.Optional;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Mapper;
@@ -23,4 +24,6 @@ public interface GroupRepository {
 
   @Delete("DELETE FROM group_table WHERE id=#{groupId}")
   int deleteById(Long groupId);
+
+  List<Long> findAllByMemberId(Long memberId);
 }
