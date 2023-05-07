@@ -1,19 +1,27 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="foot.footprint.domain.article.dao.FindArticleRepository">
-    <select id="findArticles" resultType="Article">
-        select * from article where
-        <choose>
-            <when test="memberId != null">
-                private_map = true
-                and member_id = #{memberId}
-            </when>
-            <otherwise>
-                public_map = true
-            </otherwise>
-        </choose>
-        and
-        latitude between #{locationRange.lowerLatitude} and #{locationRange.upperLatitude} and
-        longitude between #{locationRange.lowerLongitude} and #{locationRange.upperLongitude}
-    </select>
+  <select id="findArticles" resultType="Article">
+    select * from article where
+    <choose>
+      <when test="memberId != null">
+        private_map = true
+        and member_id = #{memberId}
+      </when>
+      <otherwise>
+        public_map = true
+      </otherwise>
+    </choose>
+    and
+    latitude between #{locationRange.lowerLatitude} and #{locationRange.upperLatitude} and
+    longitude between #{locationRange.lowerLongitude} and #{locationRange.upperLongitude}
+  </select>
+  <select id="findArticlesByGroup" resultType="Article">
+    select a.* from article a join article_group g on (a.id = g.article_id) where
+    g.group_id = #{groupId}
+    and
+    latitude between #{locationRange.lowerLatitude} and #{locationRange.upperLatitude} and
+    longitude between #{locationRange.lowerLongitude} and #{locationRange.upperLongitude}
+  </select>
 </mapper>

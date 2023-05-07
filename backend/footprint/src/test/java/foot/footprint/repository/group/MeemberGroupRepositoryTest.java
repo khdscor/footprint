@@ -113,14 +113,6 @@ public class MeemberGroupRepositoryTest extends RepositoryTest {
     assertThat(count2).isEqualTo(0);
   }
 
-  private Group buildGroup(Long ownerId) {
-    return Group.builder()
-        .create_date(new Date())
-        .name("test_group")
-        .invitation_code("testCode")
-        .owner_id(ownerId).build();
-  }
-
   private MemberGroup buildMemberGroup(Long groupId, Long memberId){
     return MemberGroup.builder()
         .create_date(new Date())

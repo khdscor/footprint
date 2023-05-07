@@ -1,4 +1,5 @@
 drop table article_like if exists;
+drop table article_group if exists;
 drop table article if exists;
 drop table member_group if exists;
 drop table group_table if exists;
@@ -56,6 +57,17 @@ create table member_group (
     primary key (id)
 );
 
+create table article_group (
+    id bigint not null auto_increment,
+    create_date datetime(6),
+    article_id bigint not null,
+    group_id bigint not null,
+primary key (id)
+);
+
+alter table article_group
+    add constraint article_group_article_id_group_id_unique unique (article_id, group_id);
+
 alter table member_group
     add constraint member_group_member_id_group_id_unique unique (member_id, group_id);
 
@@ -83,3 +95,13 @@ alter table member_group
     add constraint member_group_member_id_foreign_key
         foreign key (member_id)
             references member (id) on delete cascade;
+
+alter table article_group
+add constraint article_group_article_id_foreign_key
+foreign key (article_id)
+references article (id) on delete cascade;
+
+alter table article_group
+add constraint article_group_group_id_foreign_key
+foreign key (group_id)
+references group_table (id) on delete cascade;
