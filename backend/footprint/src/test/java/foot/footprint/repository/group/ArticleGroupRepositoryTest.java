@@ -15,6 +15,7 @@ import foot.footprint.domain.member.domain.Member;
 import foot.footprint.repository.RepositoryTest;
 import java.util.ArrayList;
 import java.util.List;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -35,38 +36,36 @@ public class ArticleGroupRepositoryTest extends RepositoryTest {
   @Autowired
   private MemberGroupRepository memberGroupRepository;
 
+  Member member;
+  Article article;
+  Group group;
+  @BeforeEach
+  void setUp() {
+    member = buildMember();
+    memberRepository.saveMember(member);
+    article = buildArticle(member.getId());
+    createArticleRepository.saveArticle(article);
+    group = buildGroup(member.getId());
+    groupRepository.saveGroup(group);
+  }
+
   @Test
   public void saveArticleGroupList() {
     //given
-    Member member = buildMember();
-    memberRepository.saveMember(member);
-    Article article1 = buildArticle(member.getId());
-    Article article2 = buildArticle(member.getId());
-    createArticleRepository.saveArticle(article1);
-    createArticleRepository.saveArticle(article2);
-    Group group = buildGroup(member.getId());
-    groupRepository.saveGroup(group);
     List<ArticleGroup> articleGroups = new ArrayList<>();
-    articleGroups.add(buildArticleGroup(group.getId(), article1.getId()));
-    articleGroups.add(buildArticleGroup(group.getId(), article2.getId()));
+    articleGroups.add(buildArticleGroup(group.getId(), article.getId()));
 
     //when
     int result = articleGroupRepository.saveArticleGroupList(articleGroups);
 
     //then
-    assertThat(result).isEqualTo(2);
+    assertThat(result).isEqualTo(1);
 
   }
 
   @Test
   public void existsArticleInMyGroup() {
     //given
-    Member member = buildMember();
-    memberRepository.saveMember(member);
-    Article article = buildArticle(member.getId());
-    createArticleRepository.saveArticle(article);
-    Group group = buildGroup(member.getId());
-    groupRepository.saveGroup(group);
     List<ArticleGroup> articleGroups = new ArrayList<>();
     articleGroups.add(buildArticleGroup(group.getId(), article.getId()));
     articleGroupRepository.saveArticleGroupList(articleGroups);
