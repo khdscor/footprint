@@ -9,4 +9,10 @@
       (#{articleGroups.create_date}, #{articleGroups.article_id}, #{articleGroups.group_id})
     </foreach>
   </insert>
+  <select id="existsArticleInMyGroup" resultType="boolean">
+    SELECT EXISTS (
+    SELECT 1 FROM article_group a join member_group m on (a.group_id = m.group_id)
+    where a.article_id = #{articleId} and m.member_id = #{memberId}
+    )
+  </select>
 </mapper>
