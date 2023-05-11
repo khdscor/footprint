@@ -1,19 +1,17 @@
 package foot.footprint.repository;
 
 import foot.footprint.domain.article.domain.Article;
+import foot.footprint.domain.comment.domain.Comment;
 import foot.footprint.domain.group.domain.Group;
 import foot.footprint.domain.member.domain.AuthProvider;
 import foot.footprint.domain.member.domain.Member;
 import foot.footprint.domain.member.domain.Role;
 import java.util.Date;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.runner.RunWith;
 import org.mybatis.spring.boot.test.autoconfigure.MybatisTest;
-import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.jdbc.Sql.ExecutionPhase;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
@@ -45,6 +43,14 @@ public class RepositoryTest {
         .title("test")
         .create_date(new Date())
         .member_id(memberId).build();
+  }
+
+  protected Comment buildComment(Long ownerId, Long articleId) {
+    return Comment.builder()
+        .content("아무내용")
+        .article_id(articleId)
+        .member_id(ownerId)
+        .create_date(new Date()).build();
   }
 
   protected Group buildGroup(Long ownerId) {

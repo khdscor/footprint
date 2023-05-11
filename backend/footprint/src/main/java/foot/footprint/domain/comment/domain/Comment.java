@@ -33,6 +33,13 @@ public class Comment {
     this.article_id = article_id;
     this.member_id = member_id;
   }
+  public Comment(String content, Date create_date, Long article_id, Long member_id) {
+    validate(content);
+    this.content = content;
+    this.create_date = create_date;
+    this.article_id = article_id;
+    this.member_id = member_id;
+  }
 
   private void validate(String content) {
     if (Objects.isNull(content) || content.trim().isEmpty()) {
