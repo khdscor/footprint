@@ -1,5 +1,6 @@
 drop table article_like if exists;
 drop table article_group if exists;
+drop table comment if exists;
 drop table article if exists;
 drop table member_group if exists;
 drop table group_table if exists;
