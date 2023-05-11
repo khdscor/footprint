@@ -46,22 +46,23 @@ public class CreateCommentService {
 
   private CommentResponse createCommentOnPublicArticle(Long articleId, String content,
       AuthorDto authorDto) {
-    Comment comment = new Comment(content, new Date(), articleId, authorDto.getId());
-    createCommentRepository.saveComment(comment);
-    return CommentResponse.toCommentResponse(comment, authorDto);
+    return saveComment(articleId, content, authorDto);
   }
 
   private CommentResponse createCommentOnPrivateArticle(Article article, String content,
       AuthorDto authorDto) {
     validateIsMyArticle(article, authorDto.getId());
-    Comment comment = new Comment(content, new Date(), article.getId(), authorDto.getId());
-    createCommentRepository.saveComment(comment);
-    return CommentResponse.toCommentResponse(comment, authorDto);
+    return saveComment(article.getId(), content, authorDto);
   }
 
   private CommentResponse createCommentOnGroupedArticle(Long articleId, String content,
       AuthorDto authorDto) {
     validateInMyGroup(articleId, authorDto.getId());
+    return saveComment(articleId, content, authorDto);
+  }
+
+  private CommentResponse saveComment(Long articleId, String content,
+      AuthorDto authorDto) {
     Comment comment = new Comment(content, new Date(), articleId, authorDto.getId());
     createCommentRepository.saveComment(comment);
     return CommentResponse.toCommentResponse(comment, authorDto);
