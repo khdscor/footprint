@@ -8,4 +8,6 @@ import org.apache.ibatis.annotations.Mapper;
 public interface ArticleGroupRepository {
 
   int saveArticleGroupList(List<ArticleGroup> articleGroups);
+
+  boolean existsArticleInMyGroup(Long articleId, Long memberId);
 }

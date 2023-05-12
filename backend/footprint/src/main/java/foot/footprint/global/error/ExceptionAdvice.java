@@ -7,6 +7,7 @@ import foot.footprint.domain.member.exception.AlreadyExistedEmailException;
 import foot.footprint.domain.member.exception.NotMatchPasswordException;
 import foot.footprint.global.error.exception.ContentEmptyException;
 import foot.footprint.global.error.exception.LengthOverException;
+import foot.footprint.global.error.exception.NotAuthorizedOrExistException;
 import foot.footprint.global.error.exception.NotExistsException;
 import foot.footprint.global.error.exception.WrongMapTypeException;
 import org.springframework.http.HttpStatus;
@@ -75,6 +76,14 @@ public class ExceptionAdvice {
   public ResponseEntity<ErrorResponse> handleAlreadyJoinedException(AlreadyJoinedException e) {
 
     return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorResponse(e.getMessage()));
+  }
+
+  @ExceptionHandler(NotAuthorizedOrExistException.class)
+  public ResponseEntity<ErrorResponse> handleNotAuthorizedOrExistException(
+      NotAuthorizedOrExistException e) {
+
+    return ResponseEntity.status(HttpStatus.NOT_FOUND)
+        .body(new ErrorResponse(e.getMessage()));
   }
 
   //아래 4가지는 기본적으로 설정된 에러
