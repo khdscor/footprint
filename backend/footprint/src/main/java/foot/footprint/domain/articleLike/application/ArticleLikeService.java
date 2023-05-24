@@ -5,6 +5,8 @@ import foot.footprint.domain.article.domain.Article;
 import foot.footprint.domain.articleLike.dao.ArticleLikeRepository;
 import foot.footprint.domain.articleLike.domain.ArticleLike;
 import foot.footprint.domain.articleLike.dto.ArticleLikeDto;
+import foot.footprint.domain.group.dao.ArticleGroupRepository;
+import foot.footprint.global.error.exception.NotAuthorizedOrExistException;
 import foot.footprint.global.error.exception.NotExistsException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -17,6 +19,8 @@ public class ArticleLikeService {
   private final ArticleLikeRepository articleLikeRepository;
 
   private final FindArticleRepository findArticleRepository;
+
+  private final ArticleGroupRepository articleGroupRepository;
 
   @Transactional(readOnly = true)
   public boolean checkMyLike(ArticleLikeDto articleLikeDto) {
@@ -36,8 +40,7 @@ public class ArticleLikeService {
       changePrivateArticleLike(articleLikeDto, article.getMember_id());
       return;
     }
-      //changeGroupedArticleLike
-    return;
+    changeGroupedArticleLike(articleLikeDto);
   }
 
   private void changePublicArticleLike(ArticleLikeDto articleLikeDto) {
@@ -47,6 +50,17 @@ public class ArticleLikeService {
   private void changePrivateArticleLike(ArticleLikeDto articleLikeDto, Long writerId) {
     articleLikeDto.validateArticleIsMine(writerId);
     changeLike(articleLikeDto);
+  }
+
+  private void changeGroupedArticleLike(ArticleLikeDto articleLikeDto) {
+    validateInMyGroup(articleLikeDto.getArticleId(), articleLikeDto.getMemberId());
+    changeLike(articleLikeDto);
+  }
+
+  private void validateInMyGroup(Long articleId, Long memberId) {
+    if (!articleGroupRepository.existsArticleInMyGroup(articleId, memberId)) {
+      throw new NotAuthorizedOrExistException("해당글에 좋아요할 권한이 없습니다.");
+    }
   }
 
   private void changeLike(ArticleLikeDto articleLikeDto) {
@@ -59,7 +73,6 @@ public class ArticleLikeService {
 
   private void deleteLike(ArticleLikeDto articleLikeDto) {
     int deleted = articleLikeRepository.deleteArticleLike(articleLikeDto);
-    System.out.println(deleted + " teststsetset");
     if (deleted == 0) {
       throw new NotExistsException("이미 좋아요를 취소하였거나 누르지 않았습니다.");
     }
