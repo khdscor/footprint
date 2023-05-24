@@ -5,6 +5,7 @@ import foot.footprint.domain.article.domain.Article;
 import foot.footprint.domain.articleLike.dao.ArticleLikeRepository;
 import foot.footprint.domain.articleLike.domain.ArticleLike;
 import foot.footprint.domain.articleLike.dto.ArticleLikeDto;
+import foot.footprint.domain.comment.dto.AuthorDto;
 import foot.footprint.global.domain.MapType;
 import foot.footprint.global.error.exception.NotExistsException;
 import lombok.RequiredArgsConstructor;
@@ -26,36 +27,28 @@ public class ArticleLikeService {
   }
 
   @Transactional
-  public void changeArticleLike(ArticleLikeDto articleLikeDto, MapType mapType) {
-    if (mapType == MapType.PUBLIC) {
+  public void changeArticleLike(ArticleLikeDto articleLikeDto) {
+    Article article = findArticleRepository.findById(articleLikeDto.getArticleId())
+        .orElseThrow(() -> new NotExistsException(" 댓글을 작성하려는 게시글이 존재하지 않습니다."));
+    if (article.isPublic_map()) {
       changePublicArticleLike(articleLikeDto);
+      return;
     }
-    if (mapType == MapType.PRIVATE) {
-      changePrivateArticleLike(articleLikeDto);
+    if (article.isPrivate_map()) {
+      changePrivateArticleLike(articleLikeDto, article.getMember_id());
+      return;
     }
-    if (mapType == MapType.GROUPED) {
       //changeGroupedArticleLike
-    }
+    return;
   }
 
   private void changePublicArticleLike(ArticleLikeDto articleLikeDto) {
-    validateArticle(articleLikeDto);
     changeLike(articleLikeDto);
   }
 
-  private void changePrivateArticleLike(ArticleLikeDto articleLikeDto) {
-    validateMyArticle(articleLikeDto);
+  private void changePrivateArticleLike(ArticleLikeDto articleLikeDto, Long writerId) {
+    articleLikeDto.validateArticleIsMine(writerId);
     changeLike(articleLikeDto);
-  }
-
-  private void validateMyArticle(ArticleLikeDto articleLikeDto) {
-    Article article = validateArticle(articleLikeDto);
-    articleLikeDto.validateArticleIsMine(article);
-  }
-
-  private Article validateArticle(ArticleLikeDto articleLikeDto) {
-    return findArticleRepository.findById(articleLikeDto.getArticleId())
-        .orElseThrow(() -> new NotExistsException("해당하는 게시글이 존재하지 않습니다."));
   }
 
   private void changeLike(ArticleLikeDto articleLikeDto) {
