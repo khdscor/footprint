@@ -5,7 +5,8 @@ import foot.footprint.domain.article.domain.Article;
 import foot.footprint.domain.articleLike.dao.ArticleLikeRepository;
 import foot.footprint.domain.articleLike.domain.ArticleLike;
 import foot.footprint.domain.articleLike.dto.ArticleLikeDto;
-import foot.footprint.global.domain.MapType;
+import foot.footprint.domain.group.dao.ArticleGroupRepository;
+import foot.footprint.global.error.exception.NotAuthorizedOrExistException;
 import foot.footprint.global.error.exception.NotExistsException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -19,6 +20,8 @@ public class ArticleLikeService {
 
   private final FindArticleRepository findArticleRepository;
 
+  private final ArticleGroupRepository articleGroupRepository;
+
   @Transactional(readOnly = true)
   public boolean checkMyLike(ArticleLikeDto articleLikeDto) {
     boolean myLikeExists = articleLikeRepository.existsMyLike(articleLikeDto);
@@ -26,36 +29,38 @@ public class ArticleLikeService {
   }
 
   @Transactional
-  public void changeArticleLike(ArticleLikeDto articleLikeDto, MapType mapType) {
-    if (mapType == MapType.PUBLIC) {
+  public void changeArticleLike(ArticleLikeDto articleLikeDto) {
+    Article article = findArticleRepository.findById(articleLikeDto.getArticleId())
+        .orElseThrow(() -> new NotExistsException(" 댓글을 작성하려는 게시글이 존재하지 않습니다."));
+    if (article.isPublic_map()) {
       changePublicArticleLike(articleLikeDto);
+      return;
     }
-    if (mapType == MapType.PRIVATE) {
-      changePrivateArticleLike(articleLikeDto);
+    if (article.isPrivate_map()) {
+      changePrivateArticleLike(articleLikeDto, article.getMember_id());
+      return;
     }
-    if (mapType == MapType.GROUPED) {
-      //changeGroupedArticleLike
-    }
+    changeGroupedArticleLike(articleLikeDto);
   }
 
   private void changePublicArticleLike(ArticleLikeDto articleLikeDto) {
-    validateArticle(articleLikeDto);
     changeLike(articleLikeDto);
   }
 
-  private void changePrivateArticleLike(ArticleLikeDto articleLikeDto) {
-    validateMyArticle(articleLikeDto);
+  private void changePrivateArticleLike(ArticleLikeDto articleLikeDto, Long writerId) {
+    articleLikeDto.validateArticleIsMine(writerId);
     changeLike(articleLikeDto);
   }
 
-  private void validateMyArticle(ArticleLikeDto articleLikeDto) {
-    Article article = validateArticle(articleLikeDto);
-    articleLikeDto.validateArticleIsMine(article);
+  private void changeGroupedArticleLike(ArticleLikeDto articleLikeDto) {
+    validateInMyGroup(articleLikeDto.getArticleId(), articleLikeDto.getMemberId());
+    changeLike(articleLikeDto);
   }
 
-  private Article validateArticle(ArticleLikeDto articleLikeDto) {
-    return findArticleRepository.findById(articleLikeDto.getArticleId())
-        .orElseThrow(() -> new NotExistsException("해당하는 게시글이 존재하지 않습니다."));
+  private void validateInMyGroup(Long articleId, Long memberId) {
+    if (!articleGroupRepository.existsArticleInMyGroup(articleId, memberId)) {
+      throw new NotAuthorizedOrExistException("해당글에 좋아요할 권한이 없습니다.");
+    }
   }
 
   private void changeLike(ArticleLikeDto articleLikeDto) {
@@ -68,7 +73,6 @@ public class ArticleLikeService {
 
   private void deleteLike(ArticleLikeDto articleLikeDto) {
     int deleted = articleLikeRepository.deleteArticleLike(articleLikeDto);
-    System.out.println(deleted + " teststsetset");
     if (deleted == 0) {
       throw new NotExistsException("이미 좋아요를 취소하였거나 누르지 않았습니다.");
     }

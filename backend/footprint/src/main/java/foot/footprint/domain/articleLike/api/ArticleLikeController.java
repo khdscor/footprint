@@ -2,7 +2,6 @@ package foot.footprint.domain.articleLike.api;
 
 import foot.footprint.domain.articleLike.application.ArticleLikeService;
 import foot.footprint.domain.articleLike.dto.ArticleLikeDto;
-import foot.footprint.global.domain.MapType;
 import foot.footprint.global.security.user.CustomUserDetails;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -24,16 +23,15 @@ public class ArticleLikeController {
 
   @PostMapping
   public ResponseEntity<Void> changeMyLike(@PathVariable("articleId") Long articleId,
-      @PathVariable("mapType") String mapType, @RequestParam(value = "hasiliked") Boolean hasILiked,
+      @RequestParam(value = "hasiliked") Boolean hasILiked,
       @AuthenticationPrincipal CustomUserDetails userDetails) {
     ArticleLikeDto articleLikeDto = new ArticleLikeDto(articleId, userDetails.getId(), hasILiked);
-    articleLikeService.changeArticleLike(articleLikeDto, MapType.from(mapType));
+    articleLikeService.changeArticleLike(articleLikeDto);
     return ResponseEntity.status(HttpStatus.CREATED).build();
   }
 
   @GetMapping
   public ResponseEntity<Boolean> checkMyLike(@PathVariable("articleId") Long articleId,
-      @PathVariable("mapType") String mapType,
       @AuthenticationPrincipal CustomUserDetails userDetails) {
     boolean result = articleLikeService.checkMyLike(
         new ArticleLikeDto(articleId, userDetails.getId()));

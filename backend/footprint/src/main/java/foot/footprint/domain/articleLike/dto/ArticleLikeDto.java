@@ -21,8 +21,8 @@ public class ArticleLikeDto {
     this.hasILiked = true;
   }
 
-  public void validateArticleIsMine(Article article){
-    if (article.getMember_id() != this.memberId) {
+  public void validateArticleIsMine(Long writerId){
+    if (writerId != this.memberId) {
       throw new NotMatchMemberException("해당글에 좋아요할 권한이 없습니다.");
     }
   }
