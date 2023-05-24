@@ -2,7 +2,6 @@ package foot.footprint.domain.articleLike.api;
 
 import foot.footprint.domain.articleLike.application.ArticleLikeService;
 import foot.footprint.domain.articleLike.dto.ArticleLikeDto;
-import foot.footprint.global.domain.MapType;
 import foot.footprint.global.security.user.CustomUserDetails;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

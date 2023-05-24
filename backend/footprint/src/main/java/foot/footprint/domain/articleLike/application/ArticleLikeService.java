@@ -5,8 +5,6 @@ import foot.footprint.domain.article.domain.Article;
 import foot.footprint.domain.articleLike.dao.ArticleLikeRepository;
 import foot.footprint.domain.articleLike.domain.ArticleLike;
 import foot.footprint.domain.articleLike.dto.ArticleLikeDto;
-import foot.footprint.domain.comment.dto.AuthorDto;
-import foot.footprint.global.domain.MapType;
 import foot.footprint.global.error.exception.NotExistsException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
