@@ -2,7 +2,6 @@ package foot.footprint.domain.comment.application;
 
 import foot.footprint.domain.article.dao.FindArticleRepository;
 import foot.footprint.domain.article.domain.Article;
-import foot.footprint.domain.article.exception.NotMatchMemberException;
 import foot.footprint.domain.comment.dao.CreateCommentRepository;
 import foot.footprint.domain.comment.domain.Comment;
 import foot.footprint.domain.comment.dto.AuthorDto;
@@ -10,8 +9,8 @@ import foot.footprint.domain.comment.dto.CommentResponse;
 import foot.footprint.domain.group.dao.ArticleGroupRepository;
 import foot.footprint.domain.member.dao.MemberRepository;
 import foot.footprint.domain.member.domain.Member;
-import foot.footprint.global.error.exception.NotAuthorizedOrExistException;
 import foot.footprint.global.error.exception.NotExistsException;
+import foot.footprint.global.util.ValidateIsMine;
 import java.util.Date;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -51,13 +50,13 @@ public class CreateCommentService {
 
   private CommentResponse createCommentOnPrivateArticle(Article article, String content,
       AuthorDto authorDto) {
-    validateIsMyArticle(article, authorDto.getId());
+    ValidateIsMine.validateArticleIsMine(article.getMember_id(), authorDto.getId());
     return saveComment(article.getId(), content, authorDto);
   }
 
   private CommentResponse createCommentOnGroupedArticle(Long articleId, String content,
       AuthorDto authorDto) {
-    validateInMyGroup(articleId, authorDto.getId());
+    ValidateIsMine.validateInMyGroup(articleId, authorDto.getId(), articleGroupRepository);
     return saveComment(articleId, content, authorDto);
   }
 
@@ -66,17 +65,5 @@ public class CreateCommentService {
     Comment comment = new Comment(content, new Date(), articleId, authorDto.getId());
     createCommentRepository.saveComment(comment);
     return CommentResponse.toCommentResponse(comment, authorDto);
-  }
-
-  private void validateIsMyArticle(Article article, Long memberId) {
-    if (article.getMember_id() != memberId) {
-      throw new NotMatchMemberException("해당글에 좋아요할 권한이 없습니다.");
-    }
-  }
-
-  private void validateInMyGroup(Long articleId, Long memberId) {
-    if (!articleGroupRepository.existsArticleInMyGroup(articleId, memberId)) {
-      throw new NotAuthorizedOrExistException("댓글을 작성할 권한이 없습니다.");
-    }
   }
 }

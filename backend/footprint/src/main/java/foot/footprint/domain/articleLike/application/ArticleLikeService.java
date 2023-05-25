@@ -6,8 +6,8 @@ import foot.footprint.domain.articleLike.dao.ArticleLikeRepository;
 import foot.footprint.domain.articleLike.domain.ArticleLike;
 import foot.footprint.domain.articleLike.dto.ArticleLikeDto;
 import foot.footprint.domain.group.dao.ArticleGroupRepository;
-import foot.footprint.global.error.exception.NotAuthorizedOrExistException;
 import foot.footprint.global.error.exception.NotExistsException;
+import foot.footprint.global.util.ValidateIsMine;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -48,19 +48,14 @@ public class ArticleLikeService {
   }
 
   private void changePrivateArticleLike(ArticleLikeDto articleLikeDto, Long writerId) {
-    articleLikeDto.validateArticleIsMine(writerId);
+    ValidateIsMine.validateArticleIsMine(writerId, articleLikeDto.getMemberId());
     changeLike(articleLikeDto);
   }
 
   private void changeGroupedArticleLike(ArticleLikeDto articleLikeDto) {
-    validateInMyGroup(articleLikeDto.getArticleId(), articleLikeDto.getMemberId());
+    ValidateIsMine.validateInMyGroup(articleLikeDto.getArticleId(), articleLikeDto.getMemberId(),
+        articleGroupRepository);
     changeLike(articleLikeDto);
-  }
-
-  private void validateInMyGroup(Long articleId, Long memberId) {
-    if (!articleGroupRepository.existsArticleInMyGroup(articleId, memberId)) {
-      throw new NotAuthorizedOrExistException("해당글에 좋아요할 권한이 없습니다.");
-    }
   }
 
   private void changeLike(ArticleLikeDto articleLikeDto) {
