@@ -9,6 +9,7 @@ import foot.footprint.global.error.exception.ContentEmptyException;
 import foot.footprint.global.error.exception.LengthOverException;
 import foot.footprint.global.error.exception.NotAuthorizedOrExistException;
 import foot.footprint.global.error.exception.NotExistsException;
+import foot.footprint.global.error.exception.WrongInputException;
 import foot.footprint.global.error.exception.WrongMapTypeException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -68,6 +69,12 @@ public class ExceptionAdvice {
 
   @ExceptionHandler(WrongMapTypeException.class)
   public ResponseEntity<ErrorResponse> handleWrongMapTypeException(WrongMapTypeException e) {
+
+    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorResponse(e.getMessage()));
+  }
+
+  @ExceptionHandler(WrongInputException.class)
+  public ResponseEntity<ErrorResponse> handleWrongInputException(WrongInputException e) {
 
     return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorResponse(e.getMessage()));
   }
