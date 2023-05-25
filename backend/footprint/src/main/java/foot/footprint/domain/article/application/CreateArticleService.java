@@ -29,8 +29,10 @@ public class CreateArticleService {
     Article article = Article.createArticle(request, memberId);
     validateMapType(request);
     articleRepository.saveArticle(article);
-    articleGroupRepository.saveArticleGroupList(
-        createArticleGroupList(request, article.getId(), memberId));
+    if (!request.getGroupIdsToBeIncluded().isEmpty()) {
+      articleGroupRepository.saveArticleGroupList(
+          createArticleGroupList(request, article.getId(), memberId));
+    }
     return article.getId();
   }
 
