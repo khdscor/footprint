@@ -5,8 +5,6 @@ import foot.footprint.domain.article.exception.NotMatchMemberException;
 import foot.footprint.domain.group.exception.AlreadyJoinedException;
 import foot.footprint.domain.member.exception.AlreadyExistedEmailException;
 import foot.footprint.domain.member.exception.NotMatchPasswordException;
-import foot.footprint.global.error.exception.ContentEmptyException;
-import foot.footprint.global.error.exception.LengthOverException;
 import foot.footprint.global.error.exception.NotAuthorizedOrExistException;
 import foot.footprint.global.error.exception.NotExistsException;
 import foot.footprint.global.error.exception.WrongInputException;
@@ -51,18 +49,6 @@ public class ExceptionAdvice {
 
   @ExceptionHandler(NotMatchMemberException.class)
   public ResponseEntity<ErrorResponse> handleNotMatchMemberException(NotMatchMemberException e) {
-
-    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorResponse(e.getMessage()));
-  }
-
-  @ExceptionHandler(ContentEmptyException.class)
-  public ResponseEntity<ErrorResponse> handleContentEmptyException(ContentEmptyException e) {
-
-    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorResponse(e.getMessage()));
-  }
-
-  @ExceptionHandler(LengthOverException.class)
-  public ResponseEntity<ErrorResponse> handleLengthOverException(LengthOverException e) {
 
     return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorResponse(e.getMessage()));
   }
