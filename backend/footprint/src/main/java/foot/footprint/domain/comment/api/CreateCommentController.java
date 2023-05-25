@@ -4,6 +4,7 @@ import foot.footprint.domain.comment.application.CreateCommentService;
 import foot.footprint.domain.comment.dto.CommentResponse;
 import foot.footprint.domain.comment.dto.CreateCommentRequest;
 import foot.footprint.global.security.user.CustomUserDetails;
+import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,7 +25,7 @@ public class CreateCommentController {
   @PostMapping("/{articleId}/comments")
   public ResponseEntity<CommentResponse> createOnPublicArticle(
       @PathVariable("articleId") Long articleId,
-      @RequestBody CreateCommentRequest createCommentRequest,
+      @RequestBody @Valid CreateCommentRequest createCommentRequest,
       @AuthenticationPrincipal CustomUserDetails userDetails) {
     CommentResponse commentResponse = createCommentService.create(articleId,
         createCommentRequest.getContent(), userDetails.getId());
