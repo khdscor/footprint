@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/articles/{mapType}/{articleId}/like")
+@RequestMapping("/articles/{articleId}/like")
 public class ArticleLikeController {
 
   private final ArticleLikeService articleLikeService;
