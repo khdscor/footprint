@@ -6,6 +6,6 @@ import org.apache.ibatis.annotations.Update;
 @Mapper
 public interface EditCommentRepository {
 
-  @Update("UPDATE comment SET content=#{content} WHERE id=#{commentId}")
-  int editComment(Long commentId, String content);
+  @Update("UPDATE comment SET content=#{content} WHERE id=#{commentId} and member_id=#{memberId}")
+  int editComment(Long commentId, Long memberId, String content);
 }
