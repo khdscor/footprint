@@ -1,8 +1,7 @@
 package foot.footprint.domain.article.application;
 
 import foot.footprint.domain.article.dao.DeleteArticleRepository;
-import foot.footprint.domain.article.domain.ArticleMethod;
-import foot.footprint.domain.article.util.ValidateWriter;
+import foot.footprint.domain.article.exception.NotMatchMemberException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,11 +12,11 @@ public class DeleteArticleService {
 
   private final DeleteArticleRepository deleteArticleRepository;
 
-  private final ValidateWriter validateWriter;
-
   @Transactional
   public void delete(Long articleId, Long memberId) {
-    validateWriter.validate(ArticleMethod.Delete, articleId, memberId);
-    deleteArticleRepository.deleteById(articleId);
+    int result = deleteArticleRepository.deleteById(articleId, memberId);
+    if (result == 0) {
+      throw new NotMatchMemberException("글을 삭제할 권한이 없습니다.");
+    }
   }
 }
