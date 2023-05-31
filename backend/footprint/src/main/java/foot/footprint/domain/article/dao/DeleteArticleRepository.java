@@ -6,6 +6,6 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface DeleteArticleRepository {
 
-  @Delete("DELETE FROM article WHERE id=#{articleId}")
-  int deleteById(Long articleId);
+  @Delete("DELETE FROM article WHERE id=#{articleId} and member_id=#{memberId}")
+  int deleteById(Long articleId, Long memberId);
 }
