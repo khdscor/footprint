@@ -13,7 +13,7 @@ public class DeleteCommentService {
   private final DeleteCommentRepository deleteCommentRepository;
 
   @Transactional
-  public void delete(Long commentId, Long memberId){
+  public void delete(Long commentId, Long memberId) {
     int result = deleteCommentRepository.deleteComment(commentId, memberId);
     if (result == 0) {
       throw new NotMatchMemberException("댓글을 삭제할 권한이 없습니다.");

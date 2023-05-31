@@ -23,7 +23,7 @@ public class DeleteCommentServiceTest {
   private DeleteCommentService deleteCommentService;
 
   @Test
-  void edit(){
+  void edit() {
     //given
     given(deleteCommentRepository.deleteComment(any(), any()))
         .willReturn(0);
