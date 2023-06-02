@@ -82,6 +82,25 @@ public class CommentLIkeRepositoryTest extends RepositoryTest {
     assertThat(commentLikes).hasSize(2);
   }
 
+  @Test
+  public void deleteCommentLike() {
+    //given
+    Member member = buildMember();
+    memberRepository.saveMember(member);
+    Article article = buildArticle(member.getId());
+    createArticleRepository.saveArticle(article);
+    Comment comment = buildComment(member.getId(), article.getId());
+    createCommentRepository.saveComment(comment);
+    CommentLike commentLike = createCommentLike(comment.getId(), member.getId());
+    commentLikeRepository.saveCommentLike(commentLike);
+
+    //when
+    int result = commentLikeRepository.deleteCommentLike(comment.getId(), member.getId());
+
+    //that
+    assertThat(result).isEqualTo(1);
+  }
+
   private CommentLike createCommentLike(Long commentId, Long memberId) {
     return CommentLike.builder()
         .comment_id(commentId)
