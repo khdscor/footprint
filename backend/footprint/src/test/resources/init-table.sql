@@ -1,3 +1,4 @@
+drop table comment_like if exists;
 drop table article_like if exists;
 drop table article_group if exists;
 drop table comment if exists;
@@ -75,6 +76,13 @@ create table comment (
     primary key (id)
 );
 
+create table comment_like (
+    id bigint not null auto_increment,
+    comment_id bigint not null,
+    member_id bigint not null,
+    primary key (id)
+);
+
 alter table article_group
     add constraint article_group_article_id_group_id_unique unique (article_id, group_id);
 
@@ -125,3 +133,16 @@ alter table comment
 add constraint comment_member_id_foreign_key
 foreign key (member_id)
 references member (id) on delete cascade;
+
+alter table comment_like
+add constraint comment_like_comment_id_foreign_key
+foreign key (comment_id)
+references comment (id) on delete cascade;
+
+alter table comment_like
+add constraint comment_like_member_id_foreign_key
+foreign key (member_id)
+references member (id) on delete cascade;
+
+alter table comment_like
+    add constraint comment_like_comment_id_member_id_unique unique (comment_id, member_id);
