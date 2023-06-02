@@ -20,4 +20,9 @@ public class CommentLike {
     this.comment_id = comment_id;
     this.member_id = member_id;
   }
+
+  public CommentLike(Long comment_id, Long member_id) {
+    this.comment_id = comment_id;
+    this.member_id = member_id;
+  }
 }
