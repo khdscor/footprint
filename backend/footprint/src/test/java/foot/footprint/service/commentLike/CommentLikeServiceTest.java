@@ -12,6 +12,7 @@ import foot.footprint.domain.article.exception.NotMatchMemberException;
 import foot.footprint.domain.commentLike.application.CommentLikeService;
 import foot.footprint.domain.commentLike.dao.CommentLikeRepository;
 import foot.footprint.domain.group.dao.ArticleGroupRepository;
+import foot.footprint.global.error.exception.NotAuthorizedOrExistException;
 import foot.footprint.global.error.exception.NotExistsException;
 import java.util.Optional;
 import org.junit.jupiter.api.DisplayName;
@@ -83,6 +84,21 @@ public class CommentLikeServiceTest {
     assertThatThrownBy(
         () -> commentLikeService.changeMyLike(1L, 1L, true, 2L))
         .isInstanceOf(NotMatchMemberException.class);
+  }
+
+  @Test
+  @DisplayName("댓글 좋아요 변화 - 그룹지도 시")
+  public void changeMyLike_IfGroupedArticle() {
+    //given
+    Long memberId = 1L;
+    given(findArticleRepository.findById(any())).willReturn(
+        Optional.ofNullable(createArticle(memberId, false, false)));
+    given(articleGroupRepository.existsArticleInMyGroup(any(), any())).willReturn(false);
+
+    //when & then
+    assertThatThrownBy(
+        () -> commentLikeService.changeMyLike(1L, 1L, true, 2L))
+        .isInstanceOf(NotAuthorizedOrExistException.class);
   }
 
   private Article createArticle(Long memberId, boolean privateMap, boolean publicMap) {
