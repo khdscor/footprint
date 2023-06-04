@@ -75,7 +75,7 @@ public class ExceptionAdvice {
   public ResponseEntity<ErrorResponse> handleNotAuthorizedOrExistException(
       NotAuthorizedOrExistException e) {
 
-    return ResponseEntity.status(HttpStatus.NOT_FOUND)
+    return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
         .body(new ErrorResponse(e.getMessage()));
   }
 
