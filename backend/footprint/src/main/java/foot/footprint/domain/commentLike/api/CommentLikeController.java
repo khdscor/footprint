@@ -1,4 +1,4 @@
-package foot.footprint.domain.commentLike.controller;
+package foot.footprint.domain.commentLike.api;
 
 import foot.footprint.domain.commentLike.application.CommentLikeService;
 import foot.footprint.global.security.user.CustomUserDetails;

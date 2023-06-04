@@ -26,25 +26,25 @@ public class CommentLikeService {
   public void changeMyLike(Long commentId, Long articleId, Boolean hasILiked, Long memberId) {
     Article article = findArticleRepository.findById(articleId)
         .orElseThrow(() -> new NotExistsException("해당하는 게시글이 존재하지 않습니다."));
-    if (article.isPublic_map() == true) {
+    if (article.isPublic_map()) {
       changeLikeByPublic(commentId, memberId, hasILiked);
+      return;
     }
-    if (article.isPrivate_map() == true) {
+    if (article.isPrivate_map()) {
       changeLikeByPrivate(article, commentId, memberId, hasILiked);
+      return;
     }
     changeLikeByGrouped(articleId, commentId, memberId, hasILiked);
   }
 
   private void changeLikeByPublic(Long commentId, Long memberId, boolean hasILiked) {
     changeLike(commentId, memberId, hasILiked);
-    return;
   }
 
   private void changeLikeByPrivate(Article article, Long commentId, Long memberId,
       boolean hasILiked) {
     ValidateIsMine.validateArticleIsMine(article.getMember_id(), memberId);
     changeLike(commentId, memberId, hasILiked);
-    return;
   }
 
   private void changeLikeByGrouped(Long articleId, Long commentId, Long memberId,
@@ -82,7 +82,6 @@ public class CommentLikeService {
   }
 
   private List<Long> findHasILikedByPublic(Long articleId, Long memberId) {
-    // articleId에 해당하는 댓글들을 조인, 댓글의 memberId가 일치하는것을 select
     return commentLikeRepository.findCommentIdsILiked(articleId, memberId);
   }
 
