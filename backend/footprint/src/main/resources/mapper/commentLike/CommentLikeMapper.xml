@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="foot.footprint.domain.commentLike.dao.CommentLikeRepository">
+  <select id="findCommentIdsILiked" resultType="Long">
+    SELECT c.id FROM comment c JOIN comment_like l ON c.id = l.comment_id
+    WHERE c.article_id = #{articleId} AND l.member_id=#{memberId}
+  </select>
+  <insert id="saveCommentLike" parameterType="CommentLike" useGeneratedKeys="true" keyProperty="id">
+    INSERT INTO comment_like (
+    comment_id, member_id) VALUES (#{comment_id}, #{member_id})
+  </insert>
+</mapper>
