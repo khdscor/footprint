@@ -8,6 +8,7 @@ import static org.mockito.Mockito.verify;
 
 import foot.footprint.domain.article.dao.FindArticleRepository;
 import foot.footprint.domain.article.domain.Article;
+import foot.footprint.domain.article.exception.NotMatchMemberException;
 import foot.footprint.domain.commentLike.application.CommentLikeService;
 import foot.footprint.domain.commentLike.dao.CommentLikeRepository;
 import foot.footprint.domain.group.dao.ArticleGroupRepository;
@@ -68,6 +69,20 @@ public class CommentLikeServiceTest {
     assertThatThrownBy(
         () -> commentLikeService.changeMyLike(1L, 1L, true, 1L))
         .isInstanceOf(NotExistsException.class);
+  }
+
+  @Test
+  @DisplayName("댓글 좋아요 변화 - 개인지도 시")
+  public void changeMyLike_IfPrivateArticle() {
+    //given
+    Long memberId = 1L;
+    given(findArticleRepository.findById(any())).willReturn(
+        Optional.ofNullable(createArticle(memberId, true, false)));
+
+    //when & then
+    assertThatThrownBy(
+        () -> commentLikeService.changeMyLike(1L, 1L, true, 2L))
+        .isInstanceOf(NotMatchMemberException.class);
   }
 
   private Article createArticle(Long memberId, boolean privateMap, boolean publicMap) {
