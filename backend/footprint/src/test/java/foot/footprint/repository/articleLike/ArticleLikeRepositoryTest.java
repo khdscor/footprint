@@ -68,10 +68,10 @@ public class ArticleLikeRepositoryTest extends RepositoryTest {
     assertThat(result).isEqualTo(1);
   }
 
-  private ArticleLike createArticleLike(Long articleId, Long memebrId) {
+  private ArticleLike createArticleLike(Long articleId, Long memberId) {
     return ArticleLike.builder()
         .article_id(articleId)
-        .member_id(memebrId).build();
+        .member_id(memberId).build();
   }
 
   private ArticleLike setUpArticleLike() {
