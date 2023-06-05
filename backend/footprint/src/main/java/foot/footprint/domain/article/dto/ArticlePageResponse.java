@@ -1,25 +1,36 @@
 package foot.footprint.domain.article.dto;
 
-import foot.footprint.domain.articleLike.dto.ArticleLikeResponse;
 import foot.footprint.domain.comment.dto.CommentResponse;
-import foot.footprint.domain.commentLike.dto.CommentLikeDto;
-import foot.footprint.domain.member.dto.MyIdResponse;
 import java.util.List;
 
 public class ArticlePageResponse {
 
-  private ArticleDetailsDto articleDetailsDto;
-  private ArticleLikeResponse articleLike;
-  private List<CommentResponse> responses;
-  private List<CommentLikeDto> likes;
-  private MyIdResponse myId;
+  private ArticleDetailsDto articleDetails;
+  private boolean articleLike;
+  private List<CommentResponse> comments;
+  private List<Long> commentLikes;
+  private Long myMemberId;
 
-  public ArticlePageResponse(ArticleDetailsDto articleDetailsDto, ArticleLikeResponse articleLike,
-      List<CommentResponse> responses, List<CommentLikeDto> likes, MyIdResponse myId) {
-    this.articleDetailsDto = articleDetailsDto;
+  public ArticlePageResponse(ArticleDetailsDto articleDetails, boolean articleLike,
+      List<CommentResponse> comments, List<Long> commentLikes, Long myMemberId) {
+    this.articleDetails = articleDetails;
     this.articleLike = articleLike;
-    this.responses = responses;
-    this.likes = likes;
-    this.myId = myId;
+    this.comments = comments;
+    this.commentLikes = commentLikes;
+    this.myMemberId = myMemberId;
+  }
+
+  public ArticlePageResponse() {
+  }
+
+  public void addNonLoginInfo(ArticleDetailsDto articleDetails, List<CommentResponse> comments) {
+    this.articleDetails = articleDetails;
+    this.comments = comments;
+  }
+
+  public void addLoginInfo(boolean articleLike, List<Long> commentLikes, Long myMemberId) {
+    this.articleLike = articleLike;
+    this.commentLikes = commentLikes;
+    this.myMemberId = myMemberId;
   }
 }
