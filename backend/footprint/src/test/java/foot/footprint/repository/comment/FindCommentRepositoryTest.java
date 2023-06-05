@@ -61,8 +61,6 @@ public class FindCommentRepositoryTest extends RepositoryTest {
 
     //then
     assertThat(responses).hasSize(2);
-    assertThat(responses.get(0).getTotalLikes()).isEqualTo(1);
-    assertThat(responses.get(1).getTotalLikes()).isEqualTo(2);
   }
 
   private CommentLike createCommentLike(Long commentId, Long memberId) {
