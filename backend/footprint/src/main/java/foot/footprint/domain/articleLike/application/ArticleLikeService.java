@@ -22,12 +22,6 @@ public class ArticleLikeService {
 
   private final ArticleGroupRepository articleGroupRepository;
 
-  @Transactional(readOnly = true)
-  public boolean checkMyLike(ArticleLikeDto articleLikeDto) {
-    boolean myLikeExists = articleLikeRepository.existsMyLike(articleLikeDto);
-    return myLikeExists;
-  }
-
   @Transactional
   public void changeArticleLike(ArticleLikeDto articleLikeDto) {
     Article article = findArticleRepository.findById(articleLikeDto.getArticleId())
