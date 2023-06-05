@@ -2,7 +2,9 @@ package foot.footprint.domain.article.dto;
 
 import foot.footprint.domain.comment.dto.CommentResponse;
 import java.util.List;
+import lombok.Getter;
 
+@Getter
 public class ArticlePageResponse {
 
   private ArticleDetailsDto articleDetails;

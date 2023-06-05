@@ -2,7 +2,9 @@ package foot.footprint.domain.article.dto;
 
 import foot.footprint.domain.comment.dto.AuthorDto;
 import java.util.Date;
+import lombok.Getter;
 
+@Getter
 public class ArticleDetailsDto {
 
   private Long id;
