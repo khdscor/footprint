@@ -24,4 +24,12 @@
     latitude between #{locationRange.lowerLatitude} and #{locationRange.upperLatitude} and
     longitude between #{locationRange.lowerLongitude} and #{locationRange.upperLongitude}
   </select>
+  <select id="findArticleDetails" resultType="ArticleDetailsDto">
+    select distinct a.id, a.title, a.content, a.latitude, a.longitude, m.id, m.nick_name,
+    m.image_url, a.create_date, count(l.id)
+    from article a join member m on a.member_id = m.id
+    left join article_like l on a.id = l.article_id
+    where a.id = #{articleId}
+    group by a.id
+  </select>
 </mapper>

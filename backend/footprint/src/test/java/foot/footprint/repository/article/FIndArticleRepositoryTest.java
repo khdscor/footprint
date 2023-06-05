@@ -4,7 +4,10 @@ import foot.footprint.domain.article.dao.CreateArticleRepository;
 import foot.footprint.domain.article.dao.FindArticleRepository;
 import foot.footprint.domain.article.domain.Article;
 import foot.footprint.domain.article.domain.LocationRange;
+import foot.footprint.domain.article.dto.ArticleDetailsDto;
 import foot.footprint.domain.article.dto.ArticleRangeRequest;
+import foot.footprint.domain.articleLike.dao.ArticleLikeRepository;
+import foot.footprint.domain.articleLike.domain.ArticleLike;
 import foot.footprint.domain.group.dao.ArticleGroupRepository;
 import foot.footprint.domain.group.dao.GroupRepository;
 import foot.footprint.domain.group.domain.ArticleGroup;
@@ -38,6 +41,9 @@ public class FIndArticleRepositoryTest extends RepositoryTest {
 
   @Autowired
   private ArticleGroupRepository articleGroupRepository;
+
+  @Autowired
+  private ArticleLikeRepository articleLikeRepository;
 
   @Test
   public void findArticlesTest() {
@@ -124,6 +130,30 @@ public class FIndArticleRepositoryTest extends RepositoryTest {
     assertThat(article.getId()).isEqualTo(savedArticle.get().getId());
     assertThat(article.getCreate_date()).isEqualTo(savedArticle.get().getCreate_date());
     assertThat(article.getTitle()).isEqualTo(savedArticle.get().getTitle());
+  }
+
+  @Test
+  public void findArticleDetails(){
+    //given
+    Member member1 = buildMember();
+    memberRepository.saveMember(member1);
+    Member member2 = buildMember();
+    memberRepository.saveMember(member2);
+    Article article = buildArticle(member1.getId());
+    createArticleRepository.saveArticle(article);
+    ArticleLike articleLike1 = buildArticleLike(member1.getId(), article.getId());
+    articleLikeRepository.saveArticleLike(articleLike1);
+    ArticleLike articleLike2 = buildArticleLike(member2.getId(), article.getId());
+    articleLikeRepository.saveArticleLike(articleLike2);
+
+    //when
+    ArticleDetailsDto details = findArticleRepository.findArticleDetails(article.getId());
+
+    //then
+    assertThat(details.getContent()).isEqualTo(article.getContent());
+    assertThat(details.getAuthor().getNickName()).isEqualTo(member1.getNick_name());
+    assertThat(details.getTotalLikes()).isEqualTo(2L);
+
   }
 
   private void saveArticle(double lat, double lng, boolean publicMap, boolean privateMap) {

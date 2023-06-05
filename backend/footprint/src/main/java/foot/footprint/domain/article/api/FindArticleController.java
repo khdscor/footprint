@@ -1,7 +1,9 @@
 package foot.footprint.domain.article.api;
 
+import foot.footprint.domain.article.application.FindArticleDetailsService;
 import foot.footprint.domain.article.domain.LocationRange;
 import foot.footprint.domain.article.dto.ArticleMapResponse;
+import foot.footprint.domain.article.dto.ArticlePageResponse;
 import foot.footprint.domain.article.dto.ArticleRangeRequest;
 import foot.footprint.domain.article.application.FindArticleService;
 import foot.footprint.global.error.exception.WrongInputException;
@@ -10,6 +12,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,6 +24,8 @@ import java.util.List;
 public class FindArticleController {
 
   private final FindArticleService findArticleService;
+
+  private final FindArticleDetailsService findArticleDetailsService;
 
   @GetMapping("/public")
   public ResponseEntity<List<ArticleMapResponse>> findPublicMapArticles(
@@ -58,5 +63,14 @@ public class FindArticleController {
         || request.getLongitude() >= 180 || request.getLongitude() <= -180) {
       throw new WrongInputException("위치 좌표가 범위를 넘었습니다.");
     }
+  }
+
+  @GetMapping("/details/{articleId}")
+  public ResponseEntity<ArticlePageResponse> findArticleDetails(
+      @PathVariable("articleId") Long articleId,
+      @AuthenticationPrincipal CustomUserDetails userDetails) {
+    ArticlePageResponse response = findArticleDetailsService.findDetails(articleId, userDetails);
+
+    return ResponseEntity.ok().body(response);
   }
 }

@@ -1,6 +1,7 @@
 package foot.footprint.repository;
 
 import foot.footprint.domain.article.domain.Article;
+import foot.footprint.domain.articleLike.domain.ArticleLike;
 import foot.footprint.domain.comment.domain.Comment;
 import foot.footprint.domain.group.domain.Group;
 import foot.footprint.domain.member.domain.AuthProvider;
@@ -43,6 +44,12 @@ public class RepositoryTest {
         .title("test")
         .create_date(new Date())
         .member_id(memberId).build();
+  }
+
+  protected ArticleLike buildArticleLike(Long memberId, Long articleId) {
+    return ArticleLike.builder()
+        .member_id(memberId)
+        .article_id(articleId).build();
   }
 
   protected Comment buildComment(Long ownerId, Long articleId) {
