@@ -7,7 +7,6 @@ import foot.footprint.domain.commentLike.domain.CommentLike;
 import foot.footprint.domain.group.dao.ArticleGroupRepository;
 import foot.footprint.global.error.exception.NotExistsException;
 import foot.footprint.global.util.ValidateIsMine;
-import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -66,32 +65,5 @@ public class CommentLikeService {
     if (deleted == 0) {
       throw new NotExistsException("이미 좋아요를 취소하였거나 누르지 않았습니다.");
     }
-  }
-
-  @Transactional(readOnly = true)
-  public List<Long> hasILiked(Long articleId, Long memberId) {
-    Article article = findArticleRepository.findById(articleId)
-        .orElseThrow(() -> new NotExistsException("해당하는 게시글이 존재하지 않습니다."));
-    if (article.isPublic_map() == true) {
-      return findHasILikedByPublic(articleId, memberId);
-    }
-    if (article.isPrivate_map() == true) {
-      return findHasILikedByPrivate(article, memberId);
-    }
-    return findHasILikedByGrouped(articleId, memberId);
-  }
-
-  private List<Long> findHasILikedByPublic(Long articleId, Long memberId) {
-    return commentLikeRepository.findCommentIdsILiked(articleId, memberId);
-  }
-
-  private List<Long> findHasILikedByPrivate(Article article, Long memberId) {
-    ValidateIsMine.validateArticleIsMine(article.getMember_id(), memberId);
-    return commentLikeRepository.findCommentIdsILiked(article.getId(), memberId);
-  }
-
-  private List<Long> findHasILikedByGrouped(Long articleId, Long memberId) {
-    ValidateIsMine.validateInMyGroup(articleId, memberId, articleGroupRepository);
-    return commentLikeRepository.findCommentIdsILiked(articleId, memberId);
   }
 }
