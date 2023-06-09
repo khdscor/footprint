@@ -13,4 +13,8 @@
     WHERE group_id = #{groupId} and member_id =#{memberId}
     )
   </select>
+  <update id="changeImportant">
+    UPDATE member_group SET important = NOT important
+    WHERE group_id = #{groupId} and member_id =#{memberId}
+  </update>
 </mapper>

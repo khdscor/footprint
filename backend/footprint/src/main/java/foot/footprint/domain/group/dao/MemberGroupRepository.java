@@ -17,4 +17,9 @@ public interface MemberGroupRepository {
 
   @Select("SELECT COUNT(*) FROM member_group WHERE group_id=#{groupId}")
   Long countMemberGroup(Long groupId);
+
+  int changeImportant(Long groupId, Long memberId);
+
+  @Select("SELECT * FROM member_group WHERE id=#{id}")
+  MemberGroup findById(Long id);
 }
