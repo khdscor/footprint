@@ -46,13 +46,13 @@ public class MeemberGroupRepositoryTest extends RepositoryTest {
   }
 
   @Test
-  public void checkAlreadyJoined(){
+  public void checkAlreadyJoined() {
     //given
     Member member = buildMember();
     memberRepository.saveMember(member);
     Group group = buildGroup(member.getId());
     groupRepository.saveGroup(group);
-    MemberGroup memberGroup =  buildMemberGroup(group.getId(), member.getId());
+    MemberGroup memberGroup = buildMemberGroup(group.getId(), member.getId());
     memberGroupRepository.saveMemberGroup(memberGroup);
 
     //when
@@ -71,9 +71,8 @@ public class MeemberGroupRepositoryTest extends RepositoryTest {
     memberRepository.saveMember(member);
     Group group = buildGroup(member.getId());
     groupRepository.saveGroup(group);
-    MemberGroup memberGroup =  buildMemberGroup(group.getId(), member.getId());
+    MemberGroup memberGroup = buildMemberGroup(group.getId(), member.getId());
     memberGroupRepository.saveMemberGroup(memberGroup);
-
 
     //when
     boolean result1 = memberGroupRepository.checkAlreadyJoined(group.getId(), member.getId());
@@ -97,9 +96,9 @@ public class MeemberGroupRepositoryTest extends RepositoryTest {
     memberRepository.saveMember(member2);
     Group group = buildGroup(member.getId());
     groupRepository.saveGroup(group);
-    MemberGroup memberGroup =  buildMemberGroup(group.getId(), member.getId());
+    MemberGroup memberGroup = buildMemberGroup(group.getId(), member.getId());
     memberGroupRepository.saveMemberGroup(memberGroup);
-    MemberGroup memberGroup2 =  buildMemberGroup(group.getId(), member2.getId());
+    MemberGroup memberGroup2 = buildMemberGroup(group.getId(), member2.getId());
     memberGroupRepository.saveMemberGroup(memberGroup2);
 
     //when
@@ -113,11 +112,31 @@ public class MeemberGroupRepositoryTest extends RepositoryTest {
     assertThat(count2).isEqualTo(0);
   }
 
-  private MemberGroup buildMemberGroup(Long groupId, Long memberId){
+  @Test
+  public void changeImportant() {
+    //given
+    Member member = buildMember();
+    memberRepository.saveMember(member);
+    Group group = buildGroup(member.getId());
+    groupRepository.saveGroup(group);
+    MemberGroup memberGroup = buildMemberGroup(group.getId(), member.getId());
+    memberGroupRepository.saveMemberGroup(memberGroup);
+
+    //when & then
+    assertThat(memberGroup.isImportant()).isFalse();
+    memberGroupRepository.changeImportant(group.getId(), member.getId());
+    MemberGroup changedMemberGroup = memberGroupRepository.findById(member.getId());
+    assertThat(changedMemberGroup.isImportant()).isTrue();
+    memberGroupRepository.changeImportant(group.getId(), member.getId());
+    MemberGroup changedMemberGroup2 = memberGroupRepository.findById(member.getId());
+    assertThat(changedMemberGroup2.isImportant()).isFalse();
+  }
+
+  private MemberGroup buildMemberGroup(Long groupId, Long memberId) {
     return MemberGroup.builder()
         .create_date(new Date())
         .group_id(groupId)
         .member_id(memberId)
-        .important(true).build();
+        .important(false).build();
   }
 }
