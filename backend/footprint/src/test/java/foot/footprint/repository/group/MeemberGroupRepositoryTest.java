@@ -6,10 +6,12 @@ import foot.footprint.domain.group.dao.GroupRepository;
 import foot.footprint.domain.group.dao.MemberGroupRepository;
 import foot.footprint.domain.group.domain.Group;
 import foot.footprint.domain.group.domain.MemberGroup;
+import foot.footprint.domain.group.dto.GroupSummaryResponse;
 import foot.footprint.domain.member.dao.MemberRepository;
 import foot.footprint.domain.member.domain.Member;
 import foot.footprint.repository.RepositoryTest;
 import java.util.Date;
+import java.util.List;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -123,13 +125,30 @@ public class MeemberGroupRepositoryTest extends RepositoryTest {
     memberGroupRepository.saveMemberGroup(memberGroup);
 
     //when & then
-    assertThat(memberGroup.isImportant()).isFalse();
+    assertThat(memberGroup.isImportant()).isTrue();
     memberGroupRepository.changeImportant(group.getId(), member.getId());
     MemberGroup changedMemberGroup = memberGroupRepository.findById(member.getId());
-    assertThat(changedMemberGroup.isImportant()).isTrue();
+    assertThat(changedMemberGroup.isImportant()).isFalse();
     memberGroupRepository.changeImportant(group.getId(), member.getId());
     MemberGroup changedMemberGroup2 = memberGroupRepository.findById(member.getId());
-    assertThat(changedMemberGroup2.isImportant()).isFalse();
+    assertThat(changedMemberGroup2.isImportant()).isTrue();
+  }
+
+  @Test
+  public void findMyImportantGroups(){
+    //given
+    Member member = buildMember();
+    memberRepository.saveMember(member);
+    Group group1 = buildGroup(member.getId());
+    groupRepository.saveGroup(group1);
+    MemberGroup memberGroup1 = buildMemberGroup(group1.getId(), member.getId());
+    memberGroupRepository.saveMemberGroup(memberGroup1);
+
+    //when
+    List<GroupSummaryResponse> responses = memberGroupRepository.findMyImportantGroups(member.getId());
+
+    //then
+    assertThat(responses).hasSize(1);
   }
 
   private MemberGroup buildMemberGroup(Long groupId, Long memberId) {
@@ -137,6 +156,6 @@ public class MeemberGroupRepositoryTest extends RepositoryTest {
         .create_date(new Date())
         .group_id(groupId)
         .member_id(memberId)
-        .important(false).build();
+        .important(true).build();
   }
 }
