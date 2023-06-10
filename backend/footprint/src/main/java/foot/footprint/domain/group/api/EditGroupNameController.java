@@ -25,7 +25,6 @@ public class EditGroupNameController {
       @AuthenticationPrincipal CustomUserDetails userDetails) {
     editGroupNameService.change(groupId, userDetails.getId(), request.getNewName());
 
-    return ResponseEntity.noContent()
-        .build();
+    return ResponseEntity.noContent().build();
   }
 }

@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 @RequiredArgsConstructor
 public class FindGroupService {
 
-  private MemberGroupRepository memberGroupRepository;
+  private final MemberGroupRepository memberGroupRepository;
 
   @Transactional(readOnly = true)
   public List<GroupSummaryResponse> findMyImportantGroups(Long memberId) {

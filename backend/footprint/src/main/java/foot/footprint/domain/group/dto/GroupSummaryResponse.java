@@ -1,10 +1,10 @@
 package foot.footprint.domain.group.dto;
 
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
+import lombok.Getter;
 
+@Getter
 @AllArgsConstructor
-@NoArgsConstructor
 public class GroupSummaryResponse {
 
   private Long id;
