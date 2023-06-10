@@ -11,4 +11,8 @@
     select g.id from group_table g join member_group m on (g.id = m.group_id)
     where m.member_id = #{memberId}
   </select>
+  <update id="changeGroupName">
+    UPDATE group_table SET name = #{newName}
+    WHERE id = #{groupId} and owner_id =#{ownerId}
+  </update>
 </mapper>

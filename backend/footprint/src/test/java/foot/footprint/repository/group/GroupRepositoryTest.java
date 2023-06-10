@@ -62,7 +62,7 @@ public class GroupRepositoryTest extends RepositoryTest {
   }
 
   @Test
-  public void findByInvitationCode(){
+  public void findByInvitationCode() {
     //given
     String invitationCode = "testCode";
     String anotherCode = "testOrCode";
@@ -102,7 +102,7 @@ public class GroupRepositoryTest extends RepositoryTest {
   }
 
   @Test
-  public void findAllByMemberId(){
+  public void findAllByMemberId() {
     //given
     Member member = buildMember();
     memberRepository.saveMember(member);
@@ -120,6 +120,27 @@ public class GroupRepositoryTest extends RepositoryTest {
 
     //then
     assertThat(groupIds.size()).isEqualTo(2);
+  }
+
+  @Test
+  public void changeGroupName() {
+    //given
+    Long memberId = 12L;
+    String newName = "하하하하하하";
+    Group group = buildGroup(memberId);
+    groupRepository.saveGroup(group);
+
+    //when
+    int result1 = groupRepository.changeGroupName(group.getId(), 32L, newName);
+    int result2 = groupRepository.changeGroupName(233L, memberId, newName);
+    int result3 = groupRepository.changeGroupName(group.getId(), memberId, newName);
+
+    //then
+    Group editedGroup = groupRepository.findById(group.getId()).get();
+    assertThat(result1).isEqualTo(0);
+    assertThat(result2).isEqualTo(0);
+    assertThat(result3).isEqualTo(1);
+    assertThat(editedGroup.getName()).isEqualTo(newName);
   }
 
   private Group buildGroup(Long ownerId, String invitationCode) {

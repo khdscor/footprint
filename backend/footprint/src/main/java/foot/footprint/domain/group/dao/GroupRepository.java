@@ -22,6 +22,8 @@ public interface GroupRepository {
   @Update("UPDATE group_table SET invitation_code=#{invitation_code} WHERE id=#{id}")
   int updateInvitationCode(Group group);
 
+  int changeGroupName(Long groupId, Long ownerId, String newName);
+
   @Delete("DELETE FROM group_table WHERE id=#{groupId}")
   int deleteById(Long groupId);
 
