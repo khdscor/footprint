@@ -6,6 +6,7 @@ import foot.footprint.domain.group.dao.GroupRepository;
 import foot.footprint.domain.group.dao.MemberGroupRepository;
 import foot.footprint.domain.group.domain.Group;
 import foot.footprint.domain.group.domain.MemberGroup;
+import foot.footprint.domain.group.dto.GroupDetailsResponse;
 import foot.footprint.domain.member.dao.MemberRepository;
 import foot.footprint.domain.member.domain.Member;
 import foot.footprint.repository.RepositoryTest;
@@ -29,11 +30,8 @@ public class GroupRepositoryTest extends RepositoryTest {
   @Test
   public void saveGroup() {
     //given
-    Group group = Group.builder()
-        .create_date(new Date())
-        .name("test_group")
-        .invitation_code("testCode")
-        .owner_id(1L).build();
+    Group group = Group.builder().create_date(new Date()).name("test_group")
+        .invitation_code("testCode").owner_id(1L).build();
 
     //when & then
     assertThat(group.getId()).isNull();
@@ -46,10 +44,7 @@ public class GroupRepositoryTest extends RepositoryTest {
   @Test
   public void updateInvitationCode() {
     //given
-    Group group = Group.builder()
-        .create_date(new Date())
-        .name("test_group")
-        .owner_id(1L).build();
+    Group group = Group.builder().create_date(new Date()).name("test_group").owner_id(1L).build();
 
     //when & then
     assertThat(group.getId()).isNull();
@@ -66,11 +61,8 @@ public class GroupRepositoryTest extends RepositoryTest {
     //given
     String invitationCode = "testCode";
     String anotherCode = "testOrCode";
-    Group group = Group.builder()
-        .create_date(new Date())
-        .name("test_group")
-        .invitation_code(invitationCode)
-        .owner_id(1L).build();
+    Group group = Group.builder().create_date(new Date()).name("test_group")
+        .invitation_code(invitationCode).owner_id(1L).build();
     groupRepository.saveGroup(group);
 
     //when
@@ -85,11 +77,8 @@ public class GroupRepositoryTest extends RepositoryTest {
   public void deleteById() {
     //given
     String invitationCode = "testCode";
-    Group group = Group.builder()
-        .create_date(new Date())
-        .name("test_group")
-        .invitation_code(invitationCode)
-        .owner_id(1L).build();
+    Group group = Group.builder().create_date(new Date()).name("test_group")
+        .invitation_code(invitationCode).owner_id(1L).build();
     groupRepository.saveGroup(group);
 
     //when & then
@@ -143,11 +132,44 @@ public class GroupRepositoryTest extends RepositoryTest {
     assertThat(editedGroup.getName()).isEqualTo(newName);
   }
 
+  @Test
+  public void findGroupDetails() {
+    //given
+    Member member1 = buildMember();
+    memberRepository.saveMember(member1);
+    Member member2 = buildMember();
+    memberRepository.saveMember(member2);
+    Member member3 = buildMember();
+    memberRepository.saveMember(member3);
+    Group group = buildGroup(member1.getId());
+    groupRepository.saveGroup(group);
+    MemberGroup memberGroup1 = MemberGroup.createMemberGroup(group.getId(), member1.getId());
+    MemberGroup memberGroup2 = MemberGroup.createMemberGroup(group.getId(), member2.getId());
+    MemberGroup memberGroup3 = MemberGroup.createMemberGroup(group.getId(), member3.getId());
+    memberGroup2.changeImportant();
+    memberGroupRepository.saveMemberGroup(memberGroup1);
+    memberGroupRepository.saveMemberGroup(memberGroup2);
+    memberGroupRepository.saveMemberGroup(memberGroup3);
+
+    //when & then
+    Optional<GroupDetailsResponse> response1 = groupRepository.findGroupDetails(2L,
+        member1.getId());
+    assertThat(response1.isPresent()).isFalse();
+    Optional<GroupDetailsResponse> response2 = groupRepository.findGroupDetails(group.getId(), 32L);
+    assertThat(response2.isPresent()).isFalse();
+    Optional<GroupDetailsResponse> response3 = groupRepository.findGroupDetails(group.getId(),
+        member1.getId());
+    assertThat(response3.get().getMemberDetails()).hasSize(3);
+    assertThat(response3.get().getImportant()).isFalse();
+    Optional<GroupDetailsResponse> response4 = groupRepository.findGroupDetails(group.getId(),
+        member2.getId());
+    assertThat(response4.get().getMemberDetails()).hasSize(3);
+    assertThat(response4.get().getImportant()).isTrue();
+    assertThat(response4.get().getId()).isEqualTo(group.getId());
+  }
+
   private Group buildGroup(Long ownerId, String invitationCode) {
-    return Group.builder()
-        .create_date(new Date())
-        .name("test_group")
-        .invitation_code(invitationCode)
-        .owner_id(ownerId).build();
+    return Group.builder().create_date(new Date()).name("test_group")
+        .invitation_code(invitationCode).owner_id(ownerId).build();
   }
 }
