@@ -26,4 +26,6 @@ public interface MemberGroupRepository {
   MemberGroup findById(Long id);
 
   List<GroupSummaryResponse> findMyImportantGroups(Long memberId);
+
+  List<GroupSummaryResponse> findMyGroups(Long memberId);
 }
