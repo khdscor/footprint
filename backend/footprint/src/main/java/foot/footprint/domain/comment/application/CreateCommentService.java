@@ -4,7 +4,7 @@ import foot.footprint.domain.article.dao.FindArticleRepository;
 import foot.footprint.domain.article.domain.Article;
 import foot.footprint.domain.comment.dao.CreateCommentRepository;
 import foot.footprint.domain.comment.domain.Comment;
-import foot.footprint.domain.comment.dto.AuthorDto;
+import foot.footprint.global.domain.AuthorDto;
 import foot.footprint.domain.comment.dto.CommentResponse;
 import foot.footprint.domain.group.dao.ArticleGroupRepository;
 import foot.footprint.domain.member.dao.MemberRepository;

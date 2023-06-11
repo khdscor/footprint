@@ -1,6 +1,7 @@
 package foot.footprint.domain.comment.dto;
 
 import foot.footprint.domain.comment.domain.Comment;
+import foot.footprint.global.domain.AuthorDto;
 import java.util.Date;
 import lombok.Getter;
 
