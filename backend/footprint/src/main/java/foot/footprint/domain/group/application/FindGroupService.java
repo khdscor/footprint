@@ -17,4 +17,8 @@ public class FindGroupService {
   public List<GroupSummaryResponse> findMyImportantGroups(Long memberId) {
     return memberGroupRepository.findMyImportantGroups(memberId);
   }
+
+  public List<GroupSummaryResponse> findMyGroups(Long memberId) {
+    return memberGroupRepository.findMyGroups(memberId);
+  }
 }
