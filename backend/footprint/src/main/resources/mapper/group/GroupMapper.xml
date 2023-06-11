@@ -15,4 +15,26 @@
     UPDATE group_table SET name = #{newName}
     WHERE id = #{groupId} and owner_id =#{ownerId}
   </update>
+  <select id="findGroupDetails" resultMap="groupDetails">
+    SELECT g.id groupId, g.name AS name, g.invitation_code invitationCode,
+    (SELECT important FROM member_group WHERE group_id = #{groupId} and member_id = #{memberId}) AS important,
+    g.create_date createDate
+    ,m.id AS memberId, m.nick_name AS nickName, m.image_url AS imageUrl
+    FROM group_table g LEFT JOIN member_group mg ON g.id = mg.group_id
+    LEFT JOIN member m ON mg.member_id = m.id
+    WHERE g.id = #{groupId}
+    AND #{memberId} IN (SELECT member_id FROM member_group WHERE group_id = #{groupId})
+  </select>
+  <resultMap id="groupDetails" type="GroupDetailsResponse">
+    <id property="id" column="groupId"/>
+    <result property="name" column="name"/>
+    <result property="invitationCode" column="invitationCode"/>
+    <result property="important" column="important"/>
+    <result property="createDate" column="createDate"/>
+    <collection property="memberDetails" ofType="foot.footprint.domain.group.dto.MemberDto">
+      <id property="id" column="memberId"/>
+      <result property="nickName" column="nickName"/>
+      <result property="imageUrl" column="imageUrl"/>
+    </collection>
+  </resultMap>
 </mapper>
