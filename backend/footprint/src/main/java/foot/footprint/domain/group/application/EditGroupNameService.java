@@ -10,13 +10,13 @@ import org.springframework.transaction.annotation.Transactional;
 @RequiredArgsConstructor
 public class EditGroupNameService {
 
-  private final GroupRepository groupRepository;
+    private final GroupRepository groupRepository;
 
-  @Transactional
-  public void change(Long groupId, Long ownerId, String newName) {
-    int edited = groupRepository.changeGroupName(groupId, ownerId, newName);
-    if (edited == 0) {
-      throw new NotAuthorizedOrExistException("그룹 이름 변경할 권한이 없습니다.");
+    @Transactional
+    public void change(Long groupId, Long ownerId, String newName) {
+        int edited = groupRepository.changeGroupName(groupId, ownerId, newName);
+        if (edited == 0) {
+            throw new NotAuthorizedOrExistException("그룹 이름 변경할 권한이 없습니다.");
+        }
     }
-  }
 }

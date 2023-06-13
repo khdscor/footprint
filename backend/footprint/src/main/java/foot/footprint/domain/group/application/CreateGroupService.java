@@ -13,26 +13,26 @@ import org.springframework.transaction.annotation.Transactional;
 @RequiredArgsConstructor
 public class CreateGroupService {
 
-  private final GroupRepository groupRepository;
+    private final GroupRepository groupRepository;
 
-  private final MemberGroupRepository memberGroupRepository;
+    private final MemberGroupRepository memberGroupRepository;
 
-  @Transactional
-  public Long createGroup(String groupName, Long creatorId) {
-    Group newGroup = saveGroup(groupName, creatorId);
-    memberGroupRepository.saveMemberGroup(MemberGroup.createMemberGroup(newGroup));
-    return newGroup.getId();
-  }
+    @Transactional
+    public Long createGroup(String groupName, Long creatorId) {
+        Group newGroup = saveGroup(groupName, creatorId);
+        memberGroupRepository.saveMemberGroup(MemberGroup.createMemberGroup(newGroup));
+        return newGroup.getId();
+    }
 
-  private Group saveGroup(String groupName, Long creatorId) {
-    Group newGroup = new Group(groupName, creatorId);
-    groupRepository.saveGroup(newGroup);
-    newGroup.addInvitationCode(generateInvitationCode(newGroup.getId()));
-    groupRepository.updateInvitationCode(newGroup);
-    return newGroup;
-  }
+    private Group saveGroup(String groupName, Long creatorId) {
+        Group newGroup = new Group(groupName, creatorId);
+        groupRepository.saveGroup(newGroup);
+        newGroup.addInvitationCode(generateInvitationCode(newGroup.getId()));
+        groupRepository.updateInvitationCode(newGroup);
+        return newGroup;
+    }
 
-  private String generateInvitationCode(Long groupId) {
-    return RandomStringGenerator.generate(5) + groupId;
-  }
+    private String generateInvitationCode(Long groupId) {
+        return RandomStringGenerator.generate(5) + groupId;
+    }
 }

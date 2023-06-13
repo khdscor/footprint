@@ -15,13 +15,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class SecessionGroupController {
 
-  private final SecessionGroupService secessionGroupService;
+    private final SecessionGroupService secessionGroupService;
 
-  @DeleteMapping("/{id}")
-  public ResponseEntity<Void> sessionGroup(@PathVariable("id") Long groupId,
-      @AuthenticationPrincipal CustomUserDetails userDetails) {
-    secessionGroupService.secessionGroup(groupId, userDetails.getId());
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> sessionGroup(@PathVariable("id") Long groupId,
+        @AuthenticationPrincipal CustomUserDetails userDetails) {
+        secessionGroupService.secessionGroup(groupId, userDetails.getId());
 
-    return ResponseEntity.noContent().build();
-  }
+        return ResponseEntity.noContent().build();
+    }
 }

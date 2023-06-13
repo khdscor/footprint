@@ -13,38 +13,38 @@ import lombok.ToString;
 @NoArgsConstructor
 public class Article {
 
-  private Long id;
-  private String content;
-  private Date create_date;
-  private Double latitude;    // 위도
-  private Double longitude;   // 경도
-  private boolean private_map;
-  private boolean public_map;
-  private String title;
-  private Long member_id;
+    private Long id;
+    private String content;
+    private Date create_date;
+    private Double latitude;    // 위도
+    private Double longitude;   // 경도
+    private boolean private_map;
+    private boolean public_map;
+    private String title;
+    private Long member_id;
 
-  public Article(Long id, String content, Date create_date, Double latitude, Double longitude,
-      boolean private_map, boolean public_map, String title, Long member_id) {
-    this.id = id;
-    this.content = content;
-    this.create_date = create_date;
-    this.latitude = latitude;
-    this.longitude = longitude;
-    this.private_map = private_map;
-    this.public_map = public_map;
-    this.title = title;
-    this.member_id = member_id;
-  }
+    public Article(Long id, String content, Date create_date, Double latitude, Double longitude,
+        boolean private_map, boolean public_map, String title, Long member_id) {
+        this.id = id;
+        this.content = content;
+        this.create_date = create_date;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.private_map = private_map;
+        this.public_map = public_map;
+        this.title = title;
+        this.member_id = member_id;
+    }
 
-  public static Article createArticle(CreateArticleRequest request, Long userId) {
-    return Article.builder()
-        .content(request.getContent())
-        .latitude(request.getLatitude())
-        .longitude(request.getLongitude())
-        .public_map(request.isPublicMap())
-        .private_map(request.isPrivateMap())
-        .title(request.getTitle())
-        .create_date(new Date())
-        .member_id(userId).build();
-  }
+    public static Article createArticle(CreateArticleRequest request, Long userId) {
+        return Article.builder()
+            .content(request.getContent())
+            .latitude(request.getLatitude())
+            .longitude(request.getLongitude())
+            .public_map(request.isPublicMap())
+            .private_map(request.isPrivateMap())
+            .title(request.getTitle())
+            .create_date(new Date())
+            .member_id(userId).build();
+    }
 }

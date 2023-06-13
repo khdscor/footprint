@@ -17,14 +17,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class CommentLikeController {
 
-  private final CommentLikeService commentLikeService;
+    private final CommentLikeService commentLikeService;
 
-  @PostMapping("/{commentId}/like")
-  public ResponseEntity<Void> changeMyLike(@PathVariable("commentId") Long commentId,
-      @PathVariable("articleId") Long articleId,
-      @RequestParam(value = "hasiliked") Boolean hasILiked,
-      @AuthenticationPrincipal CustomUserDetails userDetails) {
-    commentLikeService.changeMyLike(commentId, articleId, hasILiked, userDetails.getId());
-    return ResponseEntity.status(HttpStatus.CREATED).build();
-  }
+    @PostMapping("/{commentId}/like")
+    public ResponseEntity<Void> changeMyLike(@PathVariable("commentId") Long commentId,
+        @PathVariable("articleId") Long articleId,
+        @RequestParam(value = "hasiliked") Boolean hasILiked,
+        @AuthenticationPrincipal CustomUserDetails userDetails) {
+        commentLikeService.changeMyLike(commentId, articleId, hasILiked, userDetails.getId());
+        return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
 }

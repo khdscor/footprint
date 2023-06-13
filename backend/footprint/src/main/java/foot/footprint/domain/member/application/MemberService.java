@@ -12,13 +12,13 @@ import org.springframework.transaction.annotation.Transactional;
 @RequiredArgsConstructor
 public class MemberService {
 
-  private final MemberRepository memberRepository;
+    private final MemberRepository memberRepository;
 
-  @Transactional(readOnly = true)
-  public MemberImageResponse findImageUrl(Long memberId) {
-    Member member = memberRepository.findById(memberId)
-        .orElseThrow(() -> new NotExistsException(
-            "존재하지 않는 회원입니다."));
-    return new MemberImageResponse(member.getId(), member.getImage_url());
-  }
+    @Transactional(readOnly = true)
+    public MemberImageResponse findImageUrl(Long memberId) {
+        Member member = memberRepository.findById(memberId)
+            .orElseThrow(() -> new NotExistsException(
+                "존재하지 않는 회원입니다."));
+        return new MemberImageResponse(member.getId(), member.getImage_url());
+    }
 }

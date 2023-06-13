@@ -13,21 +13,21 @@ import java.util.stream.Collectors;
 @Getter
 public class ArticleMapResponse {
 
-  private Long id;
-  private Double latitude;
-  private Double longitude;
-  private String title;
+    private Long id;
+    private Double latitude;
+    private Double longitude;
+    private String title;
 
-  public static List<ArticleMapResponse> toResponses(List<Article> articles) {
-    if (Objects.isNull(articles)) {
-      return Collections.emptyList();
+    public static List<ArticleMapResponse> toResponses(List<Article> articles) {
+        if (Objects.isNull(articles)) {
+            return Collections.emptyList();
+        }
+        return articles.stream()
+            .map(article -> new ArticleMapResponse(
+                article.getId(),
+                article.getLatitude(),
+                article.getLongitude(),
+                article.getTitle()))
+            .collect(Collectors.toUnmodifiableList());
     }
-    return articles.stream()
-        .map(article -> new ArticleMapResponse(
-            article.getId(),
-            article.getLatitude(),
-            article.getLongitude(),
-            article.getTitle()))
-        .collect(Collectors.toUnmodifiableList());
-  }
 }

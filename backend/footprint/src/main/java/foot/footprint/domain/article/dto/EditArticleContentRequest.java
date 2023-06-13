@@ -6,12 +6,12 @@ import lombok.Getter;
 @Getter
 public class EditArticleContentRequest {
 
-  private String newContent;
+    private String newContent;
 
-  public EditArticleContentRequest(String newContent) {
-    this.newContent = newContent;
-  }
+    public EditArticleContentRequest(String newContent) {
+        this.newContent = newContent;
+    }
 
-  public EditArticleContentRequest() {
-  }
+    public EditArticleContentRequest() {
+    }
 }

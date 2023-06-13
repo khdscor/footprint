@@ -16,21 +16,21 @@ import org.mockito.junit.jupiter.MockitoExtension;
 @ExtendWith(MockitoExtension.class)
 public class DeleteArticleServiceTest {
 
-  @Mock
-  private DeleteArticleRepository deleteArticleRepository;
+    @Mock
+    private DeleteArticleRepository deleteArticleRepository;
 
-  @InjectMocks
-  private DeleteArticleService deleteArticleService;
+    @InjectMocks
+    private DeleteArticleService deleteArticleService;
 
-  @Test
-  public void edit() {
-    //given
-    given(deleteArticleRepository.deleteById(any(), any()))
-        .willReturn(0);
+    @Test
+    public void edit() {
+        //given
+        given(deleteArticleRepository.deleteById(any(), any()))
+            .willReturn(0);
 
-    //when & then
-    assertThatThrownBy(
-        () -> deleteArticleService.delete(any(), any()))
-        .isInstanceOf(NotMatchMemberException.class);
-  }
+        //when & then
+        assertThatThrownBy(
+            () -> deleteArticleService.delete(any(), any()))
+            .isInstanceOf(NotMatchMemberException.class);
+    }
 }

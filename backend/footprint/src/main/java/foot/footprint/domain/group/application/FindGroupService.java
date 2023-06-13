@@ -14,22 +14,22 @@ import org.springframework.transaction.annotation.Transactional;
 @RequiredArgsConstructor
 public class FindGroupService {
 
-  private final MemberGroupRepository memberGroupRepository;
+    private final MemberGroupRepository memberGroupRepository;
 
-  private final GroupRepository groupRepository;
+    private final GroupRepository groupRepository;
 
-  @Transactional(readOnly = true)
-  public List<GroupSummaryResponse> findMyImportantGroups(Long memberId) {
-    return memberGroupRepository.findMyImportantGroups(memberId);
-  }
+    @Transactional(readOnly = true)
+    public List<GroupSummaryResponse> findMyImportantGroups(Long memberId) {
+        return memberGroupRepository.findMyImportantGroups(memberId);
+    }
 
-  public List<GroupSummaryResponse> findMyGroups(Long memberId) {
-    return memberGroupRepository.findMyGroups(memberId);
-  }
+    public List<GroupSummaryResponse> findMyGroups(Long memberId) {
+        return memberGroupRepository.findMyGroups(memberId);
+    }
 
-  public GroupDetailsResponse findOne(Long groupId, Long memberId) {
-    GroupDetailsResponse response = groupRepository.findGroupDetails(groupId, memberId)
-        .orElseThrow(() -> new NotAuthorizedOrExistException("그룹을 조회할 권한이 없습니다."));
-    return response;
-  }
+    public GroupDetailsResponse findOne(Long groupId, Long memberId) {
+        GroupDetailsResponse response = groupRepository.findGroupDetails(groupId, memberId)
+            .orElseThrow(() -> new NotAuthorizedOrExistException("그룹을 조회할 권한이 없습니다."));
+        return response;
+    }
 }

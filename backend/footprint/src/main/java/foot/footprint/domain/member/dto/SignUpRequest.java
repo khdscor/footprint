@@ -11,19 +11,19 @@ import lombok.Getter;
 @Getter
 public class SignUpRequest {
 
-  @NotBlank
-  @NotEmpty
-  @Size(min = 4, max = 15)
-  private String nickName;
+    @NotBlank
+    @NotEmpty
+    @Size(min = 4, max = 15)
+    private String nickName;
 
-  @Email
-  @NotBlank
-  @NotEmpty
-  @Size(min = 4, max = 30)
-  private String email;
+    @Email
+    @NotBlank
+    @NotEmpty
+    @Size(min = 4, max = 30)
+    private String email;
 
-  @NotBlank
-  @NotEmpty
-  @Size(min = 4, max = 30)
-  private String password;
+    @NotBlank
+    @NotEmpty
+    @Size(min = 4, max = 30)
+    private String password;
 }

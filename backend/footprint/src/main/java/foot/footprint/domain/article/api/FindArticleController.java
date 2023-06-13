@@ -23,54 +23,55 @@ import java.util.List;
 @RequiredArgsConstructor
 public class FindArticleController {
 
-  private final FindArticleService findArticleService;
+    private final FindArticleService findArticleService;
 
-  private final FindArticleDetailsService findArticleDetailsService;
+    private final FindArticleDetailsService findArticleDetailsService;
 
-  @GetMapping("/public")
-  public ResponseEntity<List<ArticleMapResponse>> findPublicMapArticles(
-      ArticleRangeRequest request) {
-    validateLocation(request);
-    LocationRange locationRange = new LocationRange(request);
-    List<ArticleMapResponse> publicMapArticles = findArticleService.findPublicMapArticles(
-        locationRange);
-    return ResponseEntity.ok().body(publicMapArticles);
-  }
-
-  @GetMapping("/private")
-  public ResponseEntity<List<ArticleMapResponse>> findPrivateMapArticles(
-      ArticleRangeRequest request, @AuthenticationPrincipal CustomUserDetails userDetails) {
-    validateLocation(request);
-    LocationRange locationRange = new LocationRange(request);
-    List<ArticleMapResponse> privateMapArticles = findArticleService.findPrivateMapArticles(
-        userDetails.getId(), locationRange);
-    return ResponseEntity.ok().body(privateMapArticles);
-  }
-
-  @GetMapping("/grouped")
-  public ResponseEntity<List<ArticleMapResponse>> findGroupedMapArticles(
-      @RequestParam(value = "groupId") Long groupId, ArticleRangeRequest request,
-      @AuthenticationPrincipal CustomUserDetails userDetails) {
-    validateLocation(request);
-    LocationRange locationRange = new LocationRange(request);
-    List<ArticleMapResponse> groupedMapArticles = findArticleService.findGroupedArticles(
-        userDetails.getId(), groupId, locationRange);
-    return ResponseEntity.ok().body(groupedMapArticles);
-  }
-
-  private void validateLocation(ArticleRangeRequest request) {
-    if (request.getLatitude() >= 180 || request.getLatitude() <= -180
-        || request.getLongitude() >= 180 || request.getLongitude() <= -180) {
-      throw new WrongInputException("위치 좌표가 범위를 넘었습니다.");
+    @GetMapping("/public")
+    public ResponseEntity<List<ArticleMapResponse>> findPublicMapArticles(
+        ArticleRangeRequest request) {
+        validateLocation(request);
+        LocationRange locationRange = new LocationRange(request);
+        List<ArticleMapResponse> publicMapArticles = findArticleService.findPublicMapArticles(
+            locationRange);
+        return ResponseEntity.ok().body(publicMapArticles);
     }
-  }
 
-  @GetMapping("/details/{articleId}")
-  public ResponseEntity<ArticlePageResponse> findArticleDetails(
-      @PathVariable("articleId") Long articleId,
-      @AuthenticationPrincipal CustomUserDetails userDetails) {
-    ArticlePageResponse response = findArticleDetailsService.findDetails(articleId, userDetails);
+    @GetMapping("/private")
+    public ResponseEntity<List<ArticleMapResponse>> findPrivateMapArticles(
+        ArticleRangeRequest request, @AuthenticationPrincipal CustomUserDetails userDetails) {
+        validateLocation(request);
+        LocationRange locationRange = new LocationRange(request);
+        List<ArticleMapResponse> privateMapArticles = findArticleService.findPrivateMapArticles(
+            userDetails.getId(), locationRange);
+        return ResponseEntity.ok().body(privateMapArticles);
+    }
 
-    return ResponseEntity.ok().body(response);
-  }
+    @GetMapping("/grouped")
+    public ResponseEntity<List<ArticleMapResponse>> findGroupedMapArticles(
+        @RequestParam(value = "groupId") Long groupId, ArticleRangeRequest request,
+        @AuthenticationPrincipal CustomUserDetails userDetails) {
+        validateLocation(request);
+        LocationRange locationRange = new LocationRange(request);
+        List<ArticleMapResponse> groupedMapArticles = findArticleService.findGroupedArticles(
+            userDetails.getId(), groupId, locationRange);
+        return ResponseEntity.ok().body(groupedMapArticles);
+    }
+
+    private void validateLocation(ArticleRangeRequest request) {
+        if (request.getLatitude() >= 180 || request.getLatitude() <= -180
+            || request.getLongitude() >= 180 || request.getLongitude() <= -180) {
+            throw new WrongInputException("위치 좌표가 범위를 넘었습니다.");
+        }
+    }
+
+    @GetMapping("/details/{articleId}")
+    public ResponseEntity<ArticlePageResponse> findArticleDetails(
+        @PathVariable("articleId") Long articleId,
+        @AuthenticationPrincipal CustomUserDetails userDetails) {
+        ArticlePageResponse response = findArticleDetailsService.findDetails(articleId,
+            userDetails);
+
+        return ResponseEntity.ok().body(response);
+    }
 }

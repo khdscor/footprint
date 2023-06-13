@@ -15,14 +15,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/member/me")
 public class MemberController {
 
-  private final MemberService memberService;
+    private final MemberService memberService;
 
-  @GetMapping("/image")
-  public ResponseEntity<MemberImageResponse> findMemberImageUrl(
-      @AuthenticationPrincipal CustomUserDetails userDetails) {
-    MemberImageResponse response = memberService.findImageUrl(userDetails.getId());
+    @GetMapping("/image")
+    public ResponseEntity<MemberImageResponse> findMemberImageUrl(
+        @AuthenticationPrincipal CustomUserDetails userDetails) {
+        MemberImageResponse response = memberService.findImageUrl(userDetails.getId());
 
-    return ResponseEntity.ok()
-        .body(response);
-  }
+        return ResponseEntity.ok()
+            .body(response);
+    }
 }

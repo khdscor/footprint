@@ -19,51 +19,51 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 public class FindCommentRepositoryTest extends RepositoryTest {
 
-  @Autowired
-  private CreateArticleRepository createArticleRepository;
+    @Autowired
+    private CreateArticleRepository createArticleRepository;
 
-  @Autowired
-  private MemberRepository memberRepository;
+    @Autowired
+    private MemberRepository memberRepository;
 
-  @Autowired
-  private CreateCommentRepository createCommentRepository;
+    @Autowired
+    private CreateCommentRepository createCommentRepository;
 
-  @Autowired
-  private CommentLikeRepository commentLikeRepository;
+    @Autowired
+    private CommentLikeRepository commentLikeRepository;
 
-  @Autowired
-  private FindCommentRepository findCommentRepository;
+    @Autowired
+    private FindCommentRepository findCommentRepository;
 
-  @Test
-  public void findAllByArticleId() {
-    //given
-    Member member1 = buildMember();
-    memberRepository.saveMember(member1);
-    Member member2 = buildMember();
-    memberRepository.saveMember(member2);
-    Article article = buildArticle(member1.getId());
-    createArticleRepository.saveArticle(article);
-    //2개의 댓글
-    Comment comment1 = buildComment(member1.getId(), article.getId());
-    createCommentRepository.saveComment(comment1);
-    Comment comment2 = buildComment(member2.getId(), article.getId());
-    createCommentRepository.saveComment(comment2);
-    //3개의 좋아요
-    CommentLike commentLike1 = createCommentLike(comment1.getId(), member1.getId());
-    commentLikeRepository.saveCommentLike(commentLike1);
-    CommentLike commentLike2 = createCommentLike(comment1.getId(), member2.getId());
-    commentLikeRepository.saveCommentLike(commentLike2);
-    CommentLike commentLike3 = createCommentLike(comment2.getId(), member1.getId());
-    commentLikeRepository.saveCommentLike(commentLike3);
+    @Test
+    public void findAllByArticleId() {
+        //given
+        Member member1 = buildMember();
+        memberRepository.saveMember(member1);
+        Member member2 = buildMember();
+        memberRepository.saveMember(member2);
+        Article article = buildArticle(member1.getId());
+        createArticleRepository.saveArticle(article);
+        //2개의 댓글
+        Comment comment1 = buildComment(member1.getId(), article.getId());
+        createCommentRepository.saveComment(comment1);
+        Comment comment2 = buildComment(member2.getId(), article.getId());
+        createCommentRepository.saveComment(comment2);
+        //3개의 좋아요
+        CommentLike commentLike1 = createCommentLike(comment1.getId(), member1.getId());
+        commentLikeRepository.saveCommentLike(commentLike1);
+        CommentLike commentLike2 = createCommentLike(comment1.getId(), member2.getId());
+        commentLikeRepository.saveCommentLike(commentLike2);
+        CommentLike commentLike3 = createCommentLike(comment2.getId(), member1.getId());
+        commentLikeRepository.saveCommentLike(commentLike3);
 
-    //when
-    List<CommentResponse> responses = findCommentRepository.findAllByArticleId(article.getId());
+        //when
+        List<CommentResponse> responses = findCommentRepository.findAllByArticleId(article.getId());
 
-    //then
-    assertThat(responses).hasSize(2);
-  }
+        //then
+        assertThat(responses).hasSize(2);
+    }
 
-  private CommentLike createCommentLike(Long commentId, Long memberId) {
-    return CommentLike.builder().comment_id(commentId).member_id(memberId).build();
-  }
+    private CommentLike createCommentLike(Long commentId, Long memberId) {
+        return CommentLike.builder().comment_id(commentId).member_id(memberId).build();
+    }
 }

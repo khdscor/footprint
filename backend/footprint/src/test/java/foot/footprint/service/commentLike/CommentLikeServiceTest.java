@@ -26,83 +26,84 @@ import org.mockito.junit.jupiter.MockitoExtension;
 @ExtendWith(MockitoExtension.class)
 public class CommentLikeServiceTest {
 
-  @Mock
-  private FindArticleRepository findArticleRepository;
+    @Mock
+    private FindArticleRepository findArticleRepository;
 
-  @Spy
-  private CommentLikeRepository commentLikeRepository;
+    @Spy
+    private CommentLikeRepository commentLikeRepository;
 
-  @Mock
-  private ArticleGroupRepository articleGroupRepository;
+    @Mock
+    private ArticleGroupRepository articleGroupRepository;
 
-  @InjectMocks
-  private CommentLikeService commentLikeService;
+    @InjectMocks
+    private CommentLikeService commentLikeService;
 
-  @Test
-  @DisplayName("댓글 좋아요 변화 - 전체지도 시")
-  public void changeMyLike() {
-    //given 좋아요를 안했을 시
-    Long memberId = 1L;
-    given(findArticleRepository.findById(any())).willReturn(
-        Optional.ofNullable(createArticle(memberId, false, true)));
-    given(commentLikeRepository.saveCommentLike(any())).willReturn(1);
+    @Test
+    @DisplayName("댓글 좋아요 변화 - 전체지도 시")
+    public void changeMyLike() {
+        //given 좋아요를 안했을 시
+        Long memberId = 1L;
+        given(findArticleRepository.findById(any())).willReturn(
+            Optional.ofNullable(createArticle(memberId, false, true)));
+        given(commentLikeRepository.saveCommentLike(any())).willReturn(1);
 
-    //when
-    commentLikeService.changeMyLike(1L, 1L, false, 1L);
+        //when
+        commentLikeService.changeMyLike(1L, 1L, false, 1L);
 
-    //then
-    verify(commentLikeRepository, times(1)).saveCommentLike(any());
-    verify(commentLikeRepository, times(0)).deleteCommentLike(any(), any());
+        //then
+        verify(commentLikeRepository, times(1)).saveCommentLike(any());
+        verify(commentLikeRepository, times(0)).deleteCommentLike(any(), any());
 
-    //given 이미 좋아요 했을 시
-    given(commentLikeRepository.deleteCommentLike(any(), any())).willReturn(1);
+        //given 이미 좋아요 했을 시
+        given(commentLikeRepository.deleteCommentLike(any(), any())).willReturn(1);
 
-    //when
-    commentLikeService.changeMyLike(1L, 1L, true, 1L);
+        //when
+        commentLikeService.changeMyLike(1L, 1L, true, 1L);
 
-    //then
-    verify(commentLikeRepository, times(1)).deleteCommentLike(any(), any());
+        //then
+        verify(commentLikeRepository, times(1)).deleteCommentLike(any(), any());
 
-    //given 이미 좋아요 했을 시, 예외 발생시
-    given(commentLikeRepository.deleteCommentLike(any(), any())).willReturn(0);
+        //given 이미 좋아요 했을 시, 예외 발생시
+        given(commentLikeRepository.deleteCommentLike(any(), any())).willReturn(0);
 
-    //when & then
-    assertThatThrownBy(
-        () -> commentLikeService.changeMyLike(1L, 1L, true, 1L))
-        .isInstanceOf(NotExistsException.class);
-  }
+        //when & then
+        assertThatThrownBy(
+            () -> commentLikeService.changeMyLike(1L, 1L, true, 1L))
+            .isInstanceOf(NotExistsException.class);
+    }
 
-  @Test
-  @DisplayName("댓글 좋아요 변화 - 개인지도 시")
-  public void changeMyLike_IfPrivateArticle() {
-    //given
-    Long memberId = 1L;
-    given(findArticleRepository.findById(any())).willReturn(
-        Optional.ofNullable(createArticle(memberId, true, false)));
+    @Test
+    @DisplayName("댓글 좋아요 변화 - 개인지도 시")
+    public void changeMyLike_IfPrivateArticle() {
+        //given
+        Long memberId = 1L;
+        given(findArticleRepository.findById(any())).willReturn(
+            Optional.ofNullable(createArticle(memberId, true, false)));
 
-    //when & then
-    assertThatThrownBy(
-        () -> commentLikeService.changeMyLike(1L, 1L, true, 2L))
-        .isInstanceOf(NotMatchMemberException.class);
-  }
+        //when & then
+        assertThatThrownBy(
+            () -> commentLikeService.changeMyLike(1L, 1L, true, 2L))
+            .isInstanceOf(NotMatchMemberException.class);
+    }
 
-  @Test
-  @DisplayName("댓글 좋아요 변화 - 그룹지도 시")
-  public void changeMyLike_IfGroupedArticle() {
-    //given
-    Long memberId = 1L;
-    given(findArticleRepository.findById(any())).willReturn(
-        Optional.ofNullable(createArticle(memberId, false, false)));
-    given(articleGroupRepository.existsArticleInMyGroup(any(), any())).willReturn(false);
+    @Test
+    @DisplayName("댓글 좋아요 변화 - 그룹지도 시")
+    public void changeMyLike_IfGroupedArticle() {
+        //given
+        Long memberId = 1L;
+        given(findArticleRepository.findById(any())).willReturn(
+            Optional.ofNullable(createArticle(memberId, false, false)));
+        given(articleGroupRepository.existsArticleInMyGroup(any(), any())).willReturn(false);
 
-    //when & then
-    assertThatThrownBy(
-        () -> commentLikeService.changeMyLike(1L, 1L, true, 2L))
-        .isInstanceOf(NotAuthorizedOrExistException.class);
-  }
+        //when & then
+        assertThatThrownBy(
+            () -> commentLikeService.changeMyLike(1L, 1L, true, 2L))
+            .isInstanceOf(NotAuthorizedOrExistException.class);
+    }
 
-  private Article createArticle(Long memberId, boolean privateMap, boolean publicMap) {
-    return Article.builder().id(1L).content("ddddd").latitude(10.1).longitude(10.1)
-        .private_map(privateMap).public_map(publicMap).title("히히히히").member_id(memberId).build();
-  }
+    private Article createArticle(Long memberId, boolean privateMap, boolean publicMap) {
+        return Article.builder().id(1L).content("ddddd").latitude(10.1).longitude(10.1)
+            .private_map(privateMap).public_map(publicMap).title("히히히히").member_id(memberId)
+            .build();
+    }
 }

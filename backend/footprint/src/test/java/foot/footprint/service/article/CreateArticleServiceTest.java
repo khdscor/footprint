@@ -29,77 +29,78 @@ import org.mockito.junit.jupiter.MockitoExtension;
 @ExtendWith(MockitoExtension.class)
 public class CreateArticleServiceTest {
 
-  @Mock
-  private CreateArticleRepository createArticleRepository;
+    @Mock
+    private CreateArticleRepository createArticleRepository;
 
-  @Mock
-  private ArticleGroupRepository articleGroupRepository;
+    @Mock
+    private ArticleGroupRepository articleGroupRepository;
 
-  @Mock
-  private GroupRepository groupRepository;
+    @Mock
+    private GroupRepository groupRepository;
 
-  @InjectMocks
-  private CreateArticleService createArticleService;
+    @InjectMocks
+    private CreateArticleService createArticleService;
 
-  @Test
-  @DisplayName("게시글 생성시")
-  public void create() {
-    //given
-    Long memberId = 1L;
-    Long groupId1 = 1L;
-    Long groupId2 = 2L;
-    List<Long> groupIdsToBeIncluded = new ArrayList<>();
-    groupIdsToBeIncluded.add(groupId1);
-    groupIdsToBeIncluded.add(groupId2);
+    @Test
+    @DisplayName("게시글 생성시")
+    public void create() {
+        //given
+        Long memberId = 1L;
+        Long groupId1 = 1L;
+        Long groupId2 = 2L;
+        List<Long> groupIdsToBeIncluded = new ArrayList<>();
+        groupIdsToBeIncluded.add(groupId1);
+        groupIdsToBeIncluded.add(groupId2);
 
-    ArgumentCaptor<Article> captor = ArgumentCaptor.forClass(Article.class);
-    ArgumentCaptor<List<ArticleGroup>> captor2 = ArgumentCaptor.forClass(java.util.List.class);
-    CreateArticleRequest createArticleRequest = new CreateArticleRequest("title", "content",
-        10.0, 10.0, true, true, groupIdsToBeIncluded);
+        ArgumentCaptor<Article> captor = ArgumentCaptor.forClass(Article.class);
+        ArgumentCaptor<List<ArticleGroup>> captor2 = ArgumentCaptor.forClass(java.util.List.class);
+        CreateArticleRequest createArticleRequest = new CreateArticleRequest("title", "content",
+            10.0, 10.0, true, true, groupIdsToBeIncluded);
 
-    given(createArticleRepository.saveArticle(any()))
-        .willReturn(1L);
-    given(articleGroupRepository.saveArticleGroupList(anyList()))
-        .willReturn(0);
-    given(groupRepository.findAllByMemberId(any()))
-        .willReturn(groupIdsToBeIncluded);
-    //when
-    createArticleService.create(createArticleRequest, memberId);
+        given(createArticleRepository.saveArticle(any()))
+            .willReturn(1L);
+        given(articleGroupRepository.saveArticleGroupList(anyList()))
+            .willReturn(0);
+        given(groupRepository.findAllByMemberId(any()))
+            .willReturn(groupIdsToBeIncluded);
+        //when
+        createArticleService.create(createArticleRequest, memberId);
 
-    //then
-    verify(createArticleRepository, times(1)).saveArticle(captor.capture());
-    verify(articleGroupRepository, times(1)).saveArticleGroupList(captor2.capture());
-    Article article = captor.getValue();
-    List<ArticleGroup> articleGroups = captor2.getValue();
-    assertThat(createArticleRequest.getTitle()).isEqualTo(article.getTitle());
-    assertThat(createArticleRequest.getContent()).isEqualTo(article.getContent());
-    assertThat(createArticleRequest.getGroupIdsToBeIncluded().size()).isEqualTo(articleGroups.size());
-    assertThat(articleGroups.get(0).getArticle_id()).isEqualTo(article.getId());
+        //then
+        verify(createArticleRepository, times(1)).saveArticle(captor.capture());
+        verify(articleGroupRepository, times(1)).saveArticleGroupList(captor2.capture());
+        Article article = captor.getValue();
+        List<ArticleGroup> articleGroups = captor2.getValue();
+        assertThat(createArticleRequest.getTitle()).isEqualTo(article.getTitle());
+        assertThat(createArticleRequest.getContent()).isEqualTo(article.getContent());
+        assertThat(createArticleRequest.getGroupIdsToBeIncluded().size()).isEqualTo(
+            articleGroups.size());
+        assertThat(articleGroups.get(0).getArticle_id()).isEqualTo(article.getId());
 
-    //groupIds가 중 내 그룹이 아닌 groupId가 있을 시 예외 처리
-    //given
-    List<Long> groupIds = new ArrayList<>();
-    groupIds.add(groupId1);
-    groupIds.add(100L);
-    createArticleRequest.updateGroupIdList(groupIds);
+        //groupIds가 중 내 그룹이 아닌 groupId가 있을 시 예외 처리
+        //given
+        List<Long> groupIds = new ArrayList<>();
+        groupIds.add(groupId1);
+        groupIds.add(100L);
+        createArticleRequest.updateGroupIdList(groupIds);
 
-    //when & then
-    assertThatThrownBy(
-        () -> createArticleService.create(createArticleRequest, memberId))
-        .isInstanceOf(NotIncludedMapException.class);
-  }
+        //when & then
+        assertThatThrownBy(
+            () -> createArticleService.create(createArticleRequest, memberId))
+            .isInstanceOf(NotIncludedMapException.class);
+    }
 
-  @Test
-  @DisplayName("게시글 생성시 = 맵 타입 에러")
-  public void create_IfNotExistsMapType() {
-    //given
-    Long memberId = 1L;
-    CreateArticleRequest createArticleRequest = new CreateArticleRequest("title", "content",
-        10.0, 10.0, false, false, new ArrayList<>());
+    @Test
+    @DisplayName("게시글 생성시 = 맵 타입 에러")
+    public void create_IfNotExistsMapType() {
+        //given
+        Long memberId = 1L;
+        CreateArticleRequest createArticleRequest = new CreateArticleRequest("title", "content",
+            10.0, 10.0, false, false, new ArrayList<>());
 
-    //when & then
-    assertThatThrownBy(
-        () -> createArticleService.create(createArticleRequest, memberId))
-        .isInstanceOf(NotIncludedMapException.class);
-  }
+        //when & then
+        assertThatThrownBy(
+            () -> createArticleService.create(createArticleRequest, memberId))
+            .isInstanceOf(NotIncludedMapException.class);
+    }
 }

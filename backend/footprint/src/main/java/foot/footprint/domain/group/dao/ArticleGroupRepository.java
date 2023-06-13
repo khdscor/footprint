@@ -7,7 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface ArticleGroupRepository {
 
-  int saveArticleGroupList(List<ArticleGroup> articleGroups);
+    int saveArticleGroupList(List<ArticleGroup> articleGroups);
 
-  boolean existsArticleInMyGroup(Long articleId, Long memberId);
+    boolean existsArticleInMyGroup(Long articleId, Long memberId);
 }

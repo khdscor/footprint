@@ -6,5 +6,5 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface CreateCommentRepository {
 
-  Long saveComment(Comment comment);
+    Long saveComment(Comment comment);
 }

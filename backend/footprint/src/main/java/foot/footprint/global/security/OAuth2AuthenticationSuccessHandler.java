@@ -23,55 +23,56 @@ import java.net.URI;
 @RequiredArgsConstructor
 public class OAuth2AuthenticationSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
 
-  @Value("${app.oauth2.authorizedRedirectUri}")
-  private String redirect_uri;
-  private final JwtTokenProvider tokenProvider;
-  private final CookieAuthorizationRequestRepository authorizationRequestRepository;
+    @Value("${app.oauth2.authorizedRedirectUri}")
+    private String redirect_uri;
+    private final JwtTokenProvider tokenProvider;
+    private final CookieAuthorizationRequestRepository authorizationRequestRepository;
 
-  @Override
-  public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
-      Authentication authentication) throws IOException, ServletException {
-    String targetUrl = determineTargetUrl(request, response, authentication);
+    @Override
+    public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
+        Authentication authentication) throws IOException, ServletException {
+        String targetUrl = determineTargetUrl(request, response, authentication);
 
-    if (response.isCommitted()) {
-      log.debug("이미 응답이 완료되었다!!");
-      return;
+        if (response.isCommitted()) {
+            log.debug("이미 응답이 완료되었다!!");
+            return;
+        }
+        clearAuthenticationAttributes(request, response);
+        getRedirectStrategy().sendRedirect(request, response, targetUrl);
     }
-    clearAuthenticationAttributes(request, response);
-    getRedirectStrategy().sendRedirect(request, response, targetUrl);
-  }
 
-  protected String determineTargetUrl(HttpServletRequest request, HttpServletResponse response,
-      Authentication authentication) {
-    String redirectUri = CookieUtil.getCookie(request,
-            CookieAuthorizationRequestRepository.REDIRECT_URI_PARAM_COOKIE_NAME)
-        .map(Cookie::getValue)
-        .orElse(getDefaultTargetUrl());
+    protected String determineTargetUrl(HttpServletRequest request, HttpServletResponse response,
+        Authentication authentication) {
+        String redirectUri = CookieUtil.getCookie(request,
+                CookieAuthorizationRequestRepository.REDIRECT_URI_PARAM_COOKIE_NAME)
+            .map(Cookie::getValue)
+            .orElse(getDefaultTargetUrl());
 
-    if (!isAuthorizedRedirectUri(redirectUri)) {
-      throw new NotAuthorizedRedirectUriException(redirectUri + "는 허용되지 않은 redirect uri 입니다.");
+        if (!isAuthorizedRedirectUri(redirectUri)) {
+            throw new NotAuthorizedRedirectUriException(
+                redirectUri + "는 허용되지 않은 redirect uri 입니다.");
+        }
+        // JWT 생성
+        CustomUserDetails user = (CustomUserDetails) authentication.getPrincipal();
+        String accessToken = tokenProvider.createAccessToken(user.getName(), Role.USER);
+        tokenProvider.createRefreshToken(authentication, response);
+
+        return UriComponentsBuilder.fromUriString(redirectUri)
+            .queryParam("token", accessToken)
+            .build().toUriString();
     }
-    // JWT 생성
-    CustomUserDetails user = (CustomUserDetails) authentication.getPrincipal();
-    String accessToken = tokenProvider.createAccessToken(user.getName(), Role.USER);
-    tokenProvider.createRefreshToken(authentication, response);
 
-    return UriComponentsBuilder.fromUriString(redirectUri)
-        .queryParam("token", accessToken)
-        .build().toUriString();
-  }
+    protected void clearAuthenticationAttributes(HttpServletRequest request,
+        HttpServletResponse response) {
+        super.clearAuthenticationAttributes(request);
+        authorizationRequestRepository.removeAuthorizationRequestCookies(request, response);
+    }
 
-  protected void clearAuthenticationAttributes(HttpServletRequest request,
-      HttpServletResponse response) {
-    super.clearAuthenticationAttributes(request);
-    authorizationRequestRepository.removeAuthorizationRequestCookies(request, response);
-  }
+    private boolean isAuthorizedRedirectUri(String uri) {
+        URI clientRedirectUri = URI.create(uri);
+        URI authorizedUri = URI.create(redirect_uri);
 
-  private boolean isAuthorizedRedirectUri(String uri) {
-    URI clientRedirectUri = URI.create(uri);
-    URI authorizedUri = URI.create(redirect_uri);
-
-    return authorizedUri.getHost().equalsIgnoreCase(clientRedirectUri.getHost())
-        && authorizedUri.getPort() == clientRedirectUri.getPort();
-  }
+        return authorizedUri.getHost().equalsIgnoreCase(clientRedirectUri.getHost())
+            && authorizedUri.getPort() == clientRedirectUri.getPort();
+    }
 }

@@ -12,29 +12,29 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 public class CreateArticleRepositoryTest extends RepositoryTest {
 
-  @Autowired
-  private CreateArticleRepository articleRepository;
+    @Autowired
+    private CreateArticleRepository articleRepository;
 
-  @Autowired
-  private MemberRepository memberRepository;
+    @Autowired
+    private MemberRepository memberRepository;
 
-  @Test
-  public void saveArticle() {
-    //given
-    Long memberId = saveOne();
-    Article article = buildArticle(memberId);
+    @Test
+    public void saveArticle() {
+        //given
+        Long memberId = saveOne();
+        Article article = buildArticle(memberId);
 
-    //when & then
-    assertThat(article.getId()).isNull();
-    articleRepository.saveArticle(article);
+        //when & then
+        assertThat(article.getId()).isNull();
+        articleRepository.saveArticle(article);
 
-    //then
-    assertThat(article.getId()).isNotNull();
-  }
+        //then
+        assertThat(article.getId()).isNotNull();
+    }
 
-  private Long saveOne() {
-    Member member = buildMember();
-    memberRepository.saveMember(member);
-    return member.getId();
-  }
+    private Long saveOne() {
+        Member member = buildMember();
+        memberRepository.saveMember(member);
+        return member.getId();
+    }
 }

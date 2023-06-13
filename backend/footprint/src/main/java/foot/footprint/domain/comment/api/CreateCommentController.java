@@ -20,16 +20,16 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class CreateCommentController {
 
-  private final CreateCommentService createCommentService;
+    private final CreateCommentService createCommentService;
 
-  @PostMapping("/{articleId}/comments")
-  public ResponseEntity<CommentResponse> createOnPublicArticle(
-      @PathVariable("articleId") Long articleId,
-      @RequestBody @Valid CreateCommentRequest createCommentRequest,
-      @AuthenticationPrincipal CustomUserDetails userDetails) {
-    CommentResponse commentResponse = createCommentService.create(articleId,
-        createCommentRequest.getContent(), userDetails.getId());
+    @PostMapping("/{articleId}/comments")
+    public ResponseEntity<CommentResponse> createOnPublicArticle(
+        @PathVariable("articleId") Long articleId,
+        @RequestBody @Valid CreateCommentRequest createCommentRequest,
+        @AuthenticationPrincipal CustomUserDetails userDetails) {
+        CommentResponse commentResponse = createCommentService.create(articleId,
+            createCommentRequest.getContent(), userDetails.getId());
 
-    return ResponseEntity.status(HttpStatus.CREATED).body(commentResponse);
-  }
+        return ResponseEntity.status(HttpStatus.CREATED).body(commentResponse);
+    }
 }

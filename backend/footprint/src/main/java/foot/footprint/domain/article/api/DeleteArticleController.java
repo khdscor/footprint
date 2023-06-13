@@ -15,14 +15,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class DeleteArticleController {
 
-  private final DeleteArticleService deleteArticleService;
+    private final DeleteArticleService deleteArticleService;
 
-  @DeleteMapping("/{articleId}")
-  public ResponseEntity<Void> deleteArticle(@PathVariable Long articleId,
-      @AuthenticationPrincipal CustomUserDetails userDetails) {
-    deleteArticleService.delete(articleId, userDetails.getId());
+    @DeleteMapping("/{articleId}")
+    public ResponseEntity<Void> deleteArticle(@PathVariable Long articleId,
+        @AuthenticationPrincipal CustomUserDetails userDetails) {
+        deleteArticleService.delete(articleId, userDetails.getId());
 
-    return ResponseEntity.noContent()
-        .build();
-  }
+        return ResponseEntity.noContent()
+            .build();
+    }
 }

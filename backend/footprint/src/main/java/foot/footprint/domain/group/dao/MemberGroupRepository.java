@@ -10,22 +10,22 @@ import org.apache.ibatis.annotations.Select;
 @Mapper
 public interface MemberGroupRepository {
 
-  Long saveMemberGroup(MemberGroup memberGroup);
+    Long saveMemberGroup(MemberGroup memberGroup);
 
-  boolean checkAlreadyJoined(Long groupId, Long memberId);
+    boolean checkAlreadyJoined(Long groupId, Long memberId);
 
-  @Delete("DELETE FROM member_group WHERE group_id=#{groupId} and member_id=#{memberId}")
-  int deleteMemberGroup(Long groupId, Long memberId);
+    @Delete("DELETE FROM member_group WHERE group_id=#{groupId} and member_id=#{memberId}")
+    int deleteMemberGroup(Long groupId, Long memberId);
 
-  @Select("SELECT COUNT(*) FROM member_group WHERE group_id=#{groupId}")
-  Long countMemberGroup(Long groupId);
+    @Select("SELECT COUNT(*) FROM member_group WHERE group_id=#{groupId}")
+    Long countMemberGroup(Long groupId);
 
-  int changeImportant(Long groupId, Long memberId);
+    int changeImportant(Long groupId, Long memberId);
 
-  @Select("SELECT * FROM member_group WHERE id=#{id}")
-  MemberGroup findById(Long id);
+    @Select("SELECT * FROM member_group WHERE id=#{id}")
+    MemberGroup findById(Long id);
 
-  List<GroupSummaryResponse> findMyImportantGroups(Long memberId);
+    List<GroupSummaryResponse> findMyImportantGroups(Long memberId);
 
-  List<GroupSummaryResponse> findMyGroups(Long memberId);
+    List<GroupSummaryResponse> findMyGroups(Long memberId);
 }

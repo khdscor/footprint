@@ -17,14 +17,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class EditArticleController {
 
-  private final EditArticleService editArticleService;
+    private final EditArticleService editArticleService;
 
-  @PutMapping("/{articleId}")
-  public ResponseEntity<Void> editArticle(@PathVariable("articleId") Long articleId,
-      @RequestBody EditArticleContentRequest request,
-      @AuthenticationPrincipal CustomUserDetails userDetails) {
-    editArticleService.edit(articleId, userDetails.getId(), request.getNewContent());
-    return ResponseEntity.noContent()
-        .build();
-  }
+    @PutMapping("/{articleId}")
+    public ResponseEntity<Void> editArticle(@PathVariable("articleId") Long articleId,
+        @RequestBody EditArticleContentRequest request,
+        @AuthenticationPrincipal CustomUserDetails userDetails) {
+        editArticleService.edit(articleId, userDetails.getId(), request.getNewContent());
+        return ResponseEntity.noContent()
+            .build();
+    }
 }

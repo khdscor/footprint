@@ -7,14 +7,14 @@ import lombok.Getter;
 @Getter
 public class CreateCommentRequest {
 
-  @NotEmpty(message = "빈 댓글은 작성할 수 없습니다.")
-  @NotBlank(message = "빈 댓글은 작성할 수 없습니다.")
-  private String content;
+    @NotEmpty(message = "빈 댓글은 작성할 수 없습니다.")
+    @NotBlank(message = "빈 댓글은 작성할 수 없습니다.")
+    private String content;
 
-  public CreateCommentRequest(String content) {
-    this.content = content;
-  }
+    public CreateCommentRequest(String content) {
+        this.content = content;
+    }
 
-  public CreateCommentRequest() {
-  }
+    public CreateCommentRequest() {
+    }
 }

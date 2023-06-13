@@ -15,15 +15,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class DeportMemberController {
 
-  private final DeportMemberService deportMemberService;
+    private final DeportMemberService deportMemberService;
 
-  @DeleteMapping("/{groupId}/{memberId}")
+    @DeleteMapping("/{groupId}/{memberId}")
 
-  public ResponseEntity<Void> deportMember(@PathVariable("groupId") Long groupId,
-      @PathVariable("memberId") Long memberId,
-      @AuthenticationPrincipal CustomUserDetails userDetails) {
-    deportMemberService.deport(groupId, memberId, userDetails.getId());
+    public ResponseEntity<Void> deportMember(@PathVariable("groupId") Long groupId,
+        @PathVariable("memberId") Long memberId,
+        @AuthenticationPrincipal CustomUserDetails userDetails) {
+        deportMemberService.deport(groupId, memberId, userDetails.getId());
 
-    return ResponseEntity.noContent().build();
-  }
+        return ResponseEntity.noContent().build();
+    }
 }

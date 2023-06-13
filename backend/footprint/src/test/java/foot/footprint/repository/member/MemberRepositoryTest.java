@@ -10,44 +10,44 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class MemberRepositoryTest extends RepositoryTest {
 
-  @Autowired
-  private MemberRepository memberRepository;
+    @Autowired
+    private MemberRepository memberRepository;
 
-  private String Email = "email";
+    private String Email = "email";
 
-  @Test
-  public void saveMember() {
-    //given
-    Member member = buildMember();
+    @Test
+    public void saveMember() {
+        //given
+        Member member = buildMember();
 
-    //when
-    memberRepository.saveMember(member);
+        //when
+        memberRepository.saveMember(member);
 
-    //then
-    assertThat(member.getId()).isNotNull();
-  }
+        //then
+        assertThat(member.getId()).isNotNull();
+    }
 
-  @Test
-  public void existsByEmail() {
-    //given
-    saveOne();
+    @Test
+    public void existsByEmail() {
+        //given
+        saveOne();
 
-    //when & then
-    assertThat(memberRepository.existsByEmail("test")).isFalse();
-    assertThat(memberRepository.existsByEmail(Email)).isTrue();
-  }
+        //when & then
+        assertThat(memberRepository.existsByEmail("test")).isFalse();
+        assertThat(memberRepository.existsByEmail(Email)).isTrue();
+    }
 
-  @Test
-  public void findByEmail() {
-    //given
-    saveOne();
+    @Test
+    public void findByEmail() {
+        //given
+        saveOne();
 
-    //when & then
-    assertThat(memberRepository.findByEmail(Email).get().getNick_name()).isEqualTo("nickName");
-  }
+        //when & then
+        assertThat(memberRepository.findByEmail(Email).get().getNick_name()).isEqualTo("nickName");
+    }
 
-  private void saveOne() {
-    Member member = buildMember();
-    memberRepository.saveMember(member);
-  }
+    private void saveOne() {
+        Member member = buildMember();
+        memberRepository.saveMember(member);
+    }
 }

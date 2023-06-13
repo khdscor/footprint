@@ -12,9 +12,10 @@ import java.io.IOException;
 //사용자가 인증없이 요청시 401 Unauthorized 처리(인증)
 public class JwtAuthenticationEntryPoint implements AuthenticationEntryPoint {
 
-  @Override
-  public void commence(HttpServletRequest request, HttpServletResponse response,
-      AuthenticationException authException) throws IOException, ServletException {
-    response.sendError(HttpServletResponse.SC_UNAUTHORIZED, authException.getLocalizedMessage());
-  }
+    @Override
+    public void commence(HttpServletRequest request, HttpServletResponse response,
+        AuthenticationException authException) throws IOException, ServletException {
+        response.sendError(HttpServletResponse.SC_UNAUTHORIZED,
+            authException.getLocalizedMessage());
+    }
 }

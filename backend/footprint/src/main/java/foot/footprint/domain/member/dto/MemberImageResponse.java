@@ -7,6 +7,6 @@ import lombok.Getter;
 @AllArgsConstructor
 public class MemberImageResponse {
 
-  private Long memberId;
-  private String imageUrl;
+    private Long memberId;
+    private String imageUrl;
 }

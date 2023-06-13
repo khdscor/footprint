@@ -8,10 +8,10 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface CommentLikeRepository {
 
-  int saveCommentLike(CommentLike commentLike);
+    int saveCommentLike(CommentLike commentLike);
 
-  @Delete("DELETE FROM comment_like WHERE comment_id=#{commentId} and member_id=#{memberId}")
-  int deleteCommentLike(Long commentId, Long memberId);
+    @Delete("DELETE FROM comment_like WHERE comment_id=#{commentId} and member_id=#{memberId}")
+    int deleteCommentLike(Long commentId, Long memberId);
 
-  List<Long> findCommentIdsILiked(Long articleId, Long memberId);
+    List<Long> findCommentIdsILiked(Long articleId, Long memberId);
 }

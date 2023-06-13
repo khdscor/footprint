@@ -10,13 +10,13 @@ import org.springframework.transaction.annotation.Transactional;
 @RequiredArgsConstructor
 public class DeleteArticleService {
 
-  private final DeleteArticleRepository deleteArticleRepository;
+    private final DeleteArticleRepository deleteArticleRepository;
 
-  @Transactional
-  public void delete(Long articleId, Long memberId) {
-    int result = deleteArticleRepository.deleteById(articleId, memberId);
-    if (result == 0) {
-      throw new NotMatchMemberException("글을 삭제할 권한이 없습니다.");
+    @Transactional
+    public void delete(Long articleId, Long memberId) {
+        int result = deleteArticleRepository.deleteById(articleId, memberId);
+        if (result == 0) {
+            throw new NotMatchMemberException("글을 삭제할 권한이 없습니다.");
+        }
     }
-  }
 }
