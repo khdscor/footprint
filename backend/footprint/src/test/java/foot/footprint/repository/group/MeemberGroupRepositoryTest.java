@@ -168,12 +168,4 @@ public class MeemberGroupRepositoryTest extends RepositoryTest {
         //then
         assertThat(responses).hasSize(1);
     }
-
-    private MemberGroup buildMemberGroup(Long groupId, Long memberId) {
-        return MemberGroup.builder()
-            .create_date(new Date())
-            .group_id(groupId)
-            .member_id(memberId)
-            .important(true).build();
-    }
 }

@@ -1,6 +1,7 @@
 package foot.footprint.domain.member.dao;
 
 import foot.footprint.domain.member.domain.Member;
+import foot.footprint.domain.member.dto.MyPageResponse;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
@@ -22,4 +23,6 @@ public interface MemberRepository {
 
     @Select("SELECT EXISTS (SELECT 1 FROM member WHERE email = #{email})")
     boolean existsByEmail(String email);
+
+    MyPageResponse findMyPageDetails(Long memberId);
 }

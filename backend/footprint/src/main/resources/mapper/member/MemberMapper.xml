@@ -8,4 +8,32 @@
     ) VALUES (#{email}, #{image_url}, #{join_date}, #{nick_name}, #{password}, #{provider},
     #{provider_id}, #{role})
   </insert>
+  <select id="findMyPageDetails" resultMap="myPageDetails">
+    SELECT m.id as memberId, m.image_url as imageUrl, m.nick_name as nickName,
+    m.email as email, m.join_date as visitDate, a.id as articleId, a.title as title,
+    a.create_date as createDate, count(al.id) as totalLikes, count(c.id) as totalComments,
+    g.id as groupId, g.name as name
+    FROM member m LEFT JOIN article a ON m.id = a.member_id
+    LEFT JOIN comment c ON a.id = c.article_id Left JOIN article_like al ON a.id = al.article_id
+    LEFT JOIN member_group mg ON m.id = mg.member_id LEFT JOIN group_table g ON mg.group_id = g.id
+    WHERE m.id = #{memberId} GROUP BY a.id
+  </select>
+  <resultMap id="myPageDetails" type="MyPageResponse">
+    <id property="memberId" column="memberId"/>
+    <result property="imageUrl" column="imageUrl"/>
+    <result property="nickName" column="nickName"/>
+    <result property="email" column="email"/>
+    <result property="visitDate" column="visitDate"/>
+    <collection property="myArticles" ofType="foot.footprint.domain.member.dto.MyArticleResponse">
+      <id property="articleId" column="articleId"/>
+      <result property="title" column="title"/>
+      <result property="createDate" column="createDate"/>
+      <result property="totalLikes" column="totalLikes"/>
+      <result property="totalComments" column="totalComments"/>
+    </collection>
+    <collection property="myGroups" ofType="foot.footprint.domain.group.dto.GroupSummaryResponse">
+      <id property="groupId" column="groupId"/>
+      <result property="name" column="name"/>
+    </collection>
+  </resultMap>
 </mapper>

@@ -4,6 +4,7 @@ import foot.footprint.domain.article.domain.Article;
 import foot.footprint.domain.articleLike.domain.ArticleLike;
 import foot.footprint.domain.comment.domain.Comment;
 import foot.footprint.domain.group.domain.Group;
+import foot.footprint.domain.group.domain.MemberGroup;
 import foot.footprint.domain.member.domain.AuthProvider;
 import foot.footprint.domain.member.domain.Member;
 import foot.footprint.domain.member.domain.Role;
@@ -66,5 +67,13 @@ public class RepositoryTest {
             .name("test_group")
             .invitation_code("testCode")
             .owner_id(ownerId).build();
+    }
+
+    protected MemberGroup buildMemberGroup(Long groupId, Long memberId) {
+        return MemberGroup.builder()
+            .create_date(new Date())
+            .group_id(groupId)
+            .member_id(memberId)
+            .important(true).build();
     }
 }
