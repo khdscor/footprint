@@ -20,50 +20,52 @@ import org.springframework.transaction.annotation.Transactional;
 @RequiredArgsConstructor
 public class CreateCommentService {
 
-  private final FindArticleRepository findArticleRepository;
+    private final FindArticleRepository findArticleRepository;
 
-  private final MemberRepository memberRepository;
+    private final MemberRepository memberRepository;
 
-  private final ArticleGroupRepository articleGroupRepository;
+    private final ArticleGroupRepository articleGroupRepository;
 
-  private final CreateCommentRepository createCommentRepository;
+    private final CreateCommentRepository createCommentRepository;
 
-  @Transactional
-  public CommentResponse create(Long articleId, String content, Long memberId) {
-    Article article = findArticleRepository.findById(articleId)
-        .orElseThrow(() -> new NotExistsException(" 댓글을 작성하려는 게시글이 존재하지 않습니다."));
-    Member member = memberRepository.findById(memberId)
-        .orElseThrow(() -> new NotExistsException("해당하는 회원이 존재하지 않습니다."));
-    if (article.isPublic_map()) {
-      return createCommentOnPublicArticle(articleId, content, AuthorDto.buildAuthorDto(member));
+    @Transactional
+    public CommentResponse create(Long articleId, String content, Long memberId) {
+        Article article = findArticleRepository.findById(articleId)
+            .orElseThrow(() -> new NotExistsException(" 댓글을 작성하려는 게시글이 존재하지 않습니다."));
+        Member member = memberRepository.findById(memberId)
+            .orElseThrow(() -> new NotExistsException("해당하는 회원이 존재하지 않습니다."));
+        if (article.isPublic_map()) {
+            return createCommentOnPublicArticle(articleId, content,
+                AuthorDto.buildAuthorDto(member));
+        }
+        if (article.isPrivate_map()) {
+            return createCommentOnPrivateArticle(article, content,
+                AuthorDto.buildAuthorDto(member));
+        }
+        return createCommentOnGroupedArticle(articleId, content, AuthorDto.buildAuthorDto(member));
     }
-    if (article.isPrivate_map()) {
-      return createCommentOnPrivateArticle(article, content, AuthorDto.buildAuthorDto(member));
+
+    private CommentResponse createCommentOnPublicArticle(Long articleId, String content,
+        AuthorDto authorDto) {
+        return saveComment(articleId, content, authorDto);
     }
-    return createCommentOnGroupedArticle(articleId, content, AuthorDto.buildAuthorDto(member));
-  }
 
-  private CommentResponse createCommentOnPublicArticle(Long articleId, String content,
-      AuthorDto authorDto) {
-    return saveComment(articleId, content, authorDto);
-  }
+    private CommentResponse createCommentOnPrivateArticle(Article article, String content,
+        AuthorDto authorDto) {
+        ValidateIsMine.validateArticleIsMine(article.getMember_id(), authorDto.getId());
+        return saveComment(article.getId(), content, authorDto);
+    }
 
-  private CommentResponse createCommentOnPrivateArticle(Article article, String content,
-      AuthorDto authorDto) {
-    ValidateIsMine.validateArticleIsMine(article.getMember_id(), authorDto.getId());
-    return saveComment(article.getId(), content, authorDto);
-  }
+    private CommentResponse createCommentOnGroupedArticle(Long articleId, String content,
+        AuthorDto authorDto) {
+        ValidateIsMine.validateInMyGroup(articleId, authorDto.getId(), articleGroupRepository);
+        return saveComment(articleId, content, authorDto);
+    }
 
-  private CommentResponse createCommentOnGroupedArticle(Long articleId, String content,
-      AuthorDto authorDto) {
-    ValidateIsMine.validateInMyGroup(articleId, authorDto.getId(), articleGroupRepository);
-    return saveComment(articleId, content, authorDto);
-  }
-
-  private CommentResponse saveComment(Long articleId, String content,
-      AuthorDto authorDto) {
-    Comment comment = new Comment(content, new Date(), articleId, authorDto.getId());
-    createCommentRepository.saveComment(comment);
-    return CommentResponse.toCommentResponse(comment, authorDto);
-  }
+    private CommentResponse saveComment(Long articleId, String content,
+        AuthorDto authorDto) {
+        Comment comment = new Comment(content, new Date(), articleId, authorDto.getId());
+        createCommentRepository.saveComment(comment);
+        return CommentResponse.toCommentResponse(comment, authorDto);
+    }
 }

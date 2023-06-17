@@ -17,21 +17,21 @@ import org.mockito.junit.jupiter.MockitoExtension;
 @ExtendWith(MockitoExtension.class)
 public class EditGroupNameServiceTest {
 
-  @Mock
-  private GroupRepository groupRepository;
+    @Mock
+    private GroupRepository groupRepository;
 
-  @InjectMocks
-  private EditGroupNameService editGroupNameService;
+    @InjectMocks
+    private EditGroupNameService editGroupNameService;
 
-  @Test
-  @DisplayName("예외 발생 테스트")
-  public void change() {
-    //given
-    given(groupRepository.changeGroupName(any(), any(), any())).willReturn(0);
+    @Test
+    @DisplayName("예외 발생 테스트")
+    public void change() {
+        //given
+        given(groupRepository.changeGroupName(any(), any(), any())).willReturn(0);
 
-    //when & then
-    assertThatThrownBy(
-        () -> editGroupNameService.change(any(), any(), any()))
-        .isInstanceOf(NotAuthorizedOrExistException.class);
-  }
+        //when & then
+        assertThatThrownBy(
+            () -> editGroupNameService.change(any(), any(), any()))
+            .isInstanceOf(NotAuthorizedOrExistException.class);
+    }
 }

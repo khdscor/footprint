@@ -18,15 +18,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/groups")
 public class CreateGroupController {
 
-  private final CreateGroupService createGroupService;
+    private final CreateGroupService createGroupService;
 
-  @PostMapping
-  public ResponseEntity<Void> create(@RequestBody @Valid CreateGroupRequest createGroupRequest,
-      @AuthenticationPrincipal CustomUserDetails userDetails) {
-    String groupName = createGroupRequest.getGroupName();
-    Long groupId = createGroupService.createGroup(groupName, userDetails.getId());
+    @PostMapping
+    public ResponseEntity<Void> create(@RequestBody @Valid CreateGroupRequest createGroupRequest,
+        @AuthenticationPrincipal CustomUserDetails userDetails) {
+        String groupName = createGroupRequest.getGroupName();
+        Long groupId = createGroupService.createGroup(groupName, userDetails.getId());
 
-    return ResponseEntity.created(URI.create("/groups/" + groupId))
-        .build();
-  }
+        return ResponseEntity.created(URI.create("/groups/" + groupId))
+            .build();
+    }
 }

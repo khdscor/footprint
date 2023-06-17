@@ -20,14 +20,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/comments")
 public class EditCommentController {
 
-  private final EditCommentService editCommentService;
-  @PutMapping("/{commentId}")
-  public ResponseEntity<CommentResponse> editComment(
-      @PathVariable("commentId") Long commentId,
-      @RequestBody @Valid EditCommentRequest editCommentRequest,
-      @AuthenticationPrincipal CustomUserDetails userDetails) {
-    editCommentService.edit(commentId, userDetails.getId(), editCommentRequest.getContent());
-    return ResponseEntity.noContent()
-        .build();
-  }
+    private final EditCommentService editCommentService;
+
+    @PutMapping("/{commentId}")
+    public ResponseEntity<CommentResponse> editComment(
+        @PathVariable("commentId") Long commentId,
+        @RequestBody @Valid EditCommentRequest editCommentRequest,
+        @AuthenticationPrincipal CustomUserDetails userDetails) {
+        editCommentService.edit(commentId, userDetails.getId(), editCommentRequest.getContent());
+        return ResponseEntity.noContent()
+            .build();
+    }
 }

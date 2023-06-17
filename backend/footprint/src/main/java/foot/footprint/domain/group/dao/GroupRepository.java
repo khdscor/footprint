@@ -12,23 +12,23 @@ import org.apache.ibatis.annotations.Update;
 @Mapper
 public interface GroupRepository {
 
-  Long saveGroup(Group group);
+    Long saveGroup(Group group);
 
-  @Select("Select * from group_table where id=#{groupId}")
-  Optional<Group> findById(Long groupId);
+    @Select("Select * from group_table where id=#{groupId}")
+    Optional<Group> findById(Long groupId);
 
-  @Select("Select * from group_table where invitation_code=#{invitationCode}")
-  Optional<Group> findByInvitationCode(String invitationCode);
+    @Select("Select * from group_table where invitation_code=#{invitationCode}")
+    Optional<Group> findByInvitationCode(String invitationCode);
 
-  @Update("UPDATE group_table SET invitation_code=#{invitation_code} WHERE id=#{id}")
-  int updateInvitationCode(Group group);
+    @Update("UPDATE group_table SET invitation_code=#{invitation_code} WHERE id=#{id}")
+    int updateInvitationCode(Group group);
 
-  int changeGroupName(Long groupId, Long ownerId, String newName);
+    int changeGroupName(Long groupId, Long ownerId, String newName);
 
-  @Delete("DELETE FROM group_table WHERE id=#{groupId}")
-  int deleteById(Long groupId);
+    @Delete("DELETE FROM group_table WHERE id=#{groupId}")
+    int deleteById(Long groupId);
 
-  List<Long> findAllByMemberId(Long memberId);
+    List<Long> findAllByMemberId(Long memberId);
 
-  Optional<GroupDetailsResponse> findGroupDetails(Long groupId, Long memberId);
+    Optional<GroupDetailsResponse> findGroupDetails(Long groupId, Long memberId);
 }

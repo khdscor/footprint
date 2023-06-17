@@ -18,14 +18,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/articles/{articleId}/like")
 public class ArticleLikeController {
 
-  private final ArticleLikeService articleLikeService;
+    private final ArticleLikeService articleLikeService;
 
-  @PostMapping
-  public ResponseEntity<Void> changeMyLike(@PathVariable("articleId") Long articleId,
-      @RequestParam(value = "hasiliked") Boolean hasILiked,
-      @AuthenticationPrincipal CustomUserDetails userDetails) {
-    ArticleLikeDto articleLikeDto = new ArticleLikeDto(articleId, userDetails.getId(), hasILiked);
-    articleLikeService.changeArticleLike(articleLikeDto);
-    return ResponseEntity.status(HttpStatus.CREATED).build();
-  }
+    @PostMapping
+    public ResponseEntity<Void> changeMyLike(@PathVariable("articleId") Long articleId,
+        @RequestParam(value = "hasiliked") Boolean hasILiked,
+        @AuthenticationPrincipal CustomUserDetails userDetails) {
+        ArticleLikeDto articleLikeDto = new ArticleLikeDto(articleId, userDetails.getId(),
+            hasILiked);
+        articleLikeService.changeArticleLike(articleLikeDto);
+        return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
 }

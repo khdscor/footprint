@@ -12,14 +12,14 @@ import lombok.Getter;
 @Getter
 public class LoginRequest {
 
-  @Email
-  @NotBlank
-  @NotEmpty
-  @Size(min = 4, max = 30)
-  private String email;
+    @Email
+    @NotBlank
+    @NotEmpty
+    @Size(min = 4, max = 30)
+    private String email;
 
-  @NotBlank
-  @NotEmpty
-  @Size(min = 4, max = 30)
-  private String password;
+    @NotBlank
+    @NotEmpty
+    @Size(min = 4, max = 30)
+    private String password;
 }

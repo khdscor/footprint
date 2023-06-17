@@ -16,21 +16,21 @@ import org.mockito.junit.jupiter.MockitoExtension;
 @ExtendWith(MockitoExtension.class)
 public class EditCommentServiceTest {
 
-  @Mock
-  private EditCommentRepository editCommentRepository;
+    @Mock
+    private EditCommentRepository editCommentRepository;
 
-  @InjectMocks
-  private EditCommentService editCommentService;
+    @InjectMocks
+    private EditCommentService editCommentService;
 
-  @Test
-  void edit(){
-    //given
-    given(editCommentRepository.editComment(any(), any(), any()))
-        .willReturn(0);
+    @Test
+    void edit() {
+        //given
+        given(editCommentRepository.editComment(any(), any(), any()))
+            .willReturn(0);
 
-    //when & then
-    assertThatThrownBy(
-        () -> editCommentService.edit(any(), any(), any()))
-        .isInstanceOf(NotMatchMemberException.class);
-  }
+        //when & then
+        assertThatThrownBy(
+            () -> editCommentService.edit(any(), any(), any()))
+            .isInstanceOf(NotMatchMemberException.class);
+    }
 }

@@ -12,9 +12,9 @@ import java.io.IOException;
 //사용자가 권한없는 요청시 403 Forbidden 처리(인가)
 public class JwtAccessDeniedHandler implements AccessDeniedHandler {
 
-  @Override
-  public void handle(HttpServletRequest request, HttpServletResponse response,
-      AccessDeniedException accessDeniedException) throws IOException, ServletException {
-    response.sendError(HttpServletResponse.SC_FORBIDDEN);
-  }
+    @Override
+    public void handle(HttpServletRequest request, HttpServletResponse response,
+        AccessDeniedException accessDeniedException) throws IOException, ServletException {
+        response.sendError(HttpServletResponse.SC_FORBIDDEN);
+    }
 }

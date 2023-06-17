@@ -16,14 +16,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class JoinGroupController {
 
-  private final JoinGroupService joinGroupService;
+    private final JoinGroupService joinGroupService;
 
-  @PostMapping("/admission")
-  public ResponseEntity<Void> join(@RequestParam(value = "invitation_code") String invitationCode,
-      @AuthenticationPrincipal CustomUserDetails userDetails) {
-    Long groupId = joinGroupService.join(invitationCode, userDetails.getId());
+    @PostMapping("/admission")
+    public ResponseEntity<Void> join(@RequestParam(value = "invitation_code") String invitationCode,
+        @AuthenticationPrincipal CustomUserDetails userDetails) {
+        Long groupId = joinGroupService.join(invitationCode, userDetails.getId());
 
-    return ResponseEntity.created(URI.create("/groups/" + groupId))
-        .build();
-  }
+        return ResponseEntity.created(URI.create("/groups/" + groupId))
+            .build();
+    }
 }

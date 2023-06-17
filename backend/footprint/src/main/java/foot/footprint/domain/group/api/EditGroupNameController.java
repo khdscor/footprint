@@ -17,14 +17,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class EditGroupNameController {
 
-  private final EditGroupNameService editGroupNameService;
+    private final EditGroupNameService editGroupNameService;
 
-  @PutMapping("/{groupId}")
-  public ResponseEntity<Void> editGroupName(@PathVariable("groupId") Long groupId,
-      @RequestBody EditGroupNameRequest request,
-      @AuthenticationPrincipal CustomUserDetails userDetails) {
-    editGroupNameService.change(groupId, userDetails.getId(), request.getNewName());
+    @PutMapping("/{groupId}")
+    public ResponseEntity<Void> editGroupName(@PathVariable("groupId") Long groupId,
+        @RequestBody EditGroupNameRequest request,
+        @AuthenticationPrincipal CustomUserDetails userDetails) {
+        editGroupNameService.change(groupId, userDetails.getId(), request.getNewName());
 
-    return ResponseEntity.noContent().build();
-  }
+        return ResponseEntity.noContent().build();
+    }
 }

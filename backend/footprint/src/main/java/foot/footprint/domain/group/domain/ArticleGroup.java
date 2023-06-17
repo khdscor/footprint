@@ -12,22 +12,22 @@ import lombok.ToString;
 @NoArgsConstructor
 public class ArticleGroup {
 
-  private Long id;
-  private Date create_date;
-  private Long article_id;
-  private Long group_id;
+    private Long id;
+    private Date create_date;
+    private Long article_id;
+    private Long group_id;
 
-  public ArticleGroup(Long id, Date create_date, Long article_id, Long group_id) {
-    this.id = id;
-    this.create_date = create_date;
-    this.article_id = article_id;
-    this.group_id = group_id;
-  }
+    public ArticleGroup(Long id, Date create_date, Long article_id, Long group_id) {
+        this.id = id;
+        this.create_date = create_date;
+        this.article_id = article_id;
+        this.group_id = group_id;
+    }
 
-  public static ArticleGroup createArticleGroup(Long groupId, Long articleId) {
-    return ArticleGroup.builder()
-        .create_date(new Date())
-        .group_id(groupId)
-        .article_id(articleId).build();
-  }
+    public static ArticleGroup createArticleGroup(Long groupId, Long articleId) {
+        return ArticleGroup.builder()
+            .create_date(new Date())
+            .group_id(groupId)
+            .article_id(articleId).build();
+    }
 }

@@ -21,31 +21,31 @@ import java.net.URI;
 @RequestMapping("/articles")
 public class CreateArticleController {
 
-  private final CreateArticleService createArticleService;
+    private final CreateArticleService createArticleService;
 
-  @PostMapping("/create")
-  public ResponseEntity<Void> create(@RequestBody @Valid CreateArticleRequest request,
-      @AuthenticationPrincipal CustomUserDetails userDetails) {
-    validateLocation(request.getLatitude(), request.getLongitude());
-    Long articleId = createArticleService.create(request, userDetails.getId());
+    @PostMapping("/create")
+    public ResponseEntity<Void> create(@RequestBody @Valid CreateArticleRequest request,
+        @AuthenticationPrincipal CustomUserDetails userDetails) {
+        validateLocation(request.getLatitude(), request.getLongitude());
+        Long articleId = createArticleService.create(request, userDetails.getId());
 
-    if (request.isPublicMap()) {
-      return buildArticleCreateResponse("/articles/public/" + articleId);
+        if (request.isPublicMap()) {
+            return buildArticleCreateResponse("/articles/public/" + articleId);
+        }
+        if (request.isPrivateMap()) {
+            return buildArticleCreateResponse("/articles/private/" + articleId);
+        }
+        return buildArticleCreateResponse("/articles/grouped/" + articleId);
     }
-    if (request.isPrivateMap()) {
-      return buildArticleCreateResponse("/articles/private/" + articleId);
-    }
-    return buildArticleCreateResponse("/articles/grouped/" + articleId);
-  }
 
-  private void validateLocation(double lat, double lng) {
-    if (lat >= 180 || lat <= -180 || lng >= 180 || lng <= -180) {
-      throw new WrongInputException("위치 좌표가 범위를 넘었습니다.");
+    private void validateLocation(double lat, double lng) {
+        if (lat >= 180 || lat <= -180 || lng >= 180 || lng <= -180) {
+            throw new WrongInputException("위치 좌표가 범위를 넘었습니다.");
+        }
     }
-  }
 
-  private ResponseEntity<Void> buildArticleCreateResponse(String uri) {
-    return ResponseEntity.created(URI.create(uri))
-        .build();
-  }
+    private ResponseEntity<Void> buildArticleCreateResponse(String uri) {
+        return ResponseEntity.created(URI.create(uri))
+            .build();
+    }
 }

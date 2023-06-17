@@ -10,13 +10,13 @@ import org.springframework.transaction.annotation.Transactional;
 @RequiredArgsConstructor
 public class EditArticleService {
 
-  private final EditArticleRepository editArticleRepository;
+    private final EditArticleRepository editArticleRepository;
 
-  @Transactional
-  public void edit(Long articleId, Long memberId, String newContent) {
-    int result = editArticleRepository.editArticle(articleId, memberId, newContent);
-    if (result == 0) {
-      throw new NotMatchMemberException("글을 수정할 권한이 없습니다.");
+    @Transactional
+    public void edit(Long articleId, Long memberId, String newContent) {
+        int result = editArticleRepository.editArticle(articleId, memberId, newContent);
+        if (result == 0) {
+            throw new NotMatchMemberException("글을 수정할 권한이 없습니다.");
+        }
     }
-  }
 }

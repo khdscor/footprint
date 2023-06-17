@@ -27,148 +27,148 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class FIndArticleRepositoryTest extends RepositoryTest {
 
-  @Autowired
-  private FindArticleRepository findArticleRepository;
+    @Autowired
+    private FindArticleRepository findArticleRepository;
 
-  @Autowired
-  private CreateArticleRepository createArticleRepository;
+    @Autowired
+    private CreateArticleRepository createArticleRepository;
 
-  @Autowired
-  private MemberRepository memberRepository;
+    @Autowired
+    private MemberRepository memberRepository;
 
-  @Autowired
-  private GroupRepository groupRepository;
+    @Autowired
+    private GroupRepository groupRepository;
 
-  @Autowired
-  private ArticleGroupRepository articleGroupRepository;
+    @Autowired
+    private ArticleGroupRepository articleGroupRepository;
 
-  @Autowired
-  private ArticleLikeRepository articleLikeRepository;
+    @Autowired
+    private ArticleLikeRepository articleLikeRepository;
 
-  @Test
-  public void findArticlesTest() {
-    //given
-    saveArticle(10.0, 10.0, true, false);
-    saveArticle(35.0, 125.0, false, true);
+    @Test
+    public void findArticlesTest() {
+        //given
+        saveArticle(10.0, 10.0, true, false);
+        saveArticle(35.0, 125.0, false, true);
 
-    //when
-    //publicMapArticles
-    List<Article> articlesN = findArticleRepository.findArticles(
-        null,
-        new LocationRange(
-            new ArticleRangeRequest(10.0, 10.0, 10.0, 10.0))
-    );
-    //publicMapArticles, but private 글
-    List<Article> articlesN2 = findArticleRepository.findArticles(
-        1L,
-        new LocationRange(
-            new ArticleRangeRequest(10.0, 10.0, 10.0, 10.0))
-    );
-    //privateMapArticles 다른 유저
-    List<Article> articles1 = findArticleRepository.findArticles(
-        1L,
-        new LocationRange(
-            new ArticleRangeRequest(35.0, 5.0, 125.0, 5.0))
-    );
-    //privateMapArticles 해당 유저
-    List<Article> articles2 = findArticleRepository.findArticles(
-        2L,
-        new LocationRange(
-            new ArticleRangeRequest(35.0, 5.0, 125.0, 5.0))
-    );
-    //publicMapArticles 전체지도 but privateArticle만 존재
-    List<Article> articles3 = findArticleRepository.findArticles(
-        null,
-        new LocationRange(
-            new ArticleRangeRequest(35.0, 5.0, 125.0, 5.0))
-    );
-    //then
-    assertThat(articlesN).hasSize(1);
-    assertThat(articlesN2).hasSize(0);
-    assertThat(articles1).hasSize(0);
-    assertThat(articles2).hasSize(1);
-    assertThat(articles3).hasSize(0);
-  }
+        //when
+        //publicMapArticles
+        List<Article> articlesN = findArticleRepository.findArticles(
+            null,
+            new LocationRange(
+                new ArticleRangeRequest(10.0, 10.0, 10.0, 10.0))
+        );
+        //publicMapArticles, but private 글
+        List<Article> articlesN2 = findArticleRepository.findArticles(
+            1L,
+            new LocationRange(
+                new ArticleRangeRequest(10.0, 10.0, 10.0, 10.0))
+        );
+        //privateMapArticles 다른 유저
+        List<Article> articles1 = findArticleRepository.findArticles(
+            1L,
+            new LocationRange(
+                new ArticleRangeRequest(35.0, 5.0, 125.0, 5.0))
+        );
+        //privateMapArticles 해당 유저
+        List<Article> articles2 = findArticleRepository.findArticles(
+            2L,
+            new LocationRange(
+                new ArticleRangeRequest(35.0, 5.0, 125.0, 5.0))
+        );
+        //publicMapArticles 전체지도 but privateArticle만 존재
+        List<Article> articles3 = findArticleRepository.findArticles(
+            null,
+            new LocationRange(
+                new ArticleRangeRequest(35.0, 5.0, 125.0, 5.0))
+        );
+        //then
+        assertThat(articlesN).hasSize(1);
+        assertThat(articlesN2).hasSize(0);
+        assertThat(articles1).hasSize(0);
+        assertThat(articles2).hasSize(1);
+        assertThat(articles3).hasSize(0);
+    }
 
-  @Test
-  public void findArticlesByGroupTest() {
-    //given
-    Member member = buildMember();
-    memberRepository.saveMember(member);
-    Article article = buildArticle(member.getId());
-    createArticleRepository.saveArticle(article);
-    Group group = buildGroup(member.getId());
-    groupRepository.saveGroup(group);
-    ArticleGroup articleGroup = ArticleGroup.createArticleGroup(group.getId(), article.getId());
-    List<ArticleGroup> articleGroups = new ArrayList<>();
-    articleGroups.add(articleGroup);
-    articleGroupRepository.saveArticleGroupList(articleGroups);
+    @Test
+    public void findArticlesByGroupTest() {
+        //given
+        Member member = buildMember();
+        memberRepository.saveMember(member);
+        Article article = buildArticle(member.getId());
+        createArticleRepository.saveArticle(article);
+        Group group = buildGroup(member.getId());
+        groupRepository.saveGroup(group);
+        ArticleGroup articleGroup = ArticleGroup.createArticleGroup(group.getId(), article.getId());
+        List<ArticleGroup> articleGroups = new ArrayList<>();
+        articleGroups.add(articleGroup);
+        articleGroupRepository.saveArticleGroupList(articleGroups);
 
-    //when
-    List<Article> articles = findArticleRepository.findArticlesByGroup(group.getId(),
-        new LocationRange(new ArticleRangeRequest(5.0, 10.0, 5.0, 10.0)));
-    List<Article> articles2 = findArticleRepository.findArticlesByGroup(100L,
-        new LocationRange(new ArticleRangeRequest(5.0, 10.0, 5.0, 10.0)));
+        //when
+        List<Article> articles = findArticleRepository.findArticlesByGroup(group.getId(),
+            new LocationRange(new ArticleRangeRequest(5.0, 10.0, 5.0, 10.0)));
+        List<Article> articles2 = findArticleRepository.findArticlesByGroup(100L,
+            new LocationRange(new ArticleRangeRequest(5.0, 10.0, 5.0, 10.0)));
 
-    //then
-    assertThat(articles).hasSize(1);
-    assertThat(articles2).hasSize(0);
-  }
+        //then
+        assertThat(articles).hasSize(1);
+        assertThat(articles2).hasSize(0);
+    }
 
-  @Test
-  public void findArticle() {
-    //given
-    Member member = buildMember();
-    memberRepository.saveMember(member);
-    Article article = buildArticle(member.getId());
-    createArticleRepository.saveArticle(article);
+    @Test
+    public void findArticle() {
+        //given
+        Member member = buildMember();
+        memberRepository.saveMember(member);
+        Article article = buildArticle(member.getId());
+        createArticleRepository.saveArticle(article);
 
-    //when
-    Optional<Article> savedArticle = findArticleRepository.findById(article.getId());
+        //when
+        Optional<Article> savedArticle = findArticleRepository.findById(article.getId());
 
-    //then
-    assertThat(article.getId()).isEqualTo(savedArticle.get().getId());
-    assertThat(article.getCreate_date()).isEqualTo(savedArticle.get().getCreate_date());
-    assertThat(article.getTitle()).isEqualTo(savedArticle.get().getTitle());
-  }
+        //then
+        assertThat(article.getId()).isEqualTo(savedArticle.get().getId());
+        assertThat(article.getCreate_date()).isEqualTo(savedArticle.get().getCreate_date());
+        assertThat(article.getTitle()).isEqualTo(savedArticle.get().getTitle());
+    }
 
-  @Test
-  public void findArticleDetails(){
-    //given
-    Member member1 = buildMember();
-    memberRepository.saveMember(member1);
-    Member member2 = buildMember();
-    memberRepository.saveMember(member2);
-    Article article = buildArticle(member1.getId());
-    createArticleRepository.saveArticle(article);
-    ArticleLike articleLike1 = buildArticleLike(member1.getId(), article.getId());
-    articleLikeRepository.saveArticleLike(articleLike1);
-    ArticleLike articleLike2 = buildArticleLike(member2.getId(), article.getId());
-    articleLikeRepository.saveArticleLike(articleLike2);
+    @Test
+    public void findArticleDetails() {
+        //given
+        Member member1 = buildMember();
+        memberRepository.saveMember(member1);
+        Member member2 = buildMember();
+        memberRepository.saveMember(member2);
+        Article article = buildArticle(member1.getId());
+        createArticleRepository.saveArticle(article);
+        ArticleLike articleLike1 = buildArticleLike(member1.getId(), article.getId());
+        articleLikeRepository.saveArticleLike(articleLike1);
+        ArticleLike articleLike2 = buildArticleLike(member2.getId(), article.getId());
+        articleLikeRepository.saveArticleLike(articleLike2);
 
-    //when
-    ArticleDetailsDto details = findArticleRepository.findArticleDetails(article.getId());
+        //when
+        ArticleDetailsDto details = findArticleRepository.findArticleDetails(article.getId());
 
-    //then
-    assertThat(details.getContent()).isEqualTo(article.getContent());
-    assertThat(details.getAuthor().getNickName()).isEqualTo(member1.getNick_name());
-    assertThat(details.getTotalLikes()).isEqualTo(2L);
+        //then
+        assertThat(details.getContent()).isEqualTo(article.getContent());
+        assertThat(details.getAuthor().getNickName()).isEqualTo(member1.getNick_name());
+        assertThat(details.getTotalLikes()).isEqualTo(2L);
 
-  }
+    }
 
-  private void saveArticle(double lat, double lng, boolean publicMap, boolean privateMap) {
-    Member member = buildMember();
-    memberRepository.saveMember(member);
-    System.out.println("memberId: " + member.getId());
-    Article article = Article.builder()
-        .content("test")
-        .latitude(lat)
-        .longitude(lng)
-        .public_map(publicMap)
-        .private_map(privateMap)
-        .title("test")
-        .create_date(new Date())
-        .member_id(member.getId()).build();
-    createArticleRepository.saveArticle(article);
-  }
+    private void saveArticle(double lat, double lng, boolean publicMap, boolean privateMap) {
+        Member member = buildMember();
+        memberRepository.saveMember(member);
+        System.out.println("memberId: " + member.getId());
+        Article article = Article.builder()
+            .content("test")
+            .latitude(lat)
+            .longitude(lng)
+            .public_map(publicMap)
+            .private_map(privateMap)
+            .title("test")
+            .create_date(new Date())
+            .member_id(member.getId()).build();
+        createArticleRepository.saveArticle(article);
+    }
 }

@@ -8,15 +8,15 @@ import lombok.Getter;
 @Getter
 public class CreateGroupRequest {
 
-  @NotEmpty(message = "빈 그룹이름을 생성할 수 없습니다.")
-  @NotBlank(message = "빈 그룹이름을 생성할 수 없습니다.")
-  @Size(max = 20, message = "그룹이름은 20자 내로만 생성할 수 있습니다.")
-  private String groupName;
+    @NotEmpty(message = "빈 그룹이름을 생성할 수 없습니다.")
+    @NotBlank(message = "빈 그룹이름을 생성할 수 없습니다.")
+    @Size(max = 20, message = "그룹이름은 20자 내로만 생성할 수 있습니다.")
+    private String groupName;
 
-  public CreateGroupRequest(String groupName) {
-    this.groupName = groupName;
-  }
+    public CreateGroupRequest(String groupName) {
+        this.groupName = groupName;
+    }
 
-  public CreateGroupRequest() {
-  }
+    public CreateGroupRequest() {
+    }
 }

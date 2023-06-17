@@ -7,6 +7,6 @@ import lombok.Getter;
 @AllArgsConstructor
 public class GroupSummaryResponse {
 
-  private Long id;
-  private String name;
+    private Long groupId;
+    private String name;
 }

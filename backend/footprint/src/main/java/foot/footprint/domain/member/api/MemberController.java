@@ -2,6 +2,7 @@ package foot.footprint.domain.member.api;
 
 import foot.footprint.domain.member.application.MemberService;
 import foot.footprint.domain.member.dto.MemberImageResponse;
+import foot.footprint.domain.member.dto.MyPageResponse;
 import foot.footprint.global.security.user.CustomUserDetails;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -15,14 +16,21 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/member/me")
 public class MemberController {
 
-  private final MemberService memberService;
+    private final MemberService memberService;
 
-  @GetMapping("/image")
-  public ResponseEntity<MemberImageResponse> findMemberImageUrl(
-      @AuthenticationPrincipal CustomUserDetails userDetails) {
-    MemberImageResponse response = memberService.findImageUrl(userDetails.getId());
+    @GetMapping("/image")
+    public ResponseEntity<MemberImageResponse> findMemberImageUrl(
+        @AuthenticationPrincipal CustomUserDetails userDetails) {
+        MemberImageResponse response = memberService.findImageUrl(userDetails.getId());
 
-    return ResponseEntity.ok()
-        .body(response);
-  }
+        return ResponseEntity.ok().body(response);
+    }
+
+    @GetMapping
+    public ResponseEntity<MyPageResponse> findMine(
+        @AuthenticationPrincipal CustomUserDetails userDetails) {
+        MyPageResponse response = memberService.findMyPageInfo(userDetails.getId());
+
+        return ResponseEntity.ok().body(response);
+    }
 }

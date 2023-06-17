@@ -26,52 +26,52 @@ import org.mockito.junit.jupiter.MockitoExtension;
 @ExtendWith(MockitoExtension.class)
 public class MemberServiceTest {
 
-  @Spy
-  private MemberRepository memberRepository;
+    @Spy
+    private MemberRepository memberRepository;
 
-  @Spy
-  @InjectMocks
-  private MemberService memberService;
+    @Spy
+    @InjectMocks
+    private MemberService memberService;
 
-  private Member member;
+    private Member member;
 
-  @Test
-  public void findImageUrl() {
-    //given
-    setMember();
-    given(memberRepository.findById(any())).willReturn(Optional.ofNullable(member));
+    @Test
+    public void findImageUrl() {
+        //given
+        setMember();
+        given(memberRepository.findById(any())).willReturn(Optional.ofNullable(member));
 
-    //when
-    MemberImageResponse response = memberService.findImageUrl(member.getId());
+        //when
+        MemberImageResponse response = memberService.findImageUrl(member.getId());
 
-    //then
-    verify(memberRepository, times(1)).findById(any());
-    verify(memberService, times(1)).findImageUrl(any());
-    assertThat(response.getImageUrl()).isNull();
-    assertThat(response.getMemberId()).isEqualTo(member.getId());
-  }
+        //then
+        verify(memberRepository, times(1)).findById(any());
+        verify(memberService, times(1)).findImageUrl(any());
+        assertThat(response.getImageUrl()).isNull();
+        assertThat(response.getMemberId()).isEqualTo(member.getId());
+    }
 
-  @Test
-  @DisplayName("해당하는 회원이 존재하지 않을 때")
-  public void findImageUr_IfNotExistsMember() {
-    //given
-    Long memberId = 1L;
-    //when & then
-    assertThatThrownBy(
-        () -> memberService.findImageUrl(memberId))
-        .isInstanceOf(NotExistsException.class);
-  }
+    @Test
+    @DisplayName("해당하는 회원이 존재하지 않을 때")
+    public void findImageUr_IfNotExistsMember() {
+        //given
+        Long memberId = 1L;
+        //when & then
+        assertThatThrownBy(
+            () -> memberService.findImageUrl(memberId))
+            .isInstanceOf(NotExistsException.class);
+    }
 
-  private void setMember() {
-    member = Member.builder()
-        .id(20L)
-        .email("test")
-        .image_url(null)
-        .provider_id("test")
-        .provider(AuthProvider.google)
-        .nick_name("tset")
-        .role(Role.USER)
-        .join_date(new Date())
-        .password("password").build();
-  }
+    private void setMember() {
+        member = Member.builder()
+            .id(20L)
+            .email("test")
+            .image_url(null)
+            .provider_id("test")
+            .provider(AuthProvider.google)
+            .nick_name("tset")
+            .role(Role.USER)
+            .join_date(new Date())
+            .password("password").build();
+    }
 }

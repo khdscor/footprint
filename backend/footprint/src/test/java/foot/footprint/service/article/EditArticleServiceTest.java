@@ -16,21 +16,21 @@ import org.mockito.junit.jupiter.MockitoExtension;
 @ExtendWith(MockitoExtension.class)
 public class EditArticleServiceTest {
 
-  @Mock
-  private EditArticleRepository editArticleRepository;
+    @Mock
+    private EditArticleRepository editArticleRepository;
 
-  @InjectMocks
-  private EditArticleService editArticleService;
+    @InjectMocks
+    private EditArticleService editArticleService;
 
-  @Test
-  public void edit(){
-    //given
-    given(editArticleRepository.editArticle(any(), any(), any()))
-        .willReturn(0);
+    @Test
+    public void edit() {
+        //given
+        given(editArticleRepository.editArticle(any(), any(), any()))
+            .willReturn(0);
 
-    //when & then
-    assertThatThrownBy(
-        () -> editArticleService.edit(any(), any(), any()))
-        .isInstanceOf(NotMatchMemberException.class);
-  }
+        //when & then
+        assertThatThrownBy(
+            () -> editArticleService.edit(any(), any(), any()))
+            .isInstanceOf(NotMatchMemberException.class);
+    }
 }

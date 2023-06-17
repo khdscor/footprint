@@ -15,13 +15,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/groups")
 public class ChangeImportantController {
 
-  private final ChangeImportantService changeImportantService;
+    private final ChangeImportantService changeImportantService;
 
-  @PutMapping("/{groupId}/important")
-  public ResponseEntity<Void> changeImportant(@PathVariable("groupId") Long groupId,
-      @AuthenticationPrincipal CustomUserDetails userDetails) {
-    changeImportantService.changeImportant(groupId, userDetails.getId());
+    @PutMapping("/{groupId}/important")
+    public ResponseEntity<Void> changeImportant(@PathVariable("groupId") Long groupId,
+        @AuthenticationPrincipal CustomUserDetails userDetails) {
+        changeImportantService.changeImportant(groupId, userDetails.getId());
 
-    return ResponseEntity.noContent().build();
-  }
+        return ResponseEntity.noContent().build();
+    }
 }

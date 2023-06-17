@@ -18,30 +18,30 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class FindGroupController {
 
-  private final FindGroupService findGroupService;
+    private final FindGroupService findGroupService;
 
-  @GetMapping("/mine/important")
-  public ResponseEntity<List<GroupSummaryResponse>> findMyImportantGroups(
-      @AuthenticationPrincipal CustomUserDetails userDetails) {
-    List<GroupSummaryResponse> responses = findGroupService.findMyImportantGroups(
-        userDetails.getId());
+    @GetMapping("/mine/important")
+    public ResponseEntity<List<GroupSummaryResponse>> findMyImportantGroups(
+        @AuthenticationPrincipal CustomUserDetails userDetails) {
+        List<GroupSummaryResponse> responses = findGroupService.findMyImportantGroups(
+            userDetails.getId());
 
-    return ResponseEntity.ok().body(responses);
-  }
+        return ResponseEntity.ok().body(responses);
+    }
 
-  @GetMapping("/mine")
-  public ResponseEntity<List<GroupSummaryResponse>> findMyGroups(
-      @AuthenticationPrincipal CustomUserDetails userDetails) {
-    List<GroupSummaryResponse> responses = findGroupService.findMyGroups(userDetails.getId());
+    @GetMapping("/mine")
+    public ResponseEntity<List<GroupSummaryResponse>> findMyGroups(
+        @AuthenticationPrincipal CustomUserDetails userDetails) {
+        List<GroupSummaryResponse> responses = findGroupService.findMyGroups(userDetails.getId());
 
-    return ResponseEntity.ok().body(responses);
-  }
+        return ResponseEntity.ok().body(responses);
+    }
 
-  @GetMapping("/{id}")
-  public ResponseEntity<GroupDetailsResponse> findOne(@PathVariable("id") Long groupId,
-      @AuthenticationPrincipal CustomUserDetails userDetails) {
-    GroupDetailsResponse response = findGroupService.findOne(groupId, userDetails.getId());
+    @GetMapping("/{id}")
+    public ResponseEntity<GroupDetailsResponse> findOne(@PathVariable("id") Long groupId,
+        @AuthenticationPrincipal CustomUserDetails userDetails) {
+        GroupDetailsResponse response = findGroupService.findOne(groupId, userDetails.getId());
 
-    return ResponseEntity.ok().body(response);
-  }
+        return ResponseEntity.ok().body(response);
+    }
 }

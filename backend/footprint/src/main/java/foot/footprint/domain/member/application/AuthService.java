@@ -18,38 +18,38 @@ import org.springframework.transaction.annotation.Transactional;
 @RequiredArgsConstructor
 public class AuthService {
 
-  private final MemberRepository memberRepository;
-  private final PasswordEncoder passwordEncoder;
-  private final JwtTokenProvider tokenProvider;
+    private final MemberRepository memberRepository;
+    private final PasswordEncoder passwordEncoder;
+    private final JwtTokenProvider tokenProvider;
 
-  @Transactional(readOnly = true)
-  public String login(LoginRequest loginRequest) {
-    Member member = findMember(loginRequest);
-    verifyPassword(loginRequest, member);
-    return tokenProvider.createAccessToken(String.valueOf(member.getId()), Role.USER);
-  }
-
-  @Transactional
-  public void signUp(SignUpRequest signUpRequest) {
-    verifyEmail(signUpRequest);
-    Member member = Member.createMember(signUpRequest, passwordEncoder);
-    memberRepository.saveMember(member);
-  }
-
-  private Member findMember(LoginRequest loginRequest) {
-    return memberRepository.findByEmail(loginRequest.getEmail())
-        .orElseThrow(() -> new NotExistsException("존재하지 않는 이메일입니다."));
-  }
-
-  private void verifyPassword(LoginRequest loginRequest, Member member) {
-    if (!passwordEncoder.matches(loginRequest.getPassword(), member.getPassword())) {
-      throw new NotMatchPasswordException("비밀번호가 틀렸습니다.");
+    @Transactional(readOnly = true)
+    public String login(LoginRequest loginRequest) {
+        Member member = findMember(loginRequest);
+        verifyPassword(loginRequest, member);
+        return tokenProvider.createAccessToken(String.valueOf(member.getId()), Role.USER);
     }
-  }
 
-  private void verifyEmail(SignUpRequest signUpRequest) {
-    if (memberRepository.existsByEmail(signUpRequest.getEmail())) {
-      throw new AlreadyExistedEmailException("이미 사용중인 이메일입니다.");
+    @Transactional
+    public void signUp(SignUpRequest signUpRequest) {
+        verifyEmail(signUpRequest);
+        Member member = Member.createMember(signUpRequest, passwordEncoder);
+        memberRepository.saveMember(member);
     }
-  }
+
+    private Member findMember(LoginRequest loginRequest) {
+        return memberRepository.findByEmail(loginRequest.getEmail())
+            .orElseThrow(() -> new NotExistsException("존재하지 않는 이메일입니다."));
+    }
+
+    private void verifyPassword(LoginRequest loginRequest, Member member) {
+        if (!passwordEncoder.matches(loginRequest.getPassword(), member.getPassword())) {
+            throw new NotMatchPasswordException("비밀번호가 틀렸습니다.");
+        }
+    }
+
+    private void verifyEmail(SignUpRequest signUpRequest) {
+        if (memberRepository.existsByEmail(signUpRequest.getEmail())) {
+            throw new AlreadyExistedEmailException("이미 사용중인 이메일입니다.");
+        }
+    }
 }

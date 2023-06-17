@@ -11,10 +11,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class GroupDetailsResponse {
 
-  private Long id;
-  private String name;
-  private String invitationCode;
-  private Boolean important;
-  private Date createDate;
-  private List<MemberDto> memberDetails;
+    private Long id;
+    private String name;
+    private String invitationCode;
+    private Boolean important;
+    private Date createDate;
+    private List<MemberDto> memberDetails;
 }
