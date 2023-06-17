@@ -11,10 +11,10 @@
   <select id="findMyPageDetails" resultMap="myPageDetails">
     SELECT m.id as memberId, m.image_url as imageUrl, m.nick_name as nickName,
     m.email as email, m.join_date as visitDate,
-    a.id as articleId, a.title as title, a.create_date as createDate, count(al.id) as totalLikes,
-    count(c.id) as totalComments, g.id as groupId, g.name as name
+    a.id as articleId, a.title as title, a.create_date as createDate, count(distinct al.id) as totalLikes,
+    count(distinct c.id) as totalComments, g.id as groupId, g.name as name
     FROM member m LEFT JOIN article a ON m.id = a.member_id LEFT JOIN comment c ON a.id = c.article_id
-    left JOIN article_like al ON a.id = al.article_id LEFT JOIN member_group mg ON m.id = mg.member_id
+    LEFT JOIN article_like al ON a.id = al.article_id LEFT JOIN member_group mg ON m.id = mg.member_id
     LEFT JOIN group_table g ON mg.group_id = g.id WHERE m.id = #{memberId} GROUP BY a.id
   </select>
   <resultMap id="myPageDetails" type="MyPageResponse">
