@@ -7,6 +7,7 @@ import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import lombok.extern.log4j.Log4j2;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseCookie;
@@ -23,7 +24,7 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.stream.Collectors;
 
-@Log4j2
+@Slf4j
 @Component
 public class JwtTokenProvider {
 
