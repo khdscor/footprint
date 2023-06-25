@@ -33,6 +33,7 @@ public class LogAdvice {
                 }
             }
         }
+        log.info("회원번호: " + memberId + "가 " + method.getName() + "를 시도하였습니다.");
         Object value = pjp.proceed();
         log.info("회원번호: " + memberId + "에 의해 " + method.getName() + "가 실행되었습니다.");
         return value;
