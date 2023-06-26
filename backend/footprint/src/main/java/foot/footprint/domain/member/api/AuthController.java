@@ -4,6 +4,7 @@ import foot.footprint.domain.member.dto.AuthResponse;
 import foot.footprint.domain.member.dto.LoginRequest;
 import foot.footprint.domain.member.dto.SignUpRequest;
 import foot.footprint.domain.member.application.AuthService;
+import foot.footprint.global.aop.auth.LoginLog;
 import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -20,6 +21,7 @@ public class AuthController {
 
     private final AuthService authService;
 
+    @LoginLog
     @PostMapping("/login")
     public ResponseEntity<AuthResponse> login(
         @RequestBody @Valid LoginRequest loginRequest) {
