@@ -19,7 +19,7 @@ public class JoinGroupController {
     private final JoinGroupService joinGroupService;
 
     @PostMapping("/admission")
-    public ResponseEntity<Void> join(@RequestParam(value = "invitation_code") String invitationCode,
+    public ResponseEntity<Void> joinGroup(@RequestParam(value = "invitation_code") String invitationCode,
         @AuthenticationPrincipal CustomUserDetails userDetails) {
         Long groupId = joinGroupService.join(invitationCode, userDetails.getId());
 

@@ -2,14 +2,13 @@ package foot.footprint.domain.article.api;
 
 import foot.footprint.domain.article.application.CreateArticleService;
 import foot.footprint.domain.article.dto.CreateArticleRequest;
-import foot.footprint.global.aop.LogRecord;
+import foot.footprint.global.aop.ArticleLog;
 import foot.footprint.global.error.exception.WrongInputException;
 import foot.footprint.global.security.user.CustomUserDetails;
 import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,9 +23,9 @@ public class CreateArticleController {
 
     private final CreateArticleService createArticleService;
 
-    @LogRecord
+    @ArticleLog
     @PostMapping("/create")
-    public ResponseEntity<Void> create(@RequestBody @Valid CreateArticleRequest request,
+    public ResponseEntity<Void> createArticle(@RequestBody @Valid CreateArticleRequest request,
         @AuthenticationPrincipal CustomUserDetails userDetails) {
         validateLocation(request.getLatitude(), request.getLongitude());
         Long articleId = createArticleService.create(request, userDetails.getId());

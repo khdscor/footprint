@@ -21,7 +21,7 @@ public class CreateGroupController {
     private final CreateGroupService createGroupService;
 
     @PostMapping
-    public ResponseEntity<Void> create(@RequestBody @Valid CreateGroupRequest createGroupRequest,
+    public ResponseEntity<Void> createGroup(@RequestBody @Valid CreateGroupRequest createGroupRequest,
         @AuthenticationPrincipal CustomUserDetails userDetails) {
         String groupName = createGroupRequest.getGroupName();
         Long groupId = createGroupService.createGroup(groupName, userDetails.getId());

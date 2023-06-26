@@ -22,8 +22,9 @@ public class EditCommentController {
 
     private final EditCommentService editCommentService;
 
-    @PutMapping("/{commentId}")
+    @PutMapping("/{articleId}/{commentId}")
     public ResponseEntity<CommentResponse> editComment(
+        @PathVariable("articleId") Long articleId,
         @PathVariable("commentId") Long commentId,
         @RequestBody @Valid EditCommentRequest editCommentRequest,
         @AuthenticationPrincipal CustomUserDetails userDetails) {

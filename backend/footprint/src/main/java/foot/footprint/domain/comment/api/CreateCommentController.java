@@ -23,7 +23,7 @@ public class CreateCommentController {
     private final CreateCommentService createCommentService;
 
     @PostMapping("/{articleId}/comments")
-    public ResponseEntity<CommentResponse> createOnPublicArticle(
+    public ResponseEntity<CommentResponse> createComment(
         @PathVariable("articleId") Long articleId,
         @RequestBody @Valid CreateCommentRequest createCommentRequest,
         @AuthenticationPrincipal CustomUserDetails userDetails) {
