@@ -2,6 +2,7 @@ package foot.footprint.domain.article.api;
 
 import foot.footprint.domain.article.application.EditArticleService;
 import foot.footprint.domain.article.dto.EditArticleContentRequest;
+import foot.footprint.global.aop.article.ArticleLog;
 import foot.footprint.global.security.user.CustomUserDetails;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +20,7 @@ public class EditArticleController {
 
     private final EditArticleService editArticleService;
 
+    @ArticleLog
     @PutMapping("/{articleId}")
     public ResponseEntity<Void> editArticle(@PathVariable("articleId") Long articleId,
         @RequestBody EditArticleContentRequest request,

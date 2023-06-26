@@ -1,6 +1,7 @@
 package foot.footprint.domain.article.api;
 
 import foot.footprint.domain.article.application.DeleteArticleService;
+import foot.footprint.global.aop.article.ArticleLog;
 import foot.footprint.global.security.user.CustomUserDetails;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +18,7 @@ public class DeleteArticleController {
 
     private final DeleteArticleService deleteArticleService;
 
+    @ArticleLog
     @DeleteMapping("/{articleId}")
     public ResponseEntity<Void> deleteArticle(@PathVariable Long articleId,
         @AuthenticationPrincipal CustomUserDetails userDetails) {

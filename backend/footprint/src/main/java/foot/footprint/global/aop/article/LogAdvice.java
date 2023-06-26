@@ -1,4 +1,4 @@
-package foot.footprint.global.aop;
+package foot.footprint.global.aop.article;
 
 import foot.footprint.global.security.user.CustomUserDetails;
 import java.lang.reflect.Method;
@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
 @Slf4j
 public class LogAdvice {
 
-    @Pointcut("@annotation(foot.footprint.global.aop.LogRecord)")
+    @Pointcut("@annotation(foot.footprint.global.aop.article.ArticleLog)")
     public void logRecord() {
     }
 
@@ -25,7 +25,12 @@ public class LogAdvice {
         MethodSignature signature = (MethodSignature) pjp.getSignature();
         Method method = signature.getMethod();
         Long memberId = null;
+        Long articleId = null;
         for (int i = 0; i < parameterValues.length; i++) {
+            if (method.getParameters()[i].getName().equals("articleId")) {
+                articleId = (Long) parameterValues[i];
+                continue;
+            }
             if (method.getParameters()[i].getName().equals("userDetails")) {
                 CustomUserDetails userDetails = (CustomUserDetails) parameterValues[i];
                 if (userDetails != null) {
@@ -33,9 +38,11 @@ public class LogAdvice {
                 }
             }
         }
-        log.info("회원번호: " + memberId + "가 " + method.getName() + "를 시도하였습니다.");
+        log.info("회원번호 " + memberId + "가 " + "게시글 " + articleId + "에 " + method.getName()
+            + "를 시도하였습니다.");
         Object value = pjp.proceed();
-        log.info("회원번호: " + memberId + "에 의해 " + method.getName() + "가 실행되었습니다.");
+        log.info("회원번호 " + memberId + "에 의해 " + "게시글 " + articleId + "에 " + method.getName()
+            + "가 실행되였습니다.");
         return value;
     }
 }

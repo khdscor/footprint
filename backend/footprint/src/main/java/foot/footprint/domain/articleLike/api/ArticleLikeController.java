@@ -2,6 +2,7 @@ package foot.footprint.domain.articleLike.api;
 
 import foot.footprint.domain.articleLike.application.ArticleLikeService;
 import foot.footprint.domain.articleLike.dto.ArticleLikeDto;
+import foot.footprint.global.aop.article.ArticleLog;
 import foot.footprint.global.security.user.CustomUserDetails;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -20,6 +21,7 @@ public class ArticleLikeController {
 
     private final ArticleLikeService articleLikeService;
 
+    @ArticleLog
     @PostMapping
     public ResponseEntity<Void> changeMyLike(@PathVariable("articleId") Long articleId,
         @RequestParam(value = "hasiliked") Boolean hasILiked,

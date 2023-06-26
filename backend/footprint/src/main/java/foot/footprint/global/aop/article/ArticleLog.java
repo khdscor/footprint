@@ -1,4 +1,4 @@
-package foot.footprint.global.aop.memberArticleLog;
+package foot.footprint.global.aop.article;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
