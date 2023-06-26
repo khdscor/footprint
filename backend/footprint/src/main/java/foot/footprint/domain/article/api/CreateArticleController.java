@@ -2,6 +2,7 @@ package foot.footprint.domain.article.api;
 
 import foot.footprint.domain.article.application.CreateArticleService;
 import foot.footprint.domain.article.dto.CreateArticleRequest;
+import foot.footprint.global.aop.article.CreateArticleLog;
 import foot.footprint.global.error.exception.WrongInputException;
 import foot.footprint.global.security.user.CustomUserDetails;
 import javax.validation.Valid;
@@ -22,6 +23,7 @@ public class CreateArticleController {
 
     private final CreateArticleService createArticleService;
 
+    @CreateArticleLog
     @PostMapping("/create")
     public ResponseEntity<Void> createArticle(@RequestBody @Valid CreateArticleRequest request,
         @AuthenticationPrincipal CustomUserDetails userDetails) {
