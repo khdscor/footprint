@@ -1,4 +1,4 @@
-package foot.footprint.global.aop;
+package foot.footprint.global.aop.otherLogs;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -7,6 +7,6 @@ import java.lang.annotation.Target;
 
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.METHOD)
-public @interface LogRecord {
+public @interface SignUpLog {
 
 }
