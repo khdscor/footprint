@@ -5,6 +5,7 @@ import foot.footprint.domain.member.dto.LoginRequest;
 import foot.footprint.domain.member.dto.SignUpRequest;
 import foot.footprint.domain.member.application.AuthService;
 import foot.footprint.global.aop.auth.LoginLog;
+import foot.footprint.global.aop.auth.SignUpLog;
 import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -30,6 +31,7 @@ public class AuthController {
         return ResponseEntity.ok(new AuthResponse(token));
     }
 
+    @SignUpLog
     @PostMapping("/signup")
     public ResponseEntity<Void> register(@RequestBody @Valid SignUpRequest signUpRequest) {
         authService.signUp(signUpRequest);

@@ -28,10 +28,10 @@ public class CreateGroupLogAdvice {
         Method method = signature.getMethod();
         Object[] parameterValues = pjp.getArgs();
         List<Object> result = findPjpInfo(parameterValues, method);
-        return printLog((Long)result.get(0), result.get(1).toString(), method, pjp);
+        return printLog((Long)result.get(0), result.get(1).toString(), pjp);
     }
 
-    private Object printLog(Long memberId, String name, Method method, ProceedingJoinPoint pjp)
+    private Object printLog(Long memberId, String name, ProceedingJoinPoint pjp)
         throws Throwable {
         log.info("회원번호 " + memberId + "가 " + "그룹 '" + name + "' 생성을 시도하였습니다.");
         Object value = pjp.proceed();

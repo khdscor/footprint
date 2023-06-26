@@ -28,10 +28,10 @@ public class CreateArticleLogAdvice {
         Method method = signature.getMethod();
         Object[] parameterValues = pjp.getArgs();
         List<Object> result = findPjpInfo(parameterValues, method);
-        return printLog(result.get(0).toString(), (Long)result.get(1), method, pjp);
+        return printLog(result.get(0).toString(), (Long)result.get(1), pjp);
     }
 
-    private Object printLog(String title , Long memberId, Method method, ProceedingJoinPoint pjp)
+    private Object printLog(String title , Long memberId, ProceedingJoinPoint pjp)
         throws Throwable {
         log.info("회원번호 " + memberId + "가 " + "게시글 '" + title + "' 작성을 시도하였습니다.");
         Object value = pjp.proceed();

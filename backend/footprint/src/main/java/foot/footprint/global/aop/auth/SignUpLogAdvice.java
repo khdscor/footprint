@@ -1,6 +1,6 @@
 package foot.footprint.global.aop.auth;
 
-import foot.footprint.domain.member.dto.LoginRequest;
+import foot.footprint.domain.member.dto.SignUpRequest;
 import java.lang.reflect.Method;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -13,14 +13,14 @@ import org.springframework.stereotype.Component;
 @Aspect
 @Component
 @Slf4j
-public class LoginLogAdvice {
+public class SignUpLogAdvice {
 
-    @Pointcut("@annotation(foot.footprint.global.aop.auth.LoginLog)")
-    public void loginLogRecord() {
+    @Pointcut("@annotation(foot.footprint.global.aop.auth.SignUpLog)")
+    public void signUpLogRecord() {
     }
 
-    @Around("loginLogRecord()")
-    public Object loginLogRecord(ProceedingJoinPoint pjp) throws Throwable {
+    @Around("signUpLogRecord()")
+    public Object signUpLogRecord(ProceedingJoinPoint pjp) throws Throwable {
         MethodSignature signature = (MethodSignature) pjp.getSignature();
         Method method = signature.getMethod();
         Object[] parameterValues = pjp.getArgs();
@@ -30,17 +30,17 @@ public class LoginLogAdvice {
 
     private Object printLog(String email, ProceedingJoinPoint pjp)
         throws Throwable {
-        log.info("임의의 사용자가 이메일 '" + email +  "'로 로그인을 시도하였습니다.");
+        log.info("임의의 사용자가 이메일 '" + email +  "'로 회원가입을 시도하였습니다.");
         Object value = pjp.proceed();
-        log.info("임의의 사용자가 이메일 '" + email +  "'로 로그인을 성공하였습니다.");
+        log.info("임의의 사용자가 이메일 '" + email +  "'로 회원가입을 성공하였습니다.");
         return value;
     }
 
     private String findPjpInfo(Object[] parameterValues, Method method) {
         String email = null;
         for (int i = 0; i < parameterValues.length; i++) {
-            if (method.getParameters()[i].getName().equals("loginRequest")) {
-                LoginRequest request = (LoginRequest) parameterValues[i];
+            if (method.getParameters()[i].getName().equals("signUpRequest")) {
+                SignUpRequest request = (SignUpRequest) parameterValues[i];
                 if (request != null) {
                     email = request.getEmail();
                 }
