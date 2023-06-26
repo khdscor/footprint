@@ -1,6 +1,7 @@
 package foot.footprint.domain.commentLike.api;
 
 import foot.footprint.domain.commentLike.application.CommentLikeService;
+import foot.footprint.global.aop.comment.CommentLog;
 import foot.footprint.global.security.user.CustomUserDetails;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -19,6 +20,7 @@ public class CommentLikeController {
 
     private final CommentLikeService commentLikeService;
 
+    @CommentLog
     @PostMapping("/{commentId}/like")
     public ResponseEntity<Void> changeMyLike(@PathVariable("commentId") Long commentId,
         @PathVariable("articleId") Long articleId,
