@@ -1,6 +1,7 @@
 package foot.footprint.domain.group.api;
 
 import foot.footprint.domain.group.application.SecessionGroupService;
+import foot.footprint.global.aop.group.GroupLog;
 import foot.footprint.global.security.user.CustomUserDetails;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +18,7 @@ public class SecessionGroupController {
 
     private final SecessionGroupService secessionGroupService;
 
+    @GroupLog
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> sessionGroup(@PathVariable("id") Long groupId,
         @AuthenticationPrincipal CustomUserDetails userDetails) {

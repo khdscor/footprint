@@ -1,6 +1,7 @@
 package foot.footprint.domain.group.api;
 
 import foot.footprint.domain.group.application.DeportMemberService;
+import foot.footprint.global.aop.group.GroupLog;
 import foot.footprint.global.security.user.CustomUserDetails;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +18,7 @@ public class DeportMemberController {
 
     private final DeportMemberService deportMemberService;
 
+    @GroupLog
     @DeleteMapping("/{groupId}/{memberId}")
 
     public ResponseEntity<Void> deportMember(@PathVariable("groupId") Long groupId,

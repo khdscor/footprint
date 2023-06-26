@@ -1,6 +1,7 @@
 package foot.footprint.domain.group.api;
 
 import foot.footprint.domain.group.application.ChangeImportantService;
+import foot.footprint.global.aop.group.GroupLog;
 import foot.footprint.global.security.user.CustomUserDetails;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +18,7 @@ public class ChangeImportantController {
 
     private final ChangeImportantService changeImportantService;
 
+    @GroupLog
     @PutMapping("/{groupId}/important")
     public ResponseEntity<Void> changeImportant(@PathVariable("groupId") Long groupId,
         @AuthenticationPrincipal CustomUserDetails userDetails) {
