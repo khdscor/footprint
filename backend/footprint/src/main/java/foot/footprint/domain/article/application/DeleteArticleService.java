@@ -16,7 +16,7 @@ public class DeleteArticleService {
     public void delete(Long articleId, Long memberId) {
         int result = deleteArticleRepository.deleteById(articleId, memberId);
         if (result == 0) {
-            throw new NotMatchMemberException("글을 삭제할 권한이 없습니다.");
+            throw new NotMatchMemberException("글이 존재하지 않거나 삭제할 권한이 없습니다.");
         }
     }
 }

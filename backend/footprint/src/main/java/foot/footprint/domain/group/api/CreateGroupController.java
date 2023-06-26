@@ -2,6 +2,7 @@ package foot.footprint.domain.group.api;
 
 import foot.footprint.domain.group.application.CreateGroupService;
 import foot.footprint.domain.group.dto.CreateGroupRequest;
+import foot.footprint.global.aop.group.CreateGroupLog;
 import foot.footprint.global.security.user.CustomUserDetails;
 import java.net.URI;
 import javax.validation.Valid;
@@ -20,8 +21,9 @@ public class CreateGroupController {
 
     private final CreateGroupService createGroupService;
 
+    @CreateGroupLog
     @PostMapping
-    public ResponseEntity<Void> create(@RequestBody @Valid CreateGroupRequest createGroupRequest,
+    public ResponseEntity<Void> createGroup(@RequestBody @Valid CreateGroupRequest createGroupRequest,
         @AuthenticationPrincipal CustomUserDetails userDetails) {
         String groupName = createGroupRequest.getGroupName();
         Long groupId = createGroupService.createGroup(groupName, userDetails.getId());

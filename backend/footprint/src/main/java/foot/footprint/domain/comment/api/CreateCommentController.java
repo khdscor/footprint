@@ -3,6 +3,7 @@ package foot.footprint.domain.comment.api;
 import foot.footprint.domain.comment.application.CreateCommentService;
 import foot.footprint.domain.comment.dto.CommentResponse;
 import foot.footprint.domain.comment.dto.CreateCommentRequest;
+import foot.footprint.global.aop.article.ArticleLog;
 import foot.footprint.global.security.user.CustomUserDetails;
 import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -22,8 +23,9 @@ public class CreateCommentController {
 
     private final CreateCommentService createCommentService;
 
+    @ArticleLog
     @PostMapping("/{articleId}/comments")
-    public ResponseEntity<CommentResponse> createOnPublicArticle(
+    public ResponseEntity<CommentResponse> createComment(
         @PathVariable("articleId") Long articleId,
         @RequestBody @Valid CreateCommentRequest createCommentRequest,
         @AuthenticationPrincipal CustomUserDetails userDetails) {

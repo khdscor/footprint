@@ -4,6 +4,7 @@ package foot.footprint.domain.comment.api;
 import foot.footprint.domain.comment.application.EditCommentService;
 import foot.footprint.domain.comment.dto.CommentResponse;
 import foot.footprint.domain.comment.dto.EditCommentRequest;
+import foot.footprint.global.aop.comment.CommentLog;
 import foot.footprint.global.security.user.CustomUserDetails;
 import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -22,8 +23,10 @@ public class EditCommentController {
 
     private final EditCommentService editCommentService;
 
-    @PutMapping("/{commentId}")
+    @CommentLog
+    @PutMapping("/{articleId}/{commentId}")
     public ResponseEntity<CommentResponse> editComment(
+        @PathVariable("articleId") Long articleId,
         @PathVariable("commentId") Long commentId,
         @RequestBody @Valid EditCommentRequest editCommentRequest,
         @AuthenticationPrincipal CustomUserDetails userDetails) {

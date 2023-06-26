@@ -1,6 +1,7 @@
 package foot.footprint.domain.comment.api;
 
 import foot.footprint.domain.comment.application.DeleteCommentService;
+import foot.footprint.global.aop.comment.CommentLog;
 import foot.footprint.global.security.user.CustomUserDetails;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -17,8 +18,10 @@ public class DeleteCommentController {
 
     private final DeleteCommentService deleteCommentService;
 
-    @DeleteMapping("/{commentId}")
-    public ResponseEntity<Void> deleteComment(@PathVariable("commentId") Long commentId,
+    @CommentLog
+    @DeleteMapping("/{articleId}/{commentId}")
+    public ResponseEntity<Void> deleteComment(@PathVariable("articleId") Long articleId,
+        @PathVariable("commentId") Long commentId,
         @AuthenticationPrincipal CustomUserDetails userDetails) {
         deleteCommentService.delete(commentId, userDetails.getId());
 

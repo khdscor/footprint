@@ -2,6 +2,7 @@ package foot.footprint.domain.group.api;
 
 import foot.footprint.domain.group.application.EditGroupNameService;
 import foot.footprint.domain.group.dto.EditGroupNameRequest;
+import foot.footprint.global.aop.group.GroupLog;
 import foot.footprint.global.security.user.CustomUserDetails;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +20,7 @@ public class EditGroupNameController {
 
     private final EditGroupNameService editGroupNameService;
 
+    @GroupLog
     @PutMapping("/{groupId}")
     public ResponseEntity<Void> editGroupName(@PathVariable("groupId") Long groupId,
         @RequestBody EditGroupNameRequest request,
