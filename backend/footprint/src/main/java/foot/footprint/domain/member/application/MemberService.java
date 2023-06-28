@@ -26,4 +26,12 @@ public class MemberService {
     public MyPageResponse findMyPageInfo(Long id) {
         return memberRepository.findMyPageDetails(id);
     }
+
+    @Transactional
+    public void withdraw(Long id) {
+        int deleted = memberRepository.deleteMember(id);
+        if(deleted ==0){
+            throw new NotExistsException("존재하지 않는 계정입니다.");
+        }
+    }
 }

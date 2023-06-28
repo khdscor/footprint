@@ -2,6 +2,7 @@ package foot.footprint.domain.member.dao;
 
 import foot.footprint.domain.member.domain.Member;
 import foot.footprint.domain.member.dto.MyPageResponse;
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
@@ -23,6 +24,9 @@ public interface MemberRepository {
 
     @Select("SELECT EXISTS (SELECT 1 FROM member WHERE email = #{email})")
     boolean existsByEmail(String email);
+
+    @Delete("DELETE FROM member WHERE id=#{memberId}")
+    int deleteMember(Long memberId);
 
     MyPageResponse findMyPageDetails(Long memberId);
 }

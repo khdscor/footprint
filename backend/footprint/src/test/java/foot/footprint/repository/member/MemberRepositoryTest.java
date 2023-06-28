@@ -1,6 +1,7 @@
 package foot.footprint.repository.member;
 
 import foot.footprint.domain.article.dao.CreateArticleRepository;
+import foot.footprint.domain.article.dao.FindArticleRepository;
 import foot.footprint.domain.article.domain.Article;
 import foot.footprint.domain.articleLike.dao.ArticleLikeRepository;
 import foot.footprint.domain.articleLike.domain.ArticleLike;
@@ -38,6 +39,9 @@ public class MemberRepositoryTest extends RepositoryTest {
 
     @Autowired
     private ArticleLikeRepository articleLikeRepository;
+
+    @Autowired
+    private FindArticleRepository findArticleRepository;
 
     private String Email = "email";
 
@@ -99,6 +103,23 @@ public class MemberRepositoryTest extends RepositoryTest {
         assertThat(response.getMyArticles().get(0).getTitle()).isEqualTo(article.getTitle());
         assertThat(response.getMyGroups()).hasSize(1);
         assertThat(response.getMyGroups().get(0).getGroupId()).isEqualTo(group.getId());
+    }
+
+    @Test
+    public void deleteMember(){
+        //given
+        Member member = buildMember();
+        memberRepository.saveMember(member);
+        Article article = buildArticle(member.getId());
+        createArticleRepository.saveArticle(article);
+
+        //when
+        int deleted = memberRepository.deleteMember(member.getId());
+
+        //then
+        assertThat(deleted).isEqualTo(1);
+        assertThat(memberRepository.findById(member.getId())).isEmpty();
+        assertThat(findArticleRepository.findById(article.getId())).isEmpty();
     }
 
     private void saveOne() {
