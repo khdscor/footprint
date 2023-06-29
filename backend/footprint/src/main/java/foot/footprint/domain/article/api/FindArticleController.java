@@ -6,6 +6,7 @@ import foot.footprint.domain.article.dto.ArticleMapResponse;
 import foot.footprint.domain.article.dto.ArticlePageResponse;
 import foot.footprint.domain.article.dto.ArticleRangeRequest;
 import foot.footprint.domain.article.application.FindArticleService;
+import foot.footprint.domain.article.dto.GroupMapArticlesDto;
 import foot.footprint.global.error.exception.WrongInputException;
 import foot.footprint.global.security.user.CustomUserDetails;
 import lombok.RequiredArgsConstructor;
@@ -48,14 +49,14 @@ public class FindArticleController {
     }
 
     @GetMapping("/grouped")
-    public ResponseEntity<List<ArticleMapResponse>> findGroupedMapArticles(
+    public ResponseEntity<GroupMapArticlesDto> findGroupedMapArticles(
         @RequestParam(value = "groupId") Long groupId, ArticleRangeRequest request,
         @AuthenticationPrincipal CustomUserDetails userDetails) {
         validateLocation(request);
         LocationRange locationRange = new LocationRange(request);
-        List<ArticleMapResponse> groupedMapArticles = findArticleService.findGroupedArticles(
+        GroupMapArticlesDto groupedArticles = findArticleService.findGroupedArticles(
             userDetails.getId(), groupId, locationRange);
-        return ResponseEntity.ok().body(groupedMapArticles);
+        return ResponseEntity.ok().body(groupedArticles);
     }
 
     private void validateLocation(ArticleRangeRequest request) {
