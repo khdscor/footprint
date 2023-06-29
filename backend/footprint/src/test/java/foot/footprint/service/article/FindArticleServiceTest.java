@@ -6,8 +6,10 @@ import foot.footprint.domain.article.domain.LocationRange;
 import foot.footprint.domain.article.dto.ArticleMapResponse;
 import foot.footprint.domain.article.dao.FindArticleRepository;
 import foot.footprint.domain.article.dto.ArticleRangeRequest;
-import foot.footprint.domain.group.dao.MemberGroupRepository;
+import foot.footprint.domain.article.dto.GroupMapArticlesDto;
+import foot.footprint.domain.group.dao.GroupRepository;
 import foot.footprint.global.error.exception.NotExistsException;
+import java.util.Optional;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -33,7 +35,7 @@ public class FindArticleServiceTest {
     private FindArticleRepository findArticleRepository;
 
     @Mock
-    private MemberGroupRepository memberGroupRepository;
+    private GroupRepository groupRepository;
 
     @Spy
     @InjectMocks
@@ -63,18 +65,20 @@ public class FindArticleServiceTest {
     @DisplayName("그룹지도")
     public void groupedMapArticlesTest() {
         //given
+        String groupName = "테스트입니다.";
         List<Article> articles = createArticleList(createArticle());
         LocationRange locationRange = new LocationRange(
             new ArticleRangeRequest(10.0, 10.0, 10.0, 10.0));
-        given(memberGroupRepository.checkAlreadyJoined(any(), any())).willReturn(true);
+        given(groupRepository.findGroupName(any(), any())).willReturn(Optional.of(groupName));
         given(findArticleRepository.findArticlesByGroup(1L, locationRange)).willReturn(articles);
 
         //when
-        List<ArticleMapResponse> result = findArticleService.findGroupedArticles(1L, 1L,
+        GroupMapArticlesDto result = findArticleService.findGroupedArticles(1L, 1L,
             locationRange);
 
         //then
-        assertThat(result.size()).isEqualTo(1);
+        assertThat(result.getResponses().size()).isEqualTo(1);
+        assertThat(result.getGroupName()).isEqualTo(groupName);
     }
 
     @Test
@@ -83,7 +87,6 @@ public class FindArticleServiceTest {
         //given
         LocationRange locationRange = new LocationRange(
             new ArticleRangeRequest(10.0, 10.0, 10.0, 10.0));
-        given(memberGroupRepository.checkAlreadyJoined(any(), any())).willReturn(false);
 
         //when & then
         assertThatThrownBy(
