@@ -31,4 +31,6 @@ public interface GroupRepository {
     List<Long> findAllByMemberId(Long memberId);
 
     Optional<GroupDetailsResponse> findGroupDetails(Long groupId, Long memberId);
+
+    Optional<String> findGroupName(Long memberId, Long groupId);
 }

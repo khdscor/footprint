@@ -170,6 +170,28 @@ public class GroupRepositoryTest extends RepositoryTest {
         assertThat(response4.get().getId()).isEqualTo(group.getId());
     }
 
+    @Test
+    public void findGroupName(){
+        //given
+        Member member = buildMember();
+        memberRepository.saveMember(member);
+        Group group = buildGroup(member.getId());
+        groupRepository.saveGroup(group);
+        MemberGroup memberGroup = buildMemberGroup(group.getId(), member.getId());
+        memberGroupRepository.saveMemberGroup(memberGroup);
+
+        //when
+        Optional<String> name = groupRepository.findGroupName(member.getId(), group.getId());
+        Optional<String> emptyName1 = groupRepository.findGroupName(member.getId(), 14L);
+        Optional<String> emptyName2 = groupRepository.findGroupName(30L, group.getId());
+
+        //then
+        assertThat(name.isPresent()).isTrue();
+        assertThat(name.get()).isEqualTo(group.getName());
+        assertThat(emptyName1.isPresent()).isFalse();
+        assertThat(emptyName2.isPresent()).isFalse();
+    }
+
     private Group buildGroup(Long ownerId, String invitationCode) {
         return Group.builder().create_date(new Date()).name("test_group")
             .invitation_code(invitationCode).owner_id(ownerId).build();
