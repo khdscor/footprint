@@ -3,6 +3,7 @@ package foot.footprint.domain.group.dao;
 import foot.footprint.domain.group.domain.MemberGroup;
 import foot.footprint.domain.group.dto.GroupSummaryResponse;
 import java.util.List;
+import java.util.Optional;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
@@ -23,7 +24,7 @@ public interface MemberGroupRepository {
     int changeImportant(Long groupId, Long memberId);
 
     @Select("SELECT * FROM member_group WHERE id=#{id}")
-    MemberGroup findById(Long id);
+    Optional<MemberGroup> findById(Long id);
 
     List<GroupSummaryResponse> findMyImportantGroups(Long memberId);
 
