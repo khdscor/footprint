@@ -1,7 +1,7 @@
 package foot.footprint.domain.group.dao;
 
 import foot.footprint.domain.group.domain.Group;
-import foot.footprint.domain.group.dto.GroupDetailsResponse;
+import foot.footprint.domain.group.dto.GroupDetailsDto;
 import java.util.List;
 import java.util.Optional;
 import org.apache.ibatis.annotations.Delete;
@@ -30,7 +30,7 @@ public interface GroupRepository {
 
     List<Long> findAllByMemberId(Long memberId);
 
-    Optional<GroupDetailsResponse> findGroupDetails(Long groupId, Long memberId);
+    Optional<GroupDetailsDto> findGroupDetails(Long groupId, Long memberId);
 
     Optional<String> findGroupName(Long memberId, Long groupId);
 

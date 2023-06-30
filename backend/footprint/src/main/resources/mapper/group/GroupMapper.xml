@@ -20,7 +20,7 @@
     WHERE id = #{groupId} and owner_id =#{ownerId}
   </update>
   <select id="findGroupDetails" resultMap="groupDetails">
-    SELECT g.id groupId, g.name AS name, g.invitation_code invitationCode,
+    SELECT g.id groupId, g.name AS name, g.owner_id AS ownerId, g.invitation_code invitationCode,
     (SELECT important FROM member_group WHERE group_id = #{groupId} and member_id = #{memberId}) AS important,
     g.create_date createDate
     ,m.id AS memberId, m.nick_name AS nickName, m.image_url AS imageUrl
@@ -29,9 +29,10 @@
     WHERE g.id = #{groupId}
     AND #{memberId} IN (SELECT member_id FROM member_group WHERE group_id = #{groupId})
   </select>
-  <resultMap id="groupDetails" type="GroupDetailsResponse">
+  <resultMap id="groupDetails" type="groupDetailsDto">
     <id property="id" column="groupId"/>
     <result property="name" column="name"/>
+    <result property="ownerId" column="ownerId"/>
     <result property="invitationCode" column="invitationCode"/>
     <result property="important" column="important"/>
     <result property="createDate" column="createDate"/>
