@@ -29,4 +29,7 @@ public interface MemberGroupRepository {
     List<GroupSummaryResponse> findMyImportantGroups(Long memberId);
 
     List<GroupSummaryResponse> findMyGroups(Long memberId);
+
+    @Select("SELECT * FROM member_group WHERE group_id = #{groupId} ORDER BY id")
+    List<MemberGroup> findAllByGroupId(Long groupId);
 }
