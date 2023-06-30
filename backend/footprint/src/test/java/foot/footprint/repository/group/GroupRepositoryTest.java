@@ -6,7 +6,7 @@ import foot.footprint.domain.group.dao.GroupRepository;
 import foot.footprint.domain.group.dao.MemberGroupRepository;
 import foot.footprint.domain.group.domain.Group;
 import foot.footprint.domain.group.domain.MemberGroup;
-import foot.footprint.domain.group.dto.GroupDetailsResponse;
+import foot.footprint.domain.group.dto.GroupDetailsDto;
 import foot.footprint.domain.member.dao.MemberRepository;
 import foot.footprint.domain.member.domain.Member;
 import foot.footprint.repository.RepositoryTest;
@@ -159,17 +159,17 @@ public class GroupRepositoryTest extends RepositoryTest {
         memberGroupRepository.saveMemberGroup(memberGroup3);
 
         //when & then
-        Optional<GroupDetailsResponse> response1 = groupRepository.findGroupDetails(2L,
+        Optional<GroupDetailsDto> response1 = groupRepository.findGroupDetails(2L,
             member1.getId());
         assertThat(response1.isPresent()).isFalse();
-        Optional<GroupDetailsResponse> response2 = groupRepository.findGroupDetails(group.getId(),
+        Optional<GroupDetailsDto> response2 = groupRepository.findGroupDetails(group.getId(),
             32L);
         assertThat(response2.isPresent()).isFalse();
-        Optional<GroupDetailsResponse> response3 = groupRepository.findGroupDetails(group.getId(),
+        Optional<GroupDetailsDto> response3 = groupRepository.findGroupDetails(group.getId(),
             member1.getId());
         assertThat(response3.get().getMemberDetails()).hasSize(3);
         assertThat(response3.get().getImportant()).isFalse();
-        Optional<GroupDetailsResponse> response4 = groupRepository.findGroupDetails(group.getId(),
+        Optional<GroupDetailsDto> response4 = groupRepository.findGroupDetails(group.getId(),
             member2.getId());
         assertThat(response4.get().getMemberDetails()).hasSize(3);
         assertThat(response4.get().getImportant()).isTrue();
