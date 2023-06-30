@@ -12,6 +12,7 @@ import foot.footprint.domain.member.domain.Member;
 import foot.footprint.repository.RepositoryTest;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -127,11 +128,11 @@ public class MeemberGroupRepositoryTest extends RepositoryTest {
         //when & then
         assertThat(memberGroup.isImportant()).isTrue();
         memberGroupRepository.changeImportant(group.getId(), member.getId());
-        MemberGroup changedMemberGroup = memberGroupRepository.findById(member.getId());
-        assertThat(changedMemberGroup.isImportant()).isFalse();
+        Optional<MemberGroup> changedMemberGroup = memberGroupRepository.findById(member.getId());
+        assertThat(changedMemberGroup.get().isImportant()).isFalse();
         memberGroupRepository.changeImportant(group.getId(), member.getId());
-        MemberGroup changedMemberGroup2 = memberGroupRepository.findById(member.getId());
-        assertThat(changedMemberGroup2.isImportant()).isTrue();
+        Optional<MemberGroup> changedMemberGroup2 = memberGroupRepository.findById(member.getId());
+        assertThat(changedMemberGroup2.get().isImportant()).isTrue();
     }
 
     @Test

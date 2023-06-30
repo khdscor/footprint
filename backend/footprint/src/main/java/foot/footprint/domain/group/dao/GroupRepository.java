@@ -33,4 +33,7 @@ public interface GroupRepository {
     Optional<GroupDetailsResponse> findGroupDetails(Long groupId, Long memberId);
 
     Optional<String> findGroupName(Long memberId, Long groupId);
+
+    @Update("UPDATE group_table SET owner_id = #{memberId} WHERE id = #{groupId}")
+    int updateOwner(Long groupId, Long memberId);
 }
