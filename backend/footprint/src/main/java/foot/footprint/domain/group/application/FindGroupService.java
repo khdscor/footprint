@@ -2,6 +2,7 @@ package foot.footprint.domain.group.application;
 
 import foot.footprint.domain.group.dao.GroupRepository;
 import foot.footprint.domain.group.dao.MemberGroupRepository;
+import foot.footprint.domain.group.dto.GroupDetailsDto;
 import foot.footprint.domain.group.dto.GroupDetailsResponse;
 import foot.footprint.domain.group.dto.GroupSummaryResponse;
 import foot.footprint.global.error.exception.NotAuthorizedOrExistException;
@@ -28,8 +29,8 @@ public class FindGroupService {
     }
 
     public GroupDetailsResponse findOne(Long groupId, Long memberId) {
-        GroupDetailsResponse response = groupRepository.findGroupDetails(groupId, memberId)
+        GroupDetailsDto response = groupRepository.findGroupDetails(groupId, memberId)
             .orElseThrow(() -> new NotAuthorizedOrExistException("그룹을 조회할 권한이 없습니다."));
-        return response;
+        return GroupDetailsResponse.toResponse(memberId, response);
     }
 }
