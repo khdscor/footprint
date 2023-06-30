@@ -45,10 +45,6 @@ public class MemberGroup {
     }
 
     public void changeImportant() {
-        if (Objects.isNull(important)) {
-            important = true;
-        } else {
-            important = !important;
-        }
+        important = !important;
     }
 }

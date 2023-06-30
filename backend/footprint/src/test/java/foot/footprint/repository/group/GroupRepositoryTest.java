@@ -81,12 +81,18 @@ public class GroupRepositoryTest extends RepositoryTest {
         Group group = Group.builder().create_date(new Date()).name("test_group")
             .invitation_code(invitationCode).owner_id(1L).build();
         groupRepository.saveGroup(group);
+        Member member = buildMember();
+        memberRepository.saveMember(member);
+        MemberGroup memberGroup = buildMemberGroup(group.getId(), member.getId());
+        memberGroupRepository.saveMemberGroup(memberGroup);
 
         //when & then
         assertThat(groupRepository.findById(group.getId())).isPresent();
+        assertThat(memberGroupRepository.findById(memberGroup.getId())).isPresent();
         int result = groupRepository.deleteById(group.getId());
         int dummy = groupRepository.deleteById(200L);
         assertThat(groupRepository.findById(group.getId())).isNotPresent();
+        assertThat(memberGroupRepository.findById(memberGroup.getId())).isNotPresent();
         assertThat(result).isEqualTo(1);
         assertThat(dummy).isEqualTo(0);
     }
@@ -171,7 +177,7 @@ public class GroupRepositoryTest extends RepositoryTest {
     }
 
     @Test
-    public void findGroupName(){
+    public void findGroupName() {
         //given
         Member member = buildMember();
         memberRepository.saveMember(member);
