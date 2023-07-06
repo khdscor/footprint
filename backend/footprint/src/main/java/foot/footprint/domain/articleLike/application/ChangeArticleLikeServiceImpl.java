@@ -22,7 +22,7 @@ public abstract class ChangeArticleLikeServiceImpl implements ChangeArticleLikeS
         articleLikeRepository.saveArticleLike(ArticleLike.createArticleLike(articleLikeDto));
     }
 
-    protected void deleteLike(ArticleLikeDto articleLikeDto) {
+    private void deleteLike(ArticleLikeDto articleLikeDto) {
         int deleted = articleLikeRepository.deleteArticleLike(articleLikeDto);
         if (deleted == 0) {
             throw new NotExistsException("이미 좋아요를 취소하였거나 누르지 않았습니다.");

@@ -5,7 +5,6 @@ import foot.footprint.domain.articleLike.dto.ArticleLikeDto;
 import foot.footprint.global.aop.article.ArticleLog;
 import foot.footprint.global.domain.MapType;
 import foot.footprint.global.security.user.CustomUserDetails;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,18 +19,20 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/articles/{mapType}/{articleId}/like")
 public class ArticleLikeController {
 
-    @Qualifier("public")
-    @Autowired
-    private ChangeArticleLikeService changePublicArticleLike;
+    private final ChangeArticleLikeService changePublicArticleLike;
 
-    @Qualifier("private")
-    @Autowired
-    private ChangeArticleLikeService changePrivateArticleLike;
+    private final ChangeArticleLikeService changePrivateArticleLike;
 
-    @Qualifier("grouped")
-    @Autowired
-    private ChangeArticleLikeService changeGroupedArticleLike;
+    private final ChangeArticleLikeService changeGroupedArticleLike;
 
+    public ArticleLikeController(
+        @Qualifier("public") ChangeArticleLikeService changePublicArticleLike,
+        @Qualifier("private") ChangeArticleLikeService changePrivateArticleLike,
+        @Qualifier("grouped") ChangeArticleLikeService changeGroupedArticleLike) {
+        this.changePublicArticleLike = changePublicArticleLike;
+        this.changePrivateArticleLike = changePrivateArticleLike;
+        this.changeGroupedArticleLike = changeGroupedArticleLike;
+    }
 
     @ArticleLog
     @PostMapping
