@@ -29,7 +29,7 @@ public abstract class ChangeArticleLikeServiceImpl implements ChangeArticleLikeS
         }
     }
 
-    protected Article findArticle(Long articleId) {
+    protected Article findAndValidateArticle(Long articleId) {
         return findArticleRepository.findById(articleId)
             .orElseThrow(() -> new NotExistsException(" 해당 게시글이 존재하지 않습니다."));
     }

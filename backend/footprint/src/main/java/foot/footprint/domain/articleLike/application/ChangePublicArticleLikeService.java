@@ -20,7 +20,7 @@ public class ChangePublicArticleLikeService extends ChangeArticleLikeServiceImpl
     @Override
     @Transactional
     public void changeArticleLike(ArticleLikeDto articleLikeDto) {
-        Article article = findArticle(articleLikeDto.getArticleId());
+        Article article = findAndValidateArticle(articleLikeDto.getArticleId());
         if (!article.isPublic_map()) {
             throw new NumberFormatException("게시글이 전체지도에 포함되지 않습니다.");
         }

@@ -21,7 +21,7 @@ public class ChangePrivateArticleLikeService extends ChangeArticleLikeServiceImp
     @Override
     @Transactional
     public void changeArticleLike(ArticleLikeDto articleLikeDto) {
-        Article article = findArticle(articleLikeDto.getArticleId());
+        Article article = findAndValidateArticle(articleLikeDto.getArticleId());
         if (!article.isPrivate_map()) {
             throw new NumberFormatException("게시글이 개인지도에 포함되지 않습니다.");
         }

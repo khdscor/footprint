@@ -26,7 +26,7 @@ public class ChangeGroupedArticleLikeService extends ChangeArticleLikeServiceImp
     @Override
     @Transactional
     public void changeArticleLike(ArticleLikeDto articleLikeDto) {
-        Article article = findArticle(articleLikeDto.getArticleId());
+        findAndValidateArticle(articleLikeDto.getArticleId());
         ValidateIsMine.validateInMyGroup(articleLikeDto.getArticleId(),
             articleLikeDto.getMemberId(), articleGroupRepository);
         changeLike(articleLikeDto);
