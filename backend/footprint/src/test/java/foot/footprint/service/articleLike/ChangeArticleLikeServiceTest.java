@@ -9,7 +9,9 @@ import static org.mockito.Mockito.verify;
 import foot.footprint.domain.article.dao.FindArticleRepository;
 import foot.footprint.domain.article.domain.Article;
 import foot.footprint.domain.article.exception.NotMatchMemberException;
-import foot.footprint.domain.articleLike.application.ArticleLikeService;
+import foot.footprint.domain.articleLike.application.ChangeGroupedArticleLikeService;
+import foot.footprint.domain.articleLike.application.ChangePrivateArticleLikeService;
+import foot.footprint.domain.articleLike.application.ChangePublicArticleLikeService;
 import foot.footprint.domain.articleLike.dao.ArticleLikeRepository;
 import foot.footprint.domain.articleLike.dto.ArticleLikeDto;
 import foot.footprint.domain.group.dao.ArticleGroupRepository;
@@ -26,7 +28,7 @@ import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 @ExtendWith(MockitoExtension.class)
-public class ArticleLikeServiceTest {
+public class ChangeArticleLikeServiceTest {
 
     @Spy
     private ArticleLikeRepository articleLikeRepository;
@@ -39,7 +41,15 @@ public class ArticleLikeServiceTest {
 
     @Spy
     @InjectMocks
-    private ArticleLikeService articleLikeService;
+    private ChangePublicArticleLikeService publicArticleLikeService;
+
+    @Spy
+    @InjectMocks
+    private ChangePrivateArticleLikeService privateArticleLikeService;
+
+    @Spy
+    @InjectMocks
+    private ChangeGroupedArticleLikeService groupedArticleLikeService;
 
     @Test
     @DisplayName("전체 확인 가능 게시글 좋아요 변화")
@@ -56,14 +66,14 @@ public class ArticleLikeServiceTest {
             .willReturn(Optional.ofNullable(article));
 
         //when
-        articleLikeService.changeArticleLike(likedArticle);
+        publicArticleLikeService.changeArticleLike(likedArticle);
 
         //then
         verify(articleLikeRepository, times(1)).deleteArticleLike(any());
         verify(articleLikeRepository, times(0)).saveArticleLike(any());
 
         //when
-        articleLikeService.changeArticleLike(notLikedArticle);
+        publicArticleLikeService.changeArticleLike(notLikedArticle);
 
         //then
         verify(articleLikeRepository, times(1)).saveArticleLike(any());
@@ -74,7 +84,7 @@ public class ArticleLikeServiceTest {
 
         //when & then
         assertThatThrownBy(
-            () -> articleLikeService.changeArticleLike(likedArticle))
+            () -> publicArticleLikeService.changeArticleLike(likedArticle))
             .isInstanceOf(NotExistsException.class);
     }
 
@@ -93,7 +103,7 @@ public class ArticleLikeServiceTest {
 
         //when & then
         assertThatThrownBy(
-            () -> articleLikeService.changeArticleLike(articleLikeDto))
+            () -> privateArticleLikeService.changeArticleLike(articleLikeDto))
             .isInstanceOf(NotMatchMemberException.class);
     }
 
@@ -114,7 +124,7 @@ public class ArticleLikeServiceTest {
 
         //when & then
         assertThatThrownBy(
-            () -> articleLikeService.changeArticleLike(articleLikeDto))
+            () -> groupedArticleLikeService.changeArticleLike(articleLikeDto))
             .isInstanceOf(NotAuthorizedOrExistException.class);
     }
 
