@@ -1,6 +1,6 @@
 package foot.footprint.domain.comment.api;
 
-import foot.footprint.domain.comment.application.DeleteCommentService;
+import foot.footprint.domain.comment.application.delete.DeleteCommentService;
 import foot.footprint.global.aop.comment.CommentLog;
 import foot.footprint.global.security.user.CustomUserDetails;
 import lombok.RequiredArgsConstructor;

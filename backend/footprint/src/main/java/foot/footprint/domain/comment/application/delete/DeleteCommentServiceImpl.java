@@ -1,4 +1,4 @@
-package foot.footprint.domain.comment.application;
+package foot.footprint.domain.comment.application.delete;
 
 import foot.footprint.domain.article.exception.NotMatchMemberException;
 import foot.footprint.domain.comment.dao.DeleteCommentRepository;
@@ -8,10 +8,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
-public class DeleteCommentService {
+public class DeleteCommentServiceImpl implements DeleteCommentService {
 
     private final DeleteCommentRepository deleteCommentRepository;
 
+    @Override
     @Transactional
     public void delete(Long commentId, Long memberId) {
         int result = deleteCommentRepository.deleteComment(commentId, memberId);
