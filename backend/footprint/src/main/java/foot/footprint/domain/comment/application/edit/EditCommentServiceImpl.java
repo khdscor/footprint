@@ -1,4 +1,4 @@
-package foot.footprint.domain.comment.application;
+package foot.footprint.domain.comment.application.edit;
 
 import foot.footprint.domain.article.exception.NotMatchMemberException;
 import foot.footprint.domain.comment.dao.EditCommentRepository;
@@ -8,10 +8,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
-public class EditCommentService {
+public class EditCommentServiceImpl implements EditCommentService{
 
     private final EditCommentRepository editCommentRepository;
 
+    @Override
     @Transactional
     public void edit(Long commentId, Long memberId, String newContent) {
         int result = editCommentRepository.editComment(commentId, memberId, newContent);

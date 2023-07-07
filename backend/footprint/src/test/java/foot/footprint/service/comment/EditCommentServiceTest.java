@@ -5,7 +5,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 
 import foot.footprint.domain.article.exception.NotMatchMemberException;
-import foot.footprint.domain.comment.application.EditCommentService;
+import foot.footprint.domain.comment.application.edit.EditCommentServiceImpl;
 import foot.footprint.domain.comment.dao.EditCommentRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -20,7 +20,7 @@ public class EditCommentServiceTest {
     private EditCommentRepository editCommentRepository;
 
     @InjectMocks
-    private EditCommentService editCommentService;
+    private EditCommentServiceImpl editCommentServiceImpl;
 
     @Test
     void edit() {
@@ -30,7 +30,7 @@ public class EditCommentServiceTest {
 
         //when & then
         assertThatThrownBy(
-            () -> editCommentService.edit(any(), any(), any()))
+            () -> editCommentServiceImpl.edit(any(), any(), any()))
             .isInstanceOf(NotMatchMemberException.class);
     }
 }
