@@ -1,4 +1,4 @@
-package foot.footprint.domain.article.application;
+package foot.footprint.domain.article.application.edit;
 
 import foot.footprint.domain.article.dao.EditArticleRepository;
 import foot.footprint.domain.article.exception.NotMatchMemberException;
@@ -8,10 +8,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
-public class EditArticleService {
+public class EditArticleServiceImpl implements EditArticleService{
 
     private final EditArticleRepository editArticleRepository;
 
+    @Override
     @Transactional
     public void edit(Long articleId, Long memberId, String newContent) {
         int result = editArticleRepository.editArticle(articleId, memberId, newContent);
