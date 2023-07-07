@@ -1,4 +1,4 @@
-package foot.footprint.domain.article.application.findArticle;
+package foot.footprint.domain.article.application.findArticles;
 
 import foot.footprint.domain.article.dao.FindArticleRepository;
 import foot.footprint.domain.article.domain.Article;
@@ -13,7 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @Qualifier("publicAndPrivate")
 @RequiredArgsConstructor
-public class FindPublicAndPrivateArticles implements FindArticleService {
+public class FindPublicAndPrivateArticles implements FindArticlesService {
 
     private final FindArticleRepository findArticleRepository;
 

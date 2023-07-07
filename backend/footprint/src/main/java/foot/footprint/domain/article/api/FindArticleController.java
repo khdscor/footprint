@@ -1,15 +1,14 @@
 package foot.footprint.domain.article.api;
 
 import foot.footprint.domain.article.application.FindArticleDetailsService;
+import foot.footprint.domain.article.application.findArticles.FindArticlesService;
 import foot.footprint.domain.article.domain.LocationRange;
 import foot.footprint.domain.article.dto.ArticleMapResponse;
 import foot.footprint.domain.article.dto.ArticlePageResponse;
 import foot.footprint.domain.article.dto.ArticleRangeRequest;
-import foot.footprint.domain.article.application.FindArticleService;
-import foot.footprint.domain.article.dto.GroupMapArticlesDto;
 import foot.footprint.global.error.exception.WrongInputException;
 import foot.footprint.global.security.user.CustomUserDetails;
-import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,20 +20,30 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/articles")
-@RequiredArgsConstructor
 public class FindArticleController {
 
-    private final FindArticleService findArticleService;
+    private final FindArticlesService findPublicAndPrivateArticles;
+
+    private final FindArticlesService findGroupedArticles;
 
     private final FindArticleDetailsService findArticleDetailsService;
+
+    public FindArticleController(
+        @Qualifier("publicAndPrivate") FindArticlesService findPublicAndPrivateArticles,
+        @Qualifier("grouped") FindArticlesService findGroupedArticles,
+        FindArticleDetailsService findArticleDetailsService) {
+        this.findPublicAndPrivateArticles = findPublicAndPrivateArticles;
+        this.findGroupedArticles = findGroupedArticles;
+        this.findArticleDetailsService = findArticleDetailsService;
+    }
 
     @GetMapping("/public")
     public ResponseEntity<List<ArticleMapResponse>> findPublicMapArticles(
         ArticleRangeRequest request) {
         validateLocation(request);
         LocationRange locationRange = new LocationRange(request);
-        List<ArticleMapResponse> publicMapArticles = findArticleService.findPublicMapArticles(
-            locationRange);
+        List<ArticleMapResponse> publicMapArticles = findPublicAndPrivateArticles.findArticles(
+            null, null, locationRange);
         return ResponseEntity.ok().body(publicMapArticles);
     }
 
@@ -43,18 +52,18 @@ public class FindArticleController {
         ArticleRangeRequest request, @AuthenticationPrincipal CustomUserDetails userDetails) {
         validateLocation(request);
         LocationRange locationRange = new LocationRange(request);
-        List<ArticleMapResponse> privateMapArticles = findArticleService.findPrivateMapArticles(
-            userDetails.getId(), locationRange);
+        List<ArticleMapResponse> privateMapArticles = findPublicAndPrivateArticles.findArticles(
+            userDetails.getId(), null, locationRange);
         return ResponseEntity.ok().body(privateMapArticles);
     }
 
     @GetMapping("/grouped")
-    public ResponseEntity<GroupMapArticlesDto> findGroupedMapArticles(
+    public ResponseEntity<List<ArticleMapResponse>> findGroupedMapArticles(
         @RequestParam(value = "groupId") Long groupId, ArticleRangeRequest request,
         @AuthenticationPrincipal CustomUserDetails userDetails) {
         validateLocation(request);
         LocationRange locationRange = new LocationRange(request);
-        GroupMapArticlesDto groupedArticles = findArticleService.findGroupedArticles(
+        List<ArticleMapResponse> groupedArticles = findGroupedArticles.findArticles(
             userDetails.getId(), groupId, locationRange);
         return ResponseEntity.ok().body(groupedArticles);
     }

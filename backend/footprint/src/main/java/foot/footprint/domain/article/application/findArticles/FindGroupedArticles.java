@@ -1,4 +1,4 @@
-package foot.footprint.domain.article.application.findArticle;
+package foot.footprint.domain.article.application.findArticles;
 
 import foot.footprint.domain.article.dao.FindArticleRepository;
 import foot.footprint.domain.article.domain.Article;
@@ -13,7 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @Qualifier("grouped")
 @RequiredArgsConstructor
-public class FindGroupedArticles implements FindArticleService {
+public class FindGroupedArticles implements FindArticlesService {
 
     private final FindArticleRepository findArticleRepository;
 

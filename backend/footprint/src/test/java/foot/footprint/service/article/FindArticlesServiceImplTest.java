@@ -1,7 +1,7 @@
 package foot.footprint.service.article;
 
-import foot.footprint.domain.article.application.findArticle.FindGroupedArticles;
-import foot.footprint.domain.article.application.findArticle.FindPublicAndPrivateArticles;
+import foot.footprint.domain.article.application.findArticles.FindGroupedArticles;
+import foot.footprint.domain.article.application.findArticles.FindPublicAndPrivateArticles;
 import foot.footprint.domain.article.domain.Article;
 import foot.footprint.domain.article.domain.LocationRange;
 import foot.footprint.domain.article.dto.ArticleMapResponse;
@@ -24,7 +24,7 @@ import static org.mockito.Mockito.verify;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @ExtendWith(MockitoExtension.class)
-public class FindArticleServiceImplTest {
+public class FindArticlesServiceImplTest {
 
     @Mock
     private FindArticleRepository findArticleRepository;
