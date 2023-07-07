@@ -1,4 +1,4 @@
-package foot.footprint.domain.article.application;
+package foot.footprint.domain.article.application.create;
 
 import foot.footprint.domain.article.dao.CreateArticleRepository;
 import foot.footprint.domain.article.domain.Article;
@@ -16,7 +16,7 @@ import java.util.Objects;
 
 @Service
 @RequiredArgsConstructor
-public class CreateArticleService {
+public class CreateArticleServiceImpl implements CreateArticleService{
 
     private final CreateArticleRepository articleRepository;
 
@@ -24,6 +24,7 @@ public class CreateArticleService {
 
     private final GroupRepository groupRepository;
 
+    @Override
     @Transactional
     public Long create(CreateArticleRequest request, Long memberId) {
         Article article = Article.createArticle(request, memberId);
