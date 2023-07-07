@@ -7,7 +7,7 @@ import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
-import foot.footprint.domain.member.application.MemberService;
+import foot.footprint.domain.member.application.MemberServiceImpl;
 import foot.footprint.domain.member.dao.MemberRepository;
 import foot.footprint.domain.member.domain.AuthProvider;
 import foot.footprint.domain.member.domain.Member;
@@ -31,7 +31,7 @@ public class MemberServiceTest {
 
     @Spy
     @InjectMocks
-    private MemberService memberService;
+    private MemberServiceImpl memberServiceImpl;
 
     private Member member;
 
@@ -42,11 +42,11 @@ public class MemberServiceTest {
         given(memberRepository.findById(any())).willReturn(Optional.ofNullable(member));
 
         //when
-        MemberImageResponse response = memberService.findImageUrl(member.getId());
+        MemberImageResponse response = memberServiceImpl.findImageUrl(member.getId());
 
         //then
         verify(memberRepository, times(1)).findById(any());
-        verify(memberService, times(1)).findImageUrl(any());
+        verify(memberServiceImpl, times(1)).findImageUrl(any());
         assertThat(response.getImageUrl()).isNull();
         assertThat(response.getMemberId()).isEqualTo(member.getId());
     }
@@ -58,7 +58,7 @@ public class MemberServiceTest {
         Long memberId = 1L;
         //when & then
         assertThatThrownBy(
-            () -> memberService.findImageUrl(memberId))
+            () -> memberServiceImpl.findImageUrl(memberId))
             .isInstanceOf(NotExistsException.class);
     }
 

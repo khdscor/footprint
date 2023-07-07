@@ -4,5 +4,5 @@ import foot.footprint.domain.comment.dto.CommentResponse;
 
 public interface CreateCommentService {
 
-    public CommentResponse createComment(Long articleId, String content, Long memberId);
+    CommentResponse createComment(Long articleId, String content, Long memberId);
 }

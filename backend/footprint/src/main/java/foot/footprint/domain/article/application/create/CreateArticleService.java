@@ -4,5 +4,5 @@ import foot.footprint.domain.article.dto.CreateArticleRequest;
 
 public interface CreateArticleService {
 
-    public Long create(CreateArticleRequest request, Long memberId);
+    Long create(CreateArticleRequest request, Long memberId);
 }

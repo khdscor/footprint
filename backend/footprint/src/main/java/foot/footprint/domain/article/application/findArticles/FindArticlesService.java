@@ -6,6 +6,6 @@ import java.util.List;
 
 public interface FindArticlesService {
 
-    public List<ArticleMapResponse> findArticles(Long memberId, Long groupId,
+    List<ArticleMapResponse> findArticles(Long memberId, Long groupId,
         LocationRange locationRange);
 }
