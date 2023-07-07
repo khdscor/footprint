@@ -8,7 +8,9 @@ import static org.mockito.BDDMockito.given;
 import foot.footprint.domain.article.dao.FindArticleRepository;
 import foot.footprint.domain.article.domain.Article;
 import foot.footprint.domain.article.exception.NotMatchMemberException;
-import foot.footprint.domain.comment.application.CreateCommentService;
+import foot.footprint.domain.comment.application.create.CreateCommentOnGroupedArticle;
+import foot.footprint.domain.comment.application.create.CreateCommentOnPrivateArticle;
+import foot.footprint.domain.comment.application.create.CreateCommentOnPublicArticle;
 import foot.footprint.domain.comment.dao.CreateCommentRepository;
 import foot.footprint.domain.comment.dto.CommentResponse;
 import foot.footprint.domain.group.dao.ArticleGroupRepository;
@@ -42,7 +44,13 @@ public class CreateCommentServiceTest {
     private CreateCommentRepository createCommentRepository;
 
     @InjectMocks
-    private CreateCommentService createCommentService;
+    private CreateCommentOnPublicArticle createCommentOnPublicArticle;
+
+    @InjectMocks
+    private CreateCommentOnPrivateArticle createCommentOnPrivateArticle;
+
+    @InjectMocks
+    private CreateCommentOnGroupedArticle createCommentOnGroupedArticle;
 
     @Test
     @DisplayName("댓글 작성 테스트 -- 전체 지도")
@@ -50,13 +58,14 @@ public class CreateCommentServiceTest {
         //given
         Long memberId = 10L;
         String content = "이것은 테스트 입니다.";
-        given(memberRepository.findById(any()))
-            .willReturn(Optional.ofNullable(createMember(memberId)));
+        given(memberRepository.findById(any())).willReturn(
+            Optional.ofNullable(createMember(memberId)));
         given(findArticleRepository.findById(any())).willReturn(
             Optional.ofNullable(createArticle(memberId, false, true)));
 
         //when
-        CommentResponse response = createCommentService.create(1L, content, memberId);
+        CommentResponse response = createCommentOnPublicArticle.createComment(1L, content,
+            memberId);
 
         //then
         assertThat(response.getAuthor().getId()).isEqualTo(memberId);
@@ -70,26 +79,27 @@ public class CreateCommentServiceTest {
         Long memberId = 10L;
         Long anotherId = 20L;
         String content = "이것은 테스트 입니다.";
-        given(memberRepository.findById(any()))
-            .willReturn(Optional.ofNullable(createMember(memberId)));
+        given(memberRepository.findById(any())).willReturn(
+            Optional.ofNullable(createMember(memberId)));
         given(findArticleRepository.findById(any())).willReturn(
             Optional.ofNullable(createArticle(memberId, true, false)));
 
         //when
-        CommentResponse response = createCommentService.create(1L, content, memberId);
+        CommentResponse response = createCommentOnPrivateArticle.createComment(1L, content,
+            memberId);
 
         //then
         assertThat(response.getAuthor().getId()).isEqualTo(memberId);
         assertThat(response.getContent()).isEqualTo(content);
 
         //given 개인 권한이 없을 시 예외 처리
-        given(memberRepository.findById(any()))
-            .willReturn(Optional.ofNullable(createMember(anotherId)));
+        given(memberRepository.findById(any())).willReturn(
+            Optional.ofNullable(createMember(anotherId)));
 
         //when & then
         assertThatThrownBy(
-            () -> createCommentService.create(1L, content, anotherId))
-            .isInstanceOf(NotMatchMemberException.class);
+            () -> createCommentOnPrivateArticle.createComment(1L, content, anotherId)).isInstanceOf(
+            NotMatchMemberException.class);
     }
 
     @Test
@@ -98,16 +108,16 @@ public class CreateCommentServiceTest {
         //given
         Long memberId = 10L;
         String content = "이것은 테스트 입니다.";
-        given(memberRepository.findById(any()))
-            .willReturn(Optional.ofNullable(createMember(memberId)));
+        given(memberRepository.findById(any())).willReturn(
+            Optional.ofNullable(createMember(memberId)));
         given(findArticleRepository.findById(any())).willReturn(
             Optional.ofNullable(createArticle(memberId, false, false)));
         given(articleGroupRepository.existsArticleInMyGroup(any(), any())).willReturn(false);
 
         //when & then
         assertThatThrownBy(
-            () -> createCommentService.create(1L, content, memberId))
-            .isInstanceOf(NotAuthorizedOrExistException.class);
+            () -> createCommentOnGroupedArticle.createComment(1L, content, memberId)).isInstanceOf(
+            NotAuthorizedOrExistException.class);
     }
 
     private Article createArticle(Long memberId, boolean privateMap, boolean publicMap) {
