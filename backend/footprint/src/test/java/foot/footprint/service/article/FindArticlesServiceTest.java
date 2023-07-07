@@ -24,7 +24,7 @@ import static org.mockito.Mockito.verify;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @ExtendWith(MockitoExtension.class)
-public class FindArticlesServiceImplTest {
+public class FindArticlesServiceTest {
 
     @Mock
     private FindArticleRepository findArticleRepository;

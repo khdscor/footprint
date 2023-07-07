@@ -1,4 +1,4 @@
-package foot.footprint.domain.article.application;
+package foot.footprint.domain.article.application.delete;
 
 import foot.footprint.domain.article.dao.DeleteArticleRepository;
 import foot.footprint.domain.article.exception.NotMatchMemberException;
@@ -8,10 +8,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
-public class DeleteArticleService {
+public class DeleteArticleServiceImpl implements DeleteArticleService{
 
     private final DeleteArticleRepository deleteArticleRepository;
 
+    @Override
     @Transactional
     public void delete(Long articleId, Long memberId) {
         int result = deleteArticleRepository.deleteById(articleId, memberId);
