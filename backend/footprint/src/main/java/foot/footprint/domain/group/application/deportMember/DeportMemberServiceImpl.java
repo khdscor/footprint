@@ -1,4 +1,4 @@
-package foot.footprint.domain.group.application;
+package foot.footprint.domain.group.application.deportMember;
 
 import foot.footprint.domain.article.exception.NotMatchMemberException;
 import foot.footprint.domain.group.dao.GroupRepository;
@@ -12,12 +12,13 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
-public class DeportMemberService {
+public class DeportMemberServiceImpl implements DeportMemberService{
 
     private final MemberGroupRepository memberGroupRepository;
 
     private final GroupRepository groupRepository;
 
+    @Override
     @Transactional
     public void deport(Long groupId, Long memberId, Long myId) {
         validateGroupIsMine(groupId, myId, memberId);
@@ -28,7 +29,7 @@ public class DeportMemberService {
     }
 
     private void validateGroupIsMine(Long groupId, Long myId, Long memberId) {
-        if (memberId == myId) {
+        if (Objects.equals(memberId, myId)) {
             throw new NotMatchMemberException("자기 자신을 탈퇴할 수 없습니다.");
         }
         Group group = groupRepository.findById(groupId)

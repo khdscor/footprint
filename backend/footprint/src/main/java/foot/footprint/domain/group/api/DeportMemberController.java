@@ -1,6 +1,6 @@
 package foot.footprint.domain.group.api;
 
-import foot.footprint.domain.group.application.DeportMemberService;
+import foot.footprint.domain.group.application.deportMember.DeportMemberService;
 import foot.footprint.global.aop.group.GroupLog;
 import foot.footprint.global.security.user.CustomUserDetails;
 import lombok.RequiredArgsConstructor;

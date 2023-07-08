@@ -1,4 +1,4 @@
-package foot.footprint.domain.group.application;
+package foot.footprint.domain.group.application.create;
 
 import foot.footprint.domain.group.dao.GroupRepository;
 import foot.footprint.domain.group.dao.MemberGroupRepository;
@@ -11,12 +11,13 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
-public class CreateGroupService {
+public class CreateGroupServiceImpl implements CreateGroupService {
 
     private final GroupRepository groupRepository;
 
     private final MemberGroupRepository memberGroupRepository;
 
+    @Override
     @Transactional
     public Long createGroup(String groupName, Long creatorId) {
         Group newGroup = saveGroup(groupName, creatorId);

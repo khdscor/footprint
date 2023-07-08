@@ -1,4 +1,4 @@
-package foot.footprint.domain.group.application;
+package foot.footprint.domain.group.application.changeImportant;
 
 import foot.footprint.domain.group.dao.MemberGroupRepository;
 import foot.footprint.global.error.exception.NotAuthorizedOrExistException;
@@ -8,10 +8,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
-public class ChangeImportantService {
+public class ChangeImportantServiceImpl implements ChangeImportantService{
 
     private final MemberGroupRepository memberGroupRepository;
 
+    @Override
     @Transactional
     public void changeImportant(Long groupId, Long memberId) {
         int result = memberGroupRepository.changeImportant(groupId, memberId);

@@ -1,6 +1,6 @@
 package foot.footprint.domain.group.api;
 
-import foot.footprint.domain.group.application.JoinGroupService;
+import foot.footprint.domain.group.application.join.JoinGroupService;
 import foot.footprint.global.security.user.CustomUserDetails;
 import java.net.URI;
 import lombok.RequiredArgsConstructor;

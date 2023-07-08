@@ -1,6 +1,6 @@
 package foot.footprint.domain.group.api;
 
-import foot.footprint.domain.group.application.FindGroupService;
+import foot.footprint.domain.group.application.findGroup.FindGroupService;
 import foot.footprint.domain.group.dto.GroupDetailsResponse;
 import foot.footprint.domain.group.dto.GroupSummaryResponse;
 import foot.footprint.global.security.user.CustomUserDetails;

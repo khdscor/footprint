@@ -1,4 +1,4 @@
-package foot.footprint.domain.group.application;
+package foot.footprint.domain.group.application.secession;
 
 import foot.footprint.domain.group.dao.GroupRepository;
 import foot.footprint.domain.group.dao.MemberGroupRepository;
@@ -15,12 +15,13 @@ import org.springframework.transaction.annotation.Transactional;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class SecessionGroupService {
+public class SecessionGroupServiceImpl implements SecessionGroupService{
 
     private final GroupRepository groupRepository;
 
     private final MemberGroupRepository memberGroupRepository;
 
+    @Override
     @Transactional
     public void secessionGroup(Long groupId, Long memberId) {
         Group group = findGroup(groupId);

@@ -1,4 +1,4 @@
-package foot.footprint.domain.group.application;
+package foot.footprint.domain.group.application.join;
 
 import foot.footprint.domain.group.dao.GroupRepository;
 import foot.footprint.domain.group.dao.MemberGroupRepository;
@@ -12,11 +12,12 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
-public class JoinGroupService {
+public class JoinGroupServiceImpl implements JoinGroupService{
 
     private final GroupRepository groupRepository;
     private final MemberGroupRepository memberGroupRepository;
 
+    @Override
     @Transactional
     public Long join(String invitationCode, Long memberId) {
         Group group = findGroup(invitationCode);

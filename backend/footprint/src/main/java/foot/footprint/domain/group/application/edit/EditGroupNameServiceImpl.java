@@ -1,4 +1,4 @@
-package foot.footprint.domain.group.application;
+package foot.footprint.domain.group.application.edit;
 
 import foot.footprint.domain.group.dao.GroupRepository;
 import foot.footprint.global.error.exception.NotAuthorizedOrExistException;
@@ -8,10 +8,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
-public class EditGroupNameService {
+public class EditGroupNameServiceImpl implements EditGroupNameService {
 
     private final GroupRepository groupRepository;
 
+    @Override
     @Transactional
     public void change(Long groupId, Long ownerId, String newName) {
         int edited = groupRepository.changeGroupName(groupId, ownerId, newName);
