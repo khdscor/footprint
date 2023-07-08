@@ -1,11 +1,11 @@
 package foot.footprint.service.member;
 
-import foot.footprint.domain.member.application.AuthService;
+import foot.footprint.domain.member.application.auth.LoginService;
+import foot.footprint.domain.member.application.auth.SignUpService;
 import foot.footprint.domain.member.dao.MemberRepository;
 import foot.footprint.domain.member.domain.AuthProvider;
 import foot.footprint.domain.member.domain.Role;
 import foot.footprint.domain.member.domain.Member;
-import foot.footprint.domain.member.dto.authRequest.AuthRequest;
 import foot.footprint.domain.member.dto.authRequest.LoginRequest;
 import foot.footprint.domain.member.dto.authRequest.SignUpRequest;
 import foot.footprint.domain.member.exception.AlreadyExistedEmailException;
@@ -43,7 +43,11 @@ public class AuthServiceTest {
 
     @Spy
     @InjectMocks
-    private AuthService authService;
+    private LoginService loginService;
+
+    @Spy
+    @InjectMocks
+    private SignUpService signUpService;
 
     private Member member;
 
@@ -60,7 +64,7 @@ public class AuthServiceTest {
         given(tokenProvider.createAccessToken(any(), any())).willReturn(testToken);
 
         //when
-        String token = authService.login(loginRequest);
+        String token = loginService.process(loginRequest);
 
         //then
         assertThat(token).isEqualTo(testToken);
@@ -74,7 +78,7 @@ public class AuthServiceTest {
 
         //when & then
         assertThatThrownBy(
-            () -> authService.login(loginRequest))
+            () -> loginService.process(loginRequest))
             .isInstanceOf(NotExistsException.class);
 
         //given
@@ -85,7 +89,7 @@ public class AuthServiceTest {
 
         //when & then
         assertThatThrownBy(
-            () -> authService.login(loginRequest))
+            () -> loginService.process(loginRequest))
             .isInstanceOf(NotMatchPasswordException.class);
     }
 
@@ -96,10 +100,10 @@ public class AuthServiceTest {
         ArgumentCaptor<Member> captor = ArgumentCaptor.forClass(Member.class);
         SignUpRequest signUpRequest = new SignUpRequest("nickName", "email", "password");
         given(memberRepository.saveMember(any())).willReturn(1L);
-        given(memberRepository.existsByEmail("email")).willReturn(false);
+        given(memberRepository.existsByEmail(any())).willReturn(false);
 
         //when
-        authService.signUp(signUpRequest);
+        signUpService.process(signUpRequest);
 
         //then
         verify(memberRepository, times(1)).saveMember(captor.capture());
@@ -111,12 +115,13 @@ public class AuthServiceTest {
     @DisplayName("회원가입 진행시 이미 이메일이 가입되어 있는경우")
     public void SignUp_IfExistsEmail() {
         //given
+        boolean test = true;
         SignUpRequest signUpRequest = new SignUpRequest("nickName", "email", "password");
-        given(memberRepository.existsByEmail("email")).willReturn(true);
+        given(memberRepository.existsByEmail(any())).willReturn(true);
 
         //when & then
         assertThatThrownBy(
-            () -> authService.signUp(signUpRequest))
+            () -> signUpService.process(signUpRequest))
             .isInstanceOf(AlreadyExistedEmailException.class);
     }
 

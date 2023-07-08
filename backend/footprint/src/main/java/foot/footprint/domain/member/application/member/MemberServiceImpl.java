@@ -1,4 +1,4 @@
-package foot.footprint.domain.member.application;
+package foot.footprint.domain.member.application.member;
 
 import foot.footprint.domain.member.dao.MemberRepository;
 import foot.footprint.domain.member.domain.Member;

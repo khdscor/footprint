@@ -1,6 +1,6 @@
 package foot.footprint.domain.member.api;
 
-import foot.footprint.domain.member.application.MemberService;
+import foot.footprint.domain.member.application.member.MemberService;
 import foot.footprint.domain.member.dto.MemberImageResponse;
 import foot.footprint.domain.member.dto.MyPageResponse;
 import foot.footprint.global.aop.auth.MemberLog;

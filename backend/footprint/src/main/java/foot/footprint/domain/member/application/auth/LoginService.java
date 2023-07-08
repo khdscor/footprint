@@ -1,4 +1,4 @@
-package foot.footprint.domain.member.application;
+package foot.footprint.domain.member.application.auth;
 
 import foot.footprint.domain.member.domain.Member;
 import foot.footprint.domain.member.domain.Role;
@@ -11,33 +11,30 @@ import foot.footprint.domain.member.dao.MemberRepository;
 import foot.footprint.global.error.exception.NotExistsException;
 import foot.footprint.global.security.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@Qualifier("login")
 @RequiredArgsConstructor
-public class AuthService {
+public class LoginService implements AuthService{
 
     private final MemberRepository memberRepository;
     private final PasswordEncoder passwordEncoder;
     private final JwtTokenProvider tokenProvider;
 
+    @Override
     @Transactional(readOnly = true)
-    public String login(AuthRequest authRequest) {
+    public String process(AuthRequest authRequest) {
         LoginRequest loginRequest = (LoginRequest) authRequest;
         Member member = findMember(loginRequest);
         verifyPassword(loginRequest, member);
         return tokenProvider.createAccessToken(String.valueOf(member.getId()), Role.USER);
     }
 
-    @Transactional
-    public void signUp(AuthRequest authRequest) {
-        SignUpRequest signUpRequest = (SignUpRequest) authRequest;
-        verifyEmail(signUpRequest);
-        Member member = Member.createMember(signUpRequest, passwordEncoder);
-        memberRepository.saveMember(member);
-    }
+
 
     private Member findMember(LoginRequest loginRequest) {
         return memberRepository.findByEmail(loginRequest.getEmail())
@@ -47,12 +44,6 @@ public class AuthService {
     private void verifyPassword(LoginRequest loginRequest, Member member) {
         if (!passwordEncoder.matches(loginRequest.getPassword(), member.getPassword())) {
             throw new NotMatchPasswordException("비밀번호가 틀렸습니다.");
-        }
-    }
-
-    private void verifyEmail(SignUpRequest signUpRequest) {
-        if (memberRepository.existsByEmail(signUpRequest.getEmail())) {
-            throw new AlreadyExistedEmailException("이미 사용중인 이메일입니다.");
         }
     }
 }

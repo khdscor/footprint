@@ -1,4 +1,4 @@
-package foot.footprint.domain.member.application;
+package foot.footprint.domain.member.application.member;
 
 import foot.footprint.domain.member.dto.MemberImageResponse;
 import foot.footprint.domain.member.dto.MyPageResponse;
