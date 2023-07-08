@@ -1,17 +1,15 @@
-package foot.footprint.domain.member.dto;
+package foot.footprint.domain.member.dto.authRequest;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @AllArgsConstructor
 @Getter
-public class LoginRequest {
-
+public class AuthRequest {
     @Email
     @NotBlank
     @NotEmpty

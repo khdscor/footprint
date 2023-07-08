@@ -1,6 +1,6 @@
 package foot.footprint.domain.member.domain;
 
-import foot.footprint.domain.member.dto.SignUpRequest;
+import foot.footprint.domain.member.dto.authRequest.SignUpRequest;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

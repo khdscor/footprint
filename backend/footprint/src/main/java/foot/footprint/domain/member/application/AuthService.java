@@ -2,8 +2,9 @@ package foot.footprint.domain.member.application;
 
 import foot.footprint.domain.member.domain.Member;
 import foot.footprint.domain.member.domain.Role;
-import foot.footprint.domain.member.dto.LoginRequest;
-import foot.footprint.domain.member.dto.SignUpRequest;
+import foot.footprint.domain.member.dto.authRequest.AuthRequest;
+import foot.footprint.domain.member.dto.authRequest.LoginRequest;
+import foot.footprint.domain.member.dto.authRequest.SignUpRequest;
 import foot.footprint.domain.member.exception.AlreadyExistedEmailException;
 import foot.footprint.domain.member.exception.NotMatchPasswordException;
 import foot.footprint.domain.member.dao.MemberRepository;
@@ -23,14 +24,16 @@ public class AuthService {
     private final JwtTokenProvider tokenProvider;
 
     @Transactional(readOnly = true)
-    public String login(LoginRequest loginRequest) {
+    public String login(AuthRequest authRequest) {
+        LoginRequest loginRequest = (LoginRequest) authRequest;
         Member member = findMember(loginRequest);
         verifyPassword(loginRequest, member);
         return tokenProvider.createAccessToken(String.valueOf(member.getId()), Role.USER);
     }
 
     @Transactional
-    public void signUp(SignUpRequest signUpRequest) {
+    public void signUp(AuthRequest authRequest) {
+        SignUpRequest signUpRequest = (SignUpRequest) authRequest;
         verifyEmail(signUpRequest);
         Member member = Member.createMember(signUpRequest, passwordEncoder);
         memberRepository.saveMember(member);

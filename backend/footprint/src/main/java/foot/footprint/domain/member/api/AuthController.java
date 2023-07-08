@@ -1,8 +1,9 @@
 package foot.footprint.domain.member.api;
 
 import foot.footprint.domain.member.dto.AuthResponse;
-import foot.footprint.domain.member.dto.LoginRequest;
-import foot.footprint.domain.member.dto.SignUpRequest;
+import foot.footprint.domain.member.dto.authRequest.AuthRequest;
+import foot.footprint.domain.member.dto.authRequest.LoginRequest;
+import foot.footprint.domain.member.dto.authRequest.SignUpRequest;
 import foot.footprint.domain.member.application.AuthService;
 import foot.footprint.global.aop.auth.LoginLog;
 import foot.footprint.global.aop.auth.SignUpLog;
@@ -27,7 +28,6 @@ public class AuthController {
     public ResponseEntity<AuthResponse> login(
         @RequestBody @Valid LoginRequest loginRequest) {
         String token = authService.login(loginRequest);
-
         return ResponseEntity.ok(new AuthResponse(token));
     }
 
