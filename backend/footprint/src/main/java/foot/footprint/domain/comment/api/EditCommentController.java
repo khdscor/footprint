@@ -1,7 +1,7 @@
 package foot.footprint.domain.comment.api;
 
 
-import foot.footprint.domain.comment.application.EditCommentService;
+import foot.footprint.domain.comment.application.edit.EditCommentService;
 import foot.footprint.domain.comment.dto.CommentResponse;
 import foot.footprint.domain.comment.dto.EditCommentRequest;
 import foot.footprint.global.aop.comment.CommentLog;

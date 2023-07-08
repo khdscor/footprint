@@ -1,6 +1,6 @@
 package foot.footprint.domain.group.api;
 
-import foot.footprint.domain.group.application.EditGroupNameService;
+import foot.footprint.domain.group.application.edit.EditGroupNameService;
 import foot.footprint.domain.group.dto.EditGroupNameRequest;
 import foot.footprint.global.aop.group.GroupLog;
 import foot.footprint.global.security.user.CustomUserDetails;

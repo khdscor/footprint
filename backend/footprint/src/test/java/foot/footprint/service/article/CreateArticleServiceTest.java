@@ -8,7 +8,7 @@ import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
-import foot.footprint.domain.article.application.CreateArticleService;
+import foot.footprint.domain.article.application.create.CreateArticleServiceImpl;
 import foot.footprint.domain.article.dao.CreateArticleRepository;
 import foot.footprint.domain.article.domain.Article;
 import foot.footprint.domain.article.dto.CreateArticleRequest;
@@ -39,7 +39,7 @@ public class CreateArticleServiceTest {
     private GroupRepository groupRepository;
 
     @InjectMocks
-    private CreateArticleService createArticleService;
+    private CreateArticleServiceImpl createArticleServiceImpl;
 
     @Test
     @DisplayName("게시글 생성시")
@@ -64,7 +64,7 @@ public class CreateArticleServiceTest {
         given(groupRepository.findAllByMemberId(any()))
             .willReturn(groupIdsToBeIncluded);
         //when
-        createArticleService.create(createArticleRequest, memberId);
+        createArticleServiceImpl.create(createArticleRequest, memberId);
 
         //then
         verify(createArticleRepository, times(1)).saveArticle(captor.capture());
@@ -86,7 +86,7 @@ public class CreateArticleServiceTest {
 
         //when & then
         assertThatThrownBy(
-            () -> createArticleService.create(createArticleRequest, memberId))
+            () -> createArticleServiceImpl.create(createArticleRequest, memberId))
             .isInstanceOf(NotIncludedMapException.class);
     }
 
@@ -100,7 +100,7 @@ public class CreateArticleServiceTest {
 
         //when & then
         assertThatThrownBy(
-            () -> createArticleService.create(createArticleRequest, memberId))
+            () -> createArticleServiceImpl.create(createArticleRequest, memberId))
             .isInstanceOf(NotIncludedMapException.class);
     }
 }

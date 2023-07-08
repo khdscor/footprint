@@ -1,6 +1,5 @@
 package foot.footprint.global.aop.auth;
 
-import foot.footprint.domain.member.dto.LoginRequest;
 import foot.footprint.global.security.user.CustomUserDetails;
 import java.lang.reflect.Method;
 import lombok.extern.slf4j.Slf4j;

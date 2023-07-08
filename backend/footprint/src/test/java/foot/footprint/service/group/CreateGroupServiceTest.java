@@ -2,7 +2,7 @@ package foot.footprint.service.group;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import foot.footprint.domain.group.application.CreateGroupService;
+import foot.footprint.domain.group.application.create.CreateGroupServiceImpl;
 import foot.footprint.domain.group.dao.GroupRepository;
 import foot.footprint.domain.member.dao.MemberRepository;
 import foot.footprint.domain.member.domain.AuthProvider;
@@ -23,7 +23,7 @@ public class CreateGroupServiceTest {
     private MemberRepository memberRepository;
 
     @Autowired
-    private CreateGroupService createGroupService;
+    private CreateGroupServiceImpl createGroupServiceImpl;
 
     @Test
     public void createGroup() {
@@ -32,7 +32,7 @@ public class CreateGroupServiceTest {
         String groupName = "테스트 그룹";
 
         //when
-        Long groupId = createGroupService.createGroup(groupName, creator.getId());
+        Long groupId = createGroupServiceImpl.createGroup(groupName, creator.getId());
 
         //then
         assertThat(groupId).isNotNull();

@@ -4,7 +4,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 
-import foot.footprint.domain.article.application.DeleteArticleService;
+import foot.footprint.domain.article.application.delete.DeleteArticleServiceImpl;
 import foot.footprint.domain.article.dao.DeleteArticleRepository;
 import foot.footprint.domain.article.exception.NotMatchMemberException;
 import org.junit.jupiter.api.Test;
@@ -20,7 +20,7 @@ public class DeleteArticleServiceTest {
     private DeleteArticleRepository deleteArticleRepository;
 
     @InjectMocks
-    private DeleteArticleService deleteArticleService;
+    private DeleteArticleServiceImpl deleteArticleServiceImpl;
 
     @Test
     public void edit() {
@@ -30,7 +30,7 @@ public class DeleteArticleServiceTest {
 
         //when & then
         assertThatThrownBy(
-            () -> deleteArticleService.delete(any(), any()))
+            () -> deleteArticleServiceImpl.delete(any(), any()))
             .isInstanceOf(NotMatchMemberException.class);
     }
 }

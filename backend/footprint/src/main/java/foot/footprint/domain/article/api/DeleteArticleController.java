@@ -1,6 +1,6 @@
 package foot.footprint.domain.article.api;
 
-import foot.footprint.domain.article.application.DeleteArticleService;
+import foot.footprint.domain.article.application.delete.DeleteArticleService;
 import foot.footprint.global.aop.article.ArticleLog;
 import foot.footprint.global.security.user.CustomUserDetails;
 import lombok.RequiredArgsConstructor;

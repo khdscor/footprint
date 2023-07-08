@@ -1,6 +1,6 @@
 package foot.footprint.domain.article.api;
 
-import foot.footprint.domain.article.application.EditArticleService;
+import foot.footprint.domain.article.application.edit.EditArticleService;
 import foot.footprint.domain.article.dto.EditArticleContentRequest;
 import foot.footprint.global.aop.article.ArticleLog;
 import foot.footprint.global.security.user.CustomUserDetails;

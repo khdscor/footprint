@@ -1,6 +1,6 @@
 package foot.footprint.domain.group.api;
 
-import foot.footprint.domain.group.application.CreateGroupService;
+import foot.footprint.domain.group.application.create.CreateGroupService;
 import foot.footprint.domain.group.dto.CreateGroupRequest;
 import foot.footprint.global.aop.group.CreateGroupLog;
 import foot.footprint.global.security.user.CustomUserDetails;

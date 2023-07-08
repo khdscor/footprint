@@ -1,6 +1,6 @@
 package foot.footprint.domain.article.api;
 
-import foot.footprint.domain.article.application.CreateArticleService;
+import foot.footprint.domain.article.application.create.CreateArticleService;
 import foot.footprint.domain.article.dto.CreateArticleRequest;
 import foot.footprint.global.aop.article.CreateArticleLog;
 import foot.footprint.global.error.exception.WrongInputException;

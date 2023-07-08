@@ -4,7 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 
-import foot.footprint.domain.article.application.FindArticleDetailsService;
+import foot.footprint.domain.article.application.findArticleDetails.FindPublicArticleDetails;
 import foot.footprint.domain.article.dao.FindArticleRepository;
 import foot.footprint.domain.article.domain.Article;
 import foot.footprint.domain.article.dto.ArticleDetailsDto;
@@ -43,7 +43,7 @@ public class FindArticleDetailsServiceTest {
 
 
     @InjectMocks
-    private FindArticleDetailsService findArticleDetailsService;
+    private FindPublicArticleDetails findPublicArticleDetails;
 
     @BeforeEach
     void setUp() {
@@ -82,7 +82,7 @@ public class FindArticleDetailsServiceTest {
         CustomUserDetails userDetails = new CustomUserDetails(memberId, email, null);
 
         //when
-        ArticlePageResponse response = findArticleDetailsService.findDetails(articleId,
+        ArticlePageResponse response = findPublicArticleDetails.findDetails(articleId,
             userDetails);
 
         //then
@@ -93,7 +93,7 @@ public class FindArticleDetailsServiceTest {
         assertThat(response.getMyMemberId()).isEqualTo(memberId);
 
         //when 유저 정보가 null(로그인하지 않는 상태)
-        ArticlePageResponse response2 = findArticleDetailsService.findDetails(articleId, null);
+        ArticlePageResponse response2 = findPublicArticleDetails.findDetails(articleId, null);
 
         //then
         assertThat(response2.getArticleDetails().getId()).isEqualTo(articleId);
