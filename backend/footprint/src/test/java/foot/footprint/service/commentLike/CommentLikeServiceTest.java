@@ -9,7 +9,9 @@ import static org.mockito.Mockito.verify;
 import foot.footprint.domain.article.dao.FindArticleRepository;
 import foot.footprint.domain.article.domain.Article;
 import foot.footprint.domain.article.exception.NotMatchMemberException;
-import foot.footprint.domain.commentLike.application.CommentLikeService;
+import foot.footprint.domain.commentLike.application.ChangeGroupedCommentLike;
+import foot.footprint.domain.commentLike.application.ChangePrivateCommentLike;
+import foot.footprint.domain.commentLike.application.ChangePublicCommentLike;
 import foot.footprint.domain.commentLike.dao.CommentLikeRepository;
 import foot.footprint.domain.group.dao.ArticleGroupRepository;
 import foot.footprint.global.error.exception.NotAuthorizedOrExistException;
@@ -36,7 +38,13 @@ public class CommentLikeServiceTest {
     private ArticleGroupRepository articleGroupRepository;
 
     @InjectMocks
-    private CommentLikeService commentLikeService;
+    private ChangePublicCommentLike changePublicCommentLike;
+
+    @InjectMocks
+    private ChangePrivateCommentLike changePrivateCommentLike;
+
+    @InjectMocks
+    private ChangeGroupedCommentLike changeGroupedCommentLike;
 
     @Test
     @DisplayName("댓글 좋아요 변화 - 전체지도 시")
@@ -48,7 +56,7 @@ public class CommentLikeServiceTest {
         given(commentLikeRepository.saveCommentLike(any())).willReturn(1);
 
         //when
-        commentLikeService.changeMyLike(1L, 1L, false, 1L);
+        changePublicCommentLike.changeMyLike(1L, 1L, false, 1L);
 
         //then
         verify(commentLikeRepository, times(1)).saveCommentLike(any());
@@ -58,7 +66,7 @@ public class CommentLikeServiceTest {
         given(commentLikeRepository.deleteCommentLike(any(), any())).willReturn(1);
 
         //when
-        commentLikeService.changeMyLike(1L, 1L, true, 1L);
+        changePublicCommentLike.changeMyLike(1L, 1L, true, 1L);
 
         //then
         verify(commentLikeRepository, times(1)).deleteCommentLike(any(), any());
@@ -68,7 +76,7 @@ public class CommentLikeServiceTest {
 
         //when & then
         assertThatThrownBy(
-            () -> commentLikeService.changeMyLike(1L, 1L, true, 1L))
+            () -> changePublicCommentLike.changeMyLike(1L, 1L, true, 1L))
             .isInstanceOf(NotExistsException.class);
     }
 
@@ -82,7 +90,7 @@ public class CommentLikeServiceTest {
 
         //when & then
         assertThatThrownBy(
-            () -> commentLikeService.changeMyLike(1L, 1L, true, 2L))
+            () -> changePrivateCommentLike.changeMyLike(1L, 1L, true, 2L))
             .isInstanceOf(NotMatchMemberException.class);
     }
 
@@ -97,7 +105,7 @@ public class CommentLikeServiceTest {
 
         //when & then
         assertThatThrownBy(
-            () -> commentLikeService.changeMyLike(1L, 1L, true, 2L))
+            () -> changeGroupedCommentLike.changeMyLike(1L, 1L, true, 2L))
             .isInstanceOf(NotAuthorizedOrExistException.class);
     }
 
