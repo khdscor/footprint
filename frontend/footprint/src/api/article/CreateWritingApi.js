@@ -5,7 +5,7 @@ import {ACCESS_TOKEN} from "../../constants/SessionStorage";
 
 const createWritingApi = ({title, content, center, publicMap, privateMap,
     groupIds, history}) => {
-  const accessToken = sessionStorage.getItem(ACCESS_TOKEN);
+  const accessToken = sessionStorage.getItem(ACCESS_TOKEN) ;
 
   if (!accessToken) {
     alert("로그인이 필요한 서비스입니다.")
@@ -26,7 +26,7 @@ const createWritingApi = ({title, content, center, publicMap, privateMap,
       Authorization: "Bearer " + accessToken
     }
   }
-  axios.post(BACKEND_ADDRESS + "/articles", body, config)
+  axios.post(BACKEND_ADDRESS + "/articles/create", body, config)
     .then(response => {
       if (response.status === 201) {
         const backArticleUri = response.headers.location;

@@ -36,7 +36,7 @@
     <result property="invitationCode" column="invitationCode"/>
     <result property="important" column="important"/>
     <result property="createDate" column="createDate"/>
-    <collection property="memberDetails" ofType="foot.footprint.domain.group.dto.MemberDto">
+    <collection property="memberDetails" ofType="foot.footprint.domain.group.dto.find.MemberDto">
       <id property="id" column="memberId"/>
       <result property="nickName" column="nickName"/>
       <result property="imageUrl" column="imageUrl"/>

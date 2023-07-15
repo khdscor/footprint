@@ -1,6 +1,6 @@
 package foot.footprint.domain.member.dto;
 
-import foot.footprint.domain.group.dto.GroupSummaryResponse;
+import foot.footprint.domain.group.dto.find.GroupSummaryResponse;
 import java.sql.Timestamp;
 import java.util.List;
 import lombok.AllArgsConstructor;

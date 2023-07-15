@@ -24,7 +24,7 @@ const SelectAllButton = (props) => {
       props.setIsPrivateMapChecked(false);
     }
     else {
-      props.setCheckedGroups(props.groups.map(group => group.id));
+      props.setCheckedGroups(props.groups.map(group => group.groupId));
       props.setIsPublicMapChecked(true)
       props.setIsPrivateMapChecked(true)
     }

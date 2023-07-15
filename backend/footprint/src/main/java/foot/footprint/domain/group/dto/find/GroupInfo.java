@@ -1,21 +1,20 @@
-package foot.footprint.domain.group.dto;
+package foot.footprint.domain.group.dto.find;
 
 import java.util.Date;
-import java.util.List;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Getter
-@AllArgsConstructor
+@Builder
 @NoArgsConstructor
-public class GroupDetailsDto {
-
+@AllArgsConstructor
+public class GroupInfo {
     private Long id;
     private String name;
-    private Long ownerId;
+    private boolean isOwner;
     private String invitationCode;
     private Boolean important;
     private Date createDate;
-    private List<MemberDto> memberDetails;
 }

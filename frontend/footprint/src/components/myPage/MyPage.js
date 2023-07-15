@@ -35,14 +35,10 @@ const MyPage = (props) => {
       props.history.push("/login");
       return;
     }
-    findMyGroupsApi(props.history).then(groupsPromise=>{
-      setMyGroups(groupsPromise)
-    })
     findUserApi(accessToken).then(userPromise => {
     setUser(userPromise)
-    });
-    findMyArticlesApi(accessToken).then(articlesPromise => {
-      setMyArticles(articlesPromise)
+    setMyGroups(groupsPromise)
+    setMyArticles(articlesPromise)
     });
   }, [accessToken]);
 

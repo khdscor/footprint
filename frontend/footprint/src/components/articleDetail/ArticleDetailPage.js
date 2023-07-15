@@ -125,6 +125,7 @@ const ArticleDetailPage = (props) => {
                 <Comment
                   key={idx}
                   accessToken={accessToken}
+                  articleId={articleId}
                   comment={comment}
                   mapType={mapType}
                   commentTotalLikes={comment.totalLikes}

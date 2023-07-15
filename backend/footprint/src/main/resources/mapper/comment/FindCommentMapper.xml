@@ -3,7 +3,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="foot.footprint.domain.comment.dao.FindCommentRepository">
   <select id="findAllByArticleId" resultType="CommentResponse">
-    SELECT c.id, c.content, m.id, m.nick_name, m.image_url, c.create_date, count(l.id)
+    SELECT c.id, c.content, c.member_id, m.nick_name, m.image_url, c.create_date, count(l.id)
     FROM comment c LEFT JOIN comment_like as l ON (c.id = l.comment_id)
     LEFT JOIN member m ON (c.member_id = m.id)
     WHERE c.article_id = #{articleId}

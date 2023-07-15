@@ -30,6 +30,7 @@ const Menu = ({
   setIsGroupOpened,
   setMapType,
   setGroupId,
+  setGroupName,
   setIsCreateGroupModalOpen,
   setIsJoinGroupModalOpen,
   accessToken,
@@ -66,7 +67,8 @@ const Menu = ({
                 }}
                 onClick={() => {
                 setMapType(GROUPED);
-                setGroupId(importantGroup.id);
+                setGroupId(importantGroup.groupId);
+                setGroupName(importantGroup.name);
                 setIsMenuOpen(false);
               }}>
                 {importantGroup.name}
@@ -84,7 +86,7 @@ const Menu = ({
                     padding: "5px 10px 5px 10px",
                     cursor: "pointer",
                   }}
-                  onClick={()=>history.push("/groups/" + importantGroup.id)}
+                  onClick={()=>history.push("/groups/" + importantGroup.groupId)}
               />
             </StyledDiv>
         )

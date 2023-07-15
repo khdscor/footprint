@@ -1,4 +1,4 @@
-package foot.footprint.domain.group.dto;
+package foot.footprint.domain.group.dto.find;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

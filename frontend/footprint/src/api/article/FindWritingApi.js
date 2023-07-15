@@ -4,8 +4,14 @@ import {BACKEND_ADDRESS} from "../../constants/ADDRESS";
 import {ACCESS_TOKEN} from "../../constants/SessionStorage";
 
 const findWritingApi = (articleId, mapType, history) => {
+  const accessToken = sessionStorage.getItem(ACCESS_TOKEN);
+  const config = {
+    headers: {
+      "Authorization": "Bearer " + accessToken
+    }
+  };
   if (mapType === PUBLIC) {
-    return axios.get(BACKEND_ADDRESS + "/articles/" + mapType + "/details/" + articleId)
+    return axios.get(BACKEND_ADDRESS + "/articles/" + mapType + "/details/" + articleId, config)
       .then(response => response.data)
         .catch(error => {
           if (error.response.status === 400 || error.response.status === 404) {
@@ -15,13 +21,9 @@ const findWritingApi = (articleId, mapType, history) => {
           } else alert("게시 글 가져오기에 실패했음...");
         });
   }
+
   // 개인지도 or 그룹지도
-  const accessToken = sessionStorage.getItem(ACCESS_TOKEN);
-  const config = {
-    headers: {
-      "Authorization": "Bearer " + accessToken
-    }
-  };
+  
   return axios.get(BACKEND_ADDRESS + "/articles/" + mapType + "/details/" + articleId, config)
   .then(response => response.data)
     .catch(error => {

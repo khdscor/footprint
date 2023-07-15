@@ -7,7 +7,6 @@ import {withRouter} from "react-router-dom";
 import GroupHead from "./GroupHead";
 import CancelButton from "./CancelButton";
 import InvitationCode from "./InvitationCode";
-import findGroupMembersApi from "../../api/group/FindGroupMembersApi";
 import GroupMembers from "./members/GroupMembers";
 import EditNameModal from "./editNameModal/EditNameModal";
 import WithdrawButton from "./WithdrawButton";
@@ -32,14 +31,9 @@ const GroupPage = (props) => {
       groupId: groupId,
       accessToken: accessToken,
       history: props.history
-    }).then(groupPromise => setGroup(groupPromise));
-
-    findGroupMembersApi({
-      groupId: groupId,
-      accessToken: accessToken,
-      history: props.history
-    }).then(groupMembersPromise => {
-      setGroupMembers(groupMembersPromise)
+    }).then(groupPromise => {
+      setGroup(groupPromise.groupInfo)
+      setGroupMembers(groupPromise.memberDetails)
     });
   }, [groupId, accessToken]);
 

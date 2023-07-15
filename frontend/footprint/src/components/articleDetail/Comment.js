@@ -86,6 +86,7 @@ const DeleteComment = styled.div`
 
 const Comment = ({
   accessToken,
+  articleId,
   comment,
   mapType,
   commentTotalLikes,
@@ -122,7 +123,7 @@ const Comment = ({
               <LikeHeart
                 onClick={() => {
                   changeMyLikeInCommentIdApi(accessToken,
-                    hasILikedListInComment.includes(comment.id), comment.id,
+                    hasILikedListInComment.includes(comment.id), articleId, comment.id,
                     mapType, history);
                   onCommentLikeClicked(comment.id);
                 }}>{hasILikedListInComment.includes(comment.id) ? "♥"

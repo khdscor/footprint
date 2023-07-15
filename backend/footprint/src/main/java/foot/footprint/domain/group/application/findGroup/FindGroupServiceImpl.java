@@ -2,9 +2,9 @@ package foot.footprint.domain.group.application.findGroup;
 
 import foot.footprint.domain.group.dao.GroupRepository;
 import foot.footprint.domain.group.dao.MemberGroupRepository;
-import foot.footprint.domain.group.dto.GroupDetailsDto;
-import foot.footprint.domain.group.dto.GroupDetailsResponse;
-import foot.footprint.domain.group.dto.GroupSummaryResponse;
+import foot.footprint.domain.group.dto.find.GroupDetailsDto;
+import foot.footprint.domain.group.dto.find.GroupDetailsResponse;
+import foot.footprint.domain.group.dto.find.GroupSummaryResponse;
 import foot.footprint.global.error.exception.NotAuthorizedOrExistException;
 import java.util.List;
 import lombok.RequiredArgsConstructor;

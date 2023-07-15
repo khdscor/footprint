@@ -15,7 +15,7 @@ const joinGroupApi = ({invitationCode, history}) => {
       Authorization: "Bearer " + accessToken
     }
   }
-  axios.post(BACKEND_ADDRESS + "/groups/join?invitation_code=" + invitationCode, null, config)
+  axios.post(BACKEND_ADDRESS + "/groups/admission?invitation_code=" + invitationCode, null, config)
   .then(response => {
     if (response.status === 201) {
       const backGroupUri = response.headers.location;

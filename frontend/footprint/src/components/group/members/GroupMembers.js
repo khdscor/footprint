@@ -7,7 +7,7 @@ const GroupMembers = ({members}) => {
       {
         members.map(member => <Member
           userId={member.id}
-          nickname={member.nickname}
+          nickname={member.nickName}
           userImageUrl={member.imageUrl}
         />)
       }

@@ -11,7 +11,7 @@ const createGroupApi = ({groupName, history}) => {
     return Promise.reject("토큰이 없음");
   }
   const body = {
-    name: groupName
+    groupName: groupName
   };
   const config = {
     headers: {

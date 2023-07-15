@@ -32,7 +32,7 @@
       <result property="totalComments" column="totalComments"/>
     </collection>
     <collection property="myGroups" notNullColumn="groupId"
-      ofType="foot.footprint.domain.group.dto.GroupSummaryResponse">
+      ofType="foot.footprint.domain.group.dto.find.GroupSummaryResponse">
       <id property="groupId" column="groupId"/>
       <result property="name" column="name"/>
     </collection>

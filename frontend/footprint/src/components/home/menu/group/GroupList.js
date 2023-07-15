@@ -46,7 +46,7 @@ const GroupList = (props) => {
                 <GroupContent
                   setIsMenuOpen={props.setIsMenuOpen}
                   groupName={group.name}
-                  groupId={group.id}
+                  groupId={group.groupId}
                   setMapType={props.setMapType}
                   setGroupId={props.setGroupId}
                   history={props.history}

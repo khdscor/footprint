@@ -12,10 +12,10 @@ const GroupList = (props) => {
   }, [props]);
 
   const groupsPresent = props.groups.map((e, idx) =>
-      <GroupContent onClick={() => props.onGroupCheckboxClicked(props.groups[idx].id)}>
+      <GroupContent onClick={() => props.onGroupCheckboxClicked(props.groups[idx].groupId)}>
         <StyledCheckbox
-               onChange={() => props.onGroupCheckboxClicked(props.groups[idx].id)}
-               checked={props.checkedGroups.includes(props.groups[idx].id)}/>
+               onChange={() => props.onGroupCheckboxClicked(props.groups[idx].groupId)}
+               checked={props.checkedGroups.includes(props.groups[idx].groupId)}/>
         {props.groups[idx].name}
       </GroupContent>
   );

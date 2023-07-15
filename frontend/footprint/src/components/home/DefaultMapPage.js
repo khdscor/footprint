@@ -18,7 +18,6 @@ import { withRouter } from "react-router-dom";
 import CreateGroupModal from "./menu/group/create/CreateGroupModal";
 import JoinGroupModal from "./menu/group/join/JoinGroupModal";
 import MapType from "./MapTypeStyle";
-import findGroupApi from "../../api/group/FindGroupApi";
 import MyLocationButton from "./button/MyLocationButton";
 
 const DefaultMapPage = (props) => {
@@ -54,7 +53,6 @@ const DefaultMapPage = (props) => {
   const [isCreateGroupModalOpen, setIsCreateGroupModalOpen] = useState(false);
   const [isJoinGroupModalOpen, setIsJoinGroupModalOpen] = useState(false);
   const [isGroupOpened, setIsGroupOpened] = useState(false);
-
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(
       function success(position) {
@@ -123,11 +121,6 @@ const DefaultMapPage = (props) => {
       ).then((mapArticlesPromise) => {
         setArticles(mapArticlesPromise);
       });
-      findGroupApi({
-        groupId: groupId,
-        accessToken: accessToken,
-        history: props.history,
-      }).then((groupPromise) => setGroupName(groupPromise.name));
     }
   }, [zoom, center, mapType, groupId, myLocation]);
 
@@ -168,6 +161,7 @@ const DefaultMapPage = (props) => {
         setIsGroupOpened={setIsGroupOpened}
         setMapType={setMapType}
         setGroupId={setGroupId}
+        setGroupName={setGroupName}
         setIsCreateGroupModalOpen={setIsCreateGroupModalOpen}
         setIsJoinGroupModalOpen={setIsJoinGroupModalOpen}
         history={props.history}
