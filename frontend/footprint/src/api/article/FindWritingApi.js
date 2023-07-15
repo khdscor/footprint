@@ -5,7 +5,7 @@ import {ACCESS_TOKEN} from "../../constants/SessionStorage";
 
 const findWritingApi = (articleId, mapType, history) => {
   if (mapType === PUBLIC) {
-    return axios.get(BACKEND_ADDRESS + "/articles/" + mapType + "/" + articleId)
+    return axios.get(BACKEND_ADDRESS + "/articles/" + mapType + "/details/" + articleId)
       .then(response => response.data)
         .catch(error => {
           if (error.response.status === 400 || error.response.status === 404) {
@@ -22,7 +22,7 @@ const findWritingApi = (articleId, mapType, history) => {
       "Authorization": "Bearer " + accessToken
     }
   };
-  return axios.get(BACKEND_ADDRESS + "/articles/" + mapType + "/" + articleId, config)
+  return axios.get(BACKEND_ADDRESS + "/articles/" + mapType + "/details/" + articleId, config)
   .then(response => response.data)
     .catch(error => {
       if (error.response.status === 401 || error.response.status === 403) {

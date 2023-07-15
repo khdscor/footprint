@@ -6,13 +6,9 @@ import findWritingApi from "../../api/article/FindWritingApi";
 import ArticleBody from "./ArticleBody";
 import Comment from "./Comment";
 import CommentWriting from "./CommentWriting";
-import findCommentsApi from "../../api/comment/FindCommentsApi";
 import { ACCESS_TOKEN } from "../../constants/SessionStorage";
 import { withRouter } from "react-router-dom";
 import { GROUPED, PRIVATE, PUBLIC } from "../../constants/MapType";
-import checkHasILikedApi from "../../api/article/CheckHasILikedApi";
-import checkHasIlikedInCommentApi from "../../api/comment/CheckHasIlikedInCommentApi";
-import findMyIdApi from "../../api/user/FindMyIdApi";
 import ChangeContentModal from "./editContent/ChangeContentModal";
 
 const ArticleDetailPage = (props) => {
@@ -58,45 +54,18 @@ const ArticleDetailPage = (props) => {
     if (mapType === GROUPED || mapType === PUBLIC || mapType === PRIVATE) {
       findWritingApi(articleId, mapType, props.history).then(
         (articlePromise) => {
-          setArticle(articlePromise);
-          setArticleTotalLikes(articlePromise.totalLikes);
+          setArticle(articlePromise.articleDetails);
+          setArticleTotalLikes(articlePromise.articleDetails.totalLikes);
+          setHasILiked(articlePromise.articleLike);
+          setComments(articlePromise.comments);
+          setHasILikedListInComment(articlePromise.commentLikes);
+          setMyId(articlePromise.myMemberId)
         }
       );
     } else {
       alert("주소가 올바르지 않습니다.");
       props.history.push("/");
     }
-  }, [articleId, mapType]);
-
-  useEffect(() => {
-    if (accessToken) {
-      checkHasILikedApi(accessToken, articleId, mapType).then((hasILiked) => {
-        setHasILiked(hasILiked);
-      });
-    }
-  }, [articleId, mapType]);
-
-  useEffect(() => {
-    findCommentsApi({
-      articleId: articleId,
-      mapType: mapType,
-      history: props.history,
-    }).then((commentPromise) => {
-      setComments(commentPromise);
-    });
-    if (accessToken) {
-      checkHasIlikedInCommentApi(accessToken, articleId, mapType).then(
-        (hasILikedListInComment) => {
-          setHasILikedListInComment(hasILikedListInComment);
-        }
-      );
-    }
-  }, [articleId, mapType]);
-
-  useEffect(() => {
-    findMyIdApi({ accessToken, history: props.history })
-      .then((resultPromise) => setMyId(resultPromise))
-      .catch(() => setMyId(-1));
   }, [articleId, mapType]);
 
   return (

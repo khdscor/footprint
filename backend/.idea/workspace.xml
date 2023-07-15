@@ -4,7 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e9c5eb8d-61e6-4bf1-a075-2ef5ca99f02a" name="변경" comment="refactor: public, private 지정 등 기타 리펙토링" />
+    <list default="true" id="e9c5eb8d-61e6-4bf1-a075-2ef5ca99f02a" name="변경" comment="refactor: public, private 지정 등 기타 리펙토링">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/footprint/log/testLog.log" beforeDir="false" afterPath="$PROJECT_DIR$/footprint/log/testLog.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/footprint/src/api/article/FindWritingApi.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/footprint/src/api/article/FindWritingApi.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/footprint/src/components/articleDetail/ArticleDetailPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/footprint/src/components/articleDetail/ArticleDetailPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/footprint/src/components/home/DefaultMapPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/footprint/src/components/home/DefaultMapPage.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -75,21 +81,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;refactor#10&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/khdsc/IdeaProjects/rush/backend&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;File.Encoding&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_MARK_IGNORED_FILES_AS_EXCLUDED": "true",
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "refactor#11",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/khdsc/IdeaProjects/footprint/backend/footprint/build.gradle",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "reference.settingsdialog.project.gradle"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\khdsc\IdeaProjects\footprint\backend\footprint\src\main\resources\db\migration" />
@@ -114,8 +121,9 @@
   </component>
   <component name="RunManager" selected="Application.FootprintApplication">
     <configuration name="FootprintApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="ALTERNATIVE_JRE_PATH" value="java-jdk-11" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="MAIN_CLASS_NAME" value="foot.footprint.FootprintApplication" />
-      <module name="footprint.main" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="foot.footprint.*" />
@@ -222,6 +230,19 @@
       <ForceTestExec>true</ForceTestExec>
       <method v="2" />
     </configuration>
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="backend" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="backend" />
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Application.FootprintApplication" />
@@ -240,13 +261,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1677633300752</updated>
-    </task>
-    <task id="LOCAL-00187" summary="feat: 로그인 로그 출력 구현">
-      <created>1687786877966</created>
-      <option name="number" value="00187" />
-      <option name="presentableId" value="LOCAL-00187" />
-      <option name="project" value="LOCAL" />
-      <updated>1687786877966</updated>
     </task>
     <task id="LOCAL-00188" summary="feat: 회원가입 로그 출력 구현">
       <created>1687787743995</created>
@@ -584,7 +598,14 @@
       <option name="project" value="LOCAL" />
       <updated>1689389299183</updated>
     </task>
-    <option name="localTasksCounter" value="236" />
+    <task id="LOCAL-00236" summary="refactor: public, private 지정 등 기타 리펙토링">
+      <created>1689390784128</created>
+      <option name="number" value="00236" />
+      <option name="presentableId" value="LOCAL-00236" />
+      <option name="project" value="LOCAL" />
+      <updated>1689390784128</updated>
+    </task>
+    <option name="localTasksCounter" value="237" />
     <servers />
   </component>
   <component name="UnknownFeatures">

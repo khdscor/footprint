@@ -7,6 +7,7 @@ import foot.footprint.domain.articleLike.dao.ArticleLikeRepository;
 import foot.footprint.domain.comment.dao.FindCommentRepository;
 import foot.footprint.domain.commentLike.dao.CommentLikeRepository;
 import foot.footprint.global.security.user.CustomUserDetails;
+import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -34,7 +35,7 @@ public class FindPublicArticleDetails extends FindArticleDetailsServiceImpl{
         ArticlePageResponse response = new ArticlePageResponse();
         addNonLoginInfo(articleId, response);
         if (userDetails == null) {
-            response.addLoginInfo(false, null, null);
+            response.addLoginInfo(false, new ArrayList<>(), -1L);
             return response;
         }
         addLoginInfo(articleId, userDetails.getId(), response);
