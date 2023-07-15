@@ -25,6 +25,9 @@ public class CreateCommentOnPrivateArticle extends CreateCommentServiceImpl {
     @Transactional
     public CommentResponse createComment(Long articleId, String content, Long memberId) {
         Article article = findAndValidateArticle(articleId);
+        if (!article.isPrivate_map()) {
+            throw new NumberFormatException("게시글이 전체지도에 포함되지 않습니다.");
+        }
         Member member = findAndValidateMember(memberId);
         AuthorDto authorDto = AuthorDto.buildAuthorDto(member);
         ValidateIsMine.validateArticleIsMine(article.getMember_id(), authorDto.getId());

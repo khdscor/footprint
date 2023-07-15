@@ -21,6 +21,9 @@ public class ChangePrivateCommentLike extends ChangeCommentLikeServiceImpl {
     @Transactional
     public void changeMyLike(Long commentId, Long articleId, Boolean hasILiked, Long memberId) {
         Article article = findAndValidateArticle(articleId);
+        if (!article.isPrivate_map()) {
+            throw new NumberFormatException("게시글이 전체지도에 포함되지 않습니다.");
+        }
         ValidateIsMine.validateArticleIsMine(article.getMember_id(), memberId);
         changeLike(commentId, memberId, hasILiked);
     }

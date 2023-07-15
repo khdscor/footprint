@@ -29,6 +29,9 @@ public class FindPrivateArticleDetails extends FindArticleDetailsServiceImpl{
     @Transactional(readOnly = true)
     public ArticlePageResponse findDetails(Long articleId, CustomUserDetails userDetails) {
         Article article = findAndValidateArticle(articleId);
+        if (!article.isPrivate_map()) {
+            throw new NumberFormatException("게시글이 전체지도에 포함되지 않습니다.");
+        }
         ArticlePageResponse response = new ArticlePageResponse();
         validateMember(userDetails);
         ValidateIsMine.validateArticleIsMine(article.getMember_id(), userDetails.getId());
