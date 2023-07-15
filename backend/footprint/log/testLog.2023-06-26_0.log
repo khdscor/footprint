@@ -1,0 +1,660 @@
+INFO  23-06-26 21:10:40[restartedMain] [FootprintApplication:55] - Starting FootprintApplication using Java 11.0.19 on DESKTOP-4HIFCAO with PID 16284 (C:\Users\khdsc\IdeaProjects\footprint\backend\footprint\build\classes\java\main started by khdsc in C:\Users\khdsc\IdeaProjects\footprint\backend)
+INFO  23-06-26 21:10:40[background-preinit] [Version:21] - HV000001: Hibernate Validator 6.2.5.Final
+INFO  23-06-26 21:10:40[restartedMain] [FootprintApplication:637] - The following 2 profiles are active: "rds", "oauth"
+INFO  23-06-26 21:10:40[restartedMain] [DevToolsPropertyDefaultsPostProcessor:255] - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+INFO  23-06-26 21:10:40[restartedMain] [DevToolsPropertyDefaultsPostProcessor:255] - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+INFO  23-06-26 21:10:44[restartedMain] [TomcatWebServer:108] - Tomcat initialized with port(s): 8080 (http)
+INFO  23-06-26 21:10:44[restartedMain] [Http11NioProtocol:173] - Initializing ProtocolHandler ["http-nio-8080"]
+INFO  23-06-26 21:10:44[restartedMain] [StandardService:173] - Starting service [Tomcat]
+INFO  23-06-26 21:10:44[restartedMain] [StandardEngine:173] - Starting Servlet engine: [Apache Tomcat/9.0.71]
+INFO  23-06-26 21:10:44[restartedMain] [[/]:173] - Initializing Spring embedded WebApplicationContext
+INFO  23-06-26 21:10:44[restartedMain] [ServletWebServerApplicationContext:292] - Root WebApplicationContext: initialization completed in 3470 ms
+INFO  23-06-26 21:10:46[restartedMain] [DefaultSecurityFilterChain:55] - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@5d2b0bc1, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@1d2d37b0, org.springframework.security.web.context.SecurityContextPersistenceFilter@406fa675, org.springframework.security.web.header.HeaderWriterFilter@72448014, org.springframework.web.filter.CorsFilter@28494a98, org.springframework.security.web.authentication.logout.LogoutFilter@4d353f42, org.springframework.security.oauth2.client.web.OAuth2AuthorizationRequestRedirectFilter@1e0bc9b5, org.springframework.security.oauth2.client.web.OAuth2LoginAuthenticationFilter@502cafb2, foot.footprint.global.security.JwtAuthenticationFilter@290d3f8a, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@44b3f9c3, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@2b07bb05, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@236cf416, org.springframework.security.web.session.SessionManagementFilter@6888c530, org.springframework.security.web.access.ExceptionTranslationFilter@538a25bc, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@60cf4e33]
+INFO  23-06-26 21:10:46[restartedMain] [VersionPrinter:49] - Flyway Community Edition 5.2.4 by Boxfuse
+INFO  23-06-26 21:10:46[restartedMain] [HikariDataSource:110] - HikariPool-1 - Starting...
+INFO  23-06-26 21:10:47[restartedMain] [HikariDataSource:123] - HikariPool-1 - Start completed.
+INFO  23-06-26 21:10:47[restartedMain] [DatabaseFactory:49] - Database: jdbc:mysql://footprintdb.ceekjekckdhv.ap-northeast-2.rds.amazonaws.com:3306/footprintDB (MySQL 8.0)
+INFO  23-06-26 21:10:47[restartedMain] [DbValidate:49] - Successfully validated 19 migrations (execution time 00:00.170s)
+INFO  23-06-26 21:10:47[restartedMain] [DbMigrate:49] - Current version of schema `footprintDB`: 6.2
+INFO  23-06-26 21:10:47[restartedMain] [DbMigrate:49] - Schema `footprintDB` is up to date. No migration necessary.
+INFO  23-06-26 21:10:48[restartedMain] [OptionalLiveReloadServer:59] - LiveReload server is running on port 35729
+INFO  23-06-26 21:10:48[restartedMain] [Http11NioProtocol:173] - Starting ProtocolHandler ["http-nio-8080"]
+INFO  23-06-26 21:10:48[restartedMain] [TomcatWebServer:220] - Tomcat started on port(s): 8080 (http) with context path ''
+INFO  23-06-26 21:10:48[restartedMain] [FootprintApplication:61] - Started FootprintApplication in 8.73 seconds (JVM running for 9.896)
+INFO  23-06-26 21:11:50[http-nio-8080-exec-2] [[/]:173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+INFO  23-06-26 21:11:50[http-nio-8080-exec-2] [DispatcherServlet:525] - Initializing Servlet 'dispatcherServlet'
+INFO  23-06-26 21:11:50[http-nio-8080-exec-2] [DispatcherServlet:547] - Completed initialization in 3 ms
+ERROR 23-06-26 21:11:51[http-nio-8080-exec-2] [[dispatcherServlet]:175] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is java.lang.NullPointerException] with root cause
+java.lang.NullPointerException: null
+	at foot.footprint.global.aop.article.CreateArticleLogAdvice.findPjpInfo(CreateArticleLogAdvice.java:58)
+	at foot.footprint.global.aop.article.CreateArticleLogAdvice.createArticleLogRecord(CreateArticleLogAdvice.java:30)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.springframework.aop.aspectj.AbstractAspectJAdvice.invokeAdviceMethodWithGivenArgs(AbstractAspectJAdvice.java:634)
+	at org.springframework.aop.aspectj.AbstractAspectJAdvice.invokeAdviceMethod(AbstractAspectJAdvice.java:624)
+	at org.springframework.aop.aspectj.AspectJAroundAdvice.invoke(AspectJAroundAdvice.java:72)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:175)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:763)
+	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:97)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:763)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:708)
+	at foot.footprint.domain.article.api.CreateArticleController$$EnhancerBySpringCGLIB$$cf8ae8c2.createArticle(<generated>)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1071)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:964)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:909)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:696)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:779)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:111)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:337)
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.invoke(FilterSecurityInterceptor.java:115)
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.doFilter(FilterSecurityInterceptor.java:81)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:346)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:122)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:346)
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:126)
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:81)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:346)
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:109)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:346)
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:149)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:346)
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:346)
+	at foot.footprint.global.security.JwtAuthenticationFilter.doFilterInternal(JwtAuthenticationFilter.java:37)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:346)
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:223)
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:217)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:346)
+	at org.springframework.security.oauth2.client.web.OAuth2AuthorizationRequestRedirectFilter.doFilterInternal(OAuth2AuthorizationRequestRedirectFilter.java:178)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:346)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:103)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:89)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:346)
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:91)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:346)
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90)
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:346)
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:112)
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:82)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:346)
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:55)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:346)
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:346)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:221)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:186)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:354)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:267)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:177)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:135)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:360)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:399)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:891)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1784)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+INFO  23-06-26 21:13:10[background-preinit] [Version:21] - HV000001: Hibernate Validator 6.2.5.Final
+INFO  23-06-26 21:13:10[restartedMain] [FootprintApplication:55] - Starting FootprintApplication using Java 11.0.19 on DESKTOP-4HIFCAO with PID 9240 (C:\Users\khdsc\IdeaProjects\footprint\backend\footprint\build\classes\java\main started by khdsc in C:\Users\khdsc\IdeaProjects\footprint\backend)
+INFO  23-06-26 21:13:10[restartedMain] [FootprintApplication:637] - The following 2 profiles are active: "rds", "oauth"
+INFO  23-06-26 21:13:10[restartedMain] [DevToolsPropertyDefaultsPostProcessor:255] - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+INFO  23-06-26 21:13:10[restartedMain] [DevToolsPropertyDefaultsPostProcessor:255] - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+INFO  23-06-26 21:13:14[restartedMain] [TomcatWebServer:108] - Tomcat initialized with port(s): 8080 (http)
+INFO  23-06-26 21:13:14[restartedMain] [Http11NioProtocol:173] - Initializing ProtocolHandler ["http-nio-8080"]
+INFO  23-06-26 21:13:14[restartedMain] [StandardService:173] - Starting service [Tomcat]
+INFO  23-06-26 21:13:14[restartedMain] [StandardEngine:173] - Starting Servlet engine: [Apache Tomcat/9.0.71]
+INFO  23-06-26 21:13:14[restartedMain] [[/]:173] - Initializing Spring embedded WebApplicationContext
+INFO  23-06-26 21:13:14[restartedMain] [ServletWebServerApplicationContext:292] - Root WebApplicationContext: initialization completed in 3408 ms
+INFO  23-06-26 21:13:16[restartedMain] [DefaultSecurityFilterChain:55] - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@384f0637, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@2a3fbf7b, org.springframework.security.web.context.SecurityContextPersistenceFilter@7de2ed6f, org.springframework.security.web.header.HeaderWriterFilter@3d249068, org.springframework.web.filter.CorsFilter@225f740e, org.springframework.security.web.authentication.logout.LogoutFilter@ef6ecd1, org.springframework.security.oauth2.client.web.OAuth2AuthorizationRequestRedirectFilter@6429419, org.springframework.security.oauth2.client.web.OAuth2LoginAuthenticationFilter@6cdc9684, foot.footprint.global.security.JwtAuthenticationFilter@74510943, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@60ccb1e4, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@1963a088, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@56ca5f85, org.springframework.security.web.session.SessionManagementFilter@3137e91b, org.springframework.security.web.access.ExceptionTranslationFilter@21595435, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@e5a2955]
+INFO  23-06-26 21:13:16[restartedMain] [VersionPrinter:49] - Flyway Community Edition 5.2.4 by Boxfuse
+INFO  23-06-26 21:13:16[restartedMain] [HikariDataSource:110] - HikariPool-1 - Starting...
+INFO  23-06-26 21:13:17[restartedMain] [HikariDataSource:123] - HikariPool-1 - Start completed.
+INFO  23-06-26 21:13:17[restartedMain] [DatabaseFactory:49] - Database: jdbc:mysql://footprintdb.ceekjekckdhv.ap-northeast-2.rds.amazonaws.com:3306/footprintDB (MySQL 8.0)
+INFO  23-06-26 21:13:17[restartedMain] [DbValidate:49] - Successfully validated 19 migrations (execution time 00:00.135s)
+INFO  23-06-26 21:13:17[restartedMain] [DbMigrate:49] - Current version of schema `footprintDB`: 6.2
+INFO  23-06-26 21:13:17[restartedMain] [DbMigrate:49] - Schema `footprintDB` is up to date. No migration necessary.
+INFO  23-06-26 21:13:18[restartedMain] [OptionalLiveReloadServer:59] - LiveReload server is running on port 35729
+INFO  23-06-26 21:13:18[restartedMain] [Http11NioProtocol:173] - Starting ProtocolHandler ["http-nio-8080"]
+INFO  23-06-26 21:13:18[restartedMain] [TomcatWebServer:220] - Tomcat started on port(s): 8080 (http) with context path ''
+INFO  23-06-26 21:13:18[restartedMain] [FootprintApplication:61] - Started FootprintApplication in 8.646 seconds (JVM running for 9.453)
+INFO  23-06-26 21:13:28[http-nio-8080-exec-2] [[/]:173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+INFO  23-06-26 21:13:28[http-nio-8080-exec-2] [DispatcherServlet:525] - Initializing Servlet 'dispatcherServlet'
+INFO  23-06-26 21:13:28[http-nio-8080-exec-2] [DispatcherServlet:547] - Completed initialization in 3 ms
+INFO  23-06-26 21:13:29[http-nio-8080-exec-2] [ArticleLogAdvice:35] - 회원번호 34가 게시글 26에 editArticle를 시도하였습니다.
+INFO  23-06-26 21:13:29[http-nio-8080-exec-2] [ArticleLogAdvice:38] - 회원번호 34에 의해 게시글 26에 editArticle가 실행되였습니다.
+ERROR 23-06-26 21:13:39[http-nio-8080-exec-3] [[dispatcherServlet]:175] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is java.lang.NullPointerException] with root cause
+java.lang.NullPointerException: null
+	at foot.footprint.global.aop.article.CreateArticleLogAdvice.findPjpInfo(CreateArticleLogAdvice.java:57)
+	at foot.footprint.global.aop.article.CreateArticleLogAdvice.createArticleLogRecord(CreateArticleLogAdvice.java:30)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.springframework.aop.aspectj.AbstractAspectJAdvice.invokeAdviceMethodWithGivenArgs(AbstractAspectJAdvice.java:634)
+	at org.springframework.aop.aspectj.AbstractAspectJAdvice.invokeAdviceMethod(AbstractAspectJAdvice.java:624)
+	at org.springframework.aop.aspectj.AspectJAroundAdvice.invoke(AspectJAroundAdvice.java:72)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:175)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:763)
+	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:97)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:763)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:708)
+	at foot.footprint.domain.article.api.CreateArticleController$$EnhancerBySpringCGLIB$$1922b20c.createArticle(<generated>)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1071)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:964)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:909)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:696)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:779)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:111)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:337)
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.invoke(FilterSecurityInterceptor.java:115)
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.doFilter(FilterSecurityInterceptor.java:81)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:346)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:122)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:346)
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:126)
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:81)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:346)
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:109)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:346)
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:149)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:346)
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:346)
+	at foot.footprint.global.security.JwtAuthenticationFilter.doFilterInternal(JwtAuthenticationFilter.java:37)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:346)
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:223)
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:217)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:346)
+	at org.springframework.security.oauth2.client.web.OAuth2AuthorizationRequestRedirectFilter.doFilterInternal(OAuth2AuthorizationRequestRedirectFilter.java:178)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:346)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:103)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:89)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:346)
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:91)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:346)
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90)
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:346)
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:112)
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:82)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:346)
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:55)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:346)
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:346)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:221)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:186)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:354)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:267)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:177)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:135)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:360)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:399)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:891)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1784)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+INFO  23-06-26 21:14:44[restartedMain] [FootprintApplication:55] - Starting FootprintApplication using Java 11.0.19 on DESKTOP-4HIFCAO with PID 15988 (C:\Users\khdsc\IdeaProjects\footprint\backend\footprint\build\classes\java\main started by khdsc in C:\Users\khdsc\IdeaProjects\footprint\backend)
+INFO  23-06-26 21:14:44[restartedMain] [FootprintApplication:637] - The following 2 profiles are active: "rds", "oauth"
+INFO  23-06-26 21:14:44[background-preinit] [Version:21] - HV000001: Hibernate Validator 6.2.5.Final
+INFO  23-06-26 21:14:44[restartedMain] [DevToolsPropertyDefaultsPostProcessor:255] - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+INFO  23-06-26 21:14:44[restartedMain] [DevToolsPropertyDefaultsPostProcessor:255] - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+INFO  23-06-26 21:14:48[restartedMain] [TomcatWebServer:108] - Tomcat initialized with port(s): 8080 (http)
+INFO  23-06-26 21:14:48[restartedMain] [Http11NioProtocol:173] - Initializing ProtocolHandler ["http-nio-8080"]
+INFO  23-06-26 21:14:48[restartedMain] [StandardService:173] - Starting service [Tomcat]
+INFO  23-06-26 21:14:48[restartedMain] [StandardEngine:173] - Starting Servlet engine: [Apache Tomcat/9.0.71]
+INFO  23-06-26 21:14:48[restartedMain] [[/]:173] - Initializing Spring embedded WebApplicationContext
+INFO  23-06-26 21:14:48[restartedMain] [ServletWebServerApplicationContext:292] - Root WebApplicationContext: initialization completed in 3533 ms
+INFO  23-06-26 21:14:50[restartedMain] [DefaultSecurityFilterChain:55] - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@245722ee, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@5b9feb70, org.springframework.security.web.context.SecurityContextPersistenceFilter@43d2d64e, org.springframework.security.web.header.HeaderWriterFilter@57050b45, org.springframework.web.filter.CorsFilter@7278f343, org.springframework.security.web.authentication.logout.LogoutFilter@6aa55972, org.springframework.security.oauth2.client.web.OAuth2AuthorizationRequestRedirectFilter@7b608aee, org.springframework.security.oauth2.client.web.OAuth2LoginAuthenticationFilter@3ce2a58d, foot.footprint.global.security.JwtAuthenticationFilter@6967256, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@731d7d95, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@538a25bc, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@29525b5c, org.springframework.security.web.session.SessionManagementFilter@72d6519, org.springframework.security.web.access.ExceptionTranslationFilter@6c584b0b, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@13d7c585]
+INFO  23-06-26 21:14:50[restartedMain] [VersionPrinter:49] - Flyway Community Edition 5.2.4 by Boxfuse
+INFO  23-06-26 21:14:50[restartedMain] [HikariDataSource:110] - HikariPool-1 - Starting...
+INFO  23-06-26 21:14:51[restartedMain] [HikariDataSource:123] - HikariPool-1 - Start completed.
+INFO  23-06-26 21:14:51[restartedMain] [DatabaseFactory:49] - Database: jdbc:mysql://footprintdb.ceekjekckdhv.ap-northeast-2.rds.amazonaws.com:3306/footprintDB (MySQL 8.0)
+INFO  23-06-26 21:14:51[restartedMain] [DbValidate:49] - Successfully validated 19 migrations (execution time 00:00.218s)
+INFO  23-06-26 21:14:52[restartedMain] [DbMigrate:49] - Current version of schema `footprintDB`: 6.2
+INFO  23-06-26 21:14:52[restartedMain] [DbMigrate:49] - Schema `footprintDB` is up to date. No migration necessary.
+INFO  23-06-26 21:14:52[restartedMain] [OptionalLiveReloadServer:59] - LiveReload server is running on port 35729
+INFO  23-06-26 21:14:52[restartedMain] [Http11NioProtocol:173] - Starting ProtocolHandler ["http-nio-8080"]
+INFO  23-06-26 21:14:52[restartedMain] [TomcatWebServer:220] - Tomcat started on port(s): 8080 (http) with context path ''
+INFO  23-06-26 21:14:52[restartedMain] [FootprintApplication:61] - Started FootprintApplication in 9.065 seconds (JVM running for 9.962)
+INFO  23-06-26 21:14:56[http-nio-8080-exec-1] [[/]:173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+INFO  23-06-26 21:14:56[http-nio-8080-exec-1] [DispatcherServlet:525] - Initializing Servlet 'dispatcherServlet'
+INFO  23-06-26 21:14:56[http-nio-8080-exec-1] [DispatcherServlet:547] - Completed initialization in 1 ms
+INFO  23-06-26 21:14:56[http-nio-8080-exec-1] [CreateArticleLogAdvice:36] - 회원번호 34가 게시글 히히히히 작성을 시도하였습니다.
+INFO  23-06-26 21:14:57[http-nio-8080-exec-1] [CreateArticleLogAdvice:38] - 회원번호 34에 의해 게시글 히히히히 작성되었습니다.
+INFO  23-06-26 21:17:08[background-preinit] [Version:21] - HV000001: Hibernate Validator 6.2.5.Final
+INFO  23-06-26 21:17:08[restartedMain] [FootprintApplication:55] - Starting FootprintApplication using Java 11.0.19 on DESKTOP-4HIFCAO with PID 16108 (C:\Users\khdsc\IdeaProjects\footprint\backend\footprint\build\classes\java\main started by khdsc in C:\Users\khdsc\IdeaProjects\footprint\backend)
+INFO  23-06-26 21:17:08[restartedMain] [FootprintApplication:637] - The following 2 profiles are active: "rds", "oauth"
+INFO  23-06-26 21:17:08[restartedMain] [DevToolsPropertyDefaultsPostProcessor:255] - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+INFO  23-06-26 21:17:08[restartedMain] [DevToolsPropertyDefaultsPostProcessor:255] - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+INFO  23-06-26 21:17:33[background-preinit] [Version:21] - HV000001: Hibernate Validator 6.2.5.Final
+INFO  23-06-26 21:17:33[restartedMain] [FootprintApplication:55] - Starting FootprintApplication using Java 11.0.19 on DESKTOP-4HIFCAO with PID 7240 (C:\Users\khdsc\IdeaProjects\footprint\backend\footprint\build\classes\java\main started by khdsc in C:\Users\khdsc\IdeaProjects\footprint\backend)
+INFO  23-06-26 21:17:33[restartedMain] [FootprintApplication:637] - The following 2 profiles are active: "rds", "oauth"
+INFO  23-06-26 21:17:33[restartedMain] [DevToolsPropertyDefaultsPostProcessor:255] - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+INFO  23-06-26 21:17:33[restartedMain] [DevToolsPropertyDefaultsPostProcessor:255] - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+INFO  23-06-26 21:17:36[restartedMain] [TomcatWebServer:108] - Tomcat initialized with port(s): 8080 (http)
+INFO  23-06-26 21:17:36[restartedMain] [Http11NioProtocol:173] - Initializing ProtocolHandler ["http-nio-8080"]
+INFO  23-06-26 21:17:36[restartedMain] [StandardService:173] - Starting service [Tomcat]
+INFO  23-06-26 21:17:36[restartedMain] [StandardEngine:173] - Starting Servlet engine: [Apache Tomcat/9.0.71]
+INFO  23-06-26 21:17:36[restartedMain] [[/]:173] - Initializing Spring embedded WebApplicationContext
+INFO  23-06-26 21:17:36[restartedMain] [ServletWebServerApplicationContext:292] - Root WebApplicationContext: initialization completed in 3467 ms
+INFO  23-06-26 21:17:39[restartedMain] [DefaultSecurityFilterChain:55] - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@683bc7e1, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@55bc2540, org.springframework.security.web.context.SecurityContextPersistenceFilter@29b7051, org.springframework.security.web.header.HeaderWriterFilter@cf7727e, org.springframework.web.filter.CorsFilter@31969852, org.springframework.security.web.authentication.logout.LogoutFilter@4005163e, org.springframework.security.oauth2.client.web.OAuth2AuthorizationRequestRedirectFilter@33d1dd63, org.springframework.security.oauth2.client.web.OAuth2LoginAuthenticationFilter@600099dc, foot.footprint.global.security.JwtAuthenticationFilter@41c64f4f, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@6c633509, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@5e326615, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@a4be099, org.springframework.security.web.session.SessionManagementFilter@4fa76cb1, org.springframework.security.web.access.ExceptionTranslationFilter@5f7a8a50, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@464c715f]
+INFO  23-06-26 21:17:39[restartedMain] [VersionPrinter:49] - Flyway Community Edition 5.2.4 by Boxfuse
+INFO  23-06-26 21:17:39[restartedMain] [HikariDataSource:110] - HikariPool-1 - Starting...
+INFO  23-06-26 21:17:40[restartedMain] [HikariDataSource:123] - HikariPool-1 - Start completed.
+INFO  23-06-26 21:17:40[restartedMain] [DatabaseFactory:49] - Database: jdbc:mysql://footprintdb.ceekjekckdhv.ap-northeast-2.rds.amazonaws.com:3306/footprintDB (MySQL 8.0)
+INFO  23-06-26 21:17:40[restartedMain] [DbValidate:49] - Successfully validated 19 migrations (execution time 00:00.147s)
+INFO  23-06-26 21:17:40[restartedMain] [DbMigrate:49] - Current version of schema `footprintDB`: 6.2
+INFO  23-06-26 21:17:40[restartedMain] [DbMigrate:49] - Schema `footprintDB` is up to date. No migration necessary.
+INFO  23-06-26 21:17:40[restartedMain] [OptionalLiveReloadServer:59] - LiveReload server is running on port 35729
+INFO  23-06-26 21:17:40[restartedMain] [Http11NioProtocol:173] - Starting ProtocolHandler ["http-nio-8080"]
+INFO  23-06-26 21:17:40[restartedMain] [TomcatWebServer:220] - Tomcat started on port(s): 8080 (http) with context path ''
+INFO  23-06-26 21:17:40[restartedMain] [FootprintApplication:61] - Started FootprintApplication in 8.953 seconds (JVM running for 10.158)
+INFO  23-06-26 21:17:45[http-nio-8080-exec-2] [[/]:173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+INFO  23-06-26 21:17:45[http-nio-8080-exec-2] [DispatcherServlet:525] - Initializing Servlet 'dispatcherServlet'
+INFO  23-06-26 21:17:45[http-nio-8080-exec-2] [DispatcherServlet:547] - Completed initialization in 2 ms
+INFO  23-06-26 21:17:46[http-nio-8080-exec-2] [ArticleLogAdvice:35] - 회원번호 34가 게시글 26에 editArticle를 시도하였습니다.
+INFO  23-06-26 21:17:46[http-nio-8080-exec-2] [ArticleLogAdvice:38] - 회원번호 34에 의해 게시글 26에 editArticle가 실행되였습니다.
+INFO  23-06-26 21:17:51[http-nio-8080-exec-3] [CreateArticleLogAdvice:36] - 회원번호 34가 게시글 '히히히히' 작성을 시도하였습니다.
+INFO  23-06-26 21:17:51[http-nio-8080-exec-3] [CreateArticleLogAdvice:38] - 회원번호 34에 의해 게시글 '히히히히' 를 작성되었습니다.
+INFO  23-06-26 21:18:17[http-nio-8080-exec-4] [ArticleLogAdvice:35] - 회원번호 34가 게시글 26에 changeMyLike를 시도하였습니다.
+INFO  23-06-26 21:18:17[http-nio-8080-exec-4] [ArticleLogAdvice:38] - 회원번호 34에 의해 게시글 26에 changeMyLike가 실행되였습니다.
+INFO  23-06-26 21:18:45[http-nio-8080-exec-5] [JwtTokenProvider:111] - 만료된 JWT 토큰입니다.
+INFO  23-06-26 21:18:52[http-nio-8080-exec-6] [ArticleLogAdvice:35] - 회원번호 34가 게시글 26에 createComment를 시도하였습니다.
+INFO  23-06-26 21:18:52[http-nio-8080-exec-6] [ArticleLogAdvice:38] - 회원번호 34에 의해 게시글 26에 createComment가 실행되였습니다.
+INFO  23-06-26 21:19:48[http-nio-8080-exec-7] [ArticleLogAdvice:35] - 회원번호 34가 게시글 26에 deleteArticle를 시도하였습니다.
+INFO  23-06-26 21:19:48[http-nio-8080-exec-7] [ArticleLogAdvice:38] - 회원번호 34에 의해 게시글 26에 deleteArticle가 실행되였습니다.
+INFO  23-06-26 21:19:56[http-nio-8080-exec-8] [ArticleLogAdvice:35] - 회원번호 34가 게시글 26에 deleteArticle를 시도하였습니다.
+WARN  23-06-26 21:19:56[http-nio-8080-exec-8] [ExceptionHandlerExceptionResolver:208] - Resolved [foot.footprint.domain.article.exception.NotMatchMemberException: 글을 삭제할 권한이 없습니다.]
+INFO  23-06-26 21:20:21[http-nio-8080-exec-10] [ArticleLogAdvice:35] - 회원번호 34가 게시글 26에 editArticle를 시도하였습니다.
+WARN  23-06-26 21:20:21[http-nio-8080-exec-10] [ExceptionHandlerExceptionResolver:208] - Resolved [foot.footprint.domain.article.exception.NotMatchMemberException: 글을 수정할 권한이 없습니다.]
+INFO  23-06-26 21:20:57[http-nio-8080-exec-2] [ArticleLogAdvice:35] - 회원번호 34가 게시글 26에 createComment를 시도하였습니다.
+WARN  23-06-26 21:20:57[http-nio-8080-exec-2] [ExceptionHandlerExceptionResolver:208] - Resolved [foot.footprint.global.error.exception.NotExistsException:  댓글을 작성하려는 게시글이 존재하지 않습니다.]
+INFO  23-06-26 21:29:30[restartedMain] [FootprintApplication:55] - Starting FootprintApplication using Java 11.0.19 on DESKTOP-4HIFCAO with PID 16308 (C:\Users\khdsc\IdeaProjects\footprint\backend\footprint\build\classes\java\main started by khdsc in C:\Users\khdsc\IdeaProjects\footprint\backend)
+INFO  23-06-26 21:29:30[restartedMain] [FootprintApplication:637] - The following 2 profiles are active: "rds", "oauth"
+INFO  23-06-26 21:29:30[background-preinit] [Version:21] - HV000001: Hibernate Validator 6.2.5.Final
+INFO  23-06-26 21:29:30[restartedMain] [DevToolsPropertyDefaultsPostProcessor:255] - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+INFO  23-06-26 21:29:30[restartedMain] [DevToolsPropertyDefaultsPostProcessor:255] - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+WARN  23-06-26 21:29:32[restartedMain] [AnnotationConfigServletWebServerApplicationContext:591] - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Unable to start web server; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'tomcatServletWebServerFactory' defined in class path resource [org/springframework/boot/autoconfigure/web/servlet/ServletWebServerFactoryConfiguration$EmbeddedTomcat.class]: BeanPostProcessor before instantiation of bean failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration': Initialization of bean failed; nested exception is java.lang.IllegalArgumentException: error Type referred to is not an annotation type: foot$footprint$global$aop$article$CommentLog
+INFO  23-06-26 21:29:32[restartedMain] [ConditionEvaluationReportLoggingListener:136] - 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+ERROR 23-06-26 21:29:32[restartedMain] [SpringApplication:821] - Application run failed
+org.springframework.context.ApplicationContextException: Unable to start web server; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'tomcatServletWebServerFactory' defined in class path resource [org/springframework/boot/autoconfigure/web/servlet/ServletWebServerFactoryConfiguration$EmbeddedTomcat.class]: BeanPostProcessor before instantiation of bean failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration': Initialization of bean failed; nested exception is java.lang.IllegalArgumentException: error Type referred to is not an annotation type: foot$footprint$global$aop$article$CommentLog
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.onRefresh(ServletWebServerApplicationContext.java:165)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:577)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:147)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:731)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:408)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:307)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1303)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1292)
+	at foot.footprint.FootprintApplication.main(FootprintApplication.java:10)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:49)
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'tomcatServletWebServerFactory' defined in class path resource [org/springframework/boot/autoconfigure/web/servlet/ServletWebServerFactoryConfiguration$EmbeddedTomcat.class]: BeanPostProcessor before instantiation of bean failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration': Initialization of bean failed; nested exception is java.lang.IllegalArgumentException: error Type referred to is not an annotation type: foot$footprint$global$aop$article$CommentLog
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:537)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:213)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.getWebServerFactory(ServletWebServerApplicationContext.java:219)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.createWebServer(ServletWebServerApplicationContext.java:182)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.onRefresh(ServletWebServerApplicationContext.java:162)
+	... 13 common frames omitted
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration': Initialization of bean failed; nested exception is java.lang.IllegalArgumentException: error Type referred to is not an annotation type: foot$footprint$global$aop$article$CommentLog
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:628)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:410)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1352)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1195)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:582)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:213)
+	at org.springframework.aop.framework.autoproxy.BeanFactoryAdvisorRetrievalHelper.findAdvisorBeans(BeanFactoryAdvisorRetrievalHelper.java:91)
+	at org.springframework.aop.framework.autoproxy.AbstractAdvisorAutoProxyCreator.findCandidateAdvisors(AbstractAdvisorAutoProxyCreator.java:111)
+	at org.springframework.aop.aspectj.annotation.AnnotationAwareAspectJAutoProxyCreator.findCandidateAdvisors(AnnotationAwareAspectJAutoProxyCreator.java:92)
+	at org.springframework.aop.aspectj.autoproxy.AspectJAwareAdvisorAutoProxyCreator.shouldSkip(AspectJAwareAdvisorAutoProxyCreator.java:101)
+	at org.springframework.aop.framework.autoproxy.AbstractAutoProxyCreator.postProcessBeforeInstantiation(AbstractAutoProxyCreator.java:255)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyBeanPostProcessorsBeforeInstantiation(AbstractAutowireCapableBeanFactory.java:1160)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.resolveBeforeInstantiation(AbstractAutowireCapableBeanFactory.java:1135)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:531)
+	... 20 common frames omitted
+Caused by: java.lang.IllegalArgumentException: error Type referred to is not an annotation type: foot$footprint$global$aop$article$CommentLog
+	at org.aspectj.weaver.tools.PointcutParser.parsePointcutExpression(PointcutParser.java:319)
+	at org.springframework.aop.aspectj.AspectJExpressionPointcut.buildPointcutExpression(AspectJExpressionPointcut.java:227)
+	at org.springframework.aop.aspectj.AspectJExpressionPointcut.obtainPointcutExpression(AspectJExpressionPointcut.java:198)
+	at org.springframework.aop.aspectj.AspectJExpressionPointcut.getClassFilter(AspectJExpressionPointcut.java:177)
+	at org.springframework.aop.support.AopUtils.canApply(AopUtils.java:226)
+	at org.springframework.aop.support.AopUtils.canApply(AopUtils.java:289)
+	at org.springframework.aop.support.AopUtils.findAdvisorsThatCanApply(AopUtils.java:321)
+	at org.springframework.aop.framework.autoproxy.AbstractAdvisorAutoProxyCreator.findAdvisorsThatCanApply(AbstractAdvisorAutoProxyCreator.java:128)
+	at org.springframework.aop.framework.autoproxy.AbstractAdvisorAutoProxyCreator.findEligibleAdvisors(AbstractAdvisorAutoProxyCreator.java:97)
+	at org.springframework.aop.framework.autoproxy.AbstractAdvisorAutoProxyCreator.getAdvicesAndAdvisorsForBean(AbstractAdvisorAutoProxyCreator.java:78)
+	at org.springframework.aop.framework.autoproxy.AbstractAutoProxyCreator.wrapIfNecessary(AbstractAutoProxyCreator.java:341)
+	at org.springframework.aop.framework.autoproxy.AbstractAutoProxyCreator.postProcessAfterInitialization(AbstractAutoProxyCreator.java:293)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyBeanPostProcessorsAfterInitialization(AbstractAutowireCapableBeanFactory.java:455)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1808)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:620)
+	... 42 common frames omitted
+INFO  23-06-26 21:31:18[background-preinit] [Version:21] - HV000001: Hibernate Validator 6.2.5.Final
+INFO  23-06-26 21:31:18[restartedMain] [FootprintApplication:55] - Starting FootprintApplication using Java 11.0.19 on DESKTOP-4HIFCAO with PID 14048 (C:\Users\khdsc\IdeaProjects\footprint\backend\footprint\build\classes\java\main started by khdsc in C:\Users\khdsc\IdeaProjects\footprint\backend)
+INFO  23-06-26 21:31:18[restartedMain] [FootprintApplication:637] - The following 2 profiles are active: "rds", "oauth"
+INFO  23-06-26 21:31:18[restartedMain] [DevToolsPropertyDefaultsPostProcessor:255] - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+INFO  23-06-26 21:31:18[restartedMain] [DevToolsPropertyDefaultsPostProcessor:255] - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+INFO  23-06-26 21:31:21[restartedMain] [TomcatWebServer:108] - Tomcat initialized with port(s): 8080 (http)
+INFO  23-06-26 21:31:21[restartedMain] [Http11NioProtocol:173] - Initializing ProtocolHandler ["http-nio-8080"]
+INFO  23-06-26 21:31:21[restartedMain] [StandardService:173] - Starting service [Tomcat]
+INFO  23-06-26 21:31:21[restartedMain] [StandardEngine:173] - Starting Servlet engine: [Apache Tomcat/9.0.71]
+INFO  23-06-26 21:31:21[restartedMain] [[/]:173] - Initializing Spring embedded WebApplicationContext
+INFO  23-06-26 21:31:21[restartedMain] [ServletWebServerApplicationContext:292] - Root WebApplicationContext: initialization completed in 3219 ms
+INFO  23-06-26 21:31:23[restartedMain] [DefaultSecurityFilterChain:55] - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@284747b9, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@4cf18053, org.springframework.security.web.context.SecurityContextPersistenceFilter@1bb84451, org.springframework.security.web.header.HeaderWriterFilter@13a55d02, org.springframework.web.filter.CorsFilter@8320471, org.springframework.security.web.authentication.logout.LogoutFilter@7eaf6235, org.springframework.security.oauth2.client.web.OAuth2AuthorizationRequestRedirectFilter@6c510072, org.springframework.security.oauth2.client.web.OAuth2LoginAuthenticationFilter@7156aa26, foot.footprint.global.security.JwtAuthenticationFilter@1700a3e4, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@6c5176dc, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@21595435, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@736985e8, org.springframework.security.web.session.SessionManagementFilter@683979ad, org.springframework.security.web.access.ExceptionTranslationFilter@1e66b065, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@186bc36e]
+INFO  23-06-26 21:31:24[restartedMain] [VersionPrinter:49] - Flyway Community Edition 5.2.4 by Boxfuse
+INFO  23-06-26 21:31:24[restartedMain] [HikariDataSource:110] - HikariPool-1 - Starting...
+INFO  23-06-26 21:31:31[restartedMain] [HikariDataSource:123] - HikariPool-1 - Start completed.
+INFO  23-06-26 21:31:31[restartedMain] [DatabaseFactory:49] - Database: jdbc:mysql://footprintdb.ceekjekckdhv.ap-northeast-2.rds.amazonaws.com:3306/footprintDB (MySQL 8.0)
+INFO  23-06-26 21:31:43[restartedMain] [DbValidate:49] - Successfully validated 19 migrations (execution time 00:10.306s)
+INFO  23-06-26 21:32:19[restartedMain] [DbMigrate:49] - Current version of schema `footprintDB`: 6.2
+INFO  23-06-26 21:32:23[restartedMain] [DbMigrate:49] - Schema `footprintDB` is up to date. No migration necessary.
+INFO  23-06-26 21:32:26[restartedMain] [OptionalLiveReloadServer:59] - LiveReload server is running on port 35729
+INFO  23-06-26 21:32:26[restartedMain] [Http11NioProtocol:173] - Starting ProtocolHandler ["http-nio-8080"]
+INFO  23-06-26 21:32:26[restartedMain] [TomcatWebServer:220] - Tomcat started on port(s): 8080 (http) with context path ''
+INFO  23-06-26 21:32:26[restartedMain] [FootprintApplication:61] - Started FootprintApplication in 68.832 seconds (JVM running for 69.773)
+INFO  23-06-26 21:32:35[http-nio-8080-exec-1] [[/]:173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+INFO  23-06-26 21:32:35[http-nio-8080-exec-1] [DispatcherServlet:525] - Initializing Servlet 'dispatcherServlet'
+INFO  23-06-26 21:32:35[http-nio-8080-exec-1] [DispatcherServlet:547] - Completed initialization in 2 ms
+INFO  23-06-26 21:32:35[http-nio-8080-exec-1] [JwtTokenProvider:111] - 만료된 JWT 토큰입니다.
+INFO  23-06-26 21:33:07[http-nio-8080-exec-6] [ArticleLogAdvice:35] - 회원번호 34가 게시글 27에 createComment를 시도하였습니다.
+INFO  23-06-26 21:33:07[http-nio-8080-exec-6] [ArticleLogAdvice:38] - 회원번호 34에 의해 게시글 27에 createComment가 실행되였습니다.
+INFO  23-06-26 21:33:50[http-nio-8080-exec-4] [CommentLogAdvice:37] - 회원번호 34가 게시글 27에 댓글 16에editComment를 시도하였습니다.
+INFO  23-06-26 21:33:50[http-nio-8080-exec-4] [CommentLogAdvice:40] - 회원번호 34에 의해게시글 27에 댓글 16에editComment가 실행되었습니다.
+INFO  23-06-26 21:34:45[background-preinit] [Version:21] - HV000001: Hibernate Validator 6.2.5.Final
+INFO  23-06-26 21:34:45[restartedMain] [FootprintApplication:55] - Starting FootprintApplication using Java 11.0.19 on DESKTOP-4HIFCAO with PID 7148 (C:\Users\khdsc\IdeaProjects\footprint\backend\footprint\build\classes\java\main started by khdsc in C:\Users\khdsc\IdeaProjects\footprint\backend)
+INFO  23-06-26 21:34:45[restartedMain] [FootprintApplication:637] - The following 2 profiles are active: "rds", "oauth"
+INFO  23-06-26 21:34:45[restartedMain] [DevToolsPropertyDefaultsPostProcessor:255] - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+INFO  23-06-26 21:34:45[restartedMain] [DevToolsPropertyDefaultsPostProcessor:255] - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+INFO  23-06-26 21:34:48[restartedMain] [TomcatWebServer:108] - Tomcat initialized with port(s): 8080 (http)
+INFO  23-06-26 21:34:48[restartedMain] [Http11NioProtocol:173] - Initializing ProtocolHandler ["http-nio-8080"]
+INFO  23-06-26 21:34:48[restartedMain] [StandardService:173] - Starting service [Tomcat]
+INFO  23-06-26 21:34:48[restartedMain] [StandardEngine:173] - Starting Servlet engine: [Apache Tomcat/9.0.71]
+INFO  23-06-26 21:34:48[restartedMain] [[/]:173] - Initializing Spring embedded WebApplicationContext
+INFO  23-06-26 21:34:48[restartedMain] [ServletWebServerApplicationContext:292] - Root WebApplicationContext: initialization completed in 3216 ms
+INFO  23-06-26 21:34:50[restartedMain] [DefaultSecurityFilterChain:55] - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@139cbee5, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@5b40cd6c, org.springframework.security.web.context.SecurityContextPersistenceFilter@7277d912, org.springframework.security.web.header.HeaderWriterFilter@d0a0bd8, org.springframework.web.filter.CorsFilter@46f19ada, org.springframework.security.web.authentication.logout.LogoutFilter@6dbb9965, org.springframework.security.oauth2.client.web.OAuth2AuthorizationRequestRedirectFilter@2cfc8d0f, org.springframework.security.oauth2.client.web.OAuth2LoginAuthenticationFilter@752d103e, foot.footprint.global.security.JwtAuthenticationFilter@1fec1fba, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@5a5489d1, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@186ba12f, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@62ef3efc, org.springframework.security.web.session.SessionManagementFilter@216b44e8, org.springframework.security.web.access.ExceptionTranslationFilter@678abdaf, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@7d5b6104]
+INFO  23-06-26 21:34:51[restartedMain] [VersionPrinter:49] - Flyway Community Edition 5.2.4 by Boxfuse
+INFO  23-06-26 21:34:51[restartedMain] [HikariDataSource:110] - HikariPool-1 - Starting...
+INFO  23-06-26 21:34:51[restartedMain] [HikariDataSource:123] - HikariPool-1 - Start completed.
+INFO  23-06-26 21:34:51[restartedMain] [DatabaseFactory:49] - Database: jdbc:mysql://footprintdb.ceekjekckdhv.ap-northeast-2.rds.amazonaws.com:3306/footprintDB (MySQL 8.0)
+INFO  23-06-26 21:34:51[restartedMain] [DbValidate:49] - Successfully validated 19 migrations (execution time 00:00.130s)
+INFO  23-06-26 21:34:52[restartedMain] [DbMigrate:49] - Current version of schema `footprintDB`: 6.2
+INFO  23-06-26 21:34:52[restartedMain] [DbMigrate:49] - Schema `footprintDB` is up to date. No migration necessary.
+INFO  23-06-26 21:34:52[restartedMain] [OptionalLiveReloadServer:59] - LiveReload server is running on port 35729
+INFO  23-06-26 21:34:52[restartedMain] [Http11NioProtocol:173] - Starting ProtocolHandler ["http-nio-8080"]
+INFO  23-06-26 21:34:52[restartedMain] [TomcatWebServer:220] - Tomcat started on port(s): 8080 (http) with context path ''
+INFO  23-06-26 21:34:52[restartedMain] [FootprintApplication:61] - Started FootprintApplication in 8.558 seconds (JVM running for 9.461)
+INFO  23-06-26 21:35:36[http-nio-8080-exec-1] [[/]:173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+INFO  23-06-26 21:35:36[http-nio-8080-exec-1] [DispatcherServlet:525] - Initializing Servlet 'dispatcherServlet'
+INFO  23-06-26 21:35:36[http-nio-8080-exec-1] [DispatcherServlet:547] - Completed initialization in 2 ms
+INFO  23-06-26 21:35:36[http-nio-8080-exec-1] [CommentLogAdvice:37] - 회원번호 34가 게시글 27에 댓글 16에editComment를 시도하였습니다.
+INFO  23-06-26 21:35:36[http-nio-8080-exec-1] [CommentLogAdvice:40] - 회원번호 34에 의해 게시글 27에 댓글 16에 editComment가 실행되었습니다.
+INFO  23-06-26 21:36:07[http-nio-8080-exec-3] [CommentLogAdvice:37] - 회원번호 34가 게시글 27에 댓글 16에deleteComment를 시도하였습니다.
+INFO  23-06-26 21:36:07[http-nio-8080-exec-3] [CommentLogAdvice:40] - 회원번호 34에 의해 게시글 27에 댓글 16에 deleteComment가 실행되었습니다.
+INFO  23-06-26 21:36:24[http-nio-8080-exec-4] [ArticleLogAdvice:35] - 회원번호 34가 게시글 27에 createComment를 시도하였습니다.
+INFO  23-06-26 21:36:24[http-nio-8080-exec-4] [ArticleLogAdvice:38] - 회원번호 34에 의해 게시글 27에 createComment가 실행되였습니다.
+INFO  23-06-26 21:36:46[http-nio-8080-exec-5] [CommentLogAdvice:37] - 회원번호 34가 게시글 27에 댓글 17에changeMyLike를 시도하였습니다.
+WARN  23-06-26 21:36:46[http-nio-8080-exec-5] [ExceptionHandlerExceptionResolver:208] - Resolved [foot.footprint.global.error.exception.NotExistsException: 이미 좋아요를 취소하였거나 누르지 않았습니다.]
+INFO  23-06-26 21:37:00[http-nio-8080-exec-6] [CommentLogAdvice:37] - 회원번호 34가 게시글 27에 댓글 17에changeMyLike를 시도하였습니다.
+INFO  23-06-26 21:37:00[http-nio-8080-exec-6] [CommentLogAdvice:40] - 회원번호 34에 의해 게시글 27에 댓글 17에 changeMyLike가 실행되었습니다.
+INFO  23-06-26 21:42:43[background-preinit] [Version:21] - HV000001: Hibernate Validator 6.2.5.Final
+INFO  23-06-26 21:42:43[restartedMain] [FootprintApplication:55] - Starting FootprintApplication using Java 11.0.19 on DESKTOP-4HIFCAO with PID 8784 (C:\Users\khdsc\IdeaProjects\footprint\backend\footprint\build\classes\java\main started by khdsc in C:\Users\khdsc\IdeaProjects\footprint\backend)
+INFO  23-06-26 21:42:43[restartedMain] [FootprintApplication:637] - The following 2 profiles are active: "rds", "oauth"
+INFO  23-06-26 21:42:43[restartedMain] [DevToolsPropertyDefaultsPostProcessor:255] - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+INFO  23-06-26 21:42:43[restartedMain] [DevToolsPropertyDefaultsPostProcessor:255] - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+INFO  23-06-26 21:42:46[restartedMain] [TomcatWebServer:108] - Tomcat initialized with port(s): 8080 (http)
+INFO  23-06-26 21:42:46[restartedMain] [Http11NioProtocol:173] - Initializing ProtocolHandler ["http-nio-8080"]
+INFO  23-06-26 21:42:46[restartedMain] [StandardService:173] - Starting service [Tomcat]
+INFO  23-06-26 21:42:46[restartedMain] [StandardEngine:173] - Starting Servlet engine: [Apache Tomcat/9.0.71]
+INFO  23-06-26 21:42:46[restartedMain] [[/]:173] - Initializing Spring embedded WebApplicationContext
+INFO  23-06-26 21:42:46[restartedMain] [ServletWebServerApplicationContext:292] - Root WebApplicationContext: initialization completed in 3282 ms
+INFO  23-06-26 21:42:48[restartedMain] [DefaultSecurityFilterChain:55] - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@7b608aee, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@3ce2a58d, org.springframework.security.web.context.SecurityContextPersistenceFilter@72d6519, org.springframework.security.web.header.HeaderWriterFilter@1d2c6a8e, org.springframework.web.filter.CorsFilter@308d7f97, org.springframework.security.web.authentication.logout.LogoutFilter@6874de42, org.springframework.security.oauth2.client.web.OAuth2AuthorizationRequestRedirectFilter@326ea57a, org.springframework.security.oauth2.client.web.OAuth2LoginAuthenticationFilter@1f927e38, foot.footprint.global.security.JwtAuthenticationFilter@2b67e556, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@71fa29bb, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@43d2d64e, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@245722ee, org.springframework.security.web.session.SessionManagementFilter@32477735, org.springframework.security.web.access.ExceptionTranslationFilter@4003d845, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@1c75cbce]
+INFO  23-06-26 21:42:49[restartedMain] [VersionPrinter:49] - Flyway Community Edition 5.2.4 by Boxfuse
+INFO  23-06-26 21:42:49[restartedMain] [HikariDataSource:110] - HikariPool-1 - Starting...
+INFO  23-06-26 21:42:50[restartedMain] [HikariDataSource:123] - HikariPool-1 - Start completed.
+INFO  23-06-26 21:42:50[restartedMain] [DatabaseFactory:49] - Database: jdbc:mysql://footprintdb.ceekjekckdhv.ap-northeast-2.rds.amazonaws.com:3306/footprintDB (MySQL 8.0)
+INFO  23-06-26 21:42:50[restartedMain] [DbValidate:49] - Successfully validated 19 migrations (execution time 00:00.121s)
+INFO  23-06-26 21:42:50[restartedMain] [DbMigrate:49] - Current version of schema `footprintDB`: 6.2
+INFO  23-06-26 21:42:50[restartedMain] [DbMigrate:49] - Schema `footprintDB` is up to date. No migration necessary.
+INFO  23-06-26 21:42:50[restartedMain] [OptionalLiveReloadServer:59] - LiveReload server is running on port 35729
+INFO  23-06-26 21:42:50[restartedMain] [Http11NioProtocol:173] - Starting ProtocolHandler ["http-nio-8080"]
+INFO  23-06-26 21:42:50[restartedMain] [TomcatWebServer:220] - Tomcat started on port(s): 8080 (http) with context path ''
+INFO  23-06-26 21:42:50[restartedMain] [FootprintApplication:61] - Started FootprintApplication in 8.454 seconds (JVM running for 9.403)
+INFO  23-06-26 21:43:32[http-nio-8080-exec-2] [[/]:173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+INFO  23-06-26 21:43:32[http-nio-8080-exec-2] [DispatcherServlet:525] - Initializing Servlet 'dispatcherServlet'
+INFO  23-06-26 21:43:33[http-nio-8080-exec-2] [DispatcherServlet:547] - Completed initialization in 3 ms
+INFO  23-06-26 21:45:11[http-nio-8080-exec-6] [GroupLogAdvice:35] - 회원번호 34가 그룹 54에 changeImportant를 시도하였습니다.
+INFO  23-06-26 21:45:11[http-nio-8080-exec-6] [GroupLogAdvice:38] - 회원번호 34에 의해 그룹 54에 changeImportant가 실행되였습니다.
+INFO  23-06-26 21:45:44[http-nio-8080-exec-7] [GroupLogAdvice:35] - 회원번호 34가 그룹 54에 editGroupName를 시도하였습니다.
+INFO  23-06-26 21:45:44[http-nio-8080-exec-7] [GroupLogAdvice:38] - 회원번호 34에 의해 그룹 54에 editGroupName가 실행되였습니다.
+INFO  23-06-26 21:51:39[background-preinit] [Version:21] - HV000001: Hibernate Validator 6.2.5.Final
+INFO  23-06-26 21:51:39[restartedMain] [FootprintApplication:55] - Starting FootprintApplication using Java 11.0.19 on DESKTOP-4HIFCAO with PID 12396 (C:\Users\khdsc\IdeaProjects\footprint\backend\footprint\build\classes\java\main started by khdsc in C:\Users\khdsc\IdeaProjects\footprint\backend)
+INFO  23-06-26 21:51:39[restartedMain] [FootprintApplication:637] - The following 2 profiles are active: "rds", "oauth"
+INFO  23-06-26 21:51:39[restartedMain] [DevToolsPropertyDefaultsPostProcessor:255] - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+INFO  23-06-26 21:51:39[restartedMain] [DevToolsPropertyDefaultsPostProcessor:255] - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+INFO  23-06-26 21:51:42[restartedMain] [TomcatWebServer:108] - Tomcat initialized with port(s): 8080 (http)
+INFO  23-06-26 21:51:42[restartedMain] [Http11NioProtocol:173] - Initializing ProtocolHandler ["http-nio-8080"]
+INFO  23-06-26 21:51:42[restartedMain] [StandardService:173] - Starting service [Tomcat]
+INFO  23-06-26 21:51:42[restartedMain] [StandardEngine:173] - Starting Servlet engine: [Apache Tomcat/9.0.71]
+INFO  23-06-26 21:51:42[restartedMain] [[/]:173] - Initializing Spring embedded WebApplicationContext
+INFO  23-06-26 21:51:42[restartedMain] [ServletWebServerApplicationContext:292] - Root WebApplicationContext: initialization completed in 3441 ms
+INFO  23-06-26 21:51:44[restartedMain] [DefaultSecurityFilterChain:55] - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@2e2d3c5c, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@1f031bc2, org.springframework.security.web.context.SecurityContextPersistenceFilter@abacaf9, org.springframework.security.web.header.HeaderWriterFilter@5948622c, org.springframework.web.filter.CorsFilter@1f62fe9f, org.springframework.security.web.authentication.logout.LogoutFilter@60d7561d, org.springframework.security.oauth2.client.web.OAuth2AuthorizationRequestRedirectFilter@31701df6, org.springframework.security.oauth2.client.web.OAuth2LoginAuthenticationFilter@42d8573a, foot.footprint.global.security.JwtAuthenticationFilter@4a444f59, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@74b7c11c, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@7e9e1cfa, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@4ecd5e7a, org.springframework.security.web.session.SessionManagementFilter@4ee740c3, org.springframework.security.web.access.ExceptionTranslationFilter@6a335280, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@58d64a2c]
+INFO  23-06-26 21:51:45[restartedMain] [VersionPrinter:49] - Flyway Community Edition 5.2.4 by Boxfuse
+INFO  23-06-26 21:51:45[restartedMain] [HikariDataSource:110] - HikariPool-1 - Starting...
+INFO  23-06-26 21:51:46[restartedMain] [HikariDataSource:123] - HikariPool-1 - Start completed.
+INFO  23-06-26 21:51:46[restartedMain] [DatabaseFactory:49] - Database: jdbc:mysql://footprintdb.ceekjekckdhv.ap-northeast-2.rds.amazonaws.com:3306/footprintDB (MySQL 8.0)
+INFO  23-06-26 21:51:46[restartedMain] [DbValidate:49] - Successfully validated 19 migrations (execution time 00:00.168s)
+INFO  23-06-26 21:51:46[restartedMain] [DbMigrate:49] - Current version of schema `footprintDB`: 6.2
+INFO  23-06-26 21:51:46[restartedMain] [DbMigrate:49] - Schema `footprintDB` is up to date. No migration necessary.
+INFO  23-06-26 21:51:47[restartedMain] [OptionalLiveReloadServer:59] - LiveReload server is running on port 35729
+INFO  23-06-26 21:51:47[restartedMain] [Http11NioProtocol:173] - Starting ProtocolHandler ["http-nio-8080"]
+INFO  23-06-26 21:51:47[restartedMain] [TomcatWebServer:220] - Tomcat started on port(s): 8080 (http) with context path ''
+INFO  23-06-26 21:51:47[restartedMain] [FootprintApplication:61] - Started FootprintApplication in 9.715 seconds (JVM running for 10.663)
+INFO  23-06-26 21:52:02[http-nio-8080-exec-2] [[/]:173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+INFO  23-06-26 21:52:02[http-nio-8080-exec-2] [DispatcherServlet:525] - Initializing Servlet 'dispatcherServlet'
+INFO  23-06-26 21:52:02[http-nio-8080-exec-2] [DispatcherServlet:547] - Completed initialization in 3 ms
+INFO  23-06-26 21:52:02[http-nio-8080-exec-2] [CreateGroupLogAdvice:36] - 회원번호 34가 그룹 '테스트 그룹입니다.' 생성을 시도하였습니다.
+INFO  23-06-26 21:52:03[http-nio-8080-exec-2] [CreateGroupLogAdvice:38] - 회원번호 34에 의해 그룹 '테스트 그룹입니다.'가 생성되었습니다.
+WARN  23-06-26 22:37:15[HikariPool-1 housekeeper] [HikariPool:788] - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=25m48s129ms488µs600ns).
+INFO  23-06-26 22:40:19[background-preinit] [Version:21] - HV000001: Hibernate Validator 6.2.5.Final
+INFO  23-06-26 22:40:19[restartedMain] [FootprintApplication:55] - Starting FootprintApplication using Java 11.0.19 on DESKTOP-4HIFCAO with PID 16012 (C:\Users\khdsc\IdeaProjects\footprint\backend\footprint\build\classes\java\main started by khdsc in C:\Users\khdsc\IdeaProjects\footprint\backend)
+INFO  23-06-26 22:40:19[restartedMain] [FootprintApplication:637] - The following 2 profiles are active: "rds", "oauth"
+INFO  23-06-26 22:40:19[restartedMain] [DevToolsPropertyDefaultsPostProcessor:255] - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+INFO  23-06-26 22:40:19[restartedMain] [DevToolsPropertyDefaultsPostProcessor:255] - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+INFO  23-06-26 22:40:32[background-preinit] [Version:21] - HV000001: Hibernate Validator 6.2.5.Final
+INFO  23-06-26 22:40:32[restartedMain] [FootprintApplication:55] - Starting FootprintApplication using Java 11.0.19 on DESKTOP-4HIFCAO with PID 8156 (C:\Users\khdsc\IdeaProjects\footprint\backend\footprint\build\classes\java\main started by khdsc in C:\Users\khdsc\IdeaProjects\footprint\backend)
+INFO  23-06-26 22:40:32[restartedMain] [FootprintApplication:637] - The following 2 profiles are active: "rds", "oauth"
+INFO  23-06-26 22:40:32[restartedMain] [DevToolsPropertyDefaultsPostProcessor:255] - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+INFO  23-06-26 22:40:32[restartedMain] [DevToolsPropertyDefaultsPostProcessor:255] - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+INFO  23-06-26 22:40:35[restartedMain] [TomcatWebServer:108] - Tomcat initialized with port(s): 8080 (http)
+INFO  23-06-26 22:40:36[restartedMain] [Http11NioProtocol:173] - Initializing ProtocolHandler ["http-nio-8080"]
+INFO  23-06-26 22:40:36[restartedMain] [StandardService:173] - Starting service [Tomcat]
+INFO  23-06-26 22:40:36[restartedMain] [StandardEngine:173] - Starting Servlet engine: [Apache Tomcat/9.0.71]
+INFO  23-06-26 22:40:36[restartedMain] [[/]:173] - Initializing Spring embedded WebApplicationContext
+INFO  23-06-26 22:40:36[restartedMain] [ServletWebServerApplicationContext:292] - Root WebApplicationContext: initialization completed in 3928 ms
+INFO  23-06-26 22:40:38[restartedMain] [DefaultSecurityFilterChain:55] - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@21a05778, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@286fad54, org.springframework.security.web.context.SecurityContextPersistenceFilter@6c584b0b, org.springframework.security.web.header.HeaderWriterFilter@44bb608a, org.springframework.web.filter.CorsFilter@215a320d, org.springframework.security.web.authentication.logout.LogoutFilter@3f06e072, org.springframework.security.oauth2.client.web.OAuth2AuthorizationRequestRedirectFilter@30073820, org.springframework.security.oauth2.client.web.OAuth2LoginAuthenticationFilter@740fb672, foot.footprint.global.security.JwtAuthenticationFilter@3c92b2b8, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@57050b45, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@29837331, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@3156454d, org.springframework.security.web.session.SessionManagementFilter@4003d845, org.springframework.security.web.access.ExceptionTranslationFilter@281a233e, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@14f2dfd2]
+INFO  23-06-26 22:40:39[restartedMain] [VersionPrinter:49] - Flyway Community Edition 5.2.4 by Boxfuse
+INFO  23-06-26 22:40:39[restartedMain] [HikariDataSource:110] - HikariPool-1 - Starting...
+INFO  23-06-26 22:40:40[restartedMain] [HikariDataSource:123] - HikariPool-1 - Start completed.
+INFO  23-06-26 22:40:40[restartedMain] [DatabaseFactory:49] - Database: jdbc:mysql://footprintdb.ceekjekckdhv.ap-northeast-2.rds.amazonaws.com:3306/footprintDB (MySQL 8.0)
+INFO  23-06-26 22:40:41[restartedMain] [DbValidate:49] - Successfully validated 19 migrations (execution time 00:00.296s)
+INFO  23-06-26 22:40:41[restartedMain] [DbMigrate:49] - Current version of schema `footprintDB`: 6.2
+INFO  23-06-26 22:40:41[restartedMain] [DbMigrate:49] - Schema `footprintDB` is up to date. No migration necessary.
+INFO  23-06-26 22:40:42[restartedMain] [OptionalLiveReloadServer:59] - LiveReload server is running on port 35729
+INFO  23-06-26 22:40:42[restartedMain] [Http11NioProtocol:173] - Starting ProtocolHandler ["http-nio-8080"]
+INFO  23-06-26 22:40:42[restartedMain] [TomcatWebServer:220] - Tomcat started on port(s): 8080 (http) with context path ''
+INFO  23-06-26 22:40:42[restartedMain] [FootprintApplication:61] - Started FootprintApplication in 11.676 seconds (JVM running for 12.874)
+INFO  23-06-26 22:40:51[http-nio-8080-exec-1] [[/]:173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+INFO  23-06-26 22:40:51[http-nio-8080-exec-1] [DispatcherServlet:525] - Initializing Servlet 'dispatcherServlet'
+INFO  23-06-26 22:40:51[http-nio-8080-exec-1] [DispatcherServlet:547] - Completed initialization in 4 ms
+INFO  23-06-26 22:40:51[http-nio-8080-exec-1] [JwtTokenProvider:111] - 만료된 JWT 토큰입니다.
+INFO  23-06-26 22:40:54[http-nio-8080-exec-3] [LoginLogAdvice:36] - 임의의 사용자가 이메일 'test5@tset.com'로 로그인을 시도하였습니다.
+INFO  23-06-26 22:40:55[http-nio-8080-exec-3] [LoginLogAdvice:38] - 임의의 사용자가 이메일 'test5@tset.com'로 로그인을 성공하였습니다.
+INFO  23-06-26 22:53:44[restartedMain] [FootprintApplication:55] - Starting FootprintApplication using Java 11.0.19 on DESKTOP-4HIFCAO with PID 16924 (C:\Users\khdsc\IdeaProjects\footprint\backend\footprint\build\classes\java\main started by khdsc in C:\Users\khdsc\IdeaProjects\footprint\backend)
+INFO  23-06-26 22:53:44[background-preinit] [Version:21] - HV000001: Hibernate Validator 6.2.5.Final
+INFO  23-06-26 22:53:44[restartedMain] [FootprintApplication:637] - The following 2 profiles are active: "rds", "oauth"
+INFO  23-06-26 22:53:44[restartedMain] [DevToolsPropertyDefaultsPostProcessor:255] - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+INFO  23-06-26 22:53:44[restartedMain] [DevToolsPropertyDefaultsPostProcessor:255] - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+INFO  23-06-26 22:53:47[restartedMain] [TomcatWebServer:108] - Tomcat initialized with port(s): 8080 (http)
+INFO  23-06-26 22:53:47[restartedMain] [Http11NioProtocol:173] - Initializing ProtocolHandler ["http-nio-8080"]
+INFO  23-06-26 22:53:47[restartedMain] [StandardService:173] - Starting service [Tomcat]
+INFO  23-06-26 22:53:47[restartedMain] [StandardEngine:173] - Starting Servlet engine: [Apache Tomcat/9.0.71]
+INFO  23-06-26 22:53:48[restartedMain] [[/]:173] - Initializing Spring embedded WebApplicationContext
+INFO  23-06-26 22:53:48[restartedMain] [ServletWebServerApplicationContext:292] - Root WebApplicationContext: initialization completed in 3974 ms
+INFO  23-06-26 22:53:51[restartedMain] [DefaultSecurityFilterChain:55] - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@f00a7c6, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@67c5373c, org.springframework.security.web.context.SecurityContextPersistenceFilter@4be4cd2e, org.springframework.security.web.header.HeaderWriterFilter@58e51b79, org.springframework.web.filter.CorsFilter@1730aa66, org.springframework.security.web.authentication.logout.LogoutFilter@342b984d, org.springframework.security.oauth2.client.web.OAuth2AuthorizationRequestRedirectFilter@2c488ca6, org.springframework.security.oauth2.client.web.OAuth2LoginAuthenticationFilter@55a4b426, foot.footprint.global.security.JwtAuthenticationFilter@4628d115, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@322a85e5, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@39389f13, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@5455d9af, org.springframework.security.web.session.SessionManagementFilter@7bc1d2cd, org.springframework.security.web.access.ExceptionTranslationFilter@54bc8316, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@5b36d9d9]
+INFO  23-06-26 22:53:51[restartedMain] [VersionPrinter:49] - Flyway Community Edition 5.2.4 by Boxfuse
+INFO  23-06-26 22:53:51[restartedMain] [HikariDataSource:110] - HikariPool-1 - Starting...
+INFO  23-06-26 22:53:52[restartedMain] [HikariDataSource:123] - HikariPool-1 - Start completed.
+INFO  23-06-26 22:53:52[restartedMain] [DatabaseFactory:49] - Database: jdbc:mysql://footprintdb.ceekjekckdhv.ap-northeast-2.rds.amazonaws.com:3306/footprintDB (MySQL 8.0)
+INFO  23-06-26 22:53:53[restartedMain] [DbValidate:49] - Successfully validated 19 migrations (execution time 00:00.474s)
+INFO  23-06-26 22:53:54[restartedMain] [DbMigrate:49] - Current version of schema `footprintDB`: 6.2
+INFO  23-06-26 22:53:54[restartedMain] [DbMigrate:49] - Schema `footprintDB` is up to date. No migration necessary.
+INFO  23-06-26 22:53:55[restartedMain] [OptionalLiveReloadServer:59] - LiveReload server is running on port 35729
+INFO  23-06-26 22:53:55[restartedMain] [Http11NioProtocol:173] - Starting ProtocolHandler ["http-nio-8080"]
+INFO  23-06-26 22:53:55[restartedMain] [TomcatWebServer:220] - Tomcat started on port(s): 8080 (http) with context path ''
+INFO  23-06-26 22:53:55[restartedMain] [FootprintApplication:61] - Started FootprintApplication in 12.687 seconds (JVM running for 14.137)
+INFO  23-06-26 22:54:16[http-nio-8080-exec-2] [[/]:173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+INFO  23-06-26 22:54:16[http-nio-8080-exec-2] [DispatcherServlet:525] - Initializing Servlet 'dispatcherServlet'
+INFO  23-06-26 22:54:16[http-nio-8080-exec-2] [DispatcherServlet:547] - Completed initialization in 1 ms
+INFO  23-06-26 22:54:17[http-nio-8080-exec-2] [SignUpLogAdvice:34] - 임의의 사용자가 이메일 'test12@tset.com'로 회원가입을 시도하였습니다.
+INFO  23-06-26 22:54:17[http-nio-8080-exec-2] [SignUpLogAdvice:36] - 임의의 사용자가 이메일 'test12@tset.com'로 회원가입을 성공하였습니다.
+INFO  23-06-26 22:55:38[background-preinit] [Version:21] - HV000001: Hibernate Validator 6.2.5.Final
+INFO  23-06-26 22:55:38[restartedMain] [FootprintApplication:55] - Starting FootprintApplication using Java 11.0.19 on DESKTOP-4HIFCAO with PID 16552 (C:\Users\khdsc\IdeaProjects\footprint\backend\footprint\build\classes\java\main started by khdsc in C:\Users\khdsc\IdeaProjects\footprint\backend)
+INFO  23-06-26 22:55:38[restartedMain] [FootprintApplication:637] - The following 2 profiles are active: "rds", "oauth"
+INFO  23-06-26 22:55:38[restartedMain] [DevToolsPropertyDefaultsPostProcessor:255] - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+INFO  23-06-26 22:55:38[restartedMain] [DevToolsPropertyDefaultsPostProcessor:255] - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+INFO  23-06-26 22:55:41[restartedMain] [TomcatWebServer:108] - Tomcat initialized with port(s): 8080 (http)
+INFO  23-06-26 22:55:41[restartedMain] [Http11NioProtocol:173] - Initializing ProtocolHandler ["http-nio-8080"]
+INFO  23-06-26 22:55:41[restartedMain] [StandardService:173] - Starting service [Tomcat]
+INFO  23-06-26 22:55:41[restartedMain] [StandardEngine:173] - Starting Servlet engine: [Apache Tomcat/9.0.71]
+INFO  23-06-26 22:55:41[restartedMain] [[/]:173] - Initializing Spring embedded WebApplicationContext
+INFO  23-06-26 22:55:41[restartedMain] [ServletWebServerApplicationContext:292] - Root WebApplicationContext: initialization completed in 3485 ms
+INFO  23-06-26 22:55:44[restartedMain] [DefaultSecurityFilterChain:55] - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@38358e1a, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@59ad4ad, org.springframework.security.web.context.SecurityContextPersistenceFilter@3137df8e, org.springframework.security.web.header.HeaderWriterFilter@25aa6b37, org.springframework.web.filter.CorsFilter@195dd416, org.springframework.security.web.authentication.logout.LogoutFilter@511229a, org.springframework.security.oauth2.client.web.OAuth2AuthorizationRequestRedirectFilter@50edbffe, org.springframework.security.oauth2.client.web.OAuth2LoginAuthenticationFilter@16c15343, foot.footprint.global.security.JwtAuthenticationFilter@552f7b0f, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@72aa276a, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@1f925753, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@2572a47b, org.springframework.security.web.session.SessionManagementFilter@6e93ffb5, org.springframework.security.web.access.ExceptionTranslationFilter@3f650157, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@46637d5]
+INFO  23-06-26 22:55:46[restartedMain] [VersionPrinter:49] - Flyway Community Edition 5.2.4 by Boxfuse
+INFO  23-06-26 22:55:46[restartedMain] [HikariDataSource:110] - HikariPool-1 - Starting...
+INFO  23-06-26 22:55:48[restartedMain] [HikariDataSource:123] - HikariPool-1 - Start completed.
+INFO  23-06-26 22:55:48[restartedMain] [DatabaseFactory:49] - Database: jdbc:mysql://footprintdb.ceekjekckdhv.ap-northeast-2.rds.amazonaws.com:3306/footprintDB (MySQL 8.0)
+INFO  23-06-26 22:55:49[restartedMain] [DbValidate:49] - Successfully validated 19 migrations (execution time 00:00.415s)
+INFO  23-06-26 22:55:49[restartedMain] [DbMigrate:49] - Current version of schema `footprintDB`: 6.2
+INFO  23-06-26 22:55:50[restartedMain] [DbMigrate:49] - Schema `footprintDB` is up to date. No migration necessary.
+INFO  23-06-26 22:55:51[restartedMain] [OptionalLiveReloadServer:59] - LiveReload server is running on port 35729
+INFO  23-06-26 22:55:51[restartedMain] [Http11NioProtocol:173] - Starting ProtocolHandler ["http-nio-8080"]
+INFO  23-06-26 22:55:51[restartedMain] [TomcatWebServer:220] - Tomcat started on port(s): 8080 (http) with context path ''
+INFO  23-06-26 22:55:51[restartedMain] [FootprintApplication:61] - Started FootprintApplication in 14.312 seconds (JVM running for 15.373)
