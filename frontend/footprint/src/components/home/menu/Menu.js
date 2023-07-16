@@ -103,6 +103,7 @@ const Menu = ({
         isGroupOpened={isGroupOpened}
         setMapType={setMapType}
         setGroupId={setGroupId}
+        setGroupName={setGroupName}
         history={history}
         setIsCreateGroupModalOpen={setIsCreateGroupModalOpen}
         setIsJoinGroupModalOpen={setIsJoinGroupModalOpen}

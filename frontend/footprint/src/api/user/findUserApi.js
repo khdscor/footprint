@@ -7,7 +7,7 @@ const findUserApi = (accessToken) => {
        "Authorization": "Bearer " + accessToken
      }
    };
-  return axios.get(BACKEND_ADDRESS + "/users/me", config)
+  return axios.get(BACKEND_ADDRESS + "/member/me", config)
   .then(response => {
     if (response.status === 200) {
       return response.data

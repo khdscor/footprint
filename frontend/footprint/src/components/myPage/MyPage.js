@@ -3,13 +3,11 @@ import {DisplayBox, Outside} from "../common/Box";
 import WindowSize from "../../util/WindowSize";
 import CancelButton from "./CancelButton";
 import findUserApi from "../../api/user/findUserApi";
-import findMyArticlesApi from "../../api/article/findMyArticlesApi";
 import {ACCESS_TOKEN} from "../../constants/SessionStorage";
 import Profile from "./Profile";
 import Info from "./Info";
 import MyArticles from "./articles/MyArticles";
 import MyGroups from "./groups/MyGroups";
-import findMyGroupsApi from "../../api/group/FindMyGroupsApi";
 import styled from "styled-components";
 import {withRouter} from "react-router-dom";
 import WithdrawButton from "./WithdrawButton";
@@ -36,9 +34,9 @@ const MyPage = (props) => {
       return;
     }
     findUserApi(accessToken).then(userPromise => {
-    setUser(userPromise)
-    setMyGroups(groupsPromise)
-    setMyArticles(articlesPromise)
+    setUser(userPromise.myInfo)
+    setMyGroups(userPromise.myGroups)
+    setMyArticles(userPromise.myArticles)
     });
   }, [accessToken]);
 

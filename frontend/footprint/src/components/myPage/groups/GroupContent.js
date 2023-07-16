@@ -15,7 +15,7 @@ const GroupContentStyle = styled.div`
 const GroupContent = (props) => {
 
   return (
-      <GroupContentStyle onClick={()=>{props.history.push('/groups/'+props.group.id)}}>
+      <GroupContentStyle onClick={()=>{props.history.push('/groups/'+props.group.groupId)}}>
         {props.group.name}
       </GroupContentStyle>
   );

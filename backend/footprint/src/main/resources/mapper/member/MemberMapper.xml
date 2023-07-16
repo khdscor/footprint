@@ -9,9 +9,10 @@
     #{provider_id}, #{role})
   </insert>
   <select id="findMyPageDetails" resultMap="myPageDetails">
-    SELECT m.id as memberId, m.image_url as imageUrl, m.nick_name as nickName,
+    SELECT m.id as memberId,  m.id as memberId, m.image_url as imageUrl, m.nick_name as nickName,
     m.email as email, m.join_date as visitDate,
-    a.id as articleId, a.title as title, a.create_date as createDate, count(distinct al.id) as totalLikes,
+    a.id as articleId, a.title as title, a.create_date as createDate, a.public_map as publicMap,
+    a.private_map as privateMap ,count(distinct al.id) as totalLikes,
     count(distinct c.id) as totalComments, g.id as groupId, g.name as name
     FROM member m LEFT JOIN article a ON m.id = a.member_id LEFT JOIN comment c ON a.id = c.article_id
     LEFT JOIN article_like al ON a.id = al.article_id LEFT JOIN member_group mg ON m.id = mg.member_id
@@ -19,15 +20,20 @@
   </select>
   <resultMap id="myPageDetails" type="MyPageResponse">
     <id property="memberId" column="memberId"/>
-    <result property="imageUrl" column="imageUrl"/>
-    <result property="nickName" column="nickName"/>
-    <result property="email" column="email"/>
-    <result property="visitDate" column="visitDate"/>
+    <association property="myInfo" javaType="MyInfo">
+      <id property="memberId" column="memberId"/>
+      <result property="imageUrl" column="imageUrl"/>
+      <result property="nickName" column="nickName"/>
+      <result property="email" column="email"/>
+      <result property="visitDate" column="visitDate"/>
+    </association>
     <collection property="myArticles" notNullColumn="articleId"
       ofType="foot.footprint.domain.member.dto.MyArticleResponse">
       <id property="articleId" column="articleId"/>
       <result property="title" column="title"/>
       <result property="createDate" column="createDate"/>
+      <result property="publicMap" column="publicMap"/>
+      <result property="privateMap" column="privateMap"/>
       <result property="totalLikes" column="totalLikes"/>
       <result property="totalComments" column="totalComments"/>
     </collection>

@@ -14,10 +14,11 @@ const GroupContentStyle = styled.li`
   cursor: pointer;
 `;
 
-const GroupContent = ({setIsMenuOpen, groupName, groupId, setMapType, setGroupId, history}) => {
+const GroupContent = ({setIsMenuOpen, groupName, groupId, setMapType, setGroupId, setGroupName, history}) => {
   const onClick = () => {
     setMapType(GROUPED);
     setGroupId(groupId);
+    setGroupName(groupName);
     setIsMenuOpen(false);
   };
 

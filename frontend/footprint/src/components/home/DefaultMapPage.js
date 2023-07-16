@@ -21,6 +21,7 @@ import MapType from "./MapTypeStyle";
 import MyLocationButton from "./button/MyLocationButton";
 
 const DefaultMapPage = (props) => {
+  
   const LatRangeRatio = 0.561906;
   const LngRangeRatio = 0.70378;
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -91,7 +92,7 @@ const DefaultMapPage = (props) => {
   }, [zoom]);
 
   useEffect(() => {
-    if (mapType === PUBLIC) {
+    if (mapType === PUBLIC || (mapType === GROUPED && groupId === undefined)) {
       findPublicMapArticles(
         center.lat(),
         latitudeRange,

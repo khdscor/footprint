@@ -19,12 +19,12 @@ const Style = styled.div`
 `;
 
 const MapType = ({mapType, groupId, groupName, rightMargin, history}) => {
-  if (mapType === GROUPED) {
+  if (mapType === GROUPED && groupId > 0) {
     return <Style rightMargin={rightMargin} onClick={() => history.push("/groups/" + groupId)}>
       {groupName}
     </Style>
   }
-  if (mapType === PUBLIC) {
+  if (mapType === PUBLIC || (mapType === GROUPED && groupId === undefined)) {
     return <Style rightMargin={rightMargin}>전체지도</Style>;
   }
   if (mapType === PRIVATE) {

@@ -96,7 +96,7 @@ public class MemberRepositoryTest extends RepositoryTest {
         MyPageResponse response = memberRepository.findMyPageDetails(member.getId());
 
         //then
-        assertThat(response.getEmail()).isEqualTo(member.getEmail());
+        assertThat(response.getMyInfo().getEmail()).isEqualTo(member.getEmail());
         assertThat(response.getMyArticles()).hasSize(1);
         assertThat(response.getMyArticles().get(0).getTotalLikes()).isEqualTo(1);
         assertThat(response.getMyArticles().get(0).getTotalComments()).isEqualTo(1);

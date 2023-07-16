@@ -55,12 +55,12 @@ const StyledTotalComments = styled.div`
 const ArticleContent = (props) => {
   const onClickedArticleContent = (publicMap, privateMap)=>{
     if(publicMap)
-      props.history.push('/articles/public/'+props.article.id);
+      props.history.push('/articles/public/'+props.article.articleId);
     else if(privateMap)
-      props.history.push('/articles/private/'+props.article.id);
+      props.history.push('/articles/private/'+props.article.articleId);
     else
       props.history.push({
-        pathname: '/articles/grouped/'+props.article.id,
+        pathname: '/articles/grouped/'+props.article.articleId,
         state: {groupId: props.article.groupId}
       })
   };
