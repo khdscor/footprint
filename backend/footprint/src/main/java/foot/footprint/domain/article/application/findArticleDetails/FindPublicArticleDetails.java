@@ -1,11 +1,13 @@
 package foot.footprint.domain.article.application.findArticleDetails;
 
 import foot.footprint.domain.article.dao.FindArticleRepository;
+import foot.footprint.domain.article.domain.Article;
 import foot.footprint.domain.article.dto.ArticlePageResponse;
 import foot.footprint.domain.articleLike.dao.ArticleLikeRepository;
 import foot.footprint.domain.comment.dao.FindCommentRepository;
 import foot.footprint.domain.commentLike.dao.CommentLikeRepository;
 import foot.footprint.global.security.user.CustomUserDetails;
+import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,11 +28,14 @@ public class FindPublicArticleDetails extends FindArticleDetailsServiceImpl{
     @Override
     @Transactional(readOnly = true)
     public ArticlePageResponse findDetails(Long articleId, CustomUserDetails userDetails) {
-        findAndValidateArticle(articleId);
+        Article article = findAndValidateArticle(articleId);
+        if (!article.isPublic_map()) {
+            throw new NumberFormatException("게시글이 전체지도에 포함되지 않습니다.");
+        }
         ArticlePageResponse response = new ArticlePageResponse();
         addNonLoginInfo(articleId, response);
         if (userDetails == null) {
-            response.addLoginInfo(false, null, null);
+            response.addLoginInfo(false, new ArrayList<>(), -1L);
             return response;
         }
         addLoginInfo(articleId, userDetails.getId(), response);

@@ -6,7 +6,7 @@ import foot.footprint.domain.group.dao.GroupRepository;
 import foot.footprint.domain.group.dao.MemberGroupRepository;
 import foot.footprint.domain.group.domain.Group;
 import foot.footprint.domain.group.domain.MemberGroup;
-import foot.footprint.domain.group.dto.GroupSummaryResponse;
+import foot.footprint.domain.group.dto.find.GroupSummaryResponse;
 import foot.footprint.domain.member.dao.MemberRepository;
 import foot.footprint.domain.member.domain.Member;
 import foot.footprint.repository.RepositoryTest;

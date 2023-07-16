@@ -1,0 +1,217 @@
+INFO  23-07-15 10:10:25[restartedMain] [FootprintApplication:55] - Starting FootprintApplication using Java 11.0.19 on DESKTOP-4HIFCAO with PID 15020 (C:\Users\khdsc\IdeaProjects\footprint\backend\footprint\build\classes\java\main started by khdsc in C:\Users\khdsc\IdeaProjects\footprint\backend)
+INFO  23-07-15 10:10:25[background-preinit] [Version:21] - HV000001: Hibernate Validator 6.2.5.Final
+INFO  23-07-15 10:10:25[restartedMain] [FootprintApplication:637] - The following 2 profiles are active: "rds", "oauth"
+INFO  23-07-15 10:10:26[restartedMain] [DevToolsPropertyDefaultsPostProcessor:255] - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+INFO  23-07-15 10:10:26[restartedMain] [DevToolsPropertyDefaultsPostProcessor:255] - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+INFO  23-07-15 10:10:29[restartedMain] [TomcatWebServer:108] - Tomcat initialized with port(s): 8080 (http)
+INFO  23-07-15 10:10:29[restartedMain] [Http11NioProtocol:173] - Initializing ProtocolHandler ["http-nio-8080"]
+INFO  23-07-15 10:10:29[restartedMain] [StandardService:173] - Starting service [Tomcat]
+INFO  23-07-15 10:10:29[restartedMain] [StandardEngine:173] - Starting Servlet engine: [Apache Tomcat/9.0.71]
+INFO  23-07-15 10:10:29[restartedMain] [[/]:173] - Initializing Spring embedded WebApplicationContext
+INFO  23-07-15 10:10:29[restartedMain] [ServletWebServerApplicationContext:292] - Root WebApplicationContext: initialization completed in 3619 ms
+WARN  23-07-15 10:10:31[restartedMain] [AnnotationConfigServletWebServerApplicationContext:591] - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration': Unsatisfied dependency expressed through method 'setFilterChains' parameter 0; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'filterChain' defined in class path resource [foot/footprint/global/config/SecurityConfig.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.springframework.security.web.SecurityFilterChain]: Factory method 'filterChain' threw exception; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'mvcHandlerMappingIntrospector' defined in class path resource [org/springframework/boot/autoconfigure/web/servlet/WebMvcAutoConfiguration$EnableWebMvcConfiguration.class]: Invocation of init method failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'requestMappingHandlerMapping' defined in class path resource [org/springframework/boot/autoconfigure/web/servlet/WebMvcAutoConfiguration$EnableWebMvcConfiguration.class]: Invocation of init method failed; nested exception is java.lang.IllegalStateException: Invalid mapping on handler class [foot.footprint.domain.articleLike.api.ArticleLikeController]: public org.springframework.http.ResponseEntity foot.footprint.domain.articleLike.api.ArticleLikeController.changeMyLike(java.lang.Long,java.lang.String,java.lang.Boolean,foot.footprint.global.security.user.CustomUserDetails)
+INFO  23-07-15 10:10:31[restartedMain] [StandardService:173] - Stopping service [Tomcat]
+INFO  23-07-15 10:10:31[restartedMain] [ConditionEvaluationReportLoggingListener:136] - 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+ERROR 23-07-15 10:10:31[restartedMain] [LoggingFailureAnalysisReporter:40] - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Invalid mapping pattern detected: /articles/{mapType}/{articleId}/like/articles/{mapType}/{articleId}/like
+                                              ^
+Not allowed to capture 'mapType' twice in the same pattern
+
+Action:
+
+Fix this pattern in your application or switch to the legacy parser implementation with 'spring.mvc.pathmatch.matching-strategy=ant_path_matcher'.
+
+INFO  23-07-15 10:11:52[background-preinit] [Version:21] - HV000001: Hibernate Validator 6.2.5.Final
+INFO  23-07-15 10:11:52[restartedMain] [FootprintApplication:55] - Starting FootprintApplication using Java 11.0.19 on DESKTOP-4HIFCAO with PID 13592 (C:\Users\khdsc\IdeaProjects\footprint\backend\footprint\build\classes\java\main started by khdsc in C:\Users\khdsc\IdeaProjects\footprint\backend)
+INFO  23-07-15 10:11:52[restartedMain] [FootprintApplication:637] - The following 2 profiles are active: "rds", "oauth"
+INFO  23-07-15 10:11:52[restartedMain] [DevToolsPropertyDefaultsPostProcessor:255] - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+INFO  23-07-15 10:11:52[restartedMain] [DevToolsPropertyDefaultsPostProcessor:255] - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+INFO  23-07-15 10:11:55[restartedMain] [TomcatWebServer:108] - Tomcat initialized with port(s): 8080 (http)
+INFO  23-07-15 10:11:55[restartedMain] [Http11NioProtocol:173] - Initializing ProtocolHandler ["http-nio-8080"]
+INFO  23-07-15 10:11:55[restartedMain] [StandardService:173] - Starting service [Tomcat]
+INFO  23-07-15 10:11:55[restartedMain] [StandardEngine:173] - Starting Servlet engine: [Apache Tomcat/9.0.71]
+INFO  23-07-15 10:11:55[restartedMain] [[/]:173] - Initializing Spring embedded WebApplicationContext
+INFO  23-07-15 10:11:55[restartedMain] [ServletWebServerApplicationContext:292] - Root WebApplicationContext: initialization completed in 3010 ms
+WARN  23-07-15 10:11:57[restartedMain] [AnnotationConfigServletWebServerApplicationContext:591] - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration': Unsatisfied dependency expressed through method 'setFilterChains' parameter 0; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'filterChain' defined in class path resource [foot/footprint/global/config/SecurityConfig.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.springframework.security.web.SecurityFilterChain]: Factory method 'filterChain' threw exception; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'mvcHandlerMappingIntrospector' defined in class path resource [org/springframework/boot/autoconfigure/web/servlet/WebMvcAutoConfiguration$EnableWebMvcConfiguration.class]: Invocation of init method failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'requestMappingHandlerMapping' defined in class path resource [org/springframework/boot/autoconfigure/web/servlet/WebMvcAutoConfiguration$EnableWebMvcConfiguration.class]: Invocation of init method failed; nested exception is java.lang.IllegalStateException: Invalid mapping on handler class [foot.footprint.domain.articleLike.api.ArticleLikeController]: public org.springframework.http.ResponseEntity foot.footprint.domain.articleLike.api.ArticleLikeController.changeMyLike(java.lang.Long,java.lang.String,java.lang.Boolean,foot.footprint.global.security.user.CustomUserDetails)
+INFO  23-07-15 10:11:57[restartedMain] [StandardService:173] - Stopping service [Tomcat]
+INFO  23-07-15 10:11:57[restartedMain] [ConditionEvaluationReportLoggingListener:136] - 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+ERROR 23-07-15 10:11:57[restartedMain] [LoggingFailureAnalysisReporter:40] - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Invalid mapping pattern detected: /articles/{mapType}/{articleId}/like/articles/{mapType}/{articleId}/like
+                                              ^
+Not allowed to capture 'mapType' twice in the same pattern
+
+Action:
+
+Fix this pattern in your application or switch to the legacy parser implementation with 'spring.mvc.pathmatch.matching-strategy=ant_path_matcher'.
+
+INFO  23-07-15 10:14:11[restartedMain] [FootprintApplication:55] - Starting FootprintApplication using Java 11.0.19 on DESKTOP-4HIFCAO with PID 10376 (C:\Users\khdsc\IdeaProjects\footprint\backend\footprint\build\classes\java\main started by khdsc in C:\Users\khdsc\IdeaProjects\footprint\backend)
+INFO  23-07-15 10:14:11[background-preinit] [Version:21] - HV000001: Hibernate Validator 6.2.5.Final
+INFO  23-07-15 10:14:11[restartedMain] [FootprintApplication:637] - The following 2 profiles are active: "rds", "oauth"
+INFO  23-07-15 10:14:11[restartedMain] [DevToolsPropertyDefaultsPostProcessor:255] - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+INFO  23-07-15 10:14:11[restartedMain] [DevToolsPropertyDefaultsPostProcessor:255] - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+INFO  23-07-15 10:14:14[restartedMain] [TomcatWebServer:108] - Tomcat initialized with port(s): 8080 (http)
+INFO  23-07-15 10:14:14[restartedMain] [Http11NioProtocol:173] - Initializing ProtocolHandler ["http-nio-8080"]
+INFO  23-07-15 10:14:14[restartedMain] [StandardService:173] - Starting service [Tomcat]
+INFO  23-07-15 10:14:14[restartedMain] [StandardEngine:173] - Starting Servlet engine: [Apache Tomcat/9.0.71]
+INFO  23-07-15 10:14:14[restartedMain] [[/]:173] - Initializing Spring embedded WebApplicationContext
+INFO  23-07-15 10:14:14[restartedMain] [ServletWebServerApplicationContext:292] - Root WebApplicationContext: initialization completed in 3111 ms
+WARN  23-07-15 10:14:17[restartedMain] [AnnotationConfigServletWebServerApplicationContext:591] - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration': Unsatisfied dependency expressed through method 'setFilterChains' parameter 0; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'filterChain' defined in class path resource [foot/footprint/global/config/SecurityConfig.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.springframework.security.web.SecurityFilterChain]: Factory method 'filterChain' threw exception; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'mvcHandlerMappingIntrospector' defined in class path resource [org/springframework/boot/autoconfigure/web/servlet/WebMvcAutoConfiguration$EnableWebMvcConfiguration.class]: Invocation of init method failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'requestMappingHandlerMapping' defined in class path resource [org/springframework/boot/autoconfigure/web/servlet/WebMvcAutoConfiguration$EnableWebMvcConfiguration.class]: Invocation of init method failed; nested exception is java.lang.IllegalStateException: Invalid mapping on handler class [foot.footprint.domain.articleLike.api.ArticleLikeController]: public org.springframework.http.ResponseEntity foot.footprint.domain.articleLike.api.ArticleLikeController.changeMyLike(java.lang.Long,java.lang.String,java.lang.Boolean,foot.footprint.global.security.user.CustomUserDetails)
+INFO  23-07-15 10:14:17[restartedMain] [StandardService:173] - Stopping service [Tomcat]
+INFO  23-07-15 10:14:17[restartedMain] [ConditionEvaluationReportLoggingListener:136] - 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+ERROR 23-07-15 10:14:17[restartedMain] [LoggingFailureAnalysisReporter:40] - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Invalid mapping pattern detected: /articles/{mapType}/{articleId}/like/articles/{mapType}/{articleId}/like
+                                              ^
+Not allowed to capture 'mapType' twice in the same pattern
+
+Action:
+
+Fix this pattern in your application or switch to the legacy parser implementation with 'spring.mvc.pathmatch.matching-strategy=ant_path_matcher'.
+
+INFO  23-07-15 10:15:10[background-preinit] [Version:21] - HV000001: Hibernate Validator 6.2.5.Final
+INFO  23-07-15 10:15:10[restartedMain] [FootprintApplication:55] - Starting FootprintApplication using Java 11.0.19 on DESKTOP-4HIFCAO with PID 3460 (C:\Users\khdsc\IdeaProjects\footprint\backend\footprint\build\classes\java\main started by khdsc in C:\Users\khdsc\IdeaProjects\footprint\backend)
+INFO  23-07-15 10:15:10[restartedMain] [FootprintApplication:637] - The following 2 profiles are active: "rds", "oauth"
+INFO  23-07-15 10:15:10[restartedMain] [DevToolsPropertyDefaultsPostProcessor:255] - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+INFO  23-07-15 10:15:10[restartedMain] [DevToolsPropertyDefaultsPostProcessor:255] - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+INFO  23-07-15 10:15:13[restartedMain] [TomcatWebServer:108] - Tomcat initialized with port(s): 8080 (http)
+INFO  23-07-15 10:15:13[restartedMain] [Http11NioProtocol:173] - Initializing ProtocolHandler ["http-nio-8080"]
+INFO  23-07-15 10:15:13[restartedMain] [StandardService:173] - Starting service [Tomcat]
+INFO  23-07-15 10:15:13[restartedMain] [StandardEngine:173] - Starting Servlet engine: [Apache Tomcat/9.0.71]
+INFO  23-07-15 10:15:13[restartedMain] [[/]:173] - Initializing Spring embedded WebApplicationContext
+INFO  23-07-15 10:15:13[restartedMain] [ServletWebServerApplicationContext:292] - Root WebApplicationContext: initialization completed in 3552 ms
+INFO  23-07-15 10:15:16[restartedMain] [DefaultSecurityFilterChain:55] - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@37a1720b, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@299f400d, org.springframework.security.web.context.SecurityContextPersistenceFilter@1c739a1a, org.springframework.security.web.header.HeaderWriterFilter@4ff204c2, org.springframework.web.filter.CorsFilter@2fb1958f, org.springframework.security.web.authentication.logout.LogoutFilter@1b9937d2, org.springframework.security.oauth2.client.web.OAuth2AuthorizationRequestRedirectFilter@2387b4f6, org.springframework.security.oauth2.client.web.OAuth2LoginAuthenticationFilter@572a2059, foot.footprint.global.security.JwtAuthenticationFilter@581ef7f9, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@3bd8591, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@2258fc0e, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@4eef785c, org.springframework.security.web.session.SessionManagementFilter@52bdb578, org.springframework.security.web.access.ExceptionTranslationFilter@7534ac14, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@1e745b1b]
+INFO  23-07-15 10:15:16[restartedMain] [VersionPrinter:49] - Flyway Community Edition 5.2.4 by Boxfuse
+INFO  23-07-15 10:15:16[restartedMain] [HikariDataSource:110] - HikariPool-1 - Starting...
+INFO  23-07-15 10:15:17[restartedMain] [HikariDataSource:123] - HikariPool-1 - Start completed.
+INFO  23-07-15 10:15:17[restartedMain] [DatabaseFactory:49] - Database: jdbc:mysql://footprintdb.ceekjekckdhv.ap-northeast-2.rds.amazonaws.com:3306/footprintDB (MySQL 8.0)
+INFO  23-07-15 10:15:17[restartedMain] [DbValidate:49] - Successfully validated 19 migrations (execution time 00:00.127s)
+INFO  23-07-15 10:15:17[restartedMain] [DbMigrate:49] - Current version of schema `footprintDB`: 6.2
+INFO  23-07-15 10:15:17[restartedMain] [DbMigrate:49] - Schema `footprintDB` is up to date. No migration necessary.
+INFO  23-07-15 10:15:17[restartedMain] [OptionalLiveReloadServer:59] - LiveReload server is running on port 35729
+INFO  23-07-15 10:15:17[restartedMain] [Http11NioProtocol:173] - Starting ProtocolHandler ["http-nio-8080"]
+INFO  23-07-15 10:15:17[restartedMain] [TomcatWebServer:220] - Tomcat started on port(s): 8080 (http) with context path ''
+INFO  23-07-15 10:15:17[restartedMain] [FootprintApplication:61] - Started FootprintApplication in 8.448 seconds (JVM running for 9.274)
+INFO  23-07-15 10:16:56[http-nio-8080-exec-2] [[/]:173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+INFO  23-07-15 10:16:56[http-nio-8080-exec-2] [DispatcherServlet:525] - Initializing Servlet 'dispatcherServlet'
+INFO  23-07-15 10:16:56[http-nio-8080-exec-2] [DispatcherServlet:547] - Completed initialization in 1 ms
+INFO  23-07-15 10:16:57[http-nio-8080-exec-2] [LoginLogAdvice:33] - 임의의 사용자가 이메일 'test14@tset.com'로 로그인을 시도하였습니다.
+INFO  23-07-15 10:16:57[http-nio-8080-exec-2] [LoginLogAdvice:35] - 임의의 사용자가 이메일 'test14@tset.com'로 로그인을 성공하였습니다.
+INFO  23-07-15 10:17:22[http-nio-8080-exec-3] [CreateArticleLogAdvice:36] - 회원번호 39가 게시글 '히히히히' 작성을 시도하였습니다.
+WARN  23-07-15 10:17:22[http-nio-8080-exec-3] [ExceptionHandlerExceptionResolver:208] - Resolved [foot.footprint.domain.article.exception.NotIncludedMapException: 그룹 목록에 가입되어있지 않는 그룹이 포함되어 있습니다.]
+INFO  23-07-15 10:17:30[http-nio-8080-exec-5] [CreateArticleLogAdvice:36] - 회원번호 39가 게시글 '히히히히' 작성을 시도하였습니다.
+INFO  23-07-15 10:17:30[http-nio-8080-exec-5] [CreateArticleLogAdvice:38] - 회원번호 39에 의해 게시글 '히히히히' 를 작성되었습니다.
+INFO  23-07-15 10:17:40[http-nio-8080-exec-6] [ArticleLogAdvice:35] - 회원번호 39가 게시글 26에 editArticle를 시도하였습니다.
+WARN  23-07-15 10:17:40[http-nio-8080-exec-6] [ExceptionHandlerExceptionResolver:208] - Resolved [foot.footprint.domain.article.exception.NotMatchMemberException: 글이 존재하지 않거나 수정할 권한이 없습니다.]
+INFO  23-07-15 10:17:59[http-nio-8080-exec-8] [ArticleLogAdvice:35] - 회원번호 39가 게시글 37에 editArticle를 시도하였습니다.
+INFO  23-07-15 10:17:59[http-nio-8080-exec-8] [ArticleLogAdvice:38] - 회원번호 39에 의해 게시글 37에 editArticle가 실행되였습니다.
+INFO  23-07-15 10:24:01[http-nio-8080-exec-1] [ArticleLogAdvice:35] - 회원번호 39가 게시글 37에 deleteArticle를 시도하였습니다.
+INFO  23-07-15 10:24:01[http-nio-8080-exec-1] [ArticleLogAdvice:38] - 회원번호 39에 의해 게시글 37에 deleteArticle가 실행되였습니다.
+INFO  23-07-15 12:31:30[background-preinit] [Version:21] - HV000001: Hibernate Validator 6.2.5.Final
+INFO  23-07-15 12:31:30[restartedMain] [FootprintApplication:55] - Starting FootprintApplication using Java 11.0.19 on DESKTOP-4HIFCAO with PID 13296 (C:\Users\khdsc\IdeaProjects\footprint\backend\footprint\build\classes\java\main started by khdsc in C:\Users\khdsc\IdeaProjects\footprint\backend)
+INFO  23-07-15 12:31:30[restartedMain] [FootprintApplication:637] - The following 2 profiles are active: "rds", "oauth"
+INFO  23-07-15 12:31:30[restartedMain] [DevToolsPropertyDefaultsPostProcessor:255] - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+INFO  23-07-15 12:31:30[restartedMain] [DevToolsPropertyDefaultsPostProcessor:255] - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+INFO  23-07-15 12:31:33[restartedMain] [TomcatWebServer:108] - Tomcat initialized with port(s): 8080 (http)
+INFO  23-07-15 12:31:33[restartedMain] [Http11NioProtocol:173] - Initializing ProtocolHandler ["http-nio-8080"]
+INFO  23-07-15 12:31:33[restartedMain] [StandardService:173] - Starting service [Tomcat]
+INFO  23-07-15 12:31:33[restartedMain] [StandardEngine:173] - Starting Servlet engine: [Apache Tomcat/9.0.71]
+INFO  23-07-15 12:31:34[restartedMain] [[/api]:173] - Initializing Spring embedded WebApplicationContext
+INFO  23-07-15 12:31:34[restartedMain] [ServletWebServerApplicationContext:292] - Root WebApplicationContext: initialization completed in 3515 ms
+INFO  23-07-15 12:31:36[restartedMain] [DefaultSecurityFilterChain:55] - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@39803f5a, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@476bd043, org.springframework.security.web.context.SecurityContextPersistenceFilter@1216f406, org.springframework.security.web.header.HeaderWriterFilter@5d0ed0d0, org.springframework.web.filter.CorsFilter@19359b73, org.springframework.security.web.authentication.logout.LogoutFilter@379a840b, org.springframework.security.oauth2.client.web.OAuth2AuthorizationRequestRedirectFilter@207bcdc4, org.springframework.security.oauth2.client.web.OAuth2LoginAuthenticationFilter@3b9cb39e, foot.footprint.global.security.JwtAuthenticationFilter@4505dd8f, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@5281d85d, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@4c3c471b, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@55d259be, org.springframework.security.web.session.SessionManagementFilter@6e50bcf0, org.springframework.security.web.access.ExceptionTranslationFilter@58785fe8, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@476ad236]
+INFO  23-07-15 12:31:36[restartedMain] [VersionPrinter:49] - Flyway Community Edition 5.2.4 by Boxfuse
+INFO  23-07-15 12:31:36[restartedMain] [HikariDataSource:110] - HikariPool-1 - Starting...
+INFO  23-07-15 12:31:37[restartedMain] [HikariDataSource:123] - HikariPool-1 - Start completed.
+INFO  23-07-15 12:31:37[restartedMain] [DatabaseFactory:49] - Database: jdbc:mysql://footprintdb.ceekjekckdhv.ap-northeast-2.rds.amazonaws.com:3306/footprintDB (MySQL 8.0)
+INFO  23-07-15 12:31:38[restartedMain] [DbValidate:49] - Successfully validated 19 migrations (execution time 00:00.181s)
+INFO  23-07-15 12:31:38[restartedMain] [DbMigrate:49] - Current version of schema `footprintDB`: 6.2
+INFO  23-07-15 12:31:38[restartedMain] [DbMigrate:49] - Schema `footprintDB` is up to date. No migration necessary.
+INFO  23-07-15 12:31:38[restartedMain] [OptionalLiveReloadServer:59] - LiveReload server is running on port 35729
+INFO  23-07-15 12:31:38[restartedMain] [Http11NioProtocol:173] - Starting ProtocolHandler ["http-nio-8080"]
+INFO  23-07-15 12:31:38[restartedMain] [TomcatWebServer:220] - Tomcat started on port(s): 8080 (http) with context path '/api'
+INFO  23-07-15 12:31:38[restartedMain] [FootprintApplication:61] - Started FootprintApplication in 9.435 seconds (JVM running for 10.698)
+INFO  23-07-15 12:32:50[http-nio-8080-exec-3] [[/api]:173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+INFO  23-07-15 12:32:50[http-nio-8080-exec-3] [DispatcherServlet:525] - Initializing Servlet 'dispatcherServlet'
+INFO  23-07-15 12:32:50[http-nio-8080-exec-3] [DispatcherServlet:547] - Completed initialization in 6 ms
+INFO  23-07-15 12:34:16[restartedMain] [FootprintApplication:55] - Starting FootprintApplication using Java 11.0.19 on DESKTOP-4HIFCAO with PID 11048 (C:\Users\khdsc\IdeaProjects\footprint\backend\footprint\build\classes\java\main started by khdsc in C:\Users\khdsc\IdeaProjects\footprint\backend)
+INFO  23-07-15 12:34:17[background-preinit] [Version:21] - HV000001: Hibernate Validator 6.2.5.Final
+INFO  23-07-15 12:34:17[restartedMain] [FootprintApplication:637] - The following 2 profiles are active: "rds", "oauth"
+INFO  23-07-15 12:34:17[restartedMain] [DevToolsPropertyDefaultsPostProcessor:255] - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+INFO  23-07-15 12:34:17[restartedMain] [DevToolsPropertyDefaultsPostProcessor:255] - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+INFO  23-07-15 12:34:20[restartedMain] [TomcatWebServer:108] - Tomcat initialized with port(s): 8080 (http)
+INFO  23-07-15 12:34:20[restartedMain] [Http11NioProtocol:173] - Initializing ProtocolHandler ["http-nio-8080"]
+INFO  23-07-15 12:34:20[restartedMain] [StandardService:173] - Starting service [Tomcat]
+INFO  23-07-15 12:34:20[restartedMain] [StandardEngine:173] - Starting Servlet engine: [Apache Tomcat/9.0.71]
+INFO  23-07-15 12:34:20[restartedMain] [[/]:173] - Initializing Spring embedded WebApplicationContext
+INFO  23-07-15 12:34:20[restartedMain] [ServletWebServerApplicationContext:292] - Root WebApplicationContext: initialization completed in 3558 ms
+INFO  23-07-15 12:34:23[restartedMain] [DefaultSecurityFilterChain:55] - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@754ba94c, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@4b38823e, org.springframework.security.web.context.SecurityContextPersistenceFilter@1199bf1, org.springframework.security.web.header.HeaderWriterFilter@41e84aef, org.springframework.web.filter.CorsFilter@4e6b1f60, org.springframework.security.web.authentication.logout.LogoutFilter@151cd69f, org.springframework.security.oauth2.client.web.OAuth2AuthorizationRequestRedirectFilter@5d4c7033, org.springframework.security.oauth2.client.web.OAuth2LoginAuthenticationFilter@9018aeb, foot.footprint.global.security.JwtAuthenticationFilter@54452f2d, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@161bc6a0, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@1cb32d4, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@6ab3fd9b, org.springframework.security.web.session.SessionManagementFilter@6941d135, org.springframework.security.web.access.ExceptionTranslationFilter@d856c5c, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@337feae2]
+INFO  23-07-15 12:34:23[restartedMain] [VersionPrinter:49] - Flyway Community Edition 5.2.4 by Boxfuse
+INFO  23-07-15 12:34:23[restartedMain] [HikariDataSource:110] - HikariPool-1 - Starting...
+INFO  23-07-15 12:34:24[restartedMain] [HikariDataSource:123] - HikariPool-1 - Start completed.
+INFO  23-07-15 12:34:24[restartedMain] [DatabaseFactory:49] - Database: jdbc:mysql://footprintdb.ceekjekckdhv.ap-northeast-2.rds.amazonaws.com:3306/footprintDB (MySQL 8.0)
+INFO  23-07-15 12:34:24[restartedMain] [DbValidate:49] - Successfully validated 19 migrations (execution time 00:00.107s)
+INFO  23-07-15 12:34:24[restartedMain] [DbMigrate:49] - Current version of schema `footprintDB`: 6.2
+INFO  23-07-15 12:34:24[restartedMain] [DbMigrate:49] - Schema `footprintDB` is up to date. No migration necessary.
+INFO  23-07-15 12:34:24[restartedMain] [OptionalLiveReloadServer:59] - LiveReload server is running on port 35729
+INFO  23-07-15 12:34:24[restartedMain] [Http11NioProtocol:173] - Starting ProtocolHandler ["http-nio-8080"]
+INFO  23-07-15 12:34:24[restartedMain] [TomcatWebServer:220] - Tomcat started on port(s): 8080 (http) with context path ''
+INFO  23-07-15 12:34:24[restartedMain] [FootprintApplication:61] - Started FootprintApplication in 9.121 seconds (JVM running for 10.197)
+INFO  23-07-15 12:34:43[http-nio-8080-exec-2] [[/]:173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+INFO  23-07-15 12:34:43[http-nio-8080-exec-2] [DispatcherServlet:525] - Initializing Servlet 'dispatcherServlet'
+INFO  23-07-15 12:34:43[http-nio-8080-exec-2] [DispatcherServlet:547] - Completed initialization in 3 ms
+WARN  23-07-15 12:34:57[http-nio-8080-exec-3] [DefaultHandlerExceptionResolver:208] - Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'GET' not supported]
+WARN  23-07-15 12:35:11[http-nio-8080-exec-1] [DefaultHandlerExceptionResolver:208] - Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'GET' not supported]
+WARN  23-07-15 12:35:24[http-nio-8080-exec-9] [ExceptionHandlerExceptionResolver:208] - Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<java.lang.Void> foot.footprint.domain.group.api.CreateGroupController.createGroup(foot.footprint.domain.group.dto.CreateGroupRequest,foot.footprint.global.security.user.CustomUserDetails) with 2 errors: [Field error in object 'createGroupRequest' on field 'groupName': rejected value [null]; codes [NotEmpty.createGroupRequest.groupName,NotEmpty.groupName,NotEmpty.java.lang.String,NotEmpty]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [createGroupRequest.groupName,groupName]; arguments []; default message [groupName]]; default message [빈 그룹이름을 생성할 수 없습니다.]] [Field error in object 'createGroupRequest' on field 'groupName': rejected value [null]; codes [NotBlank.createGroupRequest.groupName,NotBlank.groupName,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [createGroupRequest.groupName,groupName]; arguments []; default message [groupName]]; default message [빈 그룹이름을 생성할 수 없습니다.]] ]
+WARN  23-07-15 12:35:29[http-nio-8080-exec-2] [ExceptionHandlerExceptionResolver:208] - Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<java.lang.Void> foot.footprint.domain.group.api.CreateGroupController.createGroup(foot.footprint.domain.group.dto.CreateGroupRequest,foot.footprint.global.security.user.CustomUserDetails) with 2 errors: [Field error in object 'createGroupRequest' on field 'groupName': rejected value [null]; codes [NotEmpty.createGroupRequest.groupName,NotEmpty.groupName,NotEmpty.java.lang.String,NotEmpty]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [createGroupRequest.groupName,groupName]; arguments []; default message [groupName]]; default message [빈 그룹이름을 생성할 수 없습니다.]] [Field error in object 'createGroupRequest' on field 'groupName': rejected value [null]; codes [NotBlank.createGroupRequest.groupName,NotBlank.groupName,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [createGroupRequest.groupName,groupName]; arguments []; default message [groupName]]; default message [빈 그룹이름을 생성할 수 없습니다.]] ]
+WARN  23-07-15 12:35:36[http-nio-8080-exec-6] [DefaultHandlerExceptionResolver:208] - Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'POST' not supported]
+WARN  23-07-15 12:46:06[HikariPool-1 housekeeper] [HikariPool:788] - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=10m12s486ms897µs700ns).
+WARN  23-07-15 12:57:09[http-nio-8080-exec-2] [PoolBase:184] - HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@71f077f7 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+WARN  23-07-15 12:57:09[http-nio-8080-exec-4] [PoolBase:184] - HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@46f9257f (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+WARN  23-07-15 12:57:09[http-nio-8080-exec-3] [PoolBase:184] - HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@1d134e8c (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+WARN  23-07-15 12:57:09[http-nio-8080-exec-4] [PoolBase:184] - HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@77e096d0 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+WARN  23-07-15 12:57:09[http-nio-8080-exec-3] [PoolBase:184] - HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@4fc36199 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+WARN  23-07-15 12:57:09[http-nio-8080-exec-2] [PoolBase:184] - HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@765e2b9e (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+WARN  23-07-15 12:57:09[http-nio-8080-exec-4] [PoolBase:184] - HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@177fe5a0 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+WARN  23-07-15 12:57:09[http-nio-8080-exec-3] [PoolBase:184] - HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@48a331c3 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+WARN  23-07-15 12:57:09[http-nio-8080-exec-2] [PoolBase:184] - HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@42d4b900 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+WARN  23-07-15 12:57:09[http-nio-8080-exec-4] [PoolBase:184] - HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@18a2f8ed (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+WARN  23-07-15 12:58:54[HikariPool-1 housekeeper] [HikariPool:788] - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1m17s327ms202µs600ns).
+WARN  23-07-15 13:04:26[http-nio-8080-exec-3] [DefaultHandlerExceptionResolver:208] - Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'GET' not supported]
+INFO  23-07-15 13:06:53[http-nio-8080-exec-5] [CreateArticleLogAdvice:36] - 회원번호 40가 게시글 '히히히히' 작성을 시도하였습니다.
+INFO  23-07-15 13:06:54[http-nio-8080-exec-5] [CreateArticleLogAdvice:38] - 회원번호 40에 의해 게시글 '히히히히' 를 작성되었습니다.
+INFO  23-07-15 13:07:08[http-nio-8080-exec-3] [CreateArticleLogAdvice:36] - 회원번호 40가 게시글 '히히히히' 작성을 시도하였습니다.
+INFO  23-07-15 13:07:08[http-nio-8080-exec-3] [CreateArticleLogAdvice:38] - 회원번호 40에 의해 게시글 '히히히히' 를 작성되었습니다.
+WARN  23-07-15 13:08:45[http-nio-8080-exec-2] [DefaultHandlerExceptionResolver:208] - Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'GET' not supported]
+INFO  23-07-15 13:09:47[http-nio-8080-exec-8] [CreateArticleLogAdvice:36] - 회원번호 40가 게시글 '히히히히' 작성을 시도하였습니다.
+INFO  23-07-15 13:09:47[http-nio-8080-exec-8] [CreateArticleLogAdvice:38] - 회원번호 40에 의해 게시글 '히히히히' 를 작성되었습니다.
+INFO  23-07-15 13:10:09[http-nio-8080-exec-5] [ArticleLogAdvice:35] - 회원번호 40가 게시글 40에 changeMyLike를 시도하였습니다.
+INFO  23-07-15 13:10:09[http-nio-8080-exec-5] [ArticleLogAdvice:38] - 회원번호 40에 의해 게시글 40에 changeMyLike가 실행되였습니다.
+INFO  23-07-15 13:10:09[http-nio-8080-exec-4] [ArticleLogAdvice:35] - 회원번호 40가 게시글 40에 changeMyLike를 시도하였습니다.
+INFO  23-07-15 13:10:09[http-nio-8080-exec-4] [ArticleLogAdvice:38] - 회원번호 40에 의해 게시글 40에 changeMyLike가 실행되였습니다.
+INFO  23-07-15 13:10:11[http-nio-8080-exec-2] [ArticleLogAdvice:35] - 회원번호 40가 게시글 40에 createComment를 시도하였습니다.
+INFO  23-07-15 13:10:11[http-nio-8080-exec-2] [ArticleLogAdvice:38] - 회원번호 40에 의해 게시글 40에 createComment가 실행되였습니다.

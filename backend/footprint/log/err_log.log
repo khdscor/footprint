@@ -1,0 +1,48 @@
+ERROR 23-07-15 10:10:31[restartedMain] [LoggingFailureAnalysisReporter:40] - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Invalid mapping pattern detected: /articles/{mapType}/{articleId}/like/articles/{mapType}/{articleId}/like
+                                              ^
+Not allowed to capture 'mapType' twice in the same pattern
+
+Action:
+
+Fix this pattern in your application or switch to the legacy parser implementation with 'spring.mvc.pathmatch.matching-strategy=ant_path_matcher'.
+
+ERROR 23-07-15 10:11:57[restartedMain] [LoggingFailureAnalysisReporter:40] - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Invalid mapping pattern detected: /articles/{mapType}/{articleId}/like/articles/{mapType}/{articleId}/like
+                                              ^
+Not allowed to capture 'mapType' twice in the same pattern
+
+Action:
+
+Fix this pattern in your application or switch to the legacy parser implementation with 'spring.mvc.pathmatch.matching-strategy=ant_path_matcher'.
+
+ERROR 23-07-15 10:14:17[restartedMain] [LoggingFailureAnalysisReporter:40] - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Invalid mapping pattern detected: /articles/{mapType}/{articleId}/like/articles/{mapType}/{articleId}/like
+                                              ^
+Not allowed to capture 'mapType' twice in the same pattern
+
+Action:
+
+Fix this pattern in your application or switch to the legacy parser implementation with 'spring.mvc.pathmatch.matching-strategy=ant_path_matcher'.
+

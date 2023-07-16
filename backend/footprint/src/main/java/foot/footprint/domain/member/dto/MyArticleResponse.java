@@ -13,6 +13,8 @@ public class MyArticleResponse {
     private Long articleId;
     private String title;
     private Date createDate;
+    private boolean publicMap;
+    private boolean privateMap;
     private Long totalLikes;
     private Long totalComments;
 }

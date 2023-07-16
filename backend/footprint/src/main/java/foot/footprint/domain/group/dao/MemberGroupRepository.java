@@ -1,7 +1,7 @@
 package foot.footprint.domain.group.dao;
 
 import foot.footprint.domain.group.domain.MemberGroup;
-import foot.footprint.domain.group.dto.GroupSummaryResponse;
+import foot.footprint.domain.group.dto.find.GroupSummaryResponse;
 import java.util.List;
 import java.util.Optional;
 import org.apache.ibatis.annotations.Delete;

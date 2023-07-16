@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/articles/{mapType}/{articleId}/like")
 public class ArticleLikeController {
 
     private final ChangeArticleLikeService changePublicArticleLike;
@@ -35,7 +34,7 @@ public class ArticleLikeController {
     }
 
     @ArticleLog
-    @PostMapping
+    @PostMapping("/articles/{mapType}/{articleId}/like")
     public ResponseEntity<Void> changeMyLike(@PathVariable("articleId") Long articleId,
         @PathVariable("mapType") String mapType,
         @RequestParam(value = "hasiliked") Boolean hasILiked,

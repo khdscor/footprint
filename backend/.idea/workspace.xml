@@ -1,0 +1,653 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="e9c5eb8d-61e6-4bf1-a075-2ef5ca99f02a" name="변경" comment="refactor: public, private 지정 등 기타 리펙토링">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/footprint/log/testLog.log" beforeDir="false" afterPath="$PROJECT_DIR$/footprint/log/testLog.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/footprint/src/api/article/FindWritingApi.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/footprint/src/api/article/FindWritingApi.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/footprint/src/components/articleDetail/ArticleDetailPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/footprint/src/components/articleDetail/ArticleDetailPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/footprint/src/components/home/DefaultMapPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/footprint/src/components/home/DefaultMapPage.js" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$/footprint">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <task path="$PROJECT_DIR$/footprint">
+          <activation />
+        </task>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="footprint" type="f1a62948:ProjectNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="footprint" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="package-info" />
+        <option value="Enum" />
+        <option value="AnnotationType" />
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="JpbToolWindowState">
+    <option name="myId2FirstActivated">
+      <map>
+        <entry key="com.haulmont.jpb.jpaStructure" value="true" />
+      </map>
+    </option>
+    <option name="myId2Visible">
+      <map>
+        <entry key="com.haulmont.jpb.jpaStructure" value="false" />
+      </map>
+    </option>
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2MOKgaZzNSFMSeMzlXglPwhRCSQ" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_MARK_IGNORED_FILES_AS_EXCLUDED": "true",
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "refactor#11",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/khdsc/IdeaProjects/footprint/backend/footprint/build.gradle",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "reference.settingsdialog.project.gradle"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\khdsc\IdeaProjects\footprint\backend\footprint\src\main\resources\db\migration" />
+      <recent name="C:\Users\khdsc\IdeaProjects\footprint\backend\footprint\src\test\resources" />
+      <recent name="C:\Users\khdsc\IdeaProjects\footprint\backend\footprint\src\main\java\foot\footprint\domain" />
+      <recent name="C:\Users\khdsc\IdeaProjects\footprint\backend\footprint\src\main\resources\mapper\user" />
+      <recent name="C:\Users\khdsc\IdeaProjects\footprint\backend\footprint\src\main\resources\db.migration" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\khdsc\IdeaProjects\footprint\backend\footprint\src\main\resources\mapper\articleLike" />
+      <recent name="C:\Users\khdsc\IdeaProjects\footprint\backend\footprint\src\main\resources\mapper\article" />
+      <recent name="C:\Users\khdsc\IdeaProjects\footprint\backend\footprint\src\main\resources\mapper" />
+      <recent name="C:\Users\khdsc\IdeaProjects\footprint\backend\footprint\src\main\resources\db\migration" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="foot.footprint.domain.comment.application.create" />
+      <recent name="foot.footprint.global.domain" />
+      <recent name="foot.footprint.global.aop.auth" />
+      <recent name="foot.footprint.global.aop.otherLogs" />
+      <recent name="foot.footprint.global.aop.group" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.FootprintApplication">
+    <configuration name="FootprintApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="ALTERNATIVE_JRE_PATH" value="java-jdk-11" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <option name="MAIN_CLASS_NAME" value="foot.footprint.FootprintApplication" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="foot.footprint.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AuthServiceTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/footprint" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;foot.footprint.service.member.AuthServiceTest&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <ForceTestExec>true</ForceTestExec>
+      <method v="2" />
+    </configuration>
+    <configuration name="AuthServiceTest.SignUp" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/footprint" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;foot.footprint.service.member.AuthServiceTest.SignUp&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <ForceTestExec>true</ForceTestExec>
+      <method v="2" />
+    </configuration>
+    <configuration name="AuthServiceTest.SignUp_IfExistsEmail" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/footprint" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;foot.footprint.service.member.AuthServiceTest.SignUp_IfExistsEmail&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <ForceTestExec>true</ForceTestExec>
+      <method v="2" />
+    </configuration>
+    <configuration name="MemberServiceTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/footprint" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;foot.footprint.service.member.MemberServiceTest&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <ForceTestExec>true</ForceTestExec>
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="backend" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="backend" />
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.FootprintApplication" />
+        <item itemvalue="Gradle.AuthServiceTest" />
+        <item itemvalue="Gradle.AuthServiceTest.SignUp" />
+        <item itemvalue="Gradle.AuthServiceTest.SignUp_IfExistsEmail" />
+        <item itemvalue="Gradle.MemberServiceTest" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="애플리케이션 수준" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="디폴트 작업">
+      <changelist id="e9c5eb8d-61e6-4bf1-a075-2ef5ca99f02a" name="변경" comment="" />
+      <created>1677633300752</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1677633300752</updated>
+    </task>
+    <task id="LOCAL-00188" summary="feat: 회원가입 로그 출력 구현">
+      <created>1687787743995</created>
+      <option name="number" value="00188" />
+      <option name="presentableId" value="LOCAL-00188" />
+      <option name="project" value="LOCAL" />
+      <updated>1687787743995</updated>
+    </task>
+    <task id="LOCAL-00189" summary="feat: 회원 탈퇴 repository 메서드 구현 및 테스트">
+      <created>1687958464277</created>
+      <option name="number" value="00189" />
+      <option name="presentableId" value="LOCAL-00189" />
+      <option name="project" value="LOCAL" />
+      <updated>1687958464277</updated>
+    </task>
+    <task id="LOCAL-00190" summary="feat: 회원 탈퇴 service 메서드 구현">
+      <created>1687958480199</created>
+      <option name="number" value="00190" />
+      <option name="presentableId" value="LOCAL-00190" />
+      <option name="project" value="LOCAL" />
+      <updated>1687958480199</updated>
+    </task>
+    <task id="LOCAL-00191" summary="feat: 회원 탈퇴 로그 출력 구현">
+      <created>1687959176986</created>
+      <option name="number" value="00191" />
+      <option name="presentableId" value="LOCAL-00191" />
+      <option name="project" value="LOCAL" />
+      <updated>1687959176986</updated>
+    </task>
+    <task id="LOCAL-00192" summary="feat: 회원 탈퇴 controller 메서드 구현 및 테스트">
+      <created>1687959194543</created>
+      <option name="number" value="00192" />
+      <option name="presentableId" value="LOCAL-00192" />
+      <option name="project" value="LOCAL" />
+      <updated>1687959194543</updated>
+    </task>
+    <task id="LOCAL-00193" summary="feat: groupRepository#findGroupName 구현 및 테스트">
+      <created>1688035404354</created>
+      <option name="number" value="00193" />
+      <option name="presentableId" value="LOCAL-00193" />
+      <option name="project" value="LOCAL" />
+      <updated>1688035404355</updated>
+    </task>
+    <task id="LOCAL-00194" summary="refactor: FindArticleService#findGroupedArticles groupName도 같이 리턴하도록 수정 및 테스트">
+      <created>1688035902542</created>
+      <option name="number" value="00194" />
+      <option name="presentableId" value="LOCAL-00194" />
+      <option name="project" value="LOCAL" />
+      <updated>1688035902542</updated>
+    </task>
+    <task id="LOCAL-00195" summary="refactor: FindArticleController#findGroupedMapArticles 그룹이름도 같이 반환하도록 구현 및 테스트">
+      <created>1688035987305</created>
+      <option name="number" value="00195" />
+      <option name="presentableId" value="LOCAL-00195" />
+      <option name="project" value="LOCAL" />
+      <updated>1688035987305</updated>
+    </task>
+    <task id="LOCAL-00196" summary="refactor: MemberGroupRepository#findById 리턴 타입 수정">
+      <created>1688039906185</created>
+      <option name="number" value="00196" />
+      <option name="presentableId" value="LOCAL-00196" />
+      <option name="project" value="LOCAL" />
+      <updated>1688039906185</updated>
+    </task>
+    <task id="LOCAL-00197" summary="feat: GroupRepository#updateOwner 구현">
+      <created>1688117630822</created>
+      <option name="number" value="00197" />
+      <option name="presentableId" value="LOCAL-00197" />
+      <option name="project" value="LOCAL" />
+      <updated>1688117630823</updated>
+    </task>
+    <task id="LOCAL-00198" summary="feat: MemberGroupRepository#findAllByGroupId 구현">
+      <created>1688117654439</created>
+      <option name="number" value="00198" />
+      <option name="presentableId" value="LOCAL-00198" />
+      <option name="project" value="LOCAL" />
+      <updated>1688117654439</updated>
+    </task>
+    <task id="LOCAL-00199" summary="refactor:GroupRepository 테스트 수정">
+      <created>1688117678810</created>
+      <option name="number" value="00199" />
+      <option name="presentableId" value="LOCAL-00199" />
+      <option name="project" value="LOCAL" />
+      <updated>1688117678810</updated>
+    </task>
+    <task id="LOCAL-00200" summary="refactor:GroupRepository 테스트 수정">
+      <created>1688117706547</created>
+      <option name="number" value="00200" />
+      <option name="presentableId" value="LOCAL-00200" />
+      <option name="project" value="LOCAL" />
+      <updated>1688117706548</updated>
+    </task>
+    <task id="LOCAL-00201" summary="refactor:serviceTest 빠른 객체 생성을 위한 SetUpMethods 구현">
+      <created>1688120141904</created>
+      <option name="number" value="00201" />
+      <option name="presentableId" value="LOCAL-00201" />
+      <option name="project" value="LOCAL" />
+      <updated>1688120141904</updated>
+    </task>
+    <task id="LOCAL-00202" summary="refactor:SecessionGroupService 리펙토링 및 테스트">
+      <created>1688120175259</created>
+      <option name="number" value="00202" />
+      <option name="presentableId" value="LOCAL-00202" />
+      <option name="project" value="LOCAL" />
+      <updated>1688120175259</updated>
+    </task>
+    <task id="LOCAL-00203" summary="feat: findGroupDetails 시 GroupDetailsDto로 조회되도록 수정 및 테스트">
+      <created>1688124075774</created>
+      <option name="number" value="00203" />
+      <option name="presentableId" value="LOCAL-00203" />
+      <option name="project" value="LOCAL" />
+      <updated>1688124075774</updated>
+    </task>
+    <task id="LOCAL-00204" summary="feat: findGroupDetails 시 자신이 그룹장인지 확인할 수 있도록 수정">
+      <created>1688124127285</created>
+      <option name="number" value="00204" />
+      <option name="presentableId" value="LOCAL-00204" />
+      <option name="project" value="LOCAL" />
+      <updated>1688124127285</updated>
+    </task>
+    <task id="LOCAL-00205" summary="refactor: changeArticleLikeService 인터페이스와 구현체로 분리">
+      <created>1688643929863</created>
+      <option name="number" value="00205" />
+      <option name="presentableId" value="LOCAL-00205" />
+      <option name="project" value="LOCAL" />
+      <updated>1688643929863</updated>
+    </task>
+    <task id="LOCAL-00206" summary="refactor: changeArticleLikeService 인터페이스와 구현체로 분리에 따른 테스트 코드 수정">
+      <created>1688643943173</created>
+      <option name="number" value="00206" />
+      <option name="presentableId" value="LOCAL-00206" />
+      <option name="project" value="LOCAL" />
+      <updated>1688643943174</updated>
+    </task>
+    <task id="LOCAL-00207" summary="refactor: changeArticleLikeService 인터페이스와 구현체로 분리에 따른 controller 리펙토링">
+      <created>1688643964368</created>
+      <option name="number" value="00207" />
+      <option name="presentableId" value="LOCAL-00207" />
+      <option name="project" value="LOCAL" />
+      <updated>1688643964368</updated>
+    </task>
+    <task id="LOCAL-00208" summary="refactor: changeArticleLikeController 의존성 주입을 final로 설정하고 생성자를 통하도록 리펙토링">
+      <created>1688645432771</created>
+      <option name="number" value="00208" />
+      <option name="presentableId" value="LOCAL-00208" />
+      <option name="project" value="LOCAL" />
+      <updated>1688645432771</updated>
+    </task>
+    <task id="LOCAL-00209" summary="refactor: changeArticleLikeController 의존성 주입을 final로 설정하고 생성자를 통하도록 리펙토링">
+      <created>1688645467054</created>
+      <option name="number" value="00209" />
+      <option name="presentableId" value="LOCAL-00209" />
+      <option name="project" value="LOCAL" />
+      <updated>1688645467054</updated>
+    </task>
+    <task id="LOCAL-00210" summary="refactor: changeArticleLikeController 의존성 주입을 final로 설정하고 생성자를 통하도록 리펙토링">
+      <created>1688645600903</created>
+      <option name="number" value="00210" />
+      <option name="presentableId" value="LOCAL-00210" />
+      <option name="project" value="LOCAL" />
+      <updated>1688645600903</updated>
+    </task>
+    <task id="LOCAL-00211" summary="refactor: changeArticleLikeServiceImpl 추상클래스 메서드 수정">
+      <created>1688646493098</created>
+      <option name="number" value="00211" />
+      <option name="presentableId" value="LOCAL-00211" />
+      <option name="project" value="LOCAL" />
+      <updated>1688646493098</updated>
+    </task>
+    <task id="LOCAL-00212" summary="refactor: changeArticleLikeServiceImpl 추상클래스 메서드 수정">
+      <created>1688646681235</created>
+      <option name="number" value="00212" />
+      <option name="presentableId" value="LOCAL-00212" />
+      <option name="project" value="LOCAL" />
+      <updated>1688646681235</updated>
+    </task>
+    <task id="LOCAL-00213" summary="refactor: createCommentService Interface 와 3개의 구현체로 분리">
+      <created>1688727257964</created>
+      <option name="number" value="00213" />
+      <option name="presentableId" value="LOCAL-00213" />
+      <option name="project" value="LOCAL" />
+      <updated>1688727257965</updated>
+    </task>
+    <task id="LOCAL-00214" summary="refactor: createCommentService Interface 와 3개의 구현체로 분리에 따라 테스트 수정">
+      <created>1688727268514</created>
+      <option name="number" value="00214" />
+      <option name="presentableId" value="LOCAL-00214" />
+      <option name="project" value="LOCAL" />
+      <updated>1688727268514</updated>
+    </task>
+    <task id="LOCAL-00215" summary="refactor: CreateCommentController 구현체 분리에 따라 수정 및 테스트">
+      <created>1688727291528</created>
+      <option name="number" value="00215" />
+      <option name="presentableId" value="LOCAL-00215" />
+      <option name="project" value="LOCAL" />
+      <updated>1688727291528</updated>
+    </task>
+    <task id="LOCAL-00216" summary="refactor: DeleteComment Api 인터페이스와 구현체로 분리하여 구현">
+      <created>1688728404891</created>
+      <option name="number" value="00216" />
+      <option name="presentableId" value="LOCAL-00216" />
+      <option name="project" value="LOCAL" />
+      <updated>1688728404891</updated>
+    </task>
+    <task id="LOCAL-00217" summary="refactor: EditComment Api 인터페이스와 구현체로 분리하여 구현">
+      <created>1688728973990</created>
+      <option name="number" value="00217" />
+      <option name="presentableId" value="LOCAL-00217" />
+      <option name="project" value="LOCAL" />
+      <updated>1688728973991</updated>
+    </task>
+    <task id="LOCAL-00218" summary="refactor: findArticlesService 인터페이스와 여러 구현체들로 분리">
+      <created>1688731291061</created>
+      <option name="number" value="00218" />
+      <option name="presentableId" value="LOCAL-00218" />
+      <option name="project" value="LOCAL" />
+      <updated>1688731291061</updated>
+    </task>
+    <task id="LOCAL-00219" summary="refactor: findArticlesService 인터페이스와 여러 구현체들로 분리 테스트">
+      <created>1688731300161</created>
+      <option name="number" value="00219" />
+      <option name="presentableId" value="LOCAL-00219" />
+      <option name="project" value="LOCAL" />
+      <updated>1688731300161</updated>
+    </task>
+    <task id="LOCAL-00220" summary="refactor: findArticlesController 인터페이스와 여러 구현체들로 분리">
+      <created>1688731516803</created>
+      <option name="number" value="00220" />
+      <option name="presentableId" value="LOCAL-00220" />
+      <option name="project" value="LOCAL" />
+      <updated>1688731516803</updated>
+    </task>
+    <task id="LOCAL-00221" summary="refactor: findArticlesController 인터페이스와 여러 구현체들로 분리">
+      <created>1688731724912</created>
+      <option name="number" value="00221" />
+      <option name="presentableId" value="LOCAL-00221" />
+      <option name="project" value="LOCAL" />
+      <updated>1688731724912</updated>
+    </task>
+    <task id="LOCAL-00222" summary="refactor: createArticle Api 인터페이스와 구현체로 분리">
+      <created>1688731987925</created>
+      <option name="number" value="00222" />
+      <option name="presentableId" value="LOCAL-00222" />
+      <option name="project" value="LOCAL" />
+      <updated>1688731987925</updated>
+    </task>
+    <task id="LOCAL-00223" summary="refactor: deleteArticle Api 인터페이스와 구현체로 분리">
+      <created>1688732864366</created>
+      <option name="number" value="00223" />
+      <option name="presentableId" value="LOCAL-00223" />
+      <option name="project" value="LOCAL" />
+      <updated>1688732864366</updated>
+    </task>
+    <task id="LOCAL-00224" summary="refactor: editArticle Api 인터페이스와 구현체로 분리">
+      <created>1688732992888</created>
+      <option name="number" value="00224" />
+      <option name="presentableId" value="LOCAL-00224" />
+      <option name="project" value="LOCAL" />
+      <updated>1688732992888</updated>
+    </task>
+    <task id="LOCAL-00225" summary="refactor: memberService Api 인터페이스와 구현체로 분리">
+      <created>1688733642587</created>
+      <option name="number" value="00225" />
+      <option name="presentableId" value="LOCAL-00225" />
+      <option name="project" value="LOCAL" />
+      <updated>1688733642587</updated>
+    </task>
+    <task id="LOCAL-00226" summary="refactor: GroupChangeImportantService Api 인터페이스와 구현체로 분리">
+      <created>1688781046957</created>
+      <option name="number" value="00226" />
+      <option name="presentableId" value="LOCAL-00226" />
+      <option name="project" value="LOCAL" />
+      <updated>1688781046958</updated>
+    </task>
+    <task id="LOCAL-00227" summary="refactor: GroupService Api 인터페이스와 구현체로 분리">
+      <created>1688783275480</created>
+      <option name="number" value="00227" />
+      <option name="presentableId" value="LOCAL-00227" />
+      <option name="project" value="LOCAL" />
+      <updated>1688783275480</updated>
+    </task>
+    <task id="LOCAL-00228" summary="refactor: FIndArticleDetailsService Api 인터페이스와 3가지 구현체로 분리">
+      <created>1688786891193</created>
+      <option name="number" value="00228" />
+      <option name="presentableId" value="LOCAL-00228" />
+      <option name="project" value="LOCAL" />
+      <updated>1688786891193</updated>
+    </task>
+    <task id="LOCAL-00229" summary="refactor: FIndArticleDetailsController Api 인터페이스와 3가지 구현체로 분리">
+      <created>1688786902517</created>
+      <option name="number" value="00229" />
+      <option name="presentableId" value="LOCAL-00229" />
+      <option name="project" value="LOCAL" />
+      <updated>1688786902517</updated>
+    </task>
+    <task id="LOCAL-00230" summary="refactor: CommentLikeService Api 인터페이스와 3가지 구현체로 분리 및 테스트">
+      <created>1688792601266</created>
+      <option name="number" value="00230" />
+      <option name="presentableId" value="LOCAL-00230" />
+      <option name="project" value="LOCAL" />
+      <updated>1688792601266</updated>
+    </task>
+    <task id="LOCAL-00231" summary="refactor: CommentLikeController Api 인터페이스와 3가지 구현체로 분리 및 테스트">
+      <created>1688792612739</created>
+      <option name="number" value="00231" />
+      <option name="presentableId" value="LOCAL-00231" />
+      <option name="project" value="LOCAL" />
+      <updated>1688792612739</updated>
+    </task>
+    <task id="LOCAL-00232" summary="refactor: Login, SignUP request가 상속하는 클래스를 생성하여 Service method 매개변수 통일">
+      <created>1688797859095</created>
+      <option name="number" value="00232" />
+      <option name="presentableId" value="LOCAL-00232" />
+      <option name="project" value="LOCAL" />
+      <updated>1688797859095</updated>
+    </task>
+    <task id="LOCAL-00233" summary="refactor: Login, SignUP service 로 하나의 인터페이스와 2개의 구현체로 분리 구현">
+      <created>1688799626525</created>
+      <option name="number" value="00233" />
+      <option name="presentableId" value="LOCAL-00233" />
+      <option name="project" value="LOCAL" />
+      <updated>1688799626525</updated>
+    </task>
+    <task id="LOCAL-00234" summary="refactor: Login, SignUP service 로 하나의 인터페이스와 2개의 구현체로 분리 구현(controller 수정)">
+      <created>1688799646642</created>
+      <option name="number" value="00234" />
+      <option name="presentableId" value="LOCAL-00234" />
+      <option name="project" value="LOCAL" />
+      <updated>1688799646642</updated>
+    </task>
+    <task id="LOCAL-00235" summary="refactor: public, private 지정 등 기타 리펙토링">
+      <created>1689389299182</created>
+      <option name="number" value="00235" />
+      <option name="presentableId" value="LOCAL-00235" />
+      <option name="project" value="LOCAL" />
+      <updated>1689389299183</updated>
+    </task>
+    <task id="LOCAL-00236" summary="refactor: public, private 지정 등 기타 리펙토링">
+      <created>1689390784128</created>
+      <option name="number" value="00236" />
+      <option name="presentableId" value="LOCAL-00236" />
+      <option name="project" value="LOCAL" />
+      <updated>1689390784128</updated>
+    </task>
+    <option name="localTasksCounter" value="237" />
+    <servers />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="*.log" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="refactor: changeArticleLikeService 인터페이스와 구현체로 분리에 따른 controller 리펙토링" />
+    <MESSAGE value="refactor: changeArticleLikeController 의존성 주입을 final로 설정하고 생성자를 통하도록 리펙토링" />
+    <MESSAGE value="refactor: changeArticleLikeServiceImpl 추상클래스 메서드 수정" />
+    <MESSAGE value="refactor: createCommentService Interface 와 3개의 구현체로 분리" />
+    <MESSAGE value="refactor: createCommentService Interface 와 3개의 구현체로 분리에 따라 테스트 수정" />
+    <MESSAGE value="refactor: CreateCommentController 구현체 분리에 따라 수정 및 테스트" />
+    <MESSAGE value="refactor: DeleteComment Api 인터페이스와 구현체로 분리하여 구현" />
+    <MESSAGE value="refactor: EditComment Api 인터페이스와 구현체로 분리하여 구현" />
+    <MESSAGE value="refactor: findArticlesService 인터페이스와 여러 구현체들로 분리" />
+    <MESSAGE value="refactor: findArticlesService 인터페이스와 여러 구현체들로 분리 테스트" />
+    <MESSAGE value="refactor: findArticlesController 인터페이스와 여러 구현체들로 분리" />
+    <MESSAGE value="refactor: createArticle Api 인터페이스와 구현체로 분리" />
+    <MESSAGE value="refactor: deleteArticle Api 인터페이스와 구현체로 분리" />
+    <MESSAGE value="refactor: editArticle Api 인터페이스와 구현체로 분리" />
+    <MESSAGE value="refactor: memberService Api 인터페이스와 구현체로 분리" />
+    <MESSAGE value="refactor: GroupChangeImportantService Api 인터페이스와 구현체로 분리" />
+    <MESSAGE value="refactor: GroupService Api 인터페이스와 구현체로 분리" />
+    <MESSAGE value="refactor: FIndArticleDetailsService Api 인터페이스와 3가지 구현체로 분리" />
+    <MESSAGE value="refactor: FIndArticleDetailsController Api 인터페이스와 3가지 구현체로 분리" />
+    <MESSAGE value="refactor: CommentLikeService Api 인터페이스와 3가지 구현체로 분리 및 테스트" />
+    <MESSAGE value="refactor: CommentLikeController Api 인터페이스와 3가지 구현체로 분리 및 테스트" />
+    <MESSAGE value="refactor: Login, SignUP request가 상속하는 클래스를 생성하여 Service method 매개변수 통일" />
+    <MESSAGE value="refactor: Login, SignUP service 로 하나의 인터페이스와 2개의 구현체로 분리 구현" />
+    <MESSAGE value="refactor: Login, SignUP service 로 하나의 인터페이스와 2개의 구현체로 분리 구현(controller 수정)" />
+    <MESSAGE value="refactor: public, private 지정 등 기타 리펙토링" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor: public, private 지정 등 기타 리펙토링" />
+  </component>
+</project>

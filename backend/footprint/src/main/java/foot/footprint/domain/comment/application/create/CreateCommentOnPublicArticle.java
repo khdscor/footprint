@@ -13,7 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @Qualifier("public")
-public class CreateCommentOnPublicArticle extends CreateCommentServiceImpl{
+public class CreateCommentOnPublicArticle extends CreateCommentServiceImpl {
 
     public CreateCommentOnPublicArticle(
         FindArticleRepository findArticleRepository,
@@ -25,7 +25,10 @@ public class CreateCommentOnPublicArticle extends CreateCommentServiceImpl{
     @Override
     @Transactional
     public CommentResponse createComment(Long articleId, String content, Long memberId) {
-        findAndValidateArticle(articleId);
+        Article article = findAndValidateArticle(articleId);
+        if (!article.isPublic_map()) {
+            throw new NumberFormatException("게시글이 전체지도에 포함되지 않습니다.");
+        }
         Member member = findAndValidateMember(memberId);
         return saveComment(articleId, content, AuthorDto.buildAuthorDto(member));
     }
