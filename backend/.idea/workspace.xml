@@ -5,11 +5,27 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e9c5eb8d-61e6-4bf1-a075-2ef5ca99f02a" name="변경" comment="refactor: public, private 지정 등 기타 리펙토링">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules/footprint.main.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/footprint/src/test/java/foot/footprint/repository/featureFactory/ArticleFeatureFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/footprint/src/test/java/foot/footprint/repository/featureFactory/MemberFeatureFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/footprint/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/footprint/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/footprint/log/err_log.log" beforeDir="false" afterPath="$PROJECT_DIR$/footprint/log/err_log.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/footprint/log/testLog.log" beforeDir="false" afterPath="$PROJECT_DIR$/footprint/log/testLog.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/footprint/src/api/article/FindWritingApi.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/footprint/src/api/article/FindWritingApi.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/footprint/src/components/articleDetail/ArticleDetailPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/footprint/src/components/articleDetail/ArticleDetailPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/footprint/src/components/home/DefaultMapPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/footprint/src/components/home/DefaultMapPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/footprint/src/main/java/foot/footprint/domain/article/dao/CreateArticleRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/footprint/src/main/java/foot/footprint/domain/article/dao/CreateArticleRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/footprint/src/main/java/foot/footprint/domain/article/domain/Article.java" beforeDir="false" afterPath="$PROJECT_DIR$/footprint/src/main/java/foot/footprint/domain/article/domain/Article.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/footprint/src/main/resources/logback-spring.xml" beforeDir="false" afterPath="$PROJECT_DIR$/footprint/src/main/resources/logback-spring.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/footprint/src/main/resources/mapper/article/CreateArticleMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/footprint/src/main/resources/mapper/article/CreateArticleMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/footprint/src/test/java/foot/footprint/repository/article/CreateArticleRepositoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/footprint/src/test/java/foot/footprint/repository/article/CreateArticleRepositoryTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/footprint/src/test/java/foot/footprint/service/article/FindArticleDetailsServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/footprint/src/test/java/foot/footprint/service/article/FindArticleDetailsServiceTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,7 +53,7 @@
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="footprint" type="f1a62948:ProjectNode" />
-                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="Run Configurations" type="7b0102dc:RunConfigurationsNode" />
               </path>
             </expand>
             <select />
@@ -81,22 +97,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_MARK_IGNORED_FILES_AS_EXCLUDED": "true",
-    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "refactor#11",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/khdsc/IdeaProjects/footprint/backend/footprint/build.gradle",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "reference.settingsdialog.project.gradle"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_MARK_IGNORED_FILES_AS_EXCLUDED&quot;: &quot;true&quot;,
+    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;refactor#11&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/khdsc/IdeaProjects/footprint/backend/footprint/build.gradle&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.project.gradle&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\khdsc\IdeaProjects\footprint\backend\footprint\src\main\resources\db\migration" />
@@ -119,11 +135,12 @@
       <recent name="foot.footprint.global.aop.group" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.FootprintApplication">
+  <component name="RunManager" selected="Gradle.CreateArticleRepositoryTest.create">
     <configuration name="FootprintApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="ALTERNATIVE_JRE_PATH" value="java-jdk-11" />
+      <option name="ALTERNATIVE_JRE_PATH" value="$PROJECT_DIR$/../../../../../../Program Files/Java/jdk-11" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="MAIN_CLASS_NAME" value="foot.footprint.FootprintApplication" />
+      <module name="footprint.main" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="foot.footprint.*" />
@@ -158,7 +175,7 @@
       <ForceTestExec>true</ForceTestExec>
       <method v="2" />
     </configuration>
-    <configuration name="AuthServiceTest.SignUp" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="CreateArticleRepositoryTest.create" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$/footprint" />
@@ -171,7 +188,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;foot.footprint.service.member.AuthServiceTest.SignUp&quot;" />
+            <option value="&quot;foot.footprint.repository.article.CreateArticleRepositoryTest.create&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -182,7 +199,7 @@
       <ForceTestExec>true</ForceTestExec>
       <method v="2" />
     </configuration>
-    <configuration name="AuthServiceTest.SignUp_IfExistsEmail" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="FindArticleDetailsServiceTest.findDetails" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$/footprint" />
@@ -195,7 +212,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;foot.footprint.service.member.AuthServiceTest.SignUp_IfExistsEmail&quot;" />
+            <option value="&quot;foot.footprint.service.article.FindArticleDetailsServiceTest.findDetails&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -206,7 +223,7 @@
       <ForceTestExec>true</ForceTestExec>
       <method v="2" />
     </configuration>
-    <configuration name="MemberServiceTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="Tests in 'footprint.test'" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$/footprint" />
@@ -218,8 +235,6 @@
         <option name="taskNames">
           <list>
             <option value=":test" />
-            <option value="--tests" />
-            <option value="&quot;foot.footprint.service.member.MemberServiceTest&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -243,13 +258,20 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="Application.FootprintApplication" />
+      <item itemvalue="Gradle.CreateArticleRepositoryTest.create" />
+      <item itemvalue="Gradle.FindArticleDetailsServiceTest.findDetails" />
+      <item itemvalue="Gradle.Tests in 'footprint.test'" />
+      <item itemvalue="Gradle.AuthServiceTest" />
+    </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.CreateArticleRepositoryTest.create" />
+        <item itemvalue="Gradle.FindArticleDetailsServiceTest.findDetails" />
+        <item itemvalue="Gradle.Tests in 'footprint.test'" />
         <item itemvalue="Application.FootprintApplication" />
         <item itemvalue="Gradle.AuthServiceTest" />
-        <item itemvalue="Gradle.AuthServiceTest.SignUp" />
-        <item itemvalue="Gradle.AuthServiceTest.SignUp_IfExistsEmail" />
-        <item itemvalue="Gradle.MemberServiceTest" />
       </list>
     </recent_temporary>
   </component>

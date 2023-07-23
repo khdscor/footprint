@@ -98,9 +98,9 @@ public class FindArticleDetailsServiceTest {
         //then
         assertThat(response2.getArticleDetails().getId()).isEqualTo(articleId);
         assertThat(response2.getComments().size()).isEqualTo(1);
-        assertThat(response2.getCommentLikes()).isNull();
+        assertThat(response2.getCommentLikes()).isEmpty();
         assertThat(response2.isArticleLike()).isFalse();
-        assertThat(response2.getMyMemberId()).isNull();
+        assertThat(response2.getMyMemberId()).isEqualTo(-1L);
     }
 
     private Article buildArticle(Long memberId, boolean publicMap, boolean privateMap) {
