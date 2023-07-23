@@ -4,28 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e9c5eb8d-61e6-4bf1-a075-2ef5ca99f02a" name="변경" comment="refactor: public, private 지정 등 기타 리펙토링">
-      <change afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules/footprint.main.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/footprint/src/test/java/foot/footprint/repository/featureFactory/ArticleFeatureFactory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/footprint/src/test/java/foot/footprint/repository/featureFactory/MemberFeatureFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="e9c5eb8d-61e6-4bf1-a075-2ef5ca99f02a" name="변경" comment="test: easyRandom을 통한 테스트 객체 생성 로직 구현 및 article bulkInsert 테스트">
+      <change afterPath="$PROJECT_DIR$/footprint/src/main/java/foot/footprint/domain/article/application/findArticles/FindPublicArticles.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/footprint/src/test/java/foot/footprint/bulkInsert/CreateBulkArticleTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dbnavigator.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/footprint/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/footprint/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/footprint/log/err_log.log" beforeDir="false" afterPath="$PROJECT_DIR$/footprint/log/err_log.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/footprint/log/testLog.log" beforeDir="false" afterPath="$PROJECT_DIR$/footprint/log/testLog.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/footprint/src/main/java/foot/footprint/domain/article/dao/CreateArticleRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/footprint/src/main/java/foot/footprint/domain/article/dao/CreateArticleRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/footprint/src/main/java/foot/footprint/domain/article/domain/Article.java" beforeDir="false" afterPath="$PROJECT_DIR$/footprint/src/main/java/foot/footprint/domain/article/domain/Article.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/footprint/src/main/resources/logback-spring.xml" beforeDir="false" afterPath="$PROJECT_DIR$/footprint/src/main/resources/logback-spring.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/footprint/src/main/resources/mapper/article/CreateArticleMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/footprint/src/main/resources/mapper/article/CreateArticleMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/footprint/src/main/java/foot/footprint/domain/article/api/FindArticlesController.java" beforeDir="false" afterPath="$PROJECT_DIR$/footprint/src/main/java/foot/footprint/domain/article/api/FindArticlesController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/footprint/src/main/java/foot/footprint/domain/article/application/findArticles/FindPublicAndPrivateArticles.java" beforeDir="false" afterPath="$PROJECT_DIR$/footprint/src/main/java/foot/footprint/domain/article/application/findArticles/FindPrivateArticles.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/footprint/src/main/java/foot/footprint/domain/article/dao/FindArticleRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/footprint/src/main/java/foot/footprint/domain/article/dao/FindArticleRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/footprint/src/main/resources/mapper/article/FindArticleMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/footprint/src/main/resources/mapper/article/FindArticleMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/footprint/src/test/java/foot/footprint/repository/article/CreateArticleRepositoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/footprint/src/test/java/foot/footprint/repository/article/CreateArticleRepositoryTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/footprint/src/test/java/foot/footprint/service/article/FindArticleDetailsServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/footprint/src/test/java/foot/footprint/service/article/FindArticleDetailsServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/footprint/src/test/java/foot/footprint/repository/article/FIndArticleRepositoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/footprint/src/test/java/foot/footprint/repository/article/FIndArticleRepositoryTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/footprint/src/test/java/foot/footprint/service/article/FindArticlesServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/footprint/src/test/java/foot/footprint/service/article/FindArticlesServiceTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -104,7 +95,7 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;refactor#11&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/khdsc/IdeaProjects/footprint/backend/footprint/build.gradle&quot;,
     &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
@@ -128,17 +119,15 @@
       <recent name="C:\Users\khdsc\IdeaProjects\footprint\backend\footprint\src\main\resources\db\migration" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="foot.footprint.domain.article.application.findArticles" />
       <recent name="foot.footprint.domain.comment.application.create" />
       <recent name="foot.footprint.global.domain" />
       <recent name="foot.footprint.global.aop.auth" />
       <recent name="foot.footprint.global.aop.otherLogs" />
-      <recent name="foot.footprint.global.aop.group" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.CreateArticleRepositoryTest.create">
+  <component name="RunManager" selected="Application.FootprintApplication">
     <configuration name="FootprintApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="ALTERNATIVE_JRE_PATH" value="$PROJECT_DIR$/../../../../../../Program Files/Java/jdk-11" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="MAIN_CLASS_NAME" value="foot.footprint.FootprintApplication" />
       <module name="footprint.main" />
       <extension name="coverage">
@@ -151,99 +140,66 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="AuthServiceTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$/footprint" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":test" />
-            <option value="--tests" />
-            <option value="&quot;foot.footprint.service.member.AuthServiceTest&quot;" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <ForceTestExec>true</ForceTestExec>
-      <method v="2" />
+    <configuration name="DeleteArticleRepositoryTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="footprint.test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="foot.footprint.repository.article.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="foot.footprint.repository.article" />
+      <option name="MAIN_CLASS_NAME" value="foot.footprint.repository.article.DeleteArticleRepositoryTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
     </configuration>
-    <configuration name="CreateArticleRepositoryTest.create" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$/footprint" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":test" />
-            <option value="--tests" />
-            <option value="&quot;foot.footprint.repository.article.CreateArticleRepositoryTest.create&quot;" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <ForceTestExec>true</ForceTestExec>
-      <method v="2" />
+    <configuration name="FIndArticleRepositoryTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="footprint.test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="foot.footprint.repository.article.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="foot.footprint.repository.article" />
+      <option name="MAIN_CLASS_NAME" value="foot.footprint.repository.article.FIndArticleRepositoryTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
     </configuration>
-    <configuration name="FindArticleDetailsServiceTest.findDetails" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$/footprint" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":test" />
-            <option value="--tests" />
-            <option value="&quot;foot.footprint.service.article.FindArticleDetailsServiceTest.findDetails&quot;" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <ForceTestExec>true</ForceTestExec>
-      <method v="2" />
+    <configuration name="FIndArticleRepositoryTest.findArticlesTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="footprint.test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="foot.footprint.repository.article.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="foot.footprint.repository.article" />
+      <option name="MAIN_CLASS_NAME" value="foot.footprint.repository.article.FIndArticleRepositoryTest" />
+      <option name="METHOD_NAME" value="findArticlesTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
     </configuration>
-    <configuration name="Tests in 'footprint.test'" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$/footprint" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":test" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <ForceTestExec>true</ForceTestExec>
-      <method v="2" />
+    <configuration name="FindArticlesServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="footprint.test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="foot.footprint.service.article.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="foot.footprint.service.article" />
+      <option name="MAIN_CLASS_NAME" value="foot.footprint.service.article.FindArticlesServiceTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
     </configuration>
     <configuration default="true" type="JetRunConfigurationType">
       <module name="backend" />
@@ -260,18 +216,18 @@
     </configuration>
     <list>
       <item itemvalue="Application.FootprintApplication" />
-      <item itemvalue="Gradle.CreateArticleRepositoryTest.create" />
-      <item itemvalue="Gradle.FindArticleDetailsServiceTest.findDetails" />
-      <item itemvalue="Gradle.Tests in 'footprint.test'" />
-      <item itemvalue="Gradle.AuthServiceTest" />
+      <item itemvalue="JUnit.DeleteArticleRepositoryTest" />
+      <item itemvalue="JUnit.FIndArticleRepositoryTest" />
+      <item itemvalue="JUnit.FIndArticleRepositoryTest.findArticlesTest" />
+      <item itemvalue="JUnit.FindArticlesServiceTest" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.CreateArticleRepositoryTest.create" />
-        <item itemvalue="Gradle.FindArticleDetailsServiceTest.findDetails" />
-        <item itemvalue="Gradle.Tests in 'footprint.test'" />
+        <item itemvalue="JUnit.FIndArticleRepositoryTest" />
+        <item itemvalue="JUnit.DeleteArticleRepositoryTest" />
+        <item itemvalue="JUnit.FIndArticleRepositoryTest.findArticlesTest" />
+        <item itemvalue="JUnit.FindArticlesServiceTest" />
         <item itemvalue="Application.FootprintApplication" />
-        <item itemvalue="Gradle.AuthServiceTest" />
       </list>
     </recent_temporary>
   </component>
@@ -283,13 +239,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1677633300752</updated>
-    </task>
-    <task id="LOCAL-00188" summary="feat: 회원가입 로그 출력 구현">
-      <created>1687787743995</created>
-      <option name="number" value="00188" />
-      <option name="presentableId" value="LOCAL-00188" />
-      <option name="project" value="LOCAL" />
-      <updated>1687787743995</updated>
     </task>
     <task id="LOCAL-00189" summary="feat: 회원 탈퇴 repository 메서드 구현 및 테스트">
       <created>1687958464277</created>
@@ -627,7 +576,14 @@
       <option name="project" value="LOCAL" />
       <updated>1689390784128</updated>
     </task>
-    <option name="localTasksCounter" value="237" />
+    <task id="LOCAL-00237" summary="test: easyRandom을 통한 테스트 객체 생성 로직 구현 및 article bulkInsert 테스트">
+      <created>1690083568433</created>
+      <option name="number" value="00237" />
+      <option name="presentableId" value="LOCAL-00237" />
+      <option name="project" value="LOCAL" />
+      <updated>1690083568433</updated>
+    </task>
+    <option name="localTasksCounter" value="238" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -645,7 +601,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="refactor: changeArticleLikeService 인터페이스와 구현체로 분리에 따른 controller 리펙토링" />
     <MESSAGE value="refactor: changeArticleLikeController 의존성 주입을 final로 설정하고 생성자를 통하도록 리펙토링" />
     <MESSAGE value="refactor: changeArticleLikeServiceImpl 추상클래스 메서드 수정" />
     <MESSAGE value="refactor: createCommentService Interface 와 3개의 구현체로 분리" />
@@ -670,6 +625,7 @@
     <MESSAGE value="refactor: Login, SignUP service 로 하나의 인터페이스와 2개의 구현체로 분리 구현" />
     <MESSAGE value="refactor: Login, SignUP service 로 하나의 인터페이스와 2개의 구현체로 분리 구현(controller 수정)" />
     <MESSAGE value="refactor: public, private 지정 등 기타 리펙토링" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor: public, private 지정 등 기타 리펙토링" />
+    <MESSAGE value="test: easyRandom을 통한 테스트 객체 생성 로직 구현 및 article bulkInsert 테스트" />
+    <option name="LAST_COMMIT_MESSAGE" value="test: easyRandom을 통한 테스트 객체 생성 로직 구현 및 article bulkInsert 테스트" />
   </component>
 </project>

@@ -2,8 +2,26 @@
 <project version="4">
   <component name="DBNavigator.Project.DataEditorManager">
     <record-view-column-sorting-type value="BY_INDEX" />
-    <value-preview-text-wrapping value="true" />
+    <value-preview-text-wrapping value="false" />
     <value-preview-pinned value="false" />
+  </component>
+  <component name="DBNavigator.Project.DataExportManager">
+    <export-instructions>
+      <create-header value="true" />
+      <friendly-headers value="false" />
+      <quote-values-containing-separator value="true" />
+      <quote-all-values value="false" />
+      <value-separator value="" />
+      <begin-quote value="&quot;" />
+      <end-quote value="&quot;" />
+      <file-name value="" />
+      <file-location value="" />
+      <scope value="GLOBAL" />
+      <destination value="FILE" />
+      <format value="EXCEL" />
+      <charset value="x-windows-949" />
+      <charset value="x-windows-949" />
+    </export-instructions>
   </component>
   <component name="DBNavigator.Project.DatabaseBrowserManager">
     <autoscroll-to-editor value="false" />
@@ -13,7 +31,14 @@
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
     <connection id="dcaf0373-d6a7-46aa-877a-be3b4030cd10">
-      <console name="Connection" type="STANDARD" schema="mysql" session="Main"><![CDATA[select * from `footprintDB`.group_table;]]></console>
+      <console name="Connection" type="STANDARD" schema="mysql" session="Main"><![CDATA[explain select * from `footprintDB`.article where public_map = true
+    and latitude between -180.0 and 180.0 and longitude between -180.0 and 180.0;
+
+explain select * from `footprintDB`.article where member_id = 44 and private_map = true
+    and latitude between -180.0 and 180.0 and longitude between -180.0 and 180.0;
+
+explain select * from `footprintDB`.article where private_map = true
+    and latitude between -180.0 and 180.0 and longitude between -180.0 and 180.0;]]></console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseEditorStateManager">
