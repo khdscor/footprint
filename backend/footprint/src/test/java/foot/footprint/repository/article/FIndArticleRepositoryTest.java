@@ -18,12 +18,11 @@ import foot.footprint.repository.RepositoryTest;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Optional;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class FIndArticleRepositoryTest extends RepositoryTest {
 
@@ -53,38 +52,29 @@ public class FIndArticleRepositoryTest extends RepositoryTest {
 
         //when
         //publicMapArticles
-        List<Article> articlesN = findArticleRepository.findArticles(
-            null,
-            new LocationRange(
-                new ArticleRangeRequest(10.0, 10.0, 10.0, 10.0))
-        );
-        //publicMapArticles, but private 글
-        List<Article> articlesN2 = findArticleRepository.findArticles(
-            1L,
+        List<Article> articlesN = findArticleRepository.findPublicArticles(
             new LocationRange(
                 new ArticleRangeRequest(10.0, 10.0, 10.0, 10.0))
         );
         //privateMapArticles 다른 유저
-        List<Article> articles1 = findArticleRepository.findArticles(
+        List<Article> articles1 = findArticleRepository.findPrivateArticles(
             1L,
             new LocationRange(
                 new ArticleRangeRequest(35.0, 5.0, 125.0, 5.0))
         );
         //privateMapArticles 해당 유저
-        List<Article> articles2 = findArticleRepository.findArticles(
+        List<Article> articles2 = findArticleRepository.findPrivateArticles(
             2L,
             new LocationRange(
                 new ArticleRangeRequest(35.0, 5.0, 125.0, 5.0))
         );
         //publicMapArticles 전체지도 but privateArticle만 존재
-        List<Article> articles3 = findArticleRepository.findArticles(
-            null,
+        List<Article> articles3 = findArticleRepository.findPublicArticles(
             new LocationRange(
                 new ArticleRangeRequest(35.0, 5.0, 125.0, 5.0))
         );
         //then
         assertThat(articlesN).hasSize(1);
-        assertThat(articlesN2).hasSize(0);
         assertThat(articles1).hasSize(0);
         assertThat(articles2).hasSize(1);
         assertThat(articles3).hasSize(0);

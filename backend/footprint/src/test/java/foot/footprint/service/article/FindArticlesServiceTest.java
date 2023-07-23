@@ -1,7 +1,7 @@
 package foot.footprint.service.article;
 
 import foot.footprint.domain.article.application.findArticles.FindGroupedArticles;
-import foot.footprint.domain.article.application.findArticles.FindPublicAndPrivateArticles;
+import foot.footprint.domain.article.application.findArticles.FindPublicArticles;
 import foot.footprint.domain.article.domain.Article;
 import foot.footprint.domain.article.domain.LocationRange;
 import foot.footprint.domain.article.dto.ArticleMapResponse;
@@ -31,7 +31,7 @@ public class FindArticlesServiceTest {
 
     @Spy
     @InjectMocks
-    private FindPublicAndPrivateArticles findPublicAndPrivateArticles;
+    private FindPublicArticles findPublicArticles;
 
     @Spy
     @InjectMocks
@@ -42,18 +42,17 @@ public class FindArticlesServiceTest {
     public void findPublicMapArticlesTest() {
         //given
         List<Article> articles = createArticleList(createArticle());
-        Long userId = null;
         LocationRange locationRange = new LocationRange(
             new ArticleRangeRequest(10.0, 10.0, 10.0, 10.0));
-        given(findArticleRepository.findArticles(userId, locationRange)).willReturn(articles);
+        given(findArticleRepository.findPublicArticles(locationRange)).willReturn(articles);
 
         //when
-        List<ArticleMapResponse> responses = findPublicAndPrivateArticles.findArticles(null, null,
+        List<ArticleMapResponse> responses = findPublicArticles.findArticles(null, null,
             locationRange);
 
         //then
-        verify(findArticleRepository, times(1)).findArticles(userId, locationRange);
-        verify(findPublicAndPrivateArticles, times(1)).findArticles(null, null, locationRange);
+        verify(findArticleRepository, times(1)).findPublicArticles(locationRange);
+        verify(findPublicArticles, times(1)).findArticles(null, null, locationRange);
         assertThat(responses).hasSize(1);
     }
 
