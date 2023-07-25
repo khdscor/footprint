@@ -3,12 +3,12 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="foot.footprint.domain.article.dao.FindArticleRepository">
     <select id="findPublicArticles" resultType="Article">
-        select * from article where public_map = true and
+        select * from article use index(public_map_index) where public_map = true and
         latitude between #{lowerLatitude} and #{upperLatitude} and
         longitude between #{lowerLongitude} and #{upperLongitude}
     </select>
     <select id="findPrivateArticles" resultType="Article">
-        select * from article where
+        select * from article use index(private_map_index) where
         member_id = #{memberId} and private_map = true and
         latitude between #{locationRange.lowerLatitude} and #{locationRange.upperLatitude} and
         longitude between #{locationRange.lowerLongitude} and #{locationRange.upperLongitude}
