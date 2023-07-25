@@ -14,8 +14,8 @@
         longitude between #{locationRange.lowerLongitude} and #{locationRange.upperLongitude}
     </select>
     <select id="findArticlesByGroup" resultType="Article">
-        select a.* from article a join article_group g on (a.id = g.article_id) where
-        g.group_id = #{groupId}
+        select a.* from article a
+        join article_group g use index(group_map_index) on (a.id = g.article_id) where g.group_id = #{groupId}
         and
         latitude between #{locationRange.lowerLatitude} and #{locationRange.upperLatitude} and
         longitude between #{locationRange.lowerLongitude} and #{locationRange.upperLongitude}

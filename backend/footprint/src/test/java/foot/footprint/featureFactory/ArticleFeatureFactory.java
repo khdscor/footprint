@@ -1,4 +1,4 @@
-package foot.footprint.repository.featureFactory;
+package foot.footprint.featureFactory;
 
 import static org.jeasy.random.FieldPredicates.*;
 

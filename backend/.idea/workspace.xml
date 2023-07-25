@@ -4,13 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e9c5eb8d-61e6-4bf1-a075-2ef5ca99f02a" name="변경" comment="refactor: index 적용을 위해 findPublicAndPrivateArticles 를 두개의 메서드로 분리 및 테스트">
+    <list default="true" id="e9c5eb8d-61e6-4bf1-a075-2ef5ca99f02a" name="변경" comment="refactor: publicMap, privateMap articles 찾기 index 구현 및 적용, 테스트">
       <change afterPath="$PROJECT_DIR$/footprint/src/main/resources/db/migration/V7.1__add_article_group_index.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/footprint/src/main/resources/db/migration/V7__add_article_index.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dbnavigator.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/footprint/src/main/java/foot/footprint/domain/member/dto/authRequest/AuthRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/footprint/src/main/java/foot/footprint/domain/member/dto/authRequest/AuthRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/footprint/src/main/java/foot/footprint/domain/member/application/auth/LoginService.java" beforeDir="false" afterPath="$PROJECT_DIR$/footprint/src/main/java/foot/footprint/domain/member/application/auth/LoginService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/footprint/src/main/resources/mapper/article/FindArticleMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/footprint/src/main/resources/mapper/article/FindArticleMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/footprint/src/test/java/foot/footprint/bulkInsert/CreateBulkArticleTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/footprint/src/test/java/foot/footprint/bulkInsert/CreateBulkArticleTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/footprint/src/test/java/foot/footprint/repository/article/CreateArticleRepositoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/footprint/src/test/java/foot/footprint/repository/article/CreateArticleRepositoryTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/footprint/src/test/java/foot/footprint/repository/featureFactory/ArticleFeatureFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/footprint/src/test/java/foot/footprint/featureFactory/ArticleFeatureFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/footprint/src/test/java/foot/footprint/repository/featureFactory/MemberFeatureFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/footprint/src/test/java/foot/footprint/featureFactory/MemberFeatureFactory.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -134,6 +136,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="CreateBulkArticleTest.create" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="footprint.test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="foot.footprint.bulkInsert.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="foot.footprint.bulkInsert" />
+      <option name="MAIN_CLASS_NAME" value="foot.footprint.bulkInsert.CreateBulkArticleTest" />
+      <option name="METHOD_NAME" value="create" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="DeleteArticleRepositoryTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="footprint.test" />
       <extension name="coverage">
@@ -180,21 +198,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="FindArticlesServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="footprint.test" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="foot.footprint.service.article.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="foot.footprint.service.article" />
-      <option name="MAIN_CLASS_NAME" value="foot.footprint.service.article.FindArticlesServiceTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration default="true" type="JetRunConfigurationType">
       <module name="backend" />
       <method v="2">
@@ -210,18 +213,18 @@
     </configuration>
     <list>
       <item itemvalue="Application.FootprintApplication" />
+      <item itemvalue="JUnit.CreateBulkArticleTest.create" />
       <item itemvalue="JUnit.DeleteArticleRepositoryTest" />
       <item itemvalue="JUnit.FIndArticleRepositoryTest" />
       <item itemvalue="JUnit.FIndArticleRepositoryTest.findArticlesTest" />
-      <item itemvalue="JUnit.FindArticlesServiceTest" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.CreateBulkArticleTest.create" />
         <item itemvalue="Application.FootprintApplication" />
         <item itemvalue="JUnit.FIndArticleRepositoryTest" />
         <item itemvalue="JUnit.DeleteArticleRepositoryTest" />
         <item itemvalue="JUnit.FIndArticleRepositoryTest.findArticlesTest" />
-        <item itemvalue="JUnit.FindArticlesServiceTest" />
       </list>
     </recent_temporary>
   </component>
@@ -233,20 +236,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1677633300752</updated>
-    </task>
-    <task id="LOCAL-00192" summary="feat: 회원 탈퇴 controller 메서드 구현 및 테스트">
-      <created>1687959194543</created>
-      <option name="number" value="00192" />
-      <option name="presentableId" value="LOCAL-00192" />
-      <option name="project" value="LOCAL" />
-      <updated>1687959194543</updated>
-    </task>
-    <task id="LOCAL-00193" summary="feat: groupRepository#findGroupName 구현 및 테스트">
-      <created>1688035404354</created>
-      <option name="number" value="00193" />
-      <option name="presentableId" value="LOCAL-00193" />
-      <option name="project" value="LOCAL" />
-      <updated>1688035404355</updated>
     </task>
     <task id="LOCAL-00194" summary="refactor: FindArticleService#findGroupedArticles groupName도 같이 리턴하도록 수정 및 테스트">
       <created>1688035902542</created>
@@ -577,7 +566,21 @@
       <option name="project" value="LOCAL" />
       <updated>1690105336628</updated>
     </task>
-    <option name="localTasksCounter" value="241" />
+    <task id="LOCAL-00241" summary="refactor: publicMap, privateMap articles 찾기 index 구현 및 적용, 테스트">
+      <created>1690289159695</created>
+      <option name="number" value="00241" />
+      <option name="presentableId" value="LOCAL-00241" />
+      <option name="project" value="LOCAL" />
+      <updated>1690289159696</updated>
+    </task>
+    <task id="LOCAL-00242" summary="refactor: publicMap, privateMap articles 찾기 index 구현 및 적용, 테스트">
+      <created>1690294879492</created>
+      <option name="number" value="00242" />
+      <option name="presentableId" value="LOCAL-00242" />
+      <option name="project" value="LOCAL" />
+      <updated>1690294879492</updated>
+    </task>
+    <option name="localTasksCounter" value="243" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -595,7 +598,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="refactor: createCommentService Interface 와 3개의 구현체로 분리" />
     <MESSAGE value="refactor: createCommentService Interface 와 3개의 구현체로 분리에 따라 테스트 수정" />
     <MESSAGE value="refactor: CreateCommentController 구현체 분리에 따라 수정 및 테스트" />
     <MESSAGE value="refactor: DeleteComment Api 인터페이스와 구현체로 분리하여 구현" />
@@ -620,6 +622,7 @@
     <MESSAGE value="test: easyRandom을 통한 테스트 객체 생성 로직 구현 및 article bulkInsert 테스트" />
     <MESSAGE value="test: easyRandom을 통한 테스트 객체 생성 로직 구현 및 article bulkInsert 테스트 및 insert" />
     <MESSAGE value="refactor: index 적용을 위해 findPublicAndPrivateArticles 를 두개의 메서드로 분리 및 테스트" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor: index 적용을 위해 findPublicAndPrivateArticles 를 두개의 메서드로 분리 및 테스트" />
+    <MESSAGE value="refactor: publicMap, privateMap articles 찾기 index 구현 및 적용, 테스트" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor: publicMap, privateMap articles 찾기 index 구현 및 적용, 테스트" />
   </component>
 </project>
