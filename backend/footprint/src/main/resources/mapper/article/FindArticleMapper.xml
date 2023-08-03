@@ -1,35 +1,31 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="foot.footprint.domain.article.dao.FindArticleRepository">
-  <select id="findArticles" resultType="Article">
-    select * from article where
-    <choose>
-      <when test="memberId != null">
-        private_map = true
-        and member_id = #{memberId}
-      </when>
-      <otherwise>
-        public_map = true
-      </otherwise>
-    </choose>
-    and
-    latitude between #{locationRange.lowerLatitude} and #{locationRange.upperLatitude} and
-    longitude between #{locationRange.lowerLongitude} and #{locationRange.upperLongitude}
-  </select>
-  <select id="findArticlesByGroup" resultType="Article">
-    select a.* from article a join article_group g on (a.id = g.article_id) where
-    g.group_id = #{groupId}
-    and
-    latitude between #{locationRange.lowerLatitude} and #{locationRange.upperLatitude} and
-    longitude between #{locationRange.lowerLongitude} and #{locationRange.upperLongitude}
-  </select>
-  <select id="findArticleDetails" resultType="ArticleDetailsDto">
-    select distinct a.id, a.title, a.content, a.latitude, a.longitude, a.member_id, m.nick_name,
-    m.image_url, a.create_date, count(l.id)
-    from article a join member m on a.member_id = m.id
-    left join article_like l on a.id = l.article_id
-    where a.id = #{articleId}
-    group by a.id
-  </select>
+    <select id="findPublicArticles" resultType="Article">
+        select * from article use index(public_map_index) where public_map = true and
+        latitude between #{lowerLatitude} and #{upperLatitude} and
+        longitude between #{lowerLongitude} and #{upperLongitude}
+    </select>
+    <select id="findPrivateArticles" resultType="Article">
+        select * from article use index(private_map_index) where
+        member_id = #{memberId} and private_map = true and
+        latitude between #{locationRange.lowerLatitude} and #{locationRange.upperLatitude} and
+        longitude between #{locationRange.lowerLongitude} and #{locationRange.upperLongitude}
+    </select>
+    <select id="findArticlesByGroup" resultType="Article">
+        select a.* from article a
+        join article_group g on (a.id = g.article_id) where g.group_id = #{groupId}
+        and
+        latitude between #{locationRange.lowerLatitude} and #{locationRange.upperLatitude} and
+        longitude between #{locationRange.lowerLongitude} and #{locationRange.upperLongitude}
+    </select>
+    <select id="findArticleDetails" resultType="ArticleDetailsDto">
+        select distinct a.id, a.title, a.content, a.latitude, a.longitude, a.member_id, m.nick_name,
+        m.image_url, a.create_date, count(l.id)
+        from article a join member m on a.member_id = m.id
+        left join article_like l on a.id = l.article_id
+        where a.id = #{articleId}
+        group by a.id
+    </select>
 </mapper>

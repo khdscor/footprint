@@ -11,9 +11,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
-@Qualifier("publicAndPrivate")
+@Qualifier("public")
 @RequiredArgsConstructor
-public class FindPublicAndPrivateArticles implements FindArticlesService {
+public class FindPublicArticles implements FindArticlesService {
 
     private final FindArticleRepository findArticleRepository;
 
@@ -21,7 +21,7 @@ public class FindPublicAndPrivateArticles implements FindArticlesService {
     @Transactional(readOnly = true)
     public List<ArticleMapResponse> findArticles(Long memberId, Long groupId,
         LocationRange locationRange) {
-        List<Article> articles = findArticleRepository.findArticles(memberId, locationRange);
+        List<Article> articles = findArticleRepository.findPublicArticles(locationRange);
         return ArticleMapResponse.toResponses(articles);
     }
 }

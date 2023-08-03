@@ -11,15 +11,11 @@ import java.util.List;
 @Mapper
 public interface FindArticleRepository {
 
-    List<Article> findArticles(
-        Long memberId,
-        LocationRange locationRange
-    );
+    List<Article> findPublicArticles(LocationRange locationRange);
 
-    List<Article> findArticlesByGroup(
-        Long groupId,
-        LocationRange locationRange
-    );
+    List<Article> findPrivateArticles(Long memberId, LocationRange locationRange);
+
+    List<Article> findArticlesByGroup(Long groupId, LocationRange locationRange);
 
     @Select("Select * from article where id=#{articleId}")
     Optional<Article> findById(Long articleId);

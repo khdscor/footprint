@@ -1,0 +1,1 @@
+create index group_map_index on article_group(article_id, group_id);

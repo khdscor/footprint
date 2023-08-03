@@ -19,14 +19,18 @@ import java.util.List;
 @RequestMapping("/articles")
 public class FindArticlesController {
 
-    private final FindArticlesService findPublicAndPrivateArticles;
+    private final FindArticlesService findPublicArticles;
+
+    private final FindArticlesService findPrivateArticles;
 
     private final FindArticlesService findGroupedArticles;
 
     public FindArticlesController(
-        @Qualifier("publicAndPrivate") FindArticlesService findPublicAndPrivateArticles,
+        @Qualifier("public") FindArticlesService findPublicArticles,
+        @Qualifier("private") FindArticlesService findPrivateArticles,
         @Qualifier("grouped") FindArticlesService findGroupedArticles) {
-        this.findPublicAndPrivateArticles = findPublicAndPrivateArticles;
+        this.findPublicArticles = findPublicArticles;
+        this.findPrivateArticles = findPrivateArticles;
         this.findGroupedArticles = findGroupedArticles;
     }
 
@@ -35,7 +39,7 @@ public class FindArticlesController {
         ArticleRangeRequest request) {
         validateLocation(request);
         LocationRange locationRange = new LocationRange(request);
-        List<ArticleMapResponse> publicMapArticles = findPublicAndPrivateArticles.findArticles(null,
+        List<ArticleMapResponse> publicMapArticles = findPublicArticles.findArticles(null,
             null, locationRange);
         return ResponseEntity.ok().body(publicMapArticles);
     }
@@ -45,7 +49,7 @@ public class FindArticlesController {
         ArticleRangeRequest request, @AuthenticationPrincipal CustomUserDetails userDetails) {
         validateLocation(request);
         LocationRange locationRange = new LocationRange(request);
-        List<ArticleMapResponse> privateMapArticles = findPublicAndPrivateArticles.findArticles(
+        List<ArticleMapResponse> privateMapArticles = findPrivateArticles.findArticles(
             userDetails.getId(), null, locationRange);
         return ResponseEntity.ok().body(privateMapArticles);
     }
