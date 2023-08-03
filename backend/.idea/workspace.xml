@@ -4,15 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e9c5eb8d-61e6-4bf1-a075-2ef5ca99f02a" name="변경" comment="refactor: publicMap, privateMap articles 찾기 index 구현 및 적용, 테스트">
-      <change afterPath="$PROJECT_DIR$/footprint/src/main/resources/db/migration/V7.1__add_article_group_index.sql" afterDir="false" />
+    <list default="true" id="e9c5eb8d-61e6-4bf1-a075-2ef5ca99f02a" name="변경" comment="refactor: grouped articles 찾기 index 구현 및 적용, 테스트 - 진행중">
+      <change afterPath="$PROJECT_DIR$/footprint/src/main/resources/db/migration/V7.2__edit_article_index.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/footprint/src/main/java/foot/footprint/domain/member/application/auth/LoginService.java" beforeDir="false" afterPath="$PROJECT_DIR$/footprint/src/main/java/foot/footprint/domain/member/application/auth/LoginService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/footprint/src/main/resources/mapper/article/FindArticleMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/footprint/src/main/resources/mapper/article/FindArticleMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/footprint/src/test/java/foot/footprint/bulkInsert/CreateBulkArticleTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/footprint/src/test/java/foot/footprint/bulkInsert/CreateBulkArticleTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/footprint/src/test/java/foot/footprint/repository/article/CreateArticleRepositoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/footprint/src/test/java/foot/footprint/repository/article/CreateArticleRepositoryTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/footprint/src/test/java/foot/footprint/repository/featureFactory/ArticleFeatureFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/footprint/src/test/java/foot/footprint/featureFactory/ArticleFeatureFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/footprint/src/test/java/foot/footprint/repository/featureFactory/MemberFeatureFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/footprint/src/test/java/foot/footprint/featureFactory/MemberFeatureFactory.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -84,22 +79,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_MARK_IGNORED_FILES_AS_EXCLUDED": "true",
-    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "main",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/khdsc/IdeaProjects/footprint/backend/footprint/build.gradle",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "reference.settingsdialog.project.gradle"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_MARK_IGNORED_FILES_AS_EXCLUDED&quot;: &quot;true&quot;,
+    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/khdsc/IdeaProjects/footprint/backend/footprint/build.gradle&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.project.gradle&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\khdsc\IdeaProjects\footprint\backend\footprint\src\main\resources\db\migration" />
@@ -236,13 +231,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1677633300752</updated>
-    </task>
-    <task id="LOCAL-00194" summary="refactor: FindArticleService#findGroupedArticles groupName도 같이 리턴하도록 수정 및 테스트">
-      <created>1688035902542</created>
-      <option name="number" value="00194" />
-      <option name="presentableId" value="LOCAL-00194" />
-      <option name="project" value="LOCAL" />
-      <updated>1688035902542</updated>
     </task>
     <task id="LOCAL-00195" summary="refactor: FindArticleController#findGroupedMapArticles 그룹이름도 같이 반환하도록 구현 및 테스트">
       <created>1688035987305</created>
@@ -580,7 +568,14 @@
       <option name="project" value="LOCAL" />
       <updated>1690294879492</updated>
     </task>
-    <option name="localTasksCounter" value="243" />
+    <task id="LOCAL-00243" summary="refactor: grouped articles 찾기 index 구현 및 적용, 테스트 - 진행중">
+      <created>1690297312842</created>
+      <option name="number" value="00243" />
+      <option name="presentableId" value="LOCAL-00243" />
+      <option name="project" value="LOCAL" />
+      <updated>1690297312843</updated>
+    </task>
+    <option name="localTasksCounter" value="244" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -598,7 +593,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="refactor: createCommentService Interface 와 3개의 구현체로 분리에 따라 테스트 수정" />
     <MESSAGE value="refactor: CreateCommentController 구현체 분리에 따라 수정 및 테스트" />
     <MESSAGE value="refactor: DeleteComment Api 인터페이스와 구현체로 분리하여 구현" />
     <MESSAGE value="refactor: EditComment Api 인터페이스와 구현체로 분리하여 구현" />
@@ -623,6 +617,7 @@
     <MESSAGE value="test: easyRandom을 통한 테스트 객체 생성 로직 구현 및 article bulkInsert 테스트 및 insert" />
     <MESSAGE value="refactor: index 적용을 위해 findPublicAndPrivateArticles 를 두개의 메서드로 분리 및 테스트" />
     <MESSAGE value="refactor: publicMap, privateMap articles 찾기 index 구현 및 적용, 테스트" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor: publicMap, privateMap articles 찾기 index 구현 및 적용, 테스트" />
+    <MESSAGE value="refactor: grouped articles 찾기 index 구현 및 적용, 테스트 - 진행중" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor: grouped articles 찾기 index 구현 및 적용, 테스트 - 진행중" />
   </component>
 </project>
