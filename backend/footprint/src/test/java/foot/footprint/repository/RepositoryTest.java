@@ -41,7 +41,7 @@ public class RepositoryTest {
             .latitude(10.0)
             .longitude(10.0)
             .public_map(true)
-            .private_map(true)
+            .private_map(false)
             .title("test")
             .create_date(new Date())
             .member_id(memberId).build();
