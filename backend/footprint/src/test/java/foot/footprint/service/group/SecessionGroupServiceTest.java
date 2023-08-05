@@ -5,7 +5,9 @@ import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
+import foot.footprint.domain.article.dao.EditArticleRepository;
 import foot.footprint.domain.group.application.secession.SecessionGroupServiceImpl;
+import foot.footprint.domain.group.dao.ArticleGroupRepository;
 import foot.footprint.domain.group.dao.GroupRepository;
 import foot.footprint.domain.group.dao.MemberGroupRepository;
 import foot.footprint.domain.group.domain.Group;
@@ -29,6 +31,12 @@ public class SecessionGroupServiceTest {
     @Spy
     private MemberGroupRepository memberGroupRepository;
 
+    @Spy
+    private ArticleGroupRepository articleGroupRepository;
+
+    @Spy
+    private EditArticleRepository editArticleRepository;
+
     @InjectMocks
     private SecessionGroupServiceImpl secessionGroupServiceImpl;
 
@@ -48,6 +56,8 @@ public class SecessionGroupServiceTest {
 
         //then
         verify(memberGroupRepository, times(0)).findAllByGroupId(any());
+        verify(articleGroupRepository, times(1)).deleteArticleGroup(any(), any());
+        verify(editArticleRepository, times(1)).updatePrivateMapTrue(any(), any());
     }
 
     @Test
