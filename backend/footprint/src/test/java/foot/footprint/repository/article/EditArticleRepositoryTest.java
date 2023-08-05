@@ -85,10 +85,11 @@ public class EditArticleRepositoryTest extends RepositoryTest {
         articleGroupRepository.saveArticleGroupList(articleGroups);
 
         //when
-        editArticleRepository.updatePrivateMapTrue(member1.getId(), group.getId());
+        int result = editArticleRepository.updatePrivateMapTrue(member1.getId(), group.getId());
         List<Article> updatedArticles = findArticleRepository.findAll();
 
         //then
+        assertThat(result).isEqualTo(2);
         assertThat(updatedArticles.get(0).isPrivate_map()).isTrue();
         assertThat(updatedArticles.get(1).isPrivate_map()).isTrue();
         assertThat(updatedArticles.get(2).isPrivate_map()).isFalse();

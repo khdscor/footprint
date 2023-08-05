@@ -84,6 +84,31 @@ public class ArticleGroupRepositoryTest extends RepositoryTest {
 
     }
 
+    @Test
+    public void deleteArticleGroup(){
+        //given
+        Member member1 = buildMember();
+        memberRepository.saveMember(member1);
+        Article article2 = buildArticle(member1.getId());
+        List<Article> articles = new ArrayList<>();
+        articles.add(article);
+        articles.add(article2);
+        createArticleRepository.saveArticleList(articles);
+        List<ArticleGroup> articleGroups = new ArrayList<>();
+        articleGroups.add(buildArticleGroup(group.getId(), article.getId()));
+        articleGroups.add(buildArticleGroup(group.getId(), article2.getId()));
+        articleGroupRepository.saveArticleGroupList(articleGroups);
+
+        //when
+        int result = articleGroupRepository.deleteArticleGroup(member.getId(), group.getId());
+        List<ArticleGroup> deletedArticleGroups = articleGroupRepository.findAll();
+
+        //then
+        assertThat(result).isEqualTo(1);
+        assertThat(deletedArticleGroups).hasSize(1);
+        assertThat(deletedArticleGroups.get(0).getArticle_id()).isEqualTo(article2.getId());
+    }
+
     private ArticleGroup buildArticleGroup(Long groupId, Long articleId) {
         return ArticleGroup.createArticleGroup(groupId, articleId);
     }
