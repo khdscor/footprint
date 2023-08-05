@@ -48,7 +48,7 @@ public class SecessionGroupServiceImpl implements SecessionGroupService{
         List<MemberGroup> memberGroups = memberGroupRepository.findAllByGroupId(groupId);
         //owner 만 그룹에 남아있을 경우
         if (memberGroups.size() == 1) {
-            organizeArticle(groupId, memberId);
+            editArticleRepository.updatePrivateMapTrue(memberId, groupId);
             groupRepository.deleteById(groupId);
             log.info(groupId + " 그룹이 삭제되었습니다.");
             return;
