@@ -30,7 +30,7 @@ public class LoginService implements AuthService{
     public String process(AuthRequest authRequest) {
         LoginRequest loginRequest = (LoginRequest) authRequest;
         Member member = findMember(loginRequest);
-//        verifyPassword(loginRequest, member);
+        verifyPassword(loginRequest, member);
         return tokenProvider.createAccessToken(String.valueOf(member.getId()), Role.USER);
     }
 
