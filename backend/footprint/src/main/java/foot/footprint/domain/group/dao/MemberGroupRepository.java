@@ -32,4 +32,6 @@ public interface MemberGroupRepository {
 
     @Select("SELECT * FROM member_group WHERE group_id = #{groupId} ORDER BY id")
     List<MemberGroup> findAllByGroupId(Long groupId);
+
+    boolean existsMemberInGroup(Long memberId, Long groupId);
 }
