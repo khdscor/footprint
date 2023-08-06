@@ -122,6 +122,11 @@ const DefaultMapPage = (props) => {
       ).then((mapArticlesPromise) => {
         setArticles(mapArticlesPromise);
       });
+      findGroupNameApi({
+        groupId: groupId,
+        accessToken: accessToken,
+        history: props.history
+      }).then(groupPromise => setGroupName(groupPromise.name))
     }
   }, [zoom, center, mapType, groupId, myLocation]);
 
