@@ -2,6 +2,7 @@ package foot.footprint.domain.group.api;
 
 import foot.footprint.domain.group.application.findGroup.FindGroupService;
 import foot.footprint.domain.group.dto.find.GroupDetailsResponse;
+import foot.footprint.domain.group.dto.find.GroupNameResponse;
 import foot.footprint.domain.group.dto.find.GroupSummaryResponse;
 import foot.footprint.global.security.user.CustomUserDetails;
 import java.util.List;
@@ -41,6 +42,14 @@ public class FindGroupController {
     public ResponseEntity<GroupDetailsResponse> findOne(@PathVariable("id") Long groupId,
         @AuthenticationPrincipal CustomUserDetails userDetails) {
         GroupDetailsResponse response = findGroupService.findOne(groupId, userDetails.getId());
+
+        return ResponseEntity.ok().body(response);
+    }
+
+    @GetMapping("/{id}/name")
+    public ResponseEntity<GroupNameResponse> findGroupName(@PathVariable("id") Long groupId,
+        @AuthenticationPrincipal CustomUserDetails userDetails) {
+        GroupNameResponse response = findGroupService.findName(groupId, userDetails.getId());
 
         return ResponseEntity.ok().body(response);
     }
