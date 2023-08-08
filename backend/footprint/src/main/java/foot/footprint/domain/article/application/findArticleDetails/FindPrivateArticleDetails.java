@@ -35,7 +35,6 @@ public class FindPrivateArticleDetails extends FindArticleDetailsServiceImpl{
         ArticlePageResponse response = new ArticlePageResponse();
         validateMember(userDetails);
         ValidateIsMine.validateArticleIsMine(article.getMember_id(), userDetails.getId());
-        addNonLoginInfo(article.getId(), response);
         addLoginInfo(article.getId(), userDetails.getId(), response);
         return response;
     }

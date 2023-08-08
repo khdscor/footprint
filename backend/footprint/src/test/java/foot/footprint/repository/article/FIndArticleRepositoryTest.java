@@ -168,19 +168,20 @@ public class FIndArticleRepositoryTest extends RepositoryTest {
         commentLikeRepository.saveCommentLike(commentLike3);
 
         //when
-        ArticlePageDto dto = findArticleRepository.findArticleDetails(article.getId(), member1.getId());
+        Optional<ArticlePageDto> dto = findArticleRepository.findArticleDetails(article.getId(), member1.getId());
 
         //then
-        assertThat(dto.getArticleId()).isEqualTo(article.getId());
-        assertThat(dto.getArticleDetails().getContent()).isEqualTo(article.getContent());
-        assertThat(dto.getArticleDetails().getTotalLikes()).isEqualTo(2);
-        assertThat(dto.isArticleLike()).isTrue();
-        assertThat(dto.getComments().size()).isEqualTo(2);
-        assertThat(dto.getComments().get(0).getNickName()).isEqualTo(member1.getNick_name());
-        assertThat(dto.getComments().get(0).getMemberId()).isEqualTo(member1.getId());
-        assertThat(dto.getComments().get(1).getMemberId()).isEqualTo(member2.getId());
-        assertThat(dto.getComments().get(0).getCommentTotalLikes()).isEqualTo(2L);
-        assertThat(dto.getComments().get(1).getCommentTotalLikes()).isEqualTo(1L);
+        assertThat(dto).isPresent();
+        assertThat(dto.get().getArticleId()).isEqualTo(article.getId());
+        assertThat(dto.get().getArticleDetails().getContent()).isEqualTo(article.getContent());
+        assertThat(dto.get().getArticleDetails().getTotalLikes()).isEqualTo(2);
+        assertThat(dto.get().isArticleLike()).isTrue();
+        assertThat(dto.get().getComments().size()).isEqualTo(2);
+        assertThat(dto.get().getComments().get(0).getNickName()).isEqualTo(member1.getNick_name());
+        assertThat(dto.get().getComments().get(0).getMemberId()).isEqualTo(member1.getId());
+        assertThat(dto.get().getComments().get(1).getMemberId()).isEqualTo(member2.getId());
+        assertThat(dto.get().getComments().get(0).getCommentTotalLikes()).isEqualTo(2L);
+        assertThat(dto.get().getComments().get(1).getCommentTotalLikes()).isEqualTo(1L);
     }
 
     private void saveArticle(double lat, double lng, boolean publicMap, boolean privateMap) {
