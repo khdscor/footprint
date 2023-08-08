@@ -4,10 +4,14 @@ import foot.footprint.domain.article.dao.CreateArticleRepository;
 import foot.footprint.domain.article.dao.FindArticleRepository;
 import foot.footprint.domain.article.domain.Article;
 import foot.footprint.domain.article.domain.LocationRange;
-import foot.footprint.domain.article.dto.ArticleDetailsDto;
+import foot.footprint.domain.article.dto.ArticlePageDto;
 import foot.footprint.domain.article.dto.ArticleRangeRequest;
 import foot.footprint.domain.articleLike.dao.ArticleLikeRepository;
 import foot.footprint.domain.articleLike.domain.ArticleLike;
+import foot.footprint.domain.comment.dao.CreateCommentRepository;
+import foot.footprint.domain.comment.domain.Comment;
+import foot.footprint.domain.commentLike.dao.CommentLikeRepository;
+import foot.footprint.domain.commentLike.domain.CommentLike;
 import foot.footprint.domain.group.dao.ArticleGroupRepository;
 import foot.footprint.domain.group.dao.GroupRepository;
 import foot.footprint.domain.group.domain.ArticleGroup;
@@ -18,7 +22,7 @@ import foot.footprint.repository.RepositoryTest;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Optional;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
 
@@ -43,6 +47,12 @@ public class FIndArticleRepositoryTest extends RepositoryTest {
 
     @Autowired
     private ArticleLikeRepository articleLikeRepository;
+
+    @Autowired
+    private CreateCommentRepository createCommentRepository;
+
+    @Autowired
+    private CommentLikeRepository commentLikeRepository;
 
     @Test
     public void findArticlesTest() {
@@ -129,21 +139,48 @@ public class FIndArticleRepositoryTest extends RepositoryTest {
         memberRepository.saveMember(member1);
         Member member2 = buildMember();
         memberRepository.saveMember(member2);
+
         Article article = buildArticle(member1.getId());
         createArticleRepository.saveArticle(article);
+        Article dummyArticle1 = buildArticle(member1.getId());
+        createArticleRepository.saveArticle(dummyArticle1);
+        Article dummyArticle2 = buildArticle(member2.getId());
+        createArticleRepository.saveArticle(dummyArticle2);
+
         ArticleLike articleLike1 = buildArticleLike(member1.getId(), article.getId());
         articleLikeRepository.saveArticleLike(articleLike1);
         ArticleLike articleLike2 = buildArticleLike(member2.getId(), article.getId());
         articleLikeRepository.saveArticleLike(articleLike2);
 
+        Comment comment1 = buildComment(member1.getId(), article.getId());
+        Comment comment2 = buildComment(member1.getId(), dummyArticle1.getId());
+        Comment comment3 = buildComment(member2.getId(), article.getId());
+        createCommentRepository.saveComment(comment1);
+        createCommentRepository.saveComment(comment2);
+        createCommentRepository.saveComment(comment3);
+
+
+        CommentLike commentLike1 = buildCommentLike(comment1.getId(), member1.getId());
+        CommentLike commentLike2 = buildCommentLike(comment1.getId(), member2.getId());
+        CommentLike commentLike3 = buildCommentLike(comment3.getId(), member1.getId());
+        commentLikeRepository.saveCommentLike(commentLike1);
+        commentLikeRepository.saveCommentLike(commentLike2);
+        commentLikeRepository.saveCommentLike(commentLike3);
+
         //when
-        ArticleDetailsDto details = findArticleRepository.findArticleDetails(article.getId());
+        ArticlePageDto dto = findArticleRepository.findArticleDetails(article.getId(), member1.getId());
 
         //then
-        assertThat(details.getContent()).isEqualTo(article.getContent());
-        assertThat(details.getAuthor().getNickName()).isEqualTo(member1.getNick_name());
-        assertThat(details.getTotalLikes()).isEqualTo(2L);
-
+        assertThat(dto.getArticleId()).isEqualTo(article.getId());
+        assertThat(dto.getArticleDetails().getContent()).isEqualTo(article.getContent());
+        assertThat(dto.getArticleDetails().getTotalLikes()).isEqualTo(2);
+        assertThat(dto.isArticleLike()).isTrue();
+        assertThat(dto.getComments().size()).isEqualTo(2);
+        assertThat(dto.getComments().get(0).getNickName()).isEqualTo(member1.getNick_name());
+        assertThat(dto.getComments().get(0).getMemberId()).isEqualTo(member1.getId());
+        assertThat(dto.getComments().get(1).getMemberId()).isEqualTo(member2.getId());
+        assertThat(dto.getComments().get(0).getCommentTotalLikes()).isEqualTo(2L);
+        assertThat(dto.getComments().get(1).getCommentTotalLikes()).isEqualTo(1L);
     }
 
     private void saveArticle(double lat, double lng, boolean publicMap, boolean privateMap) {
