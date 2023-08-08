@@ -38,7 +38,7 @@ public class CommentLIkeRepositoryTest extends RepositoryTest {
         createArticleRepository.saveArticle(article);
         Comment comment = buildComment(member.getId(), article.getId());
         createCommentRepository.saveComment(comment);
-        CommentLike commentLike = createCommentLike(comment.getId(), member.getId());
+        CommentLike commentLike = buildCommentLike(comment.getId(), member.getId());
         //when
         commentLikeRepository.saveCommentLike(commentLike);
 
@@ -67,11 +67,11 @@ public class CommentLIkeRepositoryTest extends RepositoryTest {
         Comment comment4 = buildComment(another.getId(), article.getId());
         createCommentRepository.saveComment(comment4);
         //3개의 좋아요, 2개는 member 1개는 another
-        CommentLike commentLike1 = createCommentLike(comment1.getId(), member.getId());
+        CommentLike commentLike1 = buildCommentLike(comment1.getId(), member.getId());
         commentLikeRepository.saveCommentLike(commentLike1);
-        CommentLike commentLike2 = createCommentLike(comment2.getId(), another.getId());
+        CommentLike commentLike2 = buildCommentLike(comment2.getId(), another.getId());
         commentLikeRepository.saveCommentLike(commentLike2);
-        CommentLike commentLike4 = createCommentLike(comment4.getId(), member.getId());
+        CommentLike commentLike4 = buildCommentLike(comment4.getId(), member.getId());
         commentLikeRepository.saveCommentLike(commentLike4);
 
         //when
@@ -91,7 +91,7 @@ public class CommentLIkeRepositoryTest extends RepositoryTest {
         createArticleRepository.saveArticle(article);
         Comment comment = buildComment(member.getId(), article.getId());
         createCommentRepository.saveComment(comment);
-        CommentLike commentLike = createCommentLike(comment.getId(), member.getId());
+        CommentLike commentLike = buildCommentLike(comment.getId(), member.getId());
         commentLikeRepository.saveCommentLike(commentLike);
 
         //when
@@ -99,11 +99,5 @@ public class CommentLIkeRepositoryTest extends RepositoryTest {
 
         //that
         assertThat(result).isEqualTo(1);
-    }
-
-    private CommentLike createCommentLike(Long commentId, Long memberId) {
-        return CommentLike.builder()
-            .comment_id(commentId)
-            .member_id(memberId).build();
     }
 }

@@ -49,11 +49,11 @@ public class FindCommentRepositoryTest extends RepositoryTest {
         Comment comment2 = buildComment(member2.getId(), article.getId());
         createCommentRepository.saveComment(comment2);
         //3개의 좋아요
-        CommentLike commentLike1 = createCommentLike(comment1.getId(), member1.getId());
+        CommentLike commentLike1 = buildCommentLike(comment1.getId(), member1.getId());
         commentLikeRepository.saveCommentLike(commentLike1);
-        CommentLike commentLike2 = createCommentLike(comment1.getId(), member2.getId());
+        CommentLike commentLike2 = buildCommentLike(comment1.getId(), member2.getId());
         commentLikeRepository.saveCommentLike(commentLike2);
-        CommentLike commentLike3 = createCommentLike(comment2.getId(), member1.getId());
+        CommentLike commentLike3 = buildCommentLike(comment2.getId(), member1.getId());
         commentLikeRepository.saveCommentLike(commentLike3);
 
         //when
@@ -61,9 +61,5 @@ public class FindCommentRepositoryTest extends RepositoryTest {
 
         //then
         assertThat(responses).hasSize(2);
-    }
-
-    private CommentLike createCommentLike(Long commentId, Long memberId) {
-        return CommentLike.builder().comment_id(commentId).member_id(memberId).build();
     }
 }
