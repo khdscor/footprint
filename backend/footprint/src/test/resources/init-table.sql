@@ -146,3 +146,7 @@ references member (id) on delete cascade;
 
 alter table comment_like
     add constraint comment_like_comment_id_member_id_unique unique (comment_id, member_id);
+
+create index public_map_index on article (public_map, latitude, longitude);
+
+create index private_map_index on article (member_id, private_map, latitude, longitude);
