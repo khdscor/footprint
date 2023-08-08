@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="foot.footprint.domain.article.dao.EditArticleRepository">
+  <update id="updatePrivateMapTrue">
+    UPDATE article SET private_map = true
+    WHERE id in (SELECT a.id FROM article a join article_group g ON a.id = g.article_id
+    WHERE a.member_id = #{memberId} AND g.group_id = #{groupId})
+  </update>
+</mapper>

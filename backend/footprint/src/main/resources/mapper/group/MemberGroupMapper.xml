@@ -27,4 +27,8 @@
     FROM group_table g LEFT JOIN member_group m ON (g.id = m.group_id)
     WHERE m.member_id = #{memberId}
   </select>
+  <select id="existsMemberInGroup" resultType="boolean">
+    SELECT EXISTS (
+    SELECT 1 FROM member_group where group_id = #{groupId} and member_id = #{memberId} )
+  </select>
 </mapper>

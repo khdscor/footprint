@@ -15,4 +15,13 @@
     where a.article_id = #{articleId} and m.member_id = #{memberId}
     )
   </select>
+  <delete id="deleteArticleGroup">
+    DELETE FROM article_group
+    WHERE id in (SELECT g.id FROM article a join article_group g ON a.id = g.article_id
+    WHERE a.member_id = #{memberId} AND g.group_id = #{groupId})
+  </delete>
+  <update id="changeGroupName">
+    UPDATE group_table SET name = #{newName}
+    WHERE id = #{groupId} and owner_id =#{ownerId}
+  </update>
 </mapper>

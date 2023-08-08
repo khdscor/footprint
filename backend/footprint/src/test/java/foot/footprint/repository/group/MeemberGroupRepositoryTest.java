@@ -169,4 +169,25 @@ public class MeemberGroupRepositoryTest extends RepositoryTest {
         //then
         assertThat(responses).hasSize(1);
     }
+
+    @Test
+    public void existsMemberInGroup() {
+        //given
+        Member member = buildMember();
+        memberRepository.saveMember(member);
+        Group group1 = buildGroup(member.getId());
+        groupRepository.saveGroup(group1);
+        MemberGroup memberGroup1 = buildMemberGroup(group1.getId(), member.getId());
+        memberGroupRepository.saveMemberGroup(memberGroup1);
+
+        //when
+        boolean result1 = memberGroupRepository.existsMemberInGroup(member.getId(), group1.getId());
+        boolean result2 = memberGroupRepository.existsMemberInGroup(member.getId(), 300L);
+        boolean result3 = memberGroupRepository.existsMemberInGroup(240L, group1.getId());
+
+        //then
+        assertThat(result1).isTrue();
+        assertThat(result2).isFalse();
+        assertThat(result3).isFalse();
+    }
 }

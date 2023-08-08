@@ -4,8 +4,10 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 
+import foot.footprint.domain.article.dao.EditArticleRepository;
 import foot.footprint.domain.article.exception.NotMatchMemberException;
 import foot.footprint.domain.group.application.deportMember.DeportMemberServiceImpl;
+import foot.footprint.domain.group.dao.ArticleGroupRepository;
 import foot.footprint.domain.group.dao.GroupRepository;
 import foot.footprint.domain.group.dao.MemberGroupRepository;
 import foot.footprint.domain.group.domain.Group;
@@ -27,6 +29,12 @@ public class DeportMemberServiceTest {
 
     @Mock
     private GroupRepository groupRepository;
+
+    @Mock
+    private EditArticleRepository editArticleRepository;
+
+    @Mock
+    private ArticleGroupRepository articleGroupRepository;
 
     @InjectMocks
     private DeportMemberServiceImpl deportMemberServiceImpl;

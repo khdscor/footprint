@@ -7,6 +7,8 @@ import foot.footprint.domain.article.domain.LocationRange;
 import foot.footprint.domain.article.dto.ArticleMapResponse;
 import foot.footprint.domain.article.dao.FindArticleRepository;
 import foot.footprint.domain.article.dto.ArticleRangeRequest;
+import foot.footprint.domain.group.dao.MemberGroupRepository;
+import foot.footprint.global.error.exception.NotAuthorizedOrExistException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -18,6 +20,8 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -28,6 +32,9 @@ public class FindArticlesServiceTest {
 
     @Mock
     private FindArticleRepository findArticleRepository;
+
+    @Mock
+    private MemberGroupRepository memberGroupRepository;
 
     @Spy
     @InjectMocks
@@ -64,6 +71,8 @@ public class FindArticlesServiceTest {
         LocationRange locationRange = new LocationRange(
             new ArticleRangeRequest(10.0, 10.0, 10.0, 10.0));
         given(findArticleRepository.findArticlesByGroup(1L, locationRange)).willReturn(articles);
+        given(memberGroupRepository.existsMemberInGroup(anyLong(), anyLong()))
+            .willReturn(true);
 
         //when
         List<ArticleMapResponse> responses = findGroupedArticles.findArticles(1L, 1L,
@@ -71,6 +80,15 @@ public class FindArticlesServiceTest {
 
         //then
         assertThat(responses.size()).isEqualTo(1);
+
+        // member가 group에 속하지 않을 시
+        //given
+        given(memberGroupRepository.existsMemberInGroup(anyLong(), anyLong()))
+            .willReturn(false);
+
+        // when & then
+        assertThatThrownBy(() -> findGroupedArticles.findArticles(1L, 1L,
+            locationRange)).isInstanceOf(NotAuthorizedOrExistException.class);
     }
 
     private Article createArticle() {

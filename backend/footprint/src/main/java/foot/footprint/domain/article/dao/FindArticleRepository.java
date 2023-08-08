@@ -17,6 +17,9 @@ public interface FindArticleRepository {
 
     List<Article> findArticlesByGroup(Long groupId, LocationRange locationRange);
 
+    @Select("select * from article order by id")
+    List<Article> findAll();
+
     @Select("Select * from article where id=#{articleId}")
     Optional<Article> findById(Long articleId);
 

@@ -1,5 +1,7 @@
 package foot.footprint.domain.group.application.secession;
 
+import foot.footprint.domain.article.dao.EditArticleRepository;
+import foot.footprint.domain.group.dao.ArticleGroupRepository;
 import foot.footprint.domain.group.dao.GroupRepository;
 import foot.footprint.domain.group.dao.MemberGroupRepository;
 import foot.footprint.domain.group.domain.Group;
@@ -21,6 +23,10 @@ public class SecessionGroupServiceImpl implements SecessionGroupService{
 
     private final MemberGroupRepository memberGroupRepository;
 
+    private final ArticleGroupRepository articleGroupRepository;
+
+    private final EditArticleRepository editArticleRepository;
+
     @Override
     @Transactional
     public void secessionGroup(Long groupId, Long memberId) {
@@ -29,6 +35,7 @@ public class SecessionGroupServiceImpl implements SecessionGroupService{
             checkRemainingMember(groupId, memberId);
             return;
         }
+        organizeArticle(groupId, memberId);
         deleteMemberGroup(groupId, memberId);
     }
 
@@ -41,6 +48,7 @@ public class SecessionGroupServiceImpl implements SecessionGroupService{
         List<MemberGroup> memberGroups = memberGroupRepository.findAllByGroupId(groupId);
         //owner 만 그룹에 남아있을 경우
         if (memberGroups.size() == 1) {
+            editArticleRepository.updatePrivateMapTrue(memberId, groupId);
             groupRepository.deleteById(groupId);
             log.info(groupId + " 그룹이 삭제되었습니다.");
             return;
@@ -52,6 +60,7 @@ public class SecessionGroupServiceImpl implements SecessionGroupService{
         MemberGroup nextMemberGroup = findNextOwner(memberGroups, memberId);
         Long nextOwnerId = nextMemberGroup.getMember_id();
         groupRepository.updateOwner(groupId, nextOwnerId);
+        organizeArticle(groupId, memberId);
         deleteMemberGroup(groupId, memberId);
     }
 
@@ -66,5 +75,10 @@ public class SecessionGroupServiceImpl implements SecessionGroupService{
         if (deleted == 0) {
             throw new NotExistsException("이미 탈퇴한 그룹이거나 존재하지 않는 그룹입니다.");
         }
+    }
+
+    private void organizeArticle(Long groupId, Long memberId){
+        editArticleRepository.updatePrivateMapTrue(memberId, groupId);
+        articleGroupRepository.deleteArticleGroup(memberId, groupId);
     }
 }
