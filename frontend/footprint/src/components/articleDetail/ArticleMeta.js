@@ -22,12 +22,12 @@ const ArticleMeta = (props) => {
         groupId={props.groupId}
     />
     <StyledDiv>
-      <Profile imageUrl={props.author? props.author.imageUrl : ""}/>
+      <Profile imageUrl={props? props.writerImageUrl : ""}/>
       <div style={{
         paddingTop: "5px",
       }}>
         <Name>
-          {props.author.nickName}
+          {props.writerNickName}
         </Name>
         <CreateDate iso8601format={props.createDate}/>
       </div>

@@ -67,8 +67,7 @@ const ArticleDetailPage = (props) => {
       props.history.push("/");
     }
   }, [articleId, mapType]);
-console.log(groupId)
-console.log("dddddddddddddddddd")
+
   return (
     <Outside>
       <ChangeContentModal
@@ -84,8 +83,8 @@ console.log("dddddddddddddddddd")
             author={
               article
                 ? {
-                    nickName: article.author ? article.author.nickName : "",
-                    imageUrl: article.author ? article.author.imageUrl : "",
+                    nickName: article ? article.writerNickName : "",
+                    imageUrl: article ? article.writerImageUrl : "",
                   }
                 : {
                     nickName: "",
@@ -108,7 +107,7 @@ console.log("dddddddddddddddddd")
             hasILiked={hasILiked}
             setHasILiked={setHasILiked}
             history={props.history}
-            isMyArticle={article ? article.author.id === myId : false}
+            isMyArticle={article ? article.writerId === myId : false}
             setIsChangeContentModalOpened={setIsChangeContentModalOpeneded}
           />
         </PostBox>
