@@ -6,6 +6,7 @@ import foot.footprint.domain.article.dto.ArticlePageResponse;
 import foot.footprint.domain.articleLike.dao.ArticleLikeRepository;
 import foot.footprint.domain.comment.dao.FindCommentRepository;
 import foot.footprint.domain.commentLike.dao.CommentLikeRepository;
+import foot.footprint.global.error.exception.WrongMapTypeException;
 import foot.footprint.global.security.user.CustomUserDetails;
 import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -30,11 +31,11 @@ public class FindPublicArticleDetails extends FindArticleDetailsServiceImpl{
     public ArticlePageResponse findDetails(Long articleId, CustomUserDetails userDetails) {
         Article article = findAndValidateArticle(articleId);
         if (!article.isPublic_map()) {
-            throw new NumberFormatException("게시글이 전체지도에 포함되지 않습니다.");
+            throw new WrongMapTypeException("게시글이 전체지도에 포함되지 않습니다.");
         }
         ArticlePageResponse response = new ArticlePageResponse();
-        addNonLoginInfo(articleId, response);
         if (userDetails == null) {
+            addNonLoginInfo(articleId, response);
             response.addLoginInfo(false, new ArrayList<>(), -1L);
             return response;
         }

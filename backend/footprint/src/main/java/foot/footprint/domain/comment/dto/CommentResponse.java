@@ -38,4 +38,14 @@ public class CommentResponse {
             comment.getCreate_date()
         );
     }
+
+    public static CommentResponse toCommentResponse(CommentsDto commentsDto) {
+        return new CommentResponse(
+            commentsDto.getCommentId(),
+            commentsDto.getCommentContent(),
+            new AuthorDto(
+                commentsDto.getMemberId(), commentsDto.getNickName(), commentsDto.getImageUrl()),
+            commentsDto.getCommentCreateDate()
+        );
+    }
 }
