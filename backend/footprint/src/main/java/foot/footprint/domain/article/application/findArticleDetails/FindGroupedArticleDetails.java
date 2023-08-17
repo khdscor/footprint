@@ -34,7 +34,6 @@ public class FindGroupedArticleDetails extends FindArticleDetailsServiceImpl {
         ArticlePageResponse response = new ArticlePageResponse();
         validateMember(userDetails);
         ValidateIsMine.validateInMyGroup(articleId, userDetails.getId(), articleGroupRepository);
-        addNonLoginInfo(articleId, response);
         addLoginInfo(articleId, userDetails.getId(), response);
         return response;
     }

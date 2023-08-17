@@ -3,8 +3,8 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="foot.footprint.domain.article.dao.EditArticleRepository">
   <update id="updatePrivateMapTrue">
-    UPDATE article SET private_map = true
-    WHERE id in (SELECT a.id FROM article a join article_group g ON a.id = g.article_id
-    WHERE a.member_id = #{memberId} AND g.group_id = #{groupId})
+    UPDATE article SET private_map = true WHERE id in
+    (SELECT id FROM (SELECT a.id as id FROM article a join article_group g ON a.id = g.article_id
+    WHERE a.member_id = #{memberId} AND g.group_id = #{groupId}) as at )
   </update>
 </mapper>

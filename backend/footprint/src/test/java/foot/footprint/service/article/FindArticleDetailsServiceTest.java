@@ -8,10 +8,13 @@ import foot.footprint.domain.article.application.findArticleDetails.FindPublicAr
 import foot.footprint.domain.article.dao.FindArticleRepository;
 import foot.footprint.domain.article.domain.Article;
 import foot.footprint.domain.article.dto.ArticleDetailsDto;
+import foot.footprint.domain.article.dto.ArticlePageDto;
+import foot.footprint.domain.article.dto.ArticlePageIfNonLoginDto;
 import foot.footprint.domain.article.dto.ArticlePageResponse;
 import foot.footprint.domain.articleLike.dao.ArticleLikeRepository;
 import foot.footprint.domain.comment.dao.FindCommentRepository;
 import foot.footprint.domain.comment.dto.CommentResponse;
+import foot.footprint.domain.comment.dto.CommentsDto;
 import foot.footprint.domain.commentLike.dao.CommentLikeRepository;
 import foot.footprint.global.security.user.CustomUserDetails;
 import java.util.ArrayList;
@@ -55,21 +58,22 @@ public class FindArticleDetailsServiceTest {
         //게시글 dto 리턴
         ArticleDetailsDto details = new ArticleDetailsDto(articleId, "title", "content", 1.0, 1.0,
             memberId, "nickName", "image", new Date(), 0L);
-        given(findArticleRepository.findArticleDetails(any())).willReturn(details);
-        //댓글 리스트 리턴
-        CommentResponse response = new CommentResponse(1L, "test", memberId, "nickName", "image",
+        CommentsDto response = new CommentsDto(1L, "test", memberId, "nickName", "image",
             new Date(), 0L);
-        List<CommentResponse> responses = new ArrayList<>();
+        List<CommentsDto> responses = new ArrayList<>();
         responses.add(response);
-        given(findCommentRepository.findAllByArticleId(any())).willReturn(responses);
-        //게시글 좋아요 검증 리턴
-        given(articleLikeRepository.existsMyLike(any()))
-            .willReturn(true);
+        ArticlePageDto dto = new ArticlePageDto(articleId, details, true, responses);
+        given(findArticleRepository.findArticleDetails(any(), any())).willReturn(Optional.of(dto));
         //댓글 좋아요 리스트 리턴
         List<Long> commentLikes = new ArrayList<>();
         commentLikes.add(1L);
         given(commentLikeRepository.findCommentIdsILiked(any(), any())).willReturn(
             new ArrayList<>(commentLikes));
+        //게시글 dto 리턴, 만약 로그인 하지 않았을 시
+        ArticlePageIfNonLoginDto nonLoginDto = new ArticlePageIfNonLoginDto(articleId, details,
+            responses);
+        given(findArticleRepository.findArticleDetailsIfNonLogin(articleId)).willReturn(
+            Optional.of(nonLoginDto));
     }
 
     @Test

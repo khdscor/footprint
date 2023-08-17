@@ -67,8 +67,7 @@ const ArticleDetailPage = (props) => {
       props.history.push("/");
     }
   }, [articleId, mapType]);
-console.log(groupId)
-console.log("dddddddddddddddddd")
+
   return (
     <Outside>
       <ChangeContentModal

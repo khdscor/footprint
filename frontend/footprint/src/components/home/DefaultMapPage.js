@@ -19,6 +19,7 @@ import CreateGroupModal from "./menu/group/create/CreateGroupModal";
 import JoinGroupModal from "./menu/group/join/JoinGroupModal";
 import MapType from "./MapTypeStyle";
 import MyLocationButton from "./button/MyLocationButton";
+import findGroupNameApi from "../../api/group/FindGroupNameApi";
 
 const DefaultMapPage = (props) => {
   

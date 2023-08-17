@@ -14,11 +14,12 @@ public class CommentResponse {
     private Date createDate;
     private Long totalLikes;
 
-    public CommentResponse(Long id, String content, AuthorDto author, Date createDate) {
+    public CommentResponse(Long id, String content, AuthorDto author, Date createDate, Long totalLikes) {
         this.id = id;
         this.content = content;
         this.author = author;
         this.createDate = createDate;
+        this.totalLikes = totalLikes;
     }
 
     public CommentResponse(Long id, String content, Long userId, String nickName, String imageUrl,
@@ -35,7 +36,19 @@ public class CommentResponse {
             comment.getId(),
             comment.getContent(),
             authorDto,
-            comment.getCreate_date()
+            comment.getCreate_date(),
+            0L
+        );
+    }
+
+    public static CommentResponse toCommentResponse(CommentsDto commentsDto) {
+        return new CommentResponse(
+            commentsDto.getCommentId(),
+            commentsDto.getCommentContent(),
+            new AuthorDto(
+                commentsDto.getMemberId(), commentsDto.getNickName(), commentsDto.getImageUrl()),
+            commentsDto.getCommentCreateDate(),
+            commentsDto.getCommentTotalLikes()
         );
     }
 }

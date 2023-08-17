@@ -3,6 +3,7 @@ package foot.footprint.repository;
 import foot.footprint.domain.article.domain.Article;
 import foot.footprint.domain.articleLike.domain.ArticleLike;
 import foot.footprint.domain.comment.domain.Comment;
+import foot.footprint.domain.commentLike.domain.CommentLike;
 import foot.footprint.domain.group.domain.Group;
 import foot.footprint.domain.group.domain.MemberGroup;
 import foot.footprint.domain.member.domain.AuthProvider;
@@ -75,5 +76,11 @@ public class RepositoryTest {
             .group_id(groupId)
             .member_id(memberId)
             .important(true).build();
+    }
+
+    protected CommentLike buildCommentLike(Long commentId, Long memberId) {
+        return CommentLike.builder()
+            .comment_id(commentId)
+            .member_id(memberId).build();
     }
 }
