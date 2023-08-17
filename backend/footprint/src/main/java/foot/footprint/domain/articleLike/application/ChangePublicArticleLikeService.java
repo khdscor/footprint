@@ -4,6 +4,7 @@ import foot.footprint.domain.article.dao.FindArticleRepository;
 import foot.footprint.domain.article.domain.Article;
 import foot.footprint.domain.articleLike.dao.ArticleLikeRepository;
 import foot.footprint.domain.articleLike.dto.ArticleLikeDto;
+import foot.footprint.global.error.exception.WrongMapTypeException;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,7 +23,7 @@ public class ChangePublicArticleLikeService extends ChangeArticleLikeServiceImpl
     public void changeArticleLike(ArticleLikeDto articleLikeDto) {
         Article article = findAndValidateArticle(articleLikeDto.getArticleId());
         if (!article.isPublic_map()) {
-            throw new NumberFormatException("게시글이 전체지도에 포함되지 않습니다.");
+            throw new WrongMapTypeException("게시글이 전체지도에 포함되지 않습니다.");
         }
         changeLike(articleLikeDto);
     }

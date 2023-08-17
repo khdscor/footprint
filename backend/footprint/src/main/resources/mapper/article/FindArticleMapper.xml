@@ -24,13 +24,11 @@
     select a.id as articleId,
     (SELECT EXISTS ( SELECT 1 FROM article_like
     WHERE article_id = #{articleId} and member_id =#{memberId} )) as articleLike,
-
     a.id as id, a.title as title, a.content as content,
     a.latitude as latitude, a.longitude as longitude, a.member_id as writerId,
     m.nick_name as writerName, m.image_url as writerImageUrl, a.create_date as createDate,
     (SELECT count(l.id) FROM article a LEFT JOIN article_like l ON a.id = l.article_id
     WHERE a.id = #{articleId} GROUP BY a.id ) as totalLikes,
-
     c.id as commentId, c.content as commentContent, c.member_id as memberId, cm.nick_name as nickName,
     cm.image_url as imageUrl, c.create_date as commentCreateDate, count(distinct cl.id) as commentTotalLikes
     FROM article a JOIN member m ON (a.member_id = m.id)
