@@ -9,7 +9,7 @@ import lombok.Getter;
 @Getter
 public class ArticlePageResponse {
 
-    private ArticleDetailsDto articleDetails;
+    private ArticleDetails articleDetails;
     private boolean articleLike;
     private List<CommentResponse> comments;
     private List<Long> commentLikes;
@@ -17,7 +17,7 @@ public class ArticlePageResponse {
 
     public ArticlePageResponse(ArticleDetailsDto articleDetails, boolean articleLike,
         List<CommentResponse> comments, List<Long> commentLikes, Long myMemberId) {
-        this.articleDetails = articleDetails;
+        this.articleDetails = ArticleDetails.toArticleDetails(articleDetails);
         this.articleLike = articleLike;
         this.comments = comments;
         this.commentLikes = commentLikes;
@@ -28,7 +28,7 @@ public class ArticlePageResponse {
     }
 
     public void addNonLoginInfo(ArticleDetailsDto articleDetails, List<CommentsDto> comments) {
-        this.articleDetails = articleDetails;
+        this.articleDetails = ArticleDetails.toArticleDetails(articleDetails);
         this.comments = comments.stream().map(CommentResponse::toCommentResponse)
             .collect(Collectors.toList());
     }

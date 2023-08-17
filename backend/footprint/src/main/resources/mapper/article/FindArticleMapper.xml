@@ -21,13 +21,16 @@
     longitude between #{locationRange.lowerLongitude} and #{locationRange.upperLongitude}
   </select>
   <select id="findArticleDetails" resultMap="ArticleDetails">
-    select a.id as articleId, a.id as id, a.title as title, a.content as content,
+    select a.id as articleId,
+    (SELECT EXISTS ( SELECT 1 FROM article_like
+    WHERE article_id = #{articleId} and member_id =#{memberId} )) as articleLike,
+
+    a.id as id, a.title as title, a.content as content,
     a.latitude as latitude, a.longitude as longitude, a.member_id as writerId,
     m.nick_name as writerName, m.image_url as writerImageUrl, a.create_date as createDate,
     (SELECT count(l.id) FROM article a LEFT JOIN article_like l ON a.id = l.article_id
     WHERE a.id = #{articleId} GROUP BY a.id ) as totalLikes,
-    (SELECT EXISTS ( SELECT 1 FROM article_like
-    WHERE article_id = #{articleId} and member_id =#{memberId} )) as articleLike,
+
     c.id as commentId, c.content as commentContent, c.member_id as memberId, cm.nick_name as nickName,
     cm.image_url as imageUrl, c.create_date as commentCreateDate, count(distinct cl.id) as commentTotalLikes
     FROM article a JOIN member m ON (a.member_id = m.id)
@@ -38,6 +41,7 @@
   </select>
   <resultMap id="ArticleDetails" type="ArticlePageDto">
     <id property="articleId" column="articleId"/>
+    <result property="articleLike" column="articleLike"/>
     <association property="articleDetails" javaType="ArticleDetailsDto">
       <id property="id" column="id"/>
       <result property="title" column="title"/>
@@ -50,7 +54,6 @@
       <result property="createDate" column="createDate"/>
       <result property="totalLikes" column="totalLikes"/>
     </association>
-    <association property="articleLike" javaType="boolean"/>
     <collection property="comments" notNullColumn="commentId"
       ofType="foot.footprint.domain.comment.dto.CommentsDto">
       <id property="commentId" column="commentId"/>

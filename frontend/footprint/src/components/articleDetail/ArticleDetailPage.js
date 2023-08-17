@@ -83,8 +83,8 @@ const ArticleDetailPage = (props) => {
             author={
               article
                 ? {
-                    nickName: article ? article.writerNickName : "",
-                    imageUrl: article ? article.writerImageUrl : "",
+                    nickName: article.author ? article.author.nickName : "",
+                    imageUrl: article.author ? article.author.imageUrl : "",
                   }
                 : {
                     nickName: "",
@@ -107,7 +107,7 @@ const ArticleDetailPage = (props) => {
             hasILiked={hasILiked}
             setHasILiked={setHasILiked}
             history={props.history}
-            isMyArticle={article ? article.writerId === myId : false}
+            isMyArticle={article ? article.author.id === myId : false}
             setIsChangeContentModalOpened={setIsChangeContentModalOpeneded}
           />
         </PostBox>
