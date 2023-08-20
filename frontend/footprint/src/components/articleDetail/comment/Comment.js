@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from "styled-components";
-import Profile from "./Profile";
+import Profile from "../Profile";
 import changeMyLikeInCommentIdApi
-  from "../../api/comment/ChangeMyLikeInCommentApi";
-import deleteCommentApi from "../../api/comment/DeleteCommentApi";
-import CommentCreateDate from "../../util/CommentCreateDate";
+  from "../../../api/comment/ChangeMyLikeInCommentApi";
+import deleteCommentApi from "../../../api/comment/DeleteCommentApi";
+import CommentCreateDate from "../../../util/CommentCreateDate";
 
 const CommentBox = styled.div`
   margin: 0;
@@ -84,6 +84,14 @@ const DeleteComment = styled.div`
   cursor: pointer;
 `;
 
+const EditComment = styled.div`
+  color: #777777;
+  display: inline-block;
+  font-size: 13px;
+  cursor: pointer;
+  margin-right : 15px;
+`;
+
 const Comment = ({
   accessToken,
   articleId,
@@ -108,6 +116,17 @@ const Comment = ({
       });
     }
   };
+
+  const onEditButtonClicked = () => {
+    if (window.confirm("정말 삭제하시겠습니까?")) {
+      deleteCommentApi({
+        commentId: comment.id,
+        accessToken: accessToken,
+        history: history
+      });
+    }
+  };
+
   return (
     <CommentBox>
       <Profile imageUrl={comment.author.imageUrl}/>
@@ -136,7 +155,8 @@ const Comment = ({
             {
               isMine?
                 <MyCommentControlInner>
-                  <DeleteComment onClick={onDeleteButtonClicked}>삭제</DeleteComment>
+                  <EditComment onClick={onDeleteButtonClicked}> 수정</EditComment>
+                  <DeleteComment onClick={onDeleteButtonClicked}>삭제 </DeleteComment>              
                 </MyCommentControlInner>
               : ""
             }

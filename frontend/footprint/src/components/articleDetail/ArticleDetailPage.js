@@ -4,8 +4,8 @@ import { CommentsBox, DisplayBox, Outside, PostBox } from "../common/Box";
 import ArticleMeta from "./ArticleMeta";
 import findWritingApi from "../../api/article/FindWritingApi";
 import ArticleBody from "./ArticleBody";
-import Comment from "./Comment";
-import CommentWriting from "./CommentWriting";
+import Comment from "./comment/Comment";
+import CommentWriting from "./comment/CommentWriting";
 import { ACCESS_TOKEN } from "../../constants/SessionStorage";
 import { withRouter } from "react-router-dom";
 import { GROUPED, PRIVATE, PUBLIC } from "../../constants/MapType";
@@ -28,6 +28,8 @@ const ArticleDetailPage = (props) => {
     props.location.state ? props.location.state.groupId : 0
   );
   const [isChangeContentModalOpened, setIsChangeContentModalOpeneded] =
+    useState(false);
+  const [isChangeCommentModalOpened, setIsChangeCommentModalOpeneded] =
     useState(false);
 
   const onCommentLikeClicked = (commentId) => {
