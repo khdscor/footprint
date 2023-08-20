@@ -5,7 +5,7 @@ import {BACKEND_ADDRESS} from "../../constants/ADDRESS";
 const editArticleContentApi = ({
   newContent,
   accessToken,
-  articleId,
+  id,
   history
 }) => {
   if (!accessToken) {
@@ -22,7 +22,7 @@ const editArticleContentApi = ({
     }
   }
 
-  return axios.put(BACKEND_ADDRESS + "/articles/" + articleId, body, config)
+  return axios.put(BACKEND_ADDRESS + "/articles/" + id, body, config)
   .then(response => {
     if (response.status === 204) {
       alert("글이 수정되었습니다 :)");

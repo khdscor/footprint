@@ -1,18 +1,22 @@
 import axios from "axios";
 import {BACKEND_ADDRESS} from "../../constants/ADDRESS";
 
-const editCommenttApi = ({ commentId, accessToken, history }) => {
+const editCommentApi = ({ newContent, id, accessToken, history }) => {
   if (!accessToken) {
     alert("로그인이 필요한 서비스입니다.")
     history.push('/login');
     return Promise.reject("토큰이 없음");
   }
+  console.log(newContent)
+  const body = {
+    content : newContent
+  };
   const config = {
     headers: {
       Authorization: "Bearer " + accessToken
     }
   };
-  axios.put(BACKEND_ADDRESS + "/comments/" + commentId, config)
+  axios.put(BACKEND_ADDRESS + "/comments/" + id, body, config)
   .then(response => {
     if (response.status === 204) {
       alert("댓글이 수정되었습니다 :)");

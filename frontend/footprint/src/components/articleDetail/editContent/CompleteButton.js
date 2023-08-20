@@ -1,8 +1,16 @@
 import React from "react";
 import {withRouter} from "react-router-dom";
 import editArticleContentApi from "../../../api/article/EditArticleContentApi";
+import editCommentApi from "../../../api/comment/EditCommentApi";
 
-const CompleteButton = ({isChangeContentModalOpened, newContent, accessToken, articleId, history}) => {
+const CompleteButton = ({
+  isChangeContentModalOpened, 
+  newContent, 
+  accessToken, 
+  id, 
+  history, 
+  isEditArticle
+}) => {
   return <>
     {isChangeContentModalOpened && <button
       onClick={() => {
@@ -10,12 +18,11 @@ const CompleteButton = ({isChangeContentModalOpened, newContent, accessToken, ar
           alert("수정할 내용을 작성해주세요!");
           return;
         }
-        editArticleContentApi({
-          newContent,
-          accessToken,
-          articleId,
-          history
-        });
+        
+        isEditArticle
+        ? editArticleContentApi({newContent,accessToken,id,history}) 
+        : editCommentApi({newContent, id, accessToken, history})
+
       }}
       style={{
         backgroundColor: "#00000000",

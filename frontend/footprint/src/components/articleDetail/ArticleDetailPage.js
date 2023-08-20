@@ -27,6 +27,8 @@ const ArticleDetailPage = (props) => {
   const [groupId, setGroupId] = useState(
     props.location.state ? props.location.state.groupId : 0
   );
+
+  const [editCommentId, setEditCommentId] = useState(0);
   const [isChangeContentModalOpened, setIsChangeContentModalOpeneded] =
     useState(false);
   const [isChangeCommentModalOpened, setIsChangeCommentModalOpeneded] =
@@ -72,12 +74,23 @@ const ArticleDetailPage = (props) => {
 
   return (
     <Outside>
+      {/* 게시글 내용 수정 창 */}
       <ChangeContentModal
         isChangeContentModalOpened={isChangeContentModalOpened}
         setIsChangeContentModalOpened={setIsChangeContentModalOpeneded}
         accessToken={accessToken}
-        articleId={articleId}
+        id={articleId}
         history={props.history}
+        isEditArticle={true}
+      />
+      {/* 댓글 내용 수정 창 */}
+      <ChangeContentModal
+        isChangeContentModalOpened={isChangeCommentModalOpened}
+        setIsChangeContentModalOpened={setIsChangeCommentModalOpeneded}
+        accessToken={accessToken}
+        id={editCommentId}
+        history={props.history}
+        isEditArticle={false}
       />
       <DisplayBox style={{ height: WindowSize().height - 50, marginTop: 15 }}>
         <PostBox>
@@ -136,6 +149,8 @@ const ArticleDetailPage = (props) => {
                   onCommentLikeClicked={onCommentLikeClicked}
                   changeTotalLikesInComment={changeTotalLikesInComment}
                   history={props.history}
+                  setEditCommentId={setEditCommentId}
+                  setIsChangeCommentModalOpeneded={setIsChangeCommentModalOpeneded}
                 />
               ))
             : "아직 댓글이 없습니다 :)"}

@@ -102,7 +102,9 @@ const Comment = ({
   hasILikedListInComment,
   onCommentLikeClicked,
   changeTotalLikesInComment,
-  history
+  history,
+  setEditCommentId,
+  setIsChangeCommentModalOpeneded
 }) => {
   const changeTotalLikes = changeTotalLikesInComment.includes(comment.id)
     ? (hasILikedListInComment.includes(comment.id) ? 1 : -1) : 0;
@@ -118,13 +120,8 @@ const Comment = ({
   };
 
   const onEditButtonClicked = () => {
-    if (window.confirm("정말 삭제하시겠습니까?")) {
-      deleteCommentApi({
-        commentId: comment.id,
-        accessToken: accessToken,
-        history: history
-      });
-    }
+    setIsChangeCommentModalOpeneded(true);
+    setEditCommentId(comment.id)
   };
 
   return (
@@ -155,7 +152,7 @@ const Comment = ({
             {
               isMine?
                 <MyCommentControlInner>
-                  <EditComment onClick={onDeleteButtonClicked}> 수정</EditComment>
+                  <EditComment onClick={onEditButtonClicked}> 수정</EditComment>
                   <DeleteComment onClick={onDeleteButtonClicked}>삭제 </DeleteComment>              
                 </MyCommentControlInner>
               : ""

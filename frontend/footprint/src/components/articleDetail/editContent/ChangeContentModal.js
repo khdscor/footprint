@@ -8,8 +8,9 @@ const ChangeContentModal = ({
   isChangeContentModalOpened,
   setIsChangeContentModalOpened,
   accessToken,
-  articleId,
-  history
+  id,
+  history,
+  isEditArticle
 }) => {
   const [newContent, setNewContent] = useState("");
 
@@ -44,8 +45,9 @@ const ChangeContentModal = ({
           isChangeContentModalOpened={isChangeContentModalOpened}
           newContent={newContent}
           accessToken={accessToken}
-          articleId={articleId}
+          id={id}
           history={history}
+          isEditArticle={isEditArticle}
       />
     </Modal>
   );
