@@ -28,12 +28,13 @@ const GroupHead = ({
   accessToken,
   history
 }) => {
+  console.log(group)
   return (
     <Box>
       <GroupNameStyle>{group.name}</GroupNameStyle>
-      <EditGroupNameButton onClick={() => setIsEditNameModalOpen(true)}>
-        edit
-      </EditGroupNameButton>
+      {group.owner 
+      ? <EditGroupNameButton onClick={() => setIsEditNameModalOpen(true)}>edit</EditGroupNameButton> 
+      : ""}
       <ImportantStart
         group={group}
         setGroup={setGroup}

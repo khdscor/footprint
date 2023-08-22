@@ -121,7 +121,7 @@ const Comment = ({
 
   const onEditButtonClicked = () => {
     setIsChangeCommentModalOpeneded(true);
-    setEditCommentId(comment.id)
+    setEditCommentId(comment.id);
   };
 
   return (

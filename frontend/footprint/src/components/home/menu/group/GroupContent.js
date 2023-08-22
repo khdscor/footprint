@@ -10,7 +10,7 @@ const StyledDiv = styled.div`
 `;
 const GroupContentStyle = styled.li` 
   position: absolute;
-  font-size: 110%;
+  font-size: 90%;
   cursor: pointer;
 `;
 

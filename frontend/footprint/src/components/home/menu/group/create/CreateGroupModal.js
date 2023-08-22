@@ -31,7 +31,7 @@ const CreateGroupModal = ({isCreateGroupModalOpen, setIsCreateGroupModalOpen, se
         setIsGroupOpened={setIsGroupOpened}
       />
       <GroupNameInput
-          maxLength='10'
+          maxLength='12'
         value={groupName}
         onChange={e => setGroupName(e.target.value)}
         placeholder={"새 그룹 이름"}

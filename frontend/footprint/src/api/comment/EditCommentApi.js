@@ -7,7 +7,6 @@ const editCommentApi = ({ newContent, id, accessToken, history }) => {
     history.push('/login');
     return Promise.reject("토큰이 없음");
   }
-  console.log(newContent)
   const body = {
     content : newContent
   };

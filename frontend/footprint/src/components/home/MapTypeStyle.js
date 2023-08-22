@@ -11,9 +11,9 @@ const Style = styled.div`
   zIndex: 10;
   top: 0;
   right: ${props => props.rightMargin};
-  width: 100px;
-  margin: 10px;
-  text-align: center;
+  width: 220px;
+  margin: 20px;
+  text-align: right;
   padding: 5px 0;
   font-weight: bold;
 `;
