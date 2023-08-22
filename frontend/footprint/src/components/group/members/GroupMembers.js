@@ -1,7 +1,7 @@
 import React from 'react';
 import Member from "./Member";
 
-const GroupMembers = ({members}) => {
+const GroupMembers = ({members, group, accessToken}) => {
   return (
     <>
       {
@@ -9,6 +9,8 @@ const GroupMembers = ({members}) => {
           userId={member.id}
           nickname={member.nickName}
           userImageUrl={member.imageUrl}
+          group={group}
+          accessToken={accessToken}
         />)
       }
     </>

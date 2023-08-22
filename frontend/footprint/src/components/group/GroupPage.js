@@ -50,7 +50,11 @@ const GroupPage = (props) => {
         />
         <InvitationCode invitationCode={group.invitationCode}/>
         <hr style={{margin: "20px 0 8px 0"}}/>
-        <GroupMembers members={groupMembers}/>
+        <GroupMembers 
+          members={groupMembers}
+          group={group}
+          accessToken={accessToken}
+        />
         <EditNameModal
           group={group}
           setGroup={setGroup}

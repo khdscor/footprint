@@ -28,7 +28,6 @@ const GroupHead = ({
   accessToken,
   history
 }) => {
-  console.log(group)
   return (
     <Box>
       <GroupNameStyle>{group.name}</GroupNameStyle>
