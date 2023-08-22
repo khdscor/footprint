@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from "styled-components";
-import Profile from "./Profile";
+import Profile from "../Profile";
 import changeMyLikeInCommentIdApi
-  from "../../api/comment/ChangeMyLikeInCommentApi";
-import deleteCommentApi from "../../api/comment/DeleteCommentApi";
-import CommentCreateDate from "../../util/CommentCreateDate";
+  from "../../../api/comment/ChangeMyLikeInCommentApi";
+import deleteCommentApi from "../../../api/comment/DeleteCommentApi";
+import CommentCreateDate from "../../../util/CommentCreateDate";
 
 const CommentBox = styled.div`
   margin: 0;
@@ -84,6 +84,14 @@ const DeleteComment = styled.div`
   cursor: pointer;
 `;
 
+const EditComment = styled.div`
+  color: #777777;
+  display: inline-block;
+  font-size: 13px;
+  cursor: pointer;
+  margin-right : 15px;
+`;
+
 const Comment = ({
   accessToken,
   articleId,
@@ -94,7 +102,9 @@ const Comment = ({
   hasILikedListInComment,
   onCommentLikeClicked,
   changeTotalLikesInComment,
-  history
+  history,
+  setEditCommentId,
+  setIsChangeCommentModalOpeneded
 }) => {
   const changeTotalLikes = changeTotalLikesInComment.includes(comment.id)
     ? (hasILikedListInComment.includes(comment.id) ? 1 : -1) : 0;
@@ -108,6 +118,12 @@ const Comment = ({
       });
     }
   };
+
+  const onEditButtonClicked = () => {
+    setIsChangeCommentModalOpeneded(true);
+    setEditCommentId(comment.id);
+  };
+
   return (
     <CommentBox>
       <Profile imageUrl={comment.author.imageUrl}/>
@@ -136,7 +152,8 @@ const Comment = ({
             {
               isMine?
                 <MyCommentControlInner>
-                  <DeleteComment onClick={onDeleteButtonClicked}>삭제</DeleteComment>
+                  <EditComment onClick={onEditButtonClicked}> 수정</EditComment>
+                  <DeleteComment onClick={onDeleteButtonClicked}>삭제 </DeleteComment>              
                 </MyCommentControlInner>
               : ""
             }

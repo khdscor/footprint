@@ -4,8 +4,8 @@ import { CommentsBox, DisplayBox, Outside, PostBox } from "../common/Box";
 import ArticleMeta from "./ArticleMeta";
 import findWritingApi from "../../api/article/FindWritingApi";
 import ArticleBody from "./ArticleBody";
-import Comment from "./Comment";
-import CommentWriting from "./CommentWriting";
+import Comment from "./comment/Comment";
+import CommentWriting from "./comment/CommentWriting";
 import { ACCESS_TOKEN } from "../../constants/SessionStorage";
 import { withRouter } from "react-router-dom";
 import { GROUPED, PRIVATE, PUBLIC } from "../../constants/MapType";
@@ -27,7 +27,11 @@ const ArticleDetailPage = (props) => {
   const [groupId, setGroupId] = useState(
     props.location.state ? props.location.state.groupId : 0
   );
+
+  const [editCommentId, setEditCommentId] = useState(0);
   const [isChangeContentModalOpened, setIsChangeContentModalOpeneded] =
+    useState(false);
+  const [isChangeCommentModalOpened, setIsChangeCommentModalOpeneded] =
     useState(false);
 
   const onCommentLikeClicked = (commentId) => {
@@ -70,12 +74,23 @@ const ArticleDetailPage = (props) => {
 
   return (
     <Outside>
+      {/* 게시글 내용 수정 창 */}
       <ChangeContentModal
         isChangeContentModalOpened={isChangeContentModalOpened}
         setIsChangeContentModalOpened={setIsChangeContentModalOpeneded}
         accessToken={accessToken}
-        articleId={articleId}
+        id={articleId}
         history={props.history}
+        isEditArticle={true}
+      />
+      {/* 댓글 내용 수정 창 */}
+      <ChangeContentModal
+        isChangeContentModalOpened={isChangeCommentModalOpened}
+        setIsChangeContentModalOpened={setIsChangeCommentModalOpeneded}
+        accessToken={accessToken}
+        id={editCommentId}
+        history={props.history}
+        isEditArticle={false}
       />
       <DisplayBox style={{ height: WindowSize().height - 50, marginTop: 15 }}>
         <PostBox>
@@ -134,6 +149,8 @@ const ArticleDetailPage = (props) => {
                   onCommentLikeClicked={onCommentLikeClicked}
                   changeTotalLikesInComment={changeTotalLikesInComment}
                   history={props.history}
+                  setEditCommentId={setEditCommentId}
+                  setIsChangeCommentModalOpeneded={setIsChangeCommentModalOpeneded}
                 />
               ))
             : "아직 댓글이 없습니다 :)"}
