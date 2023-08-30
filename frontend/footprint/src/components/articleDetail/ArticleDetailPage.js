@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import WindowSize from "../../util/WindowSize";
 import { CommentsBox, DisplayBox, Outside, PostBox } from "../common/Box";
 import ArticleMeta from "./ArticleMeta";
@@ -71,6 +71,74 @@ const ArticleDetailPage = (props) => {
       props.history.push("/");
     }
   }, [articleId, mapType]);
+
+//-------------------------------------------------------
+const [pins, setPins] = useState([]);
+const [page, setPage] = useState(1); //스크롤이 닿았을 때 새롭게 데이터 페이지를 바꿀 state
+const [loading, setLoading] = useState(false); //로딩 성공, 실패를 담을 state
+
+const fetchPins = async page => {
+ //데이터 삽입
+  console.log("하하하핳")
+  setLoading(true);
+};
+
+useEffect(() => {
+  fetchPins(page);
+}, [page]);
+
+const loadMore = () => {
+  setPage(prev => prev + 1);
+}
+
+const pageEnd = useRef();
+
+useEffect(() => {
+  if (loading) {
+    //로딩되었을 때만 실행
+    const observer = new IntersectionObserver(
+      entries => {
+        if (entries[0].isIntersecting) {
+          loadMore();
+        }
+      },
+      { threshold: 1 }
+    );
+    //옵져버 탐색 시작
+    observer.observe(pageEnd.current);
+  }
+}, [loading]);
+
+// const target = useRef(null);
+// const [pageNum, setPageNum] = useState(0);
+// const [isLoading, setIsLoading] = useState(false);
+//   useEffect(() => {
+//     observer.observe(target.current);
+//   }, []);
+//   useEffect(() => {
+//     setIsLoading(false)
+//   }, [pageNum]);
+//   const options = {
+//     threshold: 1.0,
+//   };
+// console.log(isLoading)
+//   const callback = () => {
+//     if(isLoading)
+//     {
+//       console.log("kkkkkkk")
+//     setIsLoading(true)
+//     }
+//     else {
+//       setIsLoading(true)
+//       console.log("ggggg")
+//     }
+//   };
+
+//   const observer = new IntersectionObserver(callback, options);
+
+ //
+//-------------------------------------------------------
+
 
   return (
     <Outside>
@@ -154,6 +222,8 @@ const ArticleDetailPage = (props) => {
                 />
               ))
             : "아직 댓글이 없습니다 :)"}
+            <div ref={pageEnd} style={{backgroundColor: "red", height: "100px"}}></div>
+            <div  style={{backgroundColor: "blue", height: "100px"}}></div>
         </CommentsBox>
       </DisplayBox>
     </Outside>
