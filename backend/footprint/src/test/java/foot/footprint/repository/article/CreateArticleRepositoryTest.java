@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import org.jeasy.random.EasyRandom;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StopWatch;
 
@@ -42,7 +42,7 @@ public class CreateArticleRepositoryTest extends RepositoryTest {
   @Test
   public void create() {
     //given
-    EasyRandom memberEasyRandom = MemberFeatureFactory.create();
+    EasyRandom memberEasyRandom = MemberFeatureFactory.create(-1L);
     Member member = memberEasyRandom.nextObject(Member.class);
     memberRepository.saveMember(member);
     EasyRandom articleEasyRandom = ArticleFeatureFactory.create(member.getId());

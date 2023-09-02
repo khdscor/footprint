@@ -25,9 +25,11 @@ public class CommentFeatureFactory {
             .stringLengthRange(4, 46)
             .randomize(articleIdPredicate, () -> articleId)
             .randomize(memberIdPredicate, () -> memberId);
-        if(commentId >= 0) {
+        if(commentId < 0) {
             param.excludeField(commentIdPredicate);
+            return new EasyRandom(param);
         }
+        param.randomize(commentIdPredicate, () -> commentId);
         return new EasyRandom(param);
     }
 }

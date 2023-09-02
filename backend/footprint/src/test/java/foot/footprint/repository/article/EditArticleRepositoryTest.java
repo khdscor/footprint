@@ -67,7 +67,7 @@ public class EditArticleRepositoryTest extends RepositoryTest {
     @Test
     public void updatePrivateMapTrue() {
         //given
-        EasyRandom memberEasyRandom = MemberFeatureFactory.create();
+        EasyRandom memberEasyRandom = MemberFeatureFactory.create(-1L);
         Member member1 = memberEasyRandom.nextObject(Member.class);
         memberRepository.saveMember(member1);
 

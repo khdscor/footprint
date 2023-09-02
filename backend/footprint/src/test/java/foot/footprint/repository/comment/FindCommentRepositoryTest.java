@@ -76,14 +76,13 @@ public class FindCommentRepositoryTest extends RepositoryTest {
         createArticleRepository.saveArticle(article);
         //2개의 댓글
 
-        EasyRandom easyRandom = CommentFeatureFactory.create(article.getId(), member.getId());
+        EasyRandom easyRandom = CommentFeatureFactory.create(-1L, article.getId(), member.getId());
         List<Comment> comments = IntStream.range(0, 200)
             .parallel()
             .mapToObj(i -> easyRandom.nextObject(Comment.class))
             .collect(Collectors.toList());
         createCommentRepository.saveCommentList(comments);
         Long cursorId = 121L;
-
         //when
 
         List<CommentResponse> responses = findCommentRepository.findAllByArticleIdOnPage(

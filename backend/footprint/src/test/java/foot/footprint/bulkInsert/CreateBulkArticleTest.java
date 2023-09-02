@@ -37,7 +37,7 @@ public class CreateBulkArticleTest {
 //    @Test
     public void create() {
         //given
-        EasyRandom memberEasyRandom = MemberFeatureFactory.create();
+        EasyRandom memberEasyRandom = MemberFeatureFactory.create(-1L);
         Member member = memberEasyRandom.nextObject(Member.class);
         memberRepository.saveMember(member);
         EasyRandom articleEasyRandom = ArticleFeatureFactory.create(member.getId());
