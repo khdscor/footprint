@@ -18,8 +18,6 @@
     <if test="cursorId !=null">
       AND c.id &lt; #{cursorId}
     </if>
-    GROUP BY c.id
-    ORDER BY c.id desc
-    LIMIT 10
+    GROUP BY c.id ORDER BY c.id desc LIMIT 10
   </select>
 </mapper>

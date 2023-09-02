@@ -38,6 +38,7 @@ public class SecurityConfig {
             .antMatchers("/token/**").permitAll()
             .antMatchers(HttpMethod.GET, "/articles/public/**").permitAll()
             .antMatchers(HttpMethod.GET, "/articles/details/**").permitAll()
+            .antMatchers(HttpMethod.GET, "/comments/read/**").permitAll()
             .antMatchers(HttpMethod.POST, "/auth/**").permitAll()
             .anyRequest().authenticated()
             .and()

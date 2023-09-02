@@ -1,28 +1,31 @@
 package foot.footprint.domain.comment.dto;
 
+import java.util.ArrayList;
 import java.util.List;
-import lombok.Builder;
 import lombok.Getter;
 
 @Getter
 public class CommentOnPageResponse {
 
-    private List<CommentResponse> comments;
-    private Long cursorId;
-    private boolean hasNextPage;
+    private final List<CommentResponse> comments;
+    private final Long cursorId;
+    private final boolean hasNextPage;
 
     public CommentOnPageResponse() {
+        comments = new ArrayList<>();
+        cursorId = -1L;
+        hasNextPage = false;
     }
 
     public CommentOnPageResponse(List<CommentResponse> comments, Long cursorId) {
         this.comments = comments;
         this.cursorId = cursorId;
-        hasNextPage= true;
+        hasNextPage = true;
     }
 
     public CommentOnPageResponse(List<CommentResponse> comments) {
         this.comments = comments;
         this.cursorId = -1L;
-        hasNextPage= false;
+        hasNextPage = false;
     }
 }
