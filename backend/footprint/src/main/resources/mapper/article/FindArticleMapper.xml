@@ -35,7 +35,7 @@
     LEFT JOIN comment c ON (a.id = c.article_id) LEFT JOIN comment_like cl ON c.id = cl.comment_id
     LEFT JOIN member cm ON c.member_id = cm.id
     WHERE a.id = #{articleId}
-    GROUP BY c.id
+    GROUP BY c.id ORDER BY c.id DESC LIMIT 10
   </select>
   <resultMap id="ArticleDetails" type="ArticlePageDto">
     <id property="articleId" column="articleId"/>
@@ -75,7 +75,7 @@
     LEFT JOIN comment c ON a.id = c.article_id LEFT JOIN comment_like cl ON c.id = cl.comment_id
     LEFT JOIN member cm ON c.member_id = cm.id
     WHERE a.id = #{articleId}
-    GROUP BY c.id
+    GROUP BY c.id ORDER BY c.id DESC LIMIT 10
   </select>
   <resultMap id="ArticleDetailsIfNonLogin" type="ArticlePageIfNonLoginDto">
     <id property="articleId" column="articleId"/>
