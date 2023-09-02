@@ -13,4 +13,6 @@ public interface FindCommentRepository {
     Comment findById(Long commentId);
 
     List<CommentResponse> findAllByArticleId(Long articleId);
+
+    List<CommentResponse> findAllByArticleIdOnPage(Long articleId, Long cursorId);
 }

@@ -12,8 +12,12 @@ import foot.footprint.domain.commentLike.dao.CommentLikeRepository;
 import foot.footprint.domain.commentLike.domain.CommentLike;
 import foot.footprint.domain.member.dao.MemberRepository;
 import foot.footprint.domain.member.domain.Member;
+import foot.footprint.featureFactory.CommentFeatureFactory;
 import foot.footprint.repository.RepositoryTest;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+import org.jeasy.random.EasyRandom;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -61,5 +65,32 @@ public class FindCommentRepositoryTest extends RepositoryTest {
 
         //then
         assertThat(responses).hasSize(2);
+    }
+
+    @Test
+    public void findAllByArticleIdOnPage() {
+        //given
+        Member member = buildMember();
+        memberRepository.saveMember(member);
+        Article article = buildArticle(member.getId());
+        createArticleRepository.saveArticle(article);
+        //2개의 댓글
+
+        EasyRandom easyRandom = CommentFeatureFactory.create(article.getId(), member.getId());
+        List<Comment> comments = IntStream.range(0, 200)
+            .parallel()
+            .mapToObj(i -> easyRandom.nextObject(Comment.class))
+            .collect(Collectors.toList());
+        createCommentRepository.saveCommentList(comments);
+        Long cursorId = 121L;
+
+        //when
+
+        List<CommentResponse> responses = findCommentRepository.findAllByArticleIdOnPage(
+            article.getId(), cursorId);
+
+        //then
+        assertThat(responses).hasSize(10);
+        assertThat(responses.get(0).getId()).isEqualTo(120L);
     }
 }
