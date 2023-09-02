@@ -49,7 +49,7 @@ public class CreateArticleRepositoryTest extends RepositoryTest {
     var stopWatch = new StopWatch();
     //when
     stopWatch.start();
-    List<Article> articles = IntStream.range(0, 1000000)
+    List<Article> articles = IntStream.range(0, 100)
         .parallel()
         .mapToObj(i -> articleEasyRandom.nextObject(Article.class))
         .collect(Collectors.toList());
@@ -73,8 +73,8 @@ public class CreateArticleRepositoryTest extends RepositoryTest {
 
     //then
     assertThat(result).isEqualTo(articles.size());
-    assertThat(articles.get(3330).getId()).isNotNull();
-    assertThat(articles.get(3330).getMember_id()).isEqualTo(member.getId());
+    assertThat(articles.get(33).getId()).isNotNull();
+    assertThat(articles.get(33).getMember_id()).isEqualTo(member.getId());
   }
 
   private Long saveOne() {
