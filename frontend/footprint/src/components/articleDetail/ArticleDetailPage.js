@@ -62,6 +62,10 @@ const ArticleDetailPage = (props) => {
           setArticleTotalLikes(articlePromise.articleDetails.totalLikes);
           setHasILiked(articlePromise.articleLike);
           setComments(articlePromise.comments);
+          if(articlePromise.comments.length >= 10){
+            setHasNextCommentPage(true);
+            setCommentCursorId(articlePromise.comments[9].id);
+          }
           setHasILikedListInComment(articlePromise.commentLikes);
           setMyId(articlePromise.myMemberId)
         }
@@ -73,10 +77,12 @@ const ArticleDetailPage = (props) => {
   }, [articleId, mapType]);
 
 //-------------------------------------------------------
-const [pins, setPins] = useState([]);
+const [commentCursorId, setCommentCursorId] = useState(-1);
+const [hasNextCommentPage, setHasNextCommentPage] = useState(false);
 const [page, setPage] = useState(1); //스크롤이 닿았을 때 새롭게 데이터 페이지를 바꿀 state
 const [loading, setLoading] = useState(false); //로딩 성공, 실패를 담을 state
-
+console.log(hasNextCommentPage);
+console.log(commentCursorId);
 const fetchPins = async page => {
  //데이터 삽입
   console.log("하하하핳")
@@ -108,37 +114,6 @@ useEffect(() => {
     observer.observe(pageEnd.current);
   }
 }, [loading]);
-
-// const target = useRef(null);
-// const [pageNum, setPageNum] = useState(0);
-// const [isLoading, setIsLoading] = useState(false);
-//   useEffect(() => {
-//     observer.observe(target.current);
-//   }, []);
-//   useEffect(() => {
-//     setIsLoading(false)
-//   }, [pageNum]);
-//   const options = {
-//     threshold: 1.0,
-//   };
-// console.log(isLoading)
-//   const callback = () => {
-//     if(isLoading)
-//     {
-//       console.log("kkkkkkk")
-//     setIsLoading(true)
-//     }
-//     else {
-//       setIsLoading(true)
-//       console.log("ggggg")
-//     }
-//   };
-
-//   const observer = new IntersectionObserver(callback, options);
-
- //
-//-------------------------------------------------------
-
 
   return (
     <Outside>
