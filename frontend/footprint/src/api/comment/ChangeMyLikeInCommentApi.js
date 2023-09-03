@@ -21,14 +21,14 @@ const changeMyLikeInCommentIdApi = (accessToken, hasILiked, articleId, commentId
     }
   })
   .catch(error => {
-    if (error.status === 401 || error.status === 403) {
+    if (error.response.status === 401 || error.response.status === 403) {
       alert("로그인이 만료되었습니다. 다시 로그인해주세요.");
       history.push("/login");
       return Promise.reject();
     } else if(error.response.status === 400 || error.response.status === 404) {
       alert(error.response.data.errorMessage);
       return Promise.reject();
-    } else alert("이유가 뭔지 모르겠지만 좋아요 실패했음.");
+    } 
     history.push("/");
   });
 };

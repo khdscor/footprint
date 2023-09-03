@@ -11,6 +11,7 @@ import { withRouter } from "react-router-dom";
 import { GROUPED, PRIVATE, PUBLIC } from "../../constants/MapType";
 import ChangeContentModal from "./editContent/ChangeContentModal";
 import findCommentApi from "../../api/comment/FindCommentApi";
+import { useInView } from "react-intersection-observer"
 
 const ArticleDetailPage = (props) => {
   const accessToken = sessionStorage.getItem(ACCESS_TOKEN);
@@ -65,7 +66,7 @@ const ArticleDetailPage = (props) => {
           setComments(articlePromise.comments);
           if(articlePromise.comments.length >= 10){
             setCommentCursorId(articlePromise.comments[9].id);
-            setLoading(true);
+            setHasNextPage(true);
           }
           setHasILikedListInComment(articlePromise.commentLikes);
           setMyId(articlePromise.myMemberId)
@@ -77,51 +78,25 @@ const ArticleDetailPage = (props) => {
     }
   }, [articleId, mapType]);
 
-//-------------------------------------------------------
-const [commentCursorId, setCommentCursorId] = useState(-1);
-const [loading, setLoading] = useState(false); //로딩 성공, 실패를 담을 state
-const [page, setPage] = useState(1);
-console.log(comments)
+//---------댓글 무한 스크롤 관련
+const [commentCursorId, setCommentCursorId] = useState(-1); // 다음 커서 id
+const [hasNextPage, setHasNextPage] = useState(false); // 다음 페이지 유무
+const [ref, inView] = useInView() // react-intersection-observer 라이브러리
 
-const fetchDate = () => {
- //데이터 삽입
- 
+const updateComments = () => {
   findCommentApi(articleId, commentCursorId).then(
     (commentPromise) => {
       setComments([...comments.concat(commentPromise.comments)]);
-      setLoading(commentPromise.hasNextPage);
+      setHasNextPage(commentPromise.hasNextPage);
       setCommentCursorId(commentPromise.cursorId);
     })
 };
-console.log(loading)
-const pageEnd = useRef();
-
 
 useEffect(() => {
-  fetchDate();
-}, [page]);
-console.log(page)
-
-useEffect(() => {
-  console.log("ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ")
-    //로딩되었을 때만 실행
-    const observer = new IntersectionObserver(
-      entries => {
-        if (entries[0].isIntersecting) {
-          
-          setPage(prev => prev +1);
-          // if(loading === false){
-          //   observer.unobserve(pageEnd.current);
-          //   }
-        }
-      },
-      { threshold: 1 }
-    );
-    //옵져버 탐색 시작
-    observer.observe(pageEnd.current);
-  
-}, [loading]);
+  if(inView && hasNextPage) updateComments()
+},[inView]);
 //----------------------------------
+
   return (
     <Outside>
       {/* 게시글 내용 수정 창 */}
@@ -204,7 +179,7 @@ useEffect(() => {
                 />
               ))
             : "아직 댓글이 없습니다 :)"}
-            <div ref={pageEnd} style={{backgroundColor: "red", height: "100px"}}></div>
+            {hasNextPage ?<div ref={ref} style={{backgroundColor: "red", height: "10px"}}></div>:""}
         </CommentsBox>
       </DisplayBox>
     </Outside>

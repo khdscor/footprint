@@ -21,7 +21,7 @@ const changeMyLikeApi = (accessToken, hasILiked, articleId, mapType, history) =>
     }
   })
   .catch(error => {
-    if (error.status === 401 || error.status === 403) {
+    if (error.response.status === 401 || error.response.status === 403) {
       alert("로그인이 만료되었습니다. 다시 로그인해주세요.");
       history.push("/login");
       return Promise.reject();
