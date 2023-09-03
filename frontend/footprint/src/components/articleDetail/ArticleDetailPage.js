@@ -10,6 +10,7 @@ import { ACCESS_TOKEN } from "../../constants/SessionStorage";
 import { withRouter } from "react-router-dom";
 import { GROUPED, PRIVATE, PUBLIC } from "../../constants/MapType";
 import ChangeContentModal from "./editContent/ChangeContentModal";
+import findCommentApi from "../../api/comment/FindCommentApi";
 
 const ArticleDetailPage = (props) => {
   const accessToken = sessionStorage.getItem(ACCESS_TOKEN);
@@ -63,8 +64,8 @@ const ArticleDetailPage = (props) => {
           setHasILiked(articlePromise.articleLike);
           setComments(articlePromise.comments);
           if(articlePromise.comments.length >= 10){
-            setHasNextCommentPage(true);
             setCommentCursorId(articlePromise.comments[9].id);
+            setLoading(true);
           }
           setHasILikedListInComment(articlePromise.commentLikes);
           setMyId(articlePromise.myMemberId)
@@ -78,43 +79,49 @@ const ArticleDetailPage = (props) => {
 
 //-------------------------------------------------------
 const [commentCursorId, setCommentCursorId] = useState(-1);
-const [hasNextCommentPage, setHasNextCommentPage] = useState(false);
-const [page, setPage] = useState(1); //스크롤이 닿았을 때 새롭게 데이터 페이지를 바꿀 state
 const [loading, setLoading] = useState(false); //로딩 성공, 실패를 담을 state
-console.log(hasNextCommentPage);
-console.log(commentCursorId);
-const fetchPins = async page => {
+const [page, setPage] = useState(1);
+console.log(comments)
+
+const fetchDate = () => {
  //데이터 삽입
-  console.log("하하하핳")
-  setLoading(true);
+ 
+  findCommentApi(articleId, commentCursorId).then(
+    (commentPromise) => {
+      setComments([...comments.concat(commentPromise.comments)]);
+      setLoading(commentPromise.hasNextPage);
+      setCommentCursorId(commentPromise.cursorId);
+    })
 };
-
-useEffect(() => {
-  fetchPins(page);
-}, [page]);
-
-const loadMore = () => {
-  setPage(prev => prev + 1);
-}
-
+console.log(loading)
 const pageEnd = useRef();
 
+
 useEffect(() => {
-  if (loading) {
+  fetchDate();
+}, [page]);
+console.log(page)
+
+useEffect(() => {
+  console.log("ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ")
     //로딩되었을 때만 실행
     const observer = new IntersectionObserver(
       entries => {
         if (entries[0].isIntersecting) {
-          loadMore();
+          
+          setPage(prev => prev +1);
+          // if(loading === false){
+          //   observer.unobserve(pageEnd.current);
+          //   }
         }
       },
       { threshold: 1 }
     );
     //옵져버 탐색 시작
     observer.observe(pageEnd.current);
-  }
+  
 }, [loading]);
-
+//----------------------------------
   return (
     <Outside>
       {/* 게시글 내용 수정 창 */}
@@ -198,7 +205,6 @@ useEffect(() => {
               ))
             : "아직 댓글이 없습니다 :)"}
             <div ref={pageEnd} style={{backgroundColor: "red", height: "100px"}}></div>
-            <div  style={{backgroundColor: "blue", height: "100px"}}></div>
         </CommentsBox>
       </DisplayBox>
     </Outside>
