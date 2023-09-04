@@ -179,7 +179,10 @@ useEffect(() => {
                 />
               ))
             : "아직 댓글이 없습니다 :)"}
-            {hasNextPage ?<div ref={ref} style={{backgroundColor: "red", height: "10px"}}></div>:""}
+            {hasNextPage ? 
+            <div ref={ref} style={{textAlign: "center"}}>
+            <img src="/loading.png" alt="my image" style={{width: "60px", height: "60px"}}/>
+            </div> : ""}
         </CommentsBox>
       </DisplayBox>
     </Outside>
