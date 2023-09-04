@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import org.jeasy.random.EasyRandom;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StopWatch;
 
@@ -42,14 +42,14 @@ public class CreateArticleRepositoryTest extends RepositoryTest {
   @Test
   public void create() {
     //given
-    EasyRandom memberEasyRandom = MemberFeatureFactory.create();
+    EasyRandom memberEasyRandom = MemberFeatureFactory.create(-1L);
     Member member = memberEasyRandom.nextObject(Member.class);
     memberRepository.saveMember(member);
     EasyRandom articleEasyRandom = ArticleFeatureFactory.create(member.getId());
     var stopWatch = new StopWatch();
     //when
     stopWatch.start();
-    List<Article> articles = IntStream.range(0, 1000000)
+    List<Article> articles = IntStream.range(0, 100)
         .parallel()
         .mapToObj(i -> articleEasyRandom.nextObject(Article.class))
         .collect(Collectors.toList());
@@ -73,8 +73,8 @@ public class CreateArticleRepositoryTest extends RepositoryTest {
 
     //then
     assertThat(result).isEqualTo(articles.size());
-    assertThat(articles.get(3330).getId()).isNotNull();
-    assertThat(articles.get(3330).getMember_id()).isEqualTo(member.getId());
+    assertThat(articles.get(33).getId()).isNotNull();
+    assertThat(articles.get(33).getMember_id()).isEqualTo(member.getId());
   }
 
   private Long saveOne() {

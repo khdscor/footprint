@@ -10,4 +10,14 @@
     GROUP BY c.id
     ORDER BY c.create_date desc
   </select>
+  <select id="findAllByArticleIdOnPage" resultType="CommentResponse">
+    SELECT c.id, c.content, c.member_id, m.nick_name, m.image_url, c.create_date, count(l.id)
+    FROM comment c LEFT JOIN comment_like as l ON (c.id = l.comment_id)
+    LEFT JOIN member m ON (c.member_id = m.id)
+    WHERE c.article_id = #{articleId}
+    <if test="cursorId !=null">
+      AND c.id &lt; #{cursorId}
+    </if>
+    GROUP BY c.id ORDER BY c.id desc LIMIT 10
+  </select>
 </mapper>

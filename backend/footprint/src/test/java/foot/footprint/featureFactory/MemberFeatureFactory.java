@@ -13,12 +13,17 @@ import org.jeasy.random.EasyRandomParameters;
 
 public class MemberFeatureFactory {
 
-  static public EasyRandom create() {
-    Predicate<Field> memberIdPredicate = named("id").and(ofType(Long.class))
-        .and(inClass(Member.class));
-    EasyRandomParameters param = new EasyRandomParameters().excludeField(memberIdPredicate)
-        .dateRange(LocalDate.of(2022, 5, 1), LocalDate.of(2023, 7, 22))
-        .stringLengthRange(4, 46);
-    return new EasyRandom(param);
-  }
+    static public EasyRandom create(Long id) {
+        Predicate<Field> memberIdPredicate = named("id").and(ofType(Long.class))
+            .and(inClass(Member.class));
+        EasyRandomParameters param = new EasyRandomParameters()
+            .dateRange(LocalDate.of(2022, 5, 1), LocalDate.of(2023, 7, 22))
+            .stringLengthRange(4, 46);
+        if (id < 0) {
+            param.excludeField(memberIdPredicate);
+            return new EasyRandom(param);
+        }
+        param.randomize(memberIdPredicate, () -> id);
+        return new EasyRandom(param);
+    }
 }

@@ -7,4 +7,12 @@
     content,  create_date, article_id, member_id
     ) VALUES (#{content}, #{create_date}, #{article_id}, #{member_id})
   </insert>
+  <insert id="saveCommentList" parameterType="java.util.List" useGeneratedKeys="true"
+    keyProperty="id">
+    INSERT INTO comment( content,  create_date, article_id, member_id )
+    VALUES
+    <foreach collection="list" index="index" item="comment" separator=",">
+      (#{comment.content}, #{comment.create_date}, #{comment.article_id}, #{comment.member_id})
+    </foreach>
+  </insert>
 </mapper>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import WindowSize from "../../util/WindowSize";
 import { CommentsBox, DisplayBox, Outside, PostBox } from "../common/Box";
 import ArticleMeta from "./ArticleMeta";
@@ -10,6 +10,8 @@ import { ACCESS_TOKEN } from "../../constants/SessionStorage";
 import { withRouter } from "react-router-dom";
 import { GROUPED, PRIVATE, PUBLIC } from "../../constants/MapType";
 import ChangeContentModal from "./editContent/ChangeContentModal";
+import findCommentApi from "../../api/comment/FindCommentApi";
+import { useInView } from "react-intersection-observer"
 
 const ArticleDetailPage = (props) => {
   const accessToken = sessionStorage.getItem(ACCESS_TOKEN);
@@ -62,6 +64,10 @@ const ArticleDetailPage = (props) => {
           setArticleTotalLikes(articlePromise.articleDetails.totalLikes);
           setHasILiked(articlePromise.articleLike);
           setComments(articlePromise.comments);
+          if(articlePromise.comments.length >= 10){
+            setCommentCursorId(articlePromise.comments[9].id);
+            setHasNextPage(true);
+          }
           setHasILikedListInComment(articlePromise.commentLikes);
           setMyId(articlePromise.myMemberId)
         }
@@ -71,6 +77,25 @@ const ArticleDetailPage = (props) => {
       props.history.push("/");
     }
   }, [articleId, mapType]);
+
+//---------댓글 무한 스크롤 관련
+const [commentCursorId, setCommentCursorId] = useState(-1); // 다음 커서 id
+const [hasNextPage, setHasNextPage] = useState(false); // 다음 페이지 유무
+const [ref, inView] = useInView() // react-intersection-observer 라이브러리
+
+const updateComments = () => {
+  findCommentApi(articleId, commentCursorId).then(
+    (commentPromise) => {
+      setComments([...comments.concat(commentPromise.comments)]);
+      setHasNextPage(commentPromise.hasNextPage);
+      setCommentCursorId(commentPromise.cursorId);
+    })
+};
+
+useEffect(() => {
+  if(inView && hasNextPage) updateComments()
+},[inView]);
+//----------------------------------
 
   return (
     <Outside>
@@ -154,6 +179,10 @@ const ArticleDetailPage = (props) => {
                 />
               ))
             : "아직 댓글이 없습니다 :)"}
+            {hasNextPage ? 
+            <div ref={ref} style={{textAlign: "center"}}>
+            <img src="/loading.png" alt="my image" style={{width: "60px", height: "60px"}}/>
+            </div> : ""}
         </CommentsBox>
       </DisplayBox>
     </Outside>

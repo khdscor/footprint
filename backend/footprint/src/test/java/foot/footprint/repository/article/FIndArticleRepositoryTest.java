@@ -159,7 +159,6 @@ public class FIndArticleRepositoryTest extends RepositoryTest {
         createCommentRepository.saveComment(comment2);
         createCommentRepository.saveComment(comment3);
 
-
         CommentLike commentLike1 = buildCommentLike(comment1.getId(), member1.getId());
         CommentLike commentLike2 = buildCommentLike(comment1.getId(), member2.getId());
         CommentLike commentLike3 = buildCommentLike(comment3.getId(), member1.getId());
@@ -168,7 +167,8 @@ public class FIndArticleRepositoryTest extends RepositoryTest {
         commentLikeRepository.saveCommentLike(commentLike3);
 
         //when
-        Optional<ArticlePageDto> dto = findArticleRepository.findArticleDetails(article.getId(), member1.getId());
+        Optional<ArticlePageDto> dto = findArticleRepository.findArticleDetails(article.getId(),
+            member1.getId());
 
         //then
         assertThat(dto).isPresent();
@@ -177,11 +177,30 @@ public class FIndArticleRepositoryTest extends RepositoryTest {
         assertThat(dto.get().getArticleDetails().getTotalLikes()).isEqualTo(2);
         assertThat(dto.get().isArticleLike()).isTrue();
         assertThat(dto.get().getComments().size()).isEqualTo(2);
-        assertThat(dto.get().getComments().get(0).getNickName()).isEqualTo(member1.getNick_name());
-        assertThat(dto.get().getComments().get(0).getMemberId()).isEqualTo(member1.getId());
-        assertThat(dto.get().getComments().get(1).getMemberId()).isEqualTo(member2.getId());
-        assertThat(dto.get().getComments().get(0).getCommentTotalLikes()).isEqualTo(2L);
-        assertThat(dto.get().getComments().get(1).getCommentTotalLikes()).isEqualTo(1L);
+        assertThat(dto.get().getComments().get(0).getNickName()).isEqualTo(member2.getNick_name());
+        assertThat(dto.get().getComments().get(0).getMemberId()).isEqualTo(member2.getId());
+        assertThat(dto.get().getComments().get(1).getMemberId()).isEqualTo(member1.getId());
+        assertThat(dto.get().getComments().get(0).getCommentTotalLikes()).isEqualTo(1L);
+        assertThat(dto.get().getComments().get(1).getCommentTotalLikes()).isEqualTo(2L);
+
+        //comments 가 10개로 limit test
+        //given
+        List<Comment> comments = new ArrayList<>();
+        for (int i = 0; i < 13; i++) {
+            comments.add(buildComment(member1.getId(), article.getId()));
+        }
+        int resultComment = createCommentRepository.saveCommentList(comments);
+
+        assertThat(resultComment).isEqualTo(13);
+
+        //when
+        Optional<ArticlePageDto> dto2 = findArticleRepository.findArticleDetails(article.getId(),
+            member1.getId());
+
+        //then
+        assertThat(dto2).isPresent();
+        assertThat(dto2.get().getComments()).hasSize(10);
+
     }
 
     private void saveArticle(double lat, double lng, boolean publicMap, boolean privateMap) {
