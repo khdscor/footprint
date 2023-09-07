@@ -13,7 +13,7 @@ import java.util.Date;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public abstract class CreateCommentServiceImpl implements CreateCommentService {
+public abstract class AbstractCreateCommentService implements CreateCommentService {
 
     protected final FindArticleRepository findArticleRepository;
     protected final MemberRepository memberRepository;

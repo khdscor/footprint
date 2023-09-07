@@ -4,23 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e9c5eb8d-61e6-4bf1-a075-2ef5ca99f02a" name="변경" comment="refactor: grouped articles 찾기 index 구현 및 적용, 테스트 - 진행중">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/footprint/src/main/java/foot/footprint/domain/article/application/create/CreateArticleServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/footprint/src/main/java/foot/footprint/domain/article/application/create/CreateGeneralArticleService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/footprint/src/main/java/foot/footprint/domain/article/application/delete/DeleteArticleServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/footprint/src/main/java/foot/footprint/domain/article/application/delete/DeleteGeneralArticleService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/footprint/src/main/java/foot/footprint/domain/article/application/edit/EditArticleServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/footprint/src/main/java/foot/footprint/domain/article/application/edit/EditGeneralArticleService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/footprint/src/main/java/foot/footprint/domain/article/application/findArticleDetails/FindArticleDetailsServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/footprint/src/main/java/foot/footprint/domain/article/application/findArticleDetails/AbstrastFindArticleDetailsService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/footprint/src/main/java/foot/footprint/domain/article/application/findArticleDetails/FindGroupedArticleDetails.java" beforeDir="false" afterPath="$PROJECT_DIR$/footprint/src/main/java/foot/footprint/domain/article/application/findArticleDetails/FindGroupedArticleDetailsService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/footprint/src/main/java/foot/footprint/domain/article/application/findArticleDetails/FindPrivateArticleDetails.java" beforeDir="false" afterPath="$PROJECT_DIR$/footprint/src/main/java/foot/footprint/domain/article/application/findArticleDetails/FindPrivateArticleDetailsService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/footprint/src/main/java/foot/footprint/domain/article/application/findArticleDetails/FindPublicArticleDetails.java" beforeDir="false" afterPath="$PROJECT_DIR$/footprint/src/main/java/foot/footprint/domain/article/application/findArticleDetails/FindPublicArticleDetailsService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/footprint/src/main/java/foot/footprint/domain/article/application/findArticles/FindGroupedArticles.java" beforeDir="false" afterPath="$PROJECT_DIR$/footprint/src/main/java/foot/footprint/domain/article/application/findArticles/FindGroupedArticlesService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/footprint/src/main/java/foot/footprint/domain/article/application/findArticles/FindPrivateArticles.java" beforeDir="false" afterPath="$PROJECT_DIR$/footprint/src/main/java/foot/footprint/domain/article/application/findArticles/FindPrivateArticlesService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/footprint/src/main/java/foot/footprint/domain/article/application/findArticles/FindPublicArticles.java" beforeDir="false" afterPath="$PROJECT_DIR$/footprint/src/main/java/foot/footprint/domain/article/application/findArticles/FindPublicArticlesService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/footprint/src/test/java/foot/footprint/service/article/CreateArticleServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/footprint/src/test/java/foot/footprint/service/article/CreateArticleServiceTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/footprint/src/test/java/foot/footprint/service/article/DeleteArticleServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/footprint/src/test/java/foot/footprint/service/article/DeleteArticleServiceTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/footprint/src/test/java/foot/footprint/service/article/EditArticleServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/footprint/src/test/java/foot/footprint/service/article/EditArticleServiceTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/footprint/src/test/java/foot/footprint/service/article/FindArticleDetailsServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/footprint/src/test/java/foot/footprint/service/article/FindArticleDetailsServiceTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/footprint/src/test/java/foot/footprint/service/article/FindArticlesServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/footprint/src/test/java/foot/footprint/service/article/FindArticlesServiceTest.java" afterDir="false" />
+    <list default="true" id="e9c5eb8d-61e6-4bf1-a075-2ef5ca99f02a" name="변경" comment="refactor: ArticleLike, CommentLike Service 구현체 네이밍 리펙토링">
+      <change beforePath="$PROJECT_DIR$/footprint/src/main/java/foot/footprint/domain/comment/application/create/CreateCommentOnGroupedArticle.java" beforeDir="false" afterPath="$PROJECT_DIR$/footprint/src/main/java/foot/footprint/domain/comment/application/create/CreateCommentOnGroupedArticle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/footprint/src/main/java/foot/footprint/domain/comment/application/create/CreateCommentOnPrivateArticle.java" beforeDir="false" afterPath="$PROJECT_DIR$/footprint/src/main/java/foot/footprint/domain/comment/application/create/CreateCommentOnPrivateArticle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/footprint/src/main/java/foot/footprint/domain/comment/application/create/CreateCommentOnPublicArticle.java" beforeDir="false" afterPath="$PROJECT_DIR$/footprint/src/main/java/foot/footprint/domain/comment/application/create/CreateCommentOnPublicArticle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/footprint/src/main/java/foot/footprint/domain/comment/application/create/CreateCommentServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/footprint/src/main/java/foot/footprint/domain/comment/application/create/AbstractCreateCommentService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -244,20 +232,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1677633300752</updated>
-    </task>
-    <task id="LOCAL-00195" summary="refactor: FindArticleController#findGroupedMapArticles 그룹이름도 같이 반환하도록 구현 및 테스트">
-      <created>1688035987305</created>
-      <option name="number" value="00195" />
-      <option name="presentableId" value="LOCAL-00195" />
-      <option name="project" value="LOCAL" />
-      <updated>1688035987305</updated>
-    </task>
-    <task id="LOCAL-00196" summary="refactor: MemberGroupRepository#findById 리턴 타입 수정">
-      <created>1688039906185</created>
-      <option name="number" value="00196" />
-      <option name="presentableId" value="LOCAL-00196" />
-      <option name="project" value="LOCAL" />
-      <updated>1688039906185</updated>
     </task>
     <task id="LOCAL-00197" summary="feat: GroupRepository#updateOwner 구현">
       <created>1688117630822</created>
@@ -588,7 +562,21 @@
       <option name="project" value="LOCAL" />
       <updated>1690297312843</updated>
     </task>
-    <option name="localTasksCounter" value="244" />
+    <task id="LOCAL-00244" summary="refactor: ArticleService 구현체 네이밍 리펙토링">
+      <created>1694090142836</created>
+      <option name="number" value="00244" />
+      <option name="presentableId" value="LOCAL-00244" />
+      <option name="project" value="LOCAL" />
+      <updated>1694090142837</updated>
+    </task>
+    <task id="LOCAL-00245" summary="refactor: ArticleLike, CommentLike Service 구현체 네이밍 리펙토링">
+      <created>1694090319315</created>
+      <option name="number" value="00245" />
+      <option name="presentableId" value="LOCAL-00245" />
+      <option name="project" value="LOCAL" />
+      <updated>1694090319315</updated>
+    </task>
+    <option name="localTasksCounter" value="246" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -606,8 +594,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="refactor: CreateCommentController 구현체 분리에 따라 수정 및 테스트" />
-    <MESSAGE value="refactor: DeleteComment Api 인터페이스와 구현체로 분리하여 구현" />
     <MESSAGE value="refactor: EditComment Api 인터페이스와 구현체로 분리하여 구현" />
     <MESSAGE value="refactor: findArticlesService 인터페이스와 여러 구현체들로 분리" />
     <MESSAGE value="refactor: findArticlesService 인터페이스와 여러 구현체들로 분리 테스트" />
@@ -631,6 +617,8 @@
     <MESSAGE value="refactor: index 적용을 위해 findPublicAndPrivateArticles 를 두개의 메서드로 분리 및 테스트" />
     <MESSAGE value="refactor: publicMap, privateMap articles 찾기 index 구현 및 적용, 테스트" />
     <MESSAGE value="refactor: grouped articles 찾기 index 구현 및 적용, 테스트 - 진행중" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor: grouped articles 찾기 index 구현 및 적용, 테스트 - 진행중" />
+    <MESSAGE value="refactor: ArticleService 구현체 네이밍 리펙토링" />
+    <MESSAGE value="refactor: ArticleLike, CommentLike Service 구현체 네이밍 리펙토링" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor: ArticleLike, CommentLike Service 구현체 네이밍 리펙토링" />
   </component>
 </project>

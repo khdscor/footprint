@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
-public class FindCommentOnPage implements FindCommentService {
+public class FindCommentOnPageService implements FindCommentService {
 
     private final FindCommentRepository findCommentRepository;
 

@@ -15,7 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @Qualifier("private")
-public class CreateCommentOnPrivateArticle extends CreateCommentServiceImpl {
+public class CreateCommentOnPrivateArticle extends AbstractCreateCommentService {
 
     public CreateCommentOnPrivateArticle(FindArticleRepository findArticleRepository,
         MemberRepository memberRepository, CreateCommentRepository createCommentRepository) {
