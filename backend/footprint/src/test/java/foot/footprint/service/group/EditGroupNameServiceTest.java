@@ -4,7 +4,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 
-import foot.footprint.domain.group.application.edit.EditGroupNameServiceImpl;
+import foot.footprint.domain.group.application.edit.EditGeneralGroupNameService;
 import foot.footprint.domain.group.dao.GroupRepository;
 import foot.footprint.global.error.exception.NotAuthorizedOrExistException;
 import org.junit.jupiter.api.DisplayName;
@@ -21,7 +21,7 @@ public class EditGroupNameServiceTest {
     private GroupRepository groupRepository;
 
     @InjectMocks
-    private EditGroupNameServiceImpl editGroupNameService;
+    private EditGeneralGroupNameService editGroupNameService;
 
     @Test
     @DisplayName("예외 발생 테스트")

@@ -5,7 +5,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 
-import foot.footprint.domain.group.application.join.JoinGroupServiceImpl;
+import foot.footprint.domain.group.application.join.JoinGeneralGroupService;
 import foot.footprint.domain.group.dao.GroupRepository;
 import foot.footprint.domain.group.dao.MemberGroupRepository;
 import foot.footprint.domain.group.domain.Group;
@@ -29,7 +29,7 @@ public class JoinGroupServiceTest {
     private MemberGroupRepository memberGroupRepository;
 
     @InjectMocks
-    private JoinGroupServiceImpl joinGroupServiceImpl;
+    private JoinGeneralGroupService joinGeneralGroupService;
 
     @Test
     @DisplayName("그룹 가입")
@@ -42,7 +42,7 @@ public class JoinGroupServiceTest {
             .willReturn(false);
 
         //when
-        Long result = joinGroupServiceImpl.join("test", group.getId());
+        Long result = joinGeneralGroupService.join("test", group.getId());
 
         //then
         assertThat(result).isEqualTo(group.getId());
@@ -60,7 +60,7 @@ public class JoinGroupServiceTest {
 
         //when & then
         assertThatThrownBy(
-            () -> joinGroupServiceImpl.join("test", group.getId()))
+            () -> joinGeneralGroupService.join("test", group.getId()))
             .isInstanceOf(AlreadyJoinedException.class);
     }
 

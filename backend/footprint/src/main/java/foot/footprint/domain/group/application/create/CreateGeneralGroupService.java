@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
-public class CreateGroupServiceImpl implements CreateGroupService {
+public class CreateGeneralGroupService implements CreateGroupService {
 
     private final GroupRepository groupRepository;
 

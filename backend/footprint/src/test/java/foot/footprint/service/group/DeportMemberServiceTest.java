@@ -6,7 +6,7 @@ import static org.mockito.BDDMockito.given;
 
 import foot.footprint.domain.article.dao.EditArticleRepository;
 import foot.footprint.domain.article.exception.NotMatchMemberException;
-import foot.footprint.domain.group.application.deportMember.DeportMemberServiceImpl;
+import foot.footprint.domain.group.application.deportMember.DeportGeneralMemberService;
 import foot.footprint.domain.group.dao.ArticleGroupRepository;
 import foot.footprint.domain.group.dao.GroupRepository;
 import foot.footprint.domain.group.dao.MemberGroupRepository;
@@ -37,7 +37,7 @@ public class DeportMemberServiceTest {
     private ArticleGroupRepository articleGroupRepository;
 
     @InjectMocks
-    private DeportMemberServiceImpl deportMemberServiceImpl;
+    private DeportGeneralMemberService deportGeneralMemberService;
 
     @Test
     @DisplayName("그룹원 추방 - 그룹의 주인이 아닐 시")
@@ -49,7 +49,7 @@ public class DeportMemberServiceTest {
 
         //when & then
         assertThatThrownBy(
-            () -> deportMemberServiceImpl.deport(1L, 1L, ownerId))
+            () -> deportGeneralMemberService.deport(1L, 1L, ownerId))
             .isInstanceOf(NotMatchMemberException.class);
     }
 
@@ -64,7 +64,7 @@ public class DeportMemberServiceTest {
 
         //when & then
         assertThatThrownBy(
-            () -> deportMemberServiceImpl.deport(1L, 1L, ownerId))
+            () -> deportGeneralMemberService.deport(1L, 1L, ownerId))
             .isInstanceOf(NotExistsException.class);
     }
 

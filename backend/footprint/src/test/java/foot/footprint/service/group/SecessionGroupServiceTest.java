@@ -6,7 +6,7 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
 import foot.footprint.domain.article.dao.EditArticleRepository;
-import foot.footprint.domain.group.application.secession.SecessionGroupServiceImpl;
+import foot.footprint.domain.group.application.secession.SecessionGeneralGroupService;
 import foot.footprint.domain.group.dao.ArticleGroupRepository;
 import foot.footprint.domain.group.dao.GroupRepository;
 import foot.footprint.domain.group.dao.MemberGroupRepository;
@@ -38,7 +38,7 @@ public class SecessionGroupServiceTest {
     private EditArticleRepository editArticleRepository;
 
     @InjectMocks
-    private SecessionGroupServiceImpl secessionGroupServiceImpl;
+    private SecessionGeneralGroupService secessionGeneralGroupService;
 
     @Test
     @DisplayName("그룹 탈퇴 - 그룹의 주인이 아닐경우")
@@ -52,7 +52,7 @@ public class SecessionGroupServiceTest {
         given(memberGroupRepository.deleteMemberGroup(any(), any())).willReturn(1);
 
         //when
-        secessionGroupServiceImpl.secessionGroup(groupId, accessMemberId);
+        secessionGeneralGroupService.secessionGroup(groupId, accessMemberId);
 
         //then
         verify(memberGroupRepository, times(0)).findAllByGroupId(any());
@@ -77,7 +77,7 @@ public class SecessionGroupServiceTest {
         given(groupRepository.updateOwner(any(), any())).willReturn(1);
 
         //when
-        secessionGroupServiceImpl.secessionGroup(groupId, ownerId);
+        secessionGeneralGroupService.secessionGroup(groupId, ownerId);
 
         //then
         verify(groupRepository, times(0)).deleteById(any());
@@ -99,7 +99,7 @@ public class SecessionGroupServiceTest {
         given(groupRepository.deleteById(any())).willReturn(1);
 
         //when
-        secessionGroupServiceImpl.secessionGroup(groupId, ownerId);
+        secessionGeneralGroupService.secessionGroup(groupId, ownerId);
 
         //then
         verify(groupRepository, times(1)).deleteById(any());

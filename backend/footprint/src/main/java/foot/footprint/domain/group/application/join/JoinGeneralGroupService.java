@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
-public class JoinGroupServiceImpl implements JoinGroupService{
+public class JoinGeneralGroupService implements JoinGroupService{
 
     private final GroupRepository groupRepository;
     private final MemberGroupRepository memberGroupRepository;

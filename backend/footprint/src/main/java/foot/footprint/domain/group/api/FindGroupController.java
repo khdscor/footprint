@@ -21,23 +21,6 @@ public class FindGroupController {
 
     private final FindGroupService findGroupService;
 
-    @GetMapping("/mine/important")
-    public ResponseEntity<List<GroupSummaryResponse>> findMyImportantGroups(
-        @AuthenticationPrincipal CustomUserDetails userDetails) {
-        List<GroupSummaryResponse> responses = findGroupService.findMyImportantGroups(
-            userDetails.getId());
-
-        return ResponseEntity.ok().body(responses);
-    }
-
-    @GetMapping("/mine")
-    public ResponseEntity<List<GroupSummaryResponse>> findMyGroups(
-        @AuthenticationPrincipal CustomUserDetails userDetails) {
-        List<GroupSummaryResponse> responses = findGroupService.findMyGroups(userDetails.getId());
-
-        return ResponseEntity.ok().body(responses);
-    }
-
     @GetMapping("/{id}")
     public ResponseEntity<GroupDetailsResponse> findOne(@PathVariable("id") Long groupId,
         @AuthenticationPrincipal CustomUserDetails userDetails) {
