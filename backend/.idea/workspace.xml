@@ -4,12 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e9c5eb8d-61e6-4bf1-a075-2ef5ca99f02a" name="변경" comment="refactor: ArticleLike, CommentLike Service 구현체 네이밍 리펙토링">
-      <change beforePath="$PROJECT_DIR$/footprint/src/main/java/foot/footprint/domain/comment/application/create/CreateCommentOnGroupedArticle.java" beforeDir="false" afterPath="$PROJECT_DIR$/footprint/src/main/java/foot/footprint/domain/comment/application/create/CreateCommentOnGroupedArticle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/footprint/src/main/java/foot/footprint/domain/comment/application/create/CreateCommentOnPrivateArticle.java" beforeDir="false" afterPath="$PROJECT_DIR$/footprint/src/main/java/foot/footprint/domain/comment/application/create/CreateCommentOnPrivateArticle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/footprint/src/main/java/foot/footprint/domain/comment/application/create/CreateCommentOnPublicArticle.java" beforeDir="false" afterPath="$PROJECT_DIR$/footprint/src/main/java/foot/footprint/domain/comment/application/create/CreateCommentOnPublicArticle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/footprint/src/main/java/foot/footprint/domain/comment/application/create/CreateCommentServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/footprint/src/main/java/foot/footprint/domain/comment/application/create/AbstractCreateCommentService.java" afterDir="false" />
-    </list>
+    <list default="true" id="e9c5eb8d-61e6-4bf1-a075-2ef5ca99f02a" name="변경" comment="refactor: Comment Service 구현체 네이밍 리펙토링" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -232,13 +227,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1677633300752</updated>
-    </task>
-    <task id="LOCAL-00197" summary="feat: GroupRepository#updateOwner 구현">
-      <created>1688117630822</created>
-      <option name="number" value="00197" />
-      <option name="presentableId" value="LOCAL-00197" />
-      <option name="project" value="LOCAL" />
-      <updated>1688117630823</updated>
     </task>
     <task id="LOCAL-00198" summary="feat: MemberGroupRepository#findAllByGroupId 구현">
       <created>1688117654439</created>
@@ -576,7 +564,14 @@
       <option name="project" value="LOCAL" />
       <updated>1694090319315</updated>
     </task>
-    <option name="localTasksCounter" value="246" />
+    <task id="LOCAL-00246" summary="refactor: Comment Service 구현체 네이밍 리펙토링">
+      <created>1694090873142</created>
+      <option name="number" value="00246" />
+      <option name="presentableId" value="LOCAL-00246" />
+      <option name="project" value="LOCAL" />
+      <updated>1694090873142</updated>
+    </task>
+    <option name="localTasksCounter" value="247" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -594,7 +589,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="refactor: EditComment Api 인터페이스와 구현체로 분리하여 구현" />
     <MESSAGE value="refactor: findArticlesService 인터페이스와 여러 구현체들로 분리" />
     <MESSAGE value="refactor: findArticlesService 인터페이스와 여러 구현체들로 분리 테스트" />
     <MESSAGE value="refactor: findArticlesController 인터페이스와 여러 구현체들로 분리" />
@@ -619,6 +613,7 @@
     <MESSAGE value="refactor: grouped articles 찾기 index 구현 및 적용, 테스트 - 진행중" />
     <MESSAGE value="refactor: ArticleService 구현체 네이밍 리펙토링" />
     <MESSAGE value="refactor: ArticleLike, CommentLike Service 구현체 네이밍 리펙토링" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor: ArticleLike, CommentLike Service 구현체 네이밍 리펙토링" />
+    <MESSAGE value="refactor: Comment Service 구현체 네이밍 리펙토링" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor: Comment Service 구현체 네이밍 리펙토링" />
   </component>
 </project>
