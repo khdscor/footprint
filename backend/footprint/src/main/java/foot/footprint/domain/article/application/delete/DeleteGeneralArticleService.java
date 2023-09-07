@@ -8,7 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
-public class DeleteArticleServiceImpl implements DeleteArticleService{
+public class DeleteGeneralArticleService implements DeleteArticleService{
 
     private final DeleteArticleRepository deleteArticleRepository;
 

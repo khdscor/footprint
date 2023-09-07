@@ -4,7 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 
-import foot.footprint.domain.article.application.findArticleDetails.FindPublicArticleDetails;
+import foot.footprint.domain.article.application.findArticleDetails.FindPublicArticleDetailsService;
 import foot.footprint.domain.article.dao.FindArticleRepository;
 import foot.footprint.domain.article.domain.Article;
 import foot.footprint.domain.article.dto.ArticleDetailsDto;
@@ -13,7 +13,6 @@ import foot.footprint.domain.article.dto.ArticlePageIfNonLoginDto;
 import foot.footprint.domain.article.dto.ArticlePageResponse;
 import foot.footprint.domain.articleLike.dao.ArticleLikeRepository;
 import foot.footprint.domain.comment.dao.FindCommentRepository;
-import foot.footprint.domain.comment.dto.CommentResponse;
 import foot.footprint.domain.comment.dto.CommentsDto;
 import foot.footprint.domain.commentLike.dao.CommentLikeRepository;
 import foot.footprint.global.security.user.CustomUserDetails;
@@ -46,7 +45,7 @@ public class FindArticleDetailsServiceTest {
 
 
     @InjectMocks
-    private FindPublicArticleDetails findPublicArticleDetails;
+    private FindPublicArticleDetailsService findPublicArticleDetailsService;
 
     @BeforeEach
     void setUp() {
@@ -86,7 +85,7 @@ public class FindArticleDetailsServiceTest {
         CustomUserDetails userDetails = new CustomUserDetails(memberId, email, null);
 
         //when
-        ArticlePageResponse response = findPublicArticleDetails.findDetails(articleId,
+        ArticlePageResponse response = findPublicArticleDetailsService.findDetails(articleId,
             userDetails);
 
         //then
@@ -97,7 +96,7 @@ public class FindArticleDetailsServiceTest {
         assertThat(response.getMyMemberId()).isEqualTo(memberId);
 
         //when 유저 정보가 null(로그인하지 않는 상태)
-        ArticlePageResponse response2 = findPublicArticleDetails.findDetails(articleId, null);
+        ArticlePageResponse response2 = findPublicArticleDetailsService.findDetails(articleId, null);
 
         //then
         assertThat(response2.getArticleDetails().getId()).isEqualTo(articleId);

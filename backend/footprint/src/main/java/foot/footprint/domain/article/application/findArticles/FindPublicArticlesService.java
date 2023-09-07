@@ -13,7 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @Qualifier("public")
 @RequiredArgsConstructor
-public class FindPublicArticles implements FindArticlesService {
+public class FindPublicArticlesService implements FindArticlesService {
 
     private final FindArticleRepository findArticleRepository;
 

@@ -16,7 +16,7 @@ import java.util.Objects;
 
 @Service
 @RequiredArgsConstructor
-public class CreateArticleServiceImpl implements CreateArticleService{
+public class CreateGeneralArticleService implements CreateArticleService{
 
     private final CreateArticleRepository articleRepository;
 

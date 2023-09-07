@@ -15,7 +15,7 @@ import java.util.List;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public abstract class FindArticleDetailsServiceImpl implements FindArticleDetailsService {
+public abstract class AbstrastFindArticleDetailsService implements FindArticleDetailsService {
 
     protected final FindArticleRepository findArticleRepository;
 
