@@ -10,10 +10,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @Qualifier("public")
-public class ChangePublicCommentLike extends ChangeCommentLikeServiceImpl {
+public class ChangePublicCommentLikeService extends AbstractChangeCommentLikeService {
 
-    public ChangePublicCommentLike(FindArticleRepository findArticleRepository,
-        CommentLikeRepository commentLikeRepository) {
+    public ChangePublicCommentLikeService(FindArticleRepository findArticleRepository,
+                                          CommentLikeRepository commentLikeRepository) {
         super(findArticleRepository, commentLikeRepository);
     }
 

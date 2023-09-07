@@ -1,7 +1,6 @@
 package foot.footprint.domain.articleLike.application;
 
 import foot.footprint.domain.article.dao.FindArticleRepository;
-import foot.footprint.domain.article.domain.Article;
 import foot.footprint.domain.articleLike.dao.ArticleLikeRepository;
 import foot.footprint.domain.articleLike.dto.ArticleLikeDto;
 import foot.footprint.domain.group.dao.ArticleGroupRepository;
@@ -12,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @Qualifier("grouped")
-public class ChangeGroupedArticleLikeService extends ChangeArticleLikeServiceImpl {
+public class ChangeGroupedArticleLikeService extends AbstractChangeArticleLikeService {
 
     private final ArticleGroupRepository articleGroupRepository;
 

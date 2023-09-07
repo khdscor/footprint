@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @Qualifier("public")
-public class ChangePublicArticleLikeService extends ChangeArticleLikeServiceImpl {
+public class ChangePublicArticleLikeService extends AbstractChangeArticleLikeService {
 
     public ChangePublicArticleLikeService(ArticleLikeRepository articleLikeRepository,
         FindArticleRepository findArticleRepository) {

@@ -9,7 +9,7 @@ import foot.footprint.global.error.exception.NotExistsException;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public abstract class ChangeArticleLikeServiceImpl implements ChangeArticleLikeService {
+public abstract class AbstractChangeArticleLikeService implements ChangeArticleLikeService {
 
     protected final ArticleLikeRepository articleLikeRepository;
     protected final FindArticleRepository findArticleRepository;
