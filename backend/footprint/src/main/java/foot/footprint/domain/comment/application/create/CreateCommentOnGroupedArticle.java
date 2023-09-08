@@ -14,7 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @Qualifier("grouped")
-public class CreateCommentOnGroupedArticle extends CreateCommentServiceImpl {
+public class CreateCommentOnGroupedArticle extends AbstractCreateCommentService {
 
     private final ArticleGroupRepository articleGroupRepository;
     public CreateCommentOnGroupedArticle(FindArticleRepository findArticleRepository,

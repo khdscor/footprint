@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @Qualifier("private")
-public class ChangePrivateArticleLikeService extends ChangeArticleLikeServiceImpl {
+public class ChangePrivateArticleLikeService extends AbstractChangeArticleLikeService {
 
     public ChangePrivateArticleLikeService(ArticleLikeRepository articleLikeRepository,
         FindArticleRepository findArticleRepository) {

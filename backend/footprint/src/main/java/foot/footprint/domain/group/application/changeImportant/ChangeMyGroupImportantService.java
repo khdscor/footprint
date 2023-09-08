@@ -8,7 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
-public class ChangeImportantServiceImpl implements ChangeImportantService{
+public class ChangeMyGroupImportantService implements ChangeGroupImportantService {
 
     private final MemberGroupRepository memberGroupRepository;
 

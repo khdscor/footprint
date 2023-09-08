@@ -8,7 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
-public class EditGroupNameServiceImpl implements EditGroupNameService {
+public class EditGeneralGroupNameService implements EditGroupNameService {
 
     private final GroupRepository groupRepository;
 

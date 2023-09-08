@@ -17,7 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class SecessionGroupServiceImpl implements SecessionGroupService{
+public class SecessionGeneralGroupService implements SecessionGroupService{
 
     private final GroupRepository groupRepository;
 

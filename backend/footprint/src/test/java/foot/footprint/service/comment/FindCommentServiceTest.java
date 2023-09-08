@@ -4,7 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 
-import foot.footprint.domain.comment.application.find.FindCommentOnPage;
+import foot.footprint.domain.comment.application.find.FindCommentOnPageService;
 import foot.footprint.domain.comment.dao.FindCommentRepository;
 import foot.footprint.domain.comment.domain.Comment;
 import foot.footprint.domain.comment.dto.CommentOnPageResponse;
@@ -30,7 +30,7 @@ public class FindCommentServiceTest {
     private FindCommentRepository findCommentRepository;
 
     @InjectMocks
-    private FindCommentOnPage findCommentOnPage;
+    private FindCommentOnPageService findCommentOnPageService;
 
     @Test
     @DisplayName("커서기반 댓글 페이지 조회 - 다음페이지가 있을 시")
@@ -49,7 +49,7 @@ public class FindCommentServiceTest {
             .willReturn(responses);
 
         //when
-        CommentOnPageResponse response = findCommentOnPage.findComments(1L, 10L);
+        CommentOnPageResponse response = findCommentOnPageService.findComments(1L, 10L);
 
         //then
         assertThat(response.isHasNextPage()).isTrue();
@@ -74,7 +74,7 @@ public class FindCommentServiceTest {
             .willReturn(responses);
 
         //when
-        CommentOnPageResponse response = findCommentOnPage.findComments(1L, 6L);
+        CommentOnPageResponse response = findCommentOnPageService.findComments(1L, 6L);
 
         //then
         assertThat(response.isHasNextPage()).isFalse();

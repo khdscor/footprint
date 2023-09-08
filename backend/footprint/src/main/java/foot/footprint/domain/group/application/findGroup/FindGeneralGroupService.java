@@ -1,37 +1,20 @@
 package foot.footprint.domain.group.application.findGroup;
 
 import foot.footprint.domain.group.dao.GroupRepository;
-import foot.footprint.domain.group.dao.MemberGroupRepository;
 import foot.footprint.domain.group.dto.find.GroupDetailsDto;
 import foot.footprint.domain.group.dto.find.GroupDetailsResponse;
 import foot.footprint.domain.group.dto.find.GroupNameResponse;
-import foot.footprint.domain.group.dto.find.GroupSummaryResponse;
 import foot.footprint.global.error.exception.NotAuthorizedOrExistException;
 import foot.footprint.global.error.exception.NotExistsException;
-import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
-public class FindGroupServiceImpl implements FindGroupService {
-
-    private final MemberGroupRepository memberGroupRepository;
+public class FindGeneralGroupService implements FindGroupService {
 
     private final GroupRepository groupRepository;
-
-    @Override
-    @Transactional(readOnly = true)
-    public List<GroupSummaryResponse> findMyImportantGroups(Long memberId) {
-        return memberGroupRepository.findMyImportantGroups(memberId);
-    }
-
-    @Override
-    @Transactional(readOnly = true)
-    public List<GroupSummaryResponse> findMyGroups(Long memberId) {
-        return memberGroupRepository.findMyGroups(memberId);
-    }
 
     @Override
     @Transactional(readOnly = true)

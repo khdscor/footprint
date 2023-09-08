@@ -8,7 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
-public class EditArticleServiceImpl implements EditArticleService{
+public class EditGeneralArticleService implements EditArticleService{
 
     private final EditArticleRepository editArticleRepository;
 

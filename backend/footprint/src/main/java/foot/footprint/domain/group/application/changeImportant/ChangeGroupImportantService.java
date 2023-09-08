@@ -1,6 +1,6 @@
 package foot.footprint.domain.group.application.changeImportant;
 
-public interface ChangeImportantService {
+public interface ChangeGroupImportantService {
 
     void changeImportant(Long groupId, Long memberId);
 }

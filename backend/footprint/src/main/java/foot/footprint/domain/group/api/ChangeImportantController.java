@@ -1,6 +1,6 @@
 package foot.footprint.domain.group.api;
 
-import foot.footprint.domain.group.application.changeImportant.ChangeImportantService;
+import foot.footprint.domain.group.application.changeImportant.ChangeGroupImportantService;
 import foot.footprint.global.aop.group.GroupLog;
 import foot.footprint.global.security.user.CustomUserDetails;
 import lombok.RequiredArgsConstructor;
@@ -16,13 +16,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/groups")
 public class ChangeImportantController {
 
-    private final ChangeImportantService changeImportantService;
+    private final ChangeGroupImportantService changeGroupImportantService;
 
     @GroupLog
     @PutMapping("/{groupId}/important")
     public ResponseEntity<Void> changeImportant(@PathVariable("groupId") Long groupId,
         @AuthenticationPrincipal CustomUserDetails userDetails) {
-        changeImportantService.changeImportant(groupId, userDetails.getId());
+        changeGroupImportantService.changeImportant(groupId, userDetails.getId());
 
         return ResponseEntity.noContent().build();
     }

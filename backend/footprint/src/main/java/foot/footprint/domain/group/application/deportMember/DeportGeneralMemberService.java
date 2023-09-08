@@ -14,7 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
-public class DeportMemberServiceImpl implements DeportMemberService{
+public class DeportGeneralMemberService implements DeportMemberService{
 
     private final MemberGroupRepository memberGroupRepository;
 

@@ -1,31 +1,32 @@
 package foot.footprint.domain.commentLike.application;
 
 import foot.footprint.domain.article.dao.FindArticleRepository;
-import foot.footprint.domain.article.domain.Article;
 import foot.footprint.domain.commentLike.dao.CommentLikeRepository;
-import foot.footprint.global.error.exception.WrongMapTypeException;
+import foot.footprint.domain.group.dao.ArticleGroupRepository;
 import foot.footprint.global.util.ValidateIsMine;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
-@Qualifier("private")
-public class ChangePrivateCommentLike extends ChangeCommentLikeServiceImpl {
+@Qualifier("grouped")
+public class ChangeGroupedCommentLikeService extends AbstractChangeCommentLikeService {
 
-    public ChangePrivateCommentLike(FindArticleRepository findArticleRepository,
-        CommentLikeRepository commentLikeRepository) {
+    private final ArticleGroupRepository articleGroupRepository;
+
+    public ChangeGroupedCommentLikeService(
+            FindArticleRepository findArticleRepository,
+            CommentLikeRepository commentLikeRepository,
+            ArticleGroupRepository articleGroupRepository) {
         super(findArticleRepository, commentLikeRepository);
+        this.articleGroupRepository = articleGroupRepository;
     }
 
     @Override
     @Transactional
     public void changeMyLike(Long commentId, Long articleId, Boolean hasILiked, Long memberId) {
-        Article article = findAndValidateArticle(articleId);
-        if (!article.isPrivate_map()) {
-            throw new WrongMapTypeException("게시글이 전체지도에 포함되지 않습니다.");
-        }
-        ValidateIsMine.validateArticleIsMine(article.getMember_id(), memberId);
+        findAndValidateArticle(articleId);
+        ValidateIsMine.validateInMyGroup(articleId, memberId, articleGroupRepository);
         changeLike(commentId, memberId, hasILiked);
     }
 }
