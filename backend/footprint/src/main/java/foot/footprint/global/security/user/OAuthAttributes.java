@@ -13,6 +13,16 @@ public enum OAuthAttributes {
             (String) attributes.get("picture")
         );
     }),
+    KAKAO("kakao", (attributes) -> {
+        Map<String, Object> properties = (Map<String, Object>) attributes.get("properties");
+        Map<String, Object> kakao_account = (Map<String, Object>) attributes.get("kakao_account");
+        return new UserProfile(
+            String.valueOf(attributes.get("id")),
+            (String) properties.get("nickname"),
+            (String) kakao_account.get("email"),
+            (String) properties.get("profile_image")
+        );
+    }),
     NAVER("naver", (attributes) -> {
         Map<String, Object> response = (Map<String, Object>) attributes.get("response");
         return new UserProfile(
