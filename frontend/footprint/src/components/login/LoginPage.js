@@ -15,6 +15,10 @@ const LoginPage = (props) => {
             + "redirect_uri=" + FRONTEND_ADDRESS +"/oauth2/redirect" }
         >네이버로그인</LoginButton>
         <LoginButton
+            href={ BACKEND_ADDRESS + "/oauth2/authorize/kakao?"
+            + "redirect_uri=" + FRONTEND_ADDRESS +"/oauth2/redirect" }
+        >카카오로그인</LoginButton>
+        <LoginButton
             href={ BACKEND_ADDRESS + "/oauth2/authorize/google?"
             + "redirect_uri=" + FRONTEND_ADDRESS +"/oauth2/redirect" }
         >구글로그인</LoginButton>
