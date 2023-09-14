@@ -27,7 +27,7 @@ public enum OAuthAttributes {
         Map<String, Object> response = (Map<String, Object>) attributes.get("response");
         return new UserProfile(
             (String) response.get("id"),
-            (String) response.get("name"),
+            (String) response.get("nickname"),
             (String) response.get("email"),
             (String) response.get("profile_image")
         );
