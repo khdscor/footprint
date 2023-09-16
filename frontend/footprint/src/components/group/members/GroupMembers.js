@@ -5,12 +5,13 @@ const GroupMembers = ({members, group, accessToken}) => {
   return (
     <>
       {
-        members.map(member => <Member
-          userId={member.id}
-          nickname={member.nickName}
-          userImageUrl={member.imageUrl}
+        members.map((members, index) => <Member
+          userId={members.id}
+          nickname={members.nickName}
+          userImageUrl={members.imageUrl}
           group={group}
           accessToken={accessToken}
+          index={index}
         />)
       }
     </>
