@@ -3,7 +3,7 @@ import Profile from "./Profile";
 import Nickname from "./NickName";
 import DeportButton from './Deport';
 
-const Member = ({userId, nickname, userImageUrl, group, accessToken}) => {
+const Member = ({userId, nickname, userImageUrl, group, accessToken, index}) => {
   return (
     <div style={{
       display: "flex",
@@ -12,7 +12,7 @@ const Member = ({userId, nickname, userImageUrl, group, accessToken}) => {
     }}>
       <Profile userImageUrl={userImageUrl}/>
       <Nickname nickname={nickname}/>
-      {group.owner ?
+      {group.owner && index !== 0?
       <DeportButton 
         groupId={group.id} 
         userId={userId}
