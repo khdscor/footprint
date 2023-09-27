@@ -30,6 +30,7 @@ out/
 !**/src/test/**/out/
 application-rds.properties
 application-oauth.properties
+application-redis.properties
 *.log
 
 ### NetBeans ###
