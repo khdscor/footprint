@@ -32,10 +32,27 @@ public class GeneralMemberService implements MemberService {
         return response;
     }
 
+    private Optional<MemberImageResponse> findByRedis(String redisKey) {
+        return objectSerializer.getData(redisKey, MemberImageResponse.class);
+    }
+
+    private MemberImageResponse findByDB(Long memberId) {
+        Member member = memberRepository.findById(memberId)
+            .orElseThrow(() -> new NotExistsException("존재하지 않는 회원입니다."));
+        return new MemberImageResponse(member.getId(), member.getImage_url());
+    }
+
     @Override
     @Transactional(readOnly = true)
-    public MyPageResponse findMyPageInfo(Long id) {
-        return memberRepository.findMyPageDetails(id);
+    public MyPageResponse findMyPageInfo(Long memberId) {
+        String redisKey = "memberPageInfo::" + memberId;
+        Optional<MyPageResponse> cache = objectSerializer.getData(redisKey, MyPageResponse.class);
+        if (cache.isPresent()) {
+            return cache.get();
+        }
+        MyPageResponse response = memberRepository.findMyPageDetails(memberId);
+        objectSerializer.saveData(redisKey, response, 5);
+        return response;
     }
 
     @Override
@@ -45,15 +62,5 @@ public class GeneralMemberService implements MemberService {
         if (deleted == 0) {
             throw new NotExistsException("존재하지 않는 계정입니다.");
         }
-    }
-
-    private Optional<MemberImageResponse> findByRedis(String redisKey) {
-        return objectSerializer.getData(redisKey, MemberImageResponse.class);
-    }
-
-    private MemberImageResponse findByDB(Long memberId) {
-        Member member = memberRepository.findById(memberId)
-            .orElseThrow(() -> new NotExistsException("존재하지 않는 회원입니다."));
-        return new MemberImageResponse(member.getId(), member.getImage_url());
     }
 }
