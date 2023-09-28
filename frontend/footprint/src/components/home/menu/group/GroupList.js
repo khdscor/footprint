@@ -25,7 +25,7 @@ const GroupList = (props) => {
   const [groups, setGroups] = useState([]);
 
   useEffect(() => {
-    if (props.isGroupOpened) {
+    if (props.isGroupOpened && groups.length === 0) {
       findMyGroupsApi(props.history).then(groupsPromise => {
         setGroups(groupsPromise)
       });
