@@ -3,8 +3,10 @@ package foot.footprint.domain.article.dto;
 import foot.footprint.global.domain.AuthorDto;
 import java.util.Date;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Getter
+@NoArgsConstructor
 public class ArticleDetails {
 
     private Long id;

@@ -11,6 +11,7 @@ import foot.footprint.domain.commentLike.dao.CommentLikeRepository;
 import foot.footprint.global.error.exception.NotAuthorizedOrExistException;
 import foot.footprint.global.error.exception.NotExistsException;
 import foot.footprint.global.security.user.CustomUserDetails;
+import foot.footprint.global.util.ObjectSerializer;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 
@@ -24,6 +25,8 @@ public abstract class AbstrastFindArticleDetailsService implements FindArticleDe
     protected final FindCommentRepository findCommentRepository;
 
     protected final CommentLikeRepository commentLikeRepository;
+
+    protected final ObjectSerializer objectSerializer;
 
     protected Article findAndValidateArticle(Long articleId) {
         return findArticleRepository.findById(articleId)
