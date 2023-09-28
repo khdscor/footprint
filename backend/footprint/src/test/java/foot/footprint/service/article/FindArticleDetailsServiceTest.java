@@ -56,7 +56,7 @@ public class FindArticleDetailsServiceTest {
         given(findArticleRepository.findById(any())).willReturn(Optional.ofNullable(article));
         //게시글 dto 리턴
         ArticleDetailsDto details = new ArticleDetailsDto(articleId, "title", "content", 1.0, 1.0,
-            memberId, "nickName", "image", new Date(), 0L);
+            true, true, memberId, "nickName", "image", new Date(), 0L);
         CommentsDto response = new CommentsDto(1L, "test", memberId, "nickName", "image",
             new Date(), 0L);
         List<CommentsDto> responses = new ArrayList<>();

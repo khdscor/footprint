@@ -15,6 +15,8 @@ public class ArticleDetailsDto {
     private String content;
     private Double latitude;
     private Double longitude;
+    private boolean publicMap;
+    private boolean privateMap;
     private Long writerId;
     private String writerName;
     private String writerImageUrl;
