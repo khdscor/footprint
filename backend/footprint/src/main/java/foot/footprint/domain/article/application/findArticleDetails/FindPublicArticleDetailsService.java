@@ -34,11 +34,12 @@ public class FindPublicArticleDetailsService extends AbstrastFindArticleDetailsS
         String redisKey = "articleDetails::" + articleId;
         Optional<ArticlePageResponse> cache = objectSerializer.getData(redisKey,
             ArticlePageResponse.class);
+        // redis에 데이터가 있을 경우 - DB 접근 x
         if (cache.isPresent()) {
             validatePublicArticle(cache.get());
             return cache.get();
         }
-
+        // redis에 데이터가 없을 경우 - DB 접근 o
         ArticlePageResponse response = new ArticlePageResponse();
         if (userDetails == null) {
             addNonLoginInfo(articleId, response);
@@ -47,6 +48,7 @@ public class FindPublicArticleDetailsService extends AbstrastFindArticleDetailsS
         }
         addLoginInfo(articleId, userDetails.getId(), response);
         validatePublicArticle(response);
+        // redis에 저장
         objectSerializer.saveData(redisKey, response, 5);
         return response;
     }
