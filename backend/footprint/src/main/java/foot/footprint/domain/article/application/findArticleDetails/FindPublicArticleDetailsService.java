@@ -49,7 +49,7 @@ public class FindPublicArticleDetailsService extends AbstrastFindArticleDetailsS
         addLoginInfo(articleId, userDetails.getId(), response);
         validatePublicArticle(response);
         // redis에 저장
-        objectSerializer.saveData(redisKey, response, 5);
+        objectSerializer.saveData(redisKey, response, 30);
         return response;
     }
 

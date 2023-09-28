@@ -16,11 +16,11 @@ public class ObjectSerializer {
 
     private final RedisTemplate<String, String> redisTemplate;
 
-    public <T> void saveData(String key, T data, int minutes) {
+    public <T> void saveData(String key, T data, int seconds) {
         try {
             ObjectMapper mapper = new ObjectMapper();
             String value = mapper.writeValueAsString(data);
-            redisTemplate.opsForValue().set(key, value, minutes, TimeUnit.MINUTES);
+            redisTemplate.opsForValue().set(key, value, seconds, TimeUnit.SECONDS);
         } catch (Exception e) {
             log.info("예외 메세지: " + e.getMessage());
             throw new WrongAccessRedisException("캐시에 데이터를 저장하는데 실패하였습니다.");

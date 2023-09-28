@@ -48,7 +48,7 @@ public class FindGroupedArticleDetailsService extends AbstrastFindArticleDetails
         ArticlePageResponse response = new ArticlePageResponse();
         addLoginInfo(articleId, userDetails.getId(), response);
         // redis에 저장
-        objectSerializer.saveData(redisKey, response, 5);
+        objectSerializer.saveData(redisKey, response, 30);
         return response;
     }
 }

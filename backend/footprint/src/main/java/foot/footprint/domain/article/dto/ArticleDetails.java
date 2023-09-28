@@ -40,4 +40,8 @@ public class ArticleDetails {
             dto.getLongitude(), dto.isPublicMap(), dto.isPrivateMap(), dto.getWriterId(),
             dto.getWriterName(), dto.getWriterImageUrl(), dto.getCreateDate(), dto.getTotalLikes());
     }
+
+    public void editContent(String content){
+        this.content = content;
+    }
 }

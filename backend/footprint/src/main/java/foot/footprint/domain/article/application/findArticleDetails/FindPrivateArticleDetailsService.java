@@ -42,7 +42,7 @@ public class FindPrivateArticleDetailsService extends AbstrastFindArticleDetails
         addLoginInfo(articleId, userDetails.getId(), response);
         validatePrivateArticle(response, userDetails.getId());
         // redis에 저장
-        objectSerializer.saveData(redisKey, response, 5);
+        objectSerializer.saveData(redisKey, response, 30);
         return response;
     }
 
