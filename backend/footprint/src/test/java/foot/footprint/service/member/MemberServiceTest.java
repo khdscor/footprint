@@ -14,12 +14,14 @@ import foot.footprint.domain.member.domain.Member;
 import foot.footprint.domain.member.domain.Role;
 import foot.footprint.domain.member.dto.MemberImageResponse;
 import foot.footprint.global.error.exception.NotExistsException;
+import foot.footprint.global.util.ObjectSerializer;
 import java.util.Date;
 import java.util.Optional;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
 
@@ -33,6 +35,9 @@ public class MemberServiceTest {
     @InjectMocks
     private GeneralMemberService generalMemberService;
 
+    @Mock
+    private ObjectSerializer objectSerializer;
+
     private Member member;
 
     @Test
@@ -40,6 +45,8 @@ public class MemberServiceTest {
         //given
         setMember();
         given(memberRepository.findById(any())).willReturn(Optional.ofNullable(member));
+        //objectSerializer - 캐시 데이터는 없다고 가정하고 리턴
+        given(objectSerializer.getData(any(), any())).willReturn(Optional.empty());
 
         //when
         MemberImageResponse response = generalMemberService.findImageUrl(member.getId());

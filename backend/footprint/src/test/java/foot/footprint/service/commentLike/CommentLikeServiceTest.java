@@ -16,6 +16,7 @@ import foot.footprint.domain.commentLike.dao.CommentLikeRepository;
 import foot.footprint.domain.group.dao.ArticleGroupRepository;
 import foot.footprint.global.error.exception.NotAuthorizedOrExistException;
 import foot.footprint.global.error.exception.NotExistsException;
+import foot.footprint.global.util.ObjectSerializer;
 import java.util.Optional;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -36,6 +37,9 @@ public class CommentLikeServiceTest {
 
     @Mock
     private ArticleGroupRepository articleGroupRepository;
+
+    @Mock
+    private ObjectSerializer objectSerializer;
 
     @InjectMocks
     private ChangePublicCommentLikeService changePublicCommentLikeService;
