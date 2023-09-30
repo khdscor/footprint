@@ -1,6 +1,8 @@
 package foot.footprint.global.util;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import foot.footprint.domain.article.dto.articleDetails.ArticlePageResponse;
+import foot.footprint.domain.article.dto.articleDetails.ArticleUpdatePart;
 import foot.footprint.global.error.exception.WrongAccessRedisException;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
@@ -38,6 +40,16 @@ public class ObjectSerializer {
         } catch (Exception e) {
             log.info("예외 메세지: " + e.getMessage());
             throw new WrongAccessRedisException("캐시에서 데이터를 가져오는데 실패하였습니다.");
+        }
+    }
+
+    public<T> void updateArticleData(String key, ArticleUpdatePart part, T data) {
+
+        Optional<ArticlePageResponse> cache = getData(key, ArticlePageResponse.class);
+        if (cache.isPresent()) {
+            part.apply(cache.get(), data);
+            cache.get().getArticleDetails().editContent((String) data);
+            saveData(key, cache.get(), 30);
         }
     }
 }

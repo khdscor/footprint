@@ -1,17 +1,16 @@
 package foot.footprint.domain.article.application.edit;
 
 import foot.footprint.domain.article.dao.EditArticleRepository;
-import foot.footprint.domain.article.dto.ArticlePageResponse;
+import foot.footprint.domain.article.dto.articleDetails.ArticleUpdatePart;
 import foot.footprint.domain.article.exception.NotMatchMemberException;
 import foot.footprint.global.util.ObjectSerializer;
-import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
-public class EditGeneralArticleService implements EditArticleService{
+public class EditGeneralArticleService implements EditArticleService {
 
     private final EditArticleRepository editArticleRepository;
 
@@ -24,13 +23,7 @@ public class EditGeneralArticleService implements EditArticleService{
         if (result == 0) {
             throw new NotMatchMemberException("글이 존재하지 않거나 수정할 권한이 없습니다.");
         }
-
         String redisKey = "articleDetails::" + articleId;
-        Optional<ArticlePageResponse> cache = objectSerializer.getData(redisKey,
-            ArticlePageResponse.class);
-        if (cache.isPresent()) {
-            cache.get().getArticleDetails().editContent(newContent);
-            objectSerializer.saveData(redisKey, cache.get(), 1);
-        }
+        objectSerializer.updateArticleData(redisKey, ArticleUpdatePart.EDIT_ARTICLE, newContent);
     }
 }
