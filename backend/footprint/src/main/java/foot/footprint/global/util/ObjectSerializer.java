@@ -44,11 +44,9 @@ public class ObjectSerializer {
     }
 
     public<T> void updateArticleData(String key, ArticleUpdatePart part, T data) {
-
         Optional<ArticlePageResponse> cache = getData(key, ArticlePageResponse.class);
         if (cache.isPresent()) {
             part.apply(cache.get(), data);
-            cache.get().getArticleDetails().editContent((String) data);
             saveData(key, cache.get(), 30);
         }
     }

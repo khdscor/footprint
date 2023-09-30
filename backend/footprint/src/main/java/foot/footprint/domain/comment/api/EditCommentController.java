@@ -24,12 +24,14 @@ public class EditCommentController {
     private final EditCommentService editCommentService;
 
     @CommentLog
-    @PutMapping("/{commentId}")
+    @PutMapping("/{articleId}/{commentId}")
     public ResponseEntity<CommentResponse> editComment(
+        @PathVariable("articleId") Long articleId,
         @PathVariable("commentId") Long commentId,
         @RequestBody @Valid EditCommentRequest editCommentRequest,
         @AuthenticationPrincipal CustomUserDetails userDetails) {
-        editCommentService.edit(commentId, userDetails.getId(), editCommentRequest.getContent());
+        editCommentService.edit(articleId, commentId, userDetails.getId(),
+            editCommentRequest.getContent());
         return ResponseEntity.noContent()
             .build();
     }

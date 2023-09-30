@@ -1,7 +1,7 @@
 import axios from "axios";
 import {BACKEND_ADDRESS} from "../../constants/ADDRESS";
 
-const editCommentApi = ({ newContent, id, accessToken, history }) => {
+const editCommentApi = ({ newContent, articleId, id, accessToken, history }) => {
   if (!accessToken) {
     alert("로그인이 필요한 서비스입니다.")
     history.push('/login');
@@ -15,7 +15,7 @@ const editCommentApi = ({ newContent, id, accessToken, history }) => {
       Authorization: "Bearer " + accessToken
     }
   };
-  axios.put(BACKEND_ADDRESS + "/comments/" + id, body, config)
+  axios.put(BACKEND_ADDRESS + "/comments/" + articleId + "/" + id, body, config)
   .then(response => {
     if (response.status === 204) {
       alert("댓글이 수정되었습니다 :)");

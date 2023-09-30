@@ -8,6 +8,7 @@ const ChangeContentModal = ({
   isChangeContentModalOpened,
   setIsChangeContentModalOpened,
   accessToken,
+  articleId,
   id,
   history,
   isEditArticle
@@ -45,6 +46,7 @@ const ChangeContentModal = ({
           isChangeContentModalOpened={isChangeContentModalOpened}
           newContent={newContent}
           accessToken={accessToken}
+          articleId={articleId}
           id={id}
           history={history}
           isEditArticle={isEditArticle}
