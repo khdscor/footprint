@@ -23,13 +23,7 @@ public enum ArticleUpdatePart {
     },
     EDIT_COMMENT("edit_comment") {
         public <T> void apply(ArticlePageResponse response, T data) {
-            CommentUpdateDto dto = (CommentUpdateDto) data;
-            for (int i = 0; i < response.getComments().size(); i++) {
-                if (response.getComments().get(i).getId().equals(dto.getId())) {
-                    response.getComments().get(i).editContent(dto.getNewContent());
-                    break;
-                }
-            }
+            response.changeCommentContent((CommentUpdateDto) data);
         }
     },
     ADD_COMMENT("add_comment") {

@@ -1,6 +1,7 @@
 package foot.footprint.domain.article.dto.articleDetails;
 
 import foot.footprint.domain.comment.dto.CommentResponse;
+import foot.footprint.domain.comment.dto.CommentUpdateDto;
 import foot.footprint.domain.comment.dto.CommentsDto;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -58,6 +59,15 @@ public class ArticlePageResponse {
         for (CommentResponse comment : comments) {
             if (comment.getId().equals(commentId)) {
                 comment.updateTotalLikes(num);
+                break;
+            }
+        }
+    }
+
+    public void changeCommentContent(CommentUpdateDto dto) {
+        for (CommentResponse comment : comments) {
+            if (comment.getId().equals(dto.getId())) {
+                comment.editContent(dto.getNewContent());
                 break;
             }
         }
