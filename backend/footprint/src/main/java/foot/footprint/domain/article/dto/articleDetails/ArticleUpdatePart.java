@@ -30,6 +30,11 @@ public enum ArticleUpdatePart {
         public <T> void apply(ArticlePageResponse response, T data) {
             response.addComment((CommentResponse) data);
         }
+    },
+    REMOVE_COMMENT("remove_comment") {
+        public <T> void apply(ArticlePageResponse response, T data) {
+            response.removeComment((Long) data);
+        }
     };
 
     ArticleUpdatePart(String updatePart) {

@@ -19,10 +19,11 @@ public class DeleteCommentController {
     private final DeleteCommentService deleteCommentService;
 
     @CommentLog
-    @DeleteMapping("/{commentId}")
-    public ResponseEntity<Void> deleteComment(@PathVariable("commentId") Long commentId,
+    @DeleteMapping("/{articleId}/{commentId}")
+    public ResponseEntity<Void> deleteComment(
+        @PathVariable("articleId") Long articleId, @PathVariable("commentId") Long commentId,
         @AuthenticationPrincipal CustomUserDetails userDetails) {
-        deleteCommentService.delete(commentId, userDetails.getId());
+        deleteCommentService.delete(articleId, commentId, userDetails.getId());
 
         return ResponseEntity.noContent()
             .build();

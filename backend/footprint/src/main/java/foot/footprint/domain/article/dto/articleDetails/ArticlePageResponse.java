@@ -50,6 +50,15 @@ public class ArticlePageResponse {
         comments.add(0, comment);
     }
 
+    public void removeComment(Long commentId){
+        for (int i =0; i < comments.size(); i++) {
+            if (comments.get(i).getId().equals(commentId)) {
+                comments.remove(i);
+                break;
+            }
+        }
+    }
+
     public void changeCommentLike(Long commentId) {
         Long num = -1L;
         if (!commentLikes.remove(commentId)) {
