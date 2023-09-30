@@ -1,6 +1,7 @@
 package foot.footprint.domain.article.dto.articleDetails;
 
 
+import foot.footprint.domain.comment.dto.CommentResponse;
 import foot.footprint.domain.comment.dto.CommentUpdateDto;
 
 public enum ArticleUpdatePart {
@@ -33,7 +34,7 @@ public enum ArticleUpdatePart {
     },
     ADD_COMMENT("add_comment") {
         public <T> void apply(ArticlePageResponse response, T data) {
-
+            response.addComment((CommentResponse) data);
         }
     };
 

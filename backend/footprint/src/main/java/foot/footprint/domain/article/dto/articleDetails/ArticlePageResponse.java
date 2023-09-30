@@ -40,8 +40,12 @@ public class ArticlePageResponse {
     }
 
     public void changeLike() {
-        Long changeNum = articleLike ? -1L :1L;
+        Long changeNum = articleLike ? -1L : 1L;
         articleDetails.updateTotalLikes(changeNum);
         articleLike = !articleLike;
+    }
+
+    public void addComment(CommentResponse comment) {
+        comments.add(0, comment);
     }
 }

@@ -7,6 +7,7 @@ import foot.footprint.domain.group.dao.ArticleGroupRepository;
 import foot.footprint.domain.member.dao.MemberRepository;
 import foot.footprint.domain.member.domain.Member;
 import foot.footprint.global.domain.AuthorDto;
+import foot.footprint.global.util.ObjectSerializer;
 import foot.footprint.global.util.ValidateIsMine;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -17,10 +18,14 @@ import org.springframework.transaction.annotation.Transactional;
 public class CreateCommentOnGroupedArticle extends AbstractCreateCommentService {
 
     private final ArticleGroupRepository articleGroupRepository;
-    public CreateCommentOnGroupedArticle(FindArticleRepository findArticleRepository,
-        MemberRepository memberRepository, CreateCommentRepository createCommentRepository,
-        ArticleGroupRepository articleGroupRepository) {
-        super(findArticleRepository, memberRepository, createCommentRepository);
+
+    public CreateCommentOnGroupedArticle(
+        FindArticleRepository findArticleRepository,
+        MemberRepository memberRepository,
+        CreateCommentRepository createCommentRepository,
+        ArticleGroupRepository articleGroupRepository,
+        ObjectSerializer objectSerializer) {
+        super(findArticleRepository, memberRepository, createCommentRepository, objectSerializer);
         this.articleGroupRepository = articleGroupRepository;
     }
 
@@ -31,6 +36,8 @@ public class CreateCommentOnGroupedArticle extends AbstractCreateCommentService 
         Member member = findAndValidateMember(memberId);
         AuthorDto authorDto = AuthorDto.buildAuthorDto(member);
         ValidateIsMine.validateInMyGroup(articleId, authorDto.getId(), articleGroupRepository);
-        return saveComment(articleId, content, authorDto);
+        CommentResponse response = saveComment(articleId, content, authorDto);
+        updateRedis(articleId, response);
+        return response;
     }
 }
