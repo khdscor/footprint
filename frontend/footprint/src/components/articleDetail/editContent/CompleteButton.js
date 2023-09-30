@@ -7,6 +7,7 @@ const CompleteButton = ({
   isChangeContentModalOpened, 
   newContent, 
   accessToken, 
+  articleId,
   id, 
   history, 
   isEditArticle
@@ -21,7 +22,7 @@ const CompleteButton = ({
         
         isEditArticle
         ? editArticleContentApi({newContent,accessToken,id,history}) 
-        : editCommentApi({newContent, id, accessToken, history})
+        : editCommentApi({newContent, articleId, id, accessToken, history})
 
       }}
       style={{

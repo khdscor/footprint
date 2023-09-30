@@ -2,15 +2,16 @@ package foot.footprint.domain.article.application.findArticleDetails;
 
 import foot.footprint.domain.article.dao.FindArticleRepository;
 import foot.footprint.domain.article.domain.Article;
-import foot.footprint.domain.article.dto.ArticlePageDto;
-import foot.footprint.domain.article.dto.ArticlePageIfNonLoginDto;
-import foot.footprint.domain.article.dto.ArticlePageResponse;
+import foot.footprint.domain.article.dto.articleDetails.ArticlePageDto;
+import foot.footprint.domain.article.dto.articleDetails.ArticlePageIfNonLoginDto;
+import foot.footprint.domain.article.dto.articleDetails.ArticlePageResponse;
 import foot.footprint.domain.articleLike.dao.ArticleLikeRepository;
 import foot.footprint.domain.comment.dao.FindCommentRepository;
 import foot.footprint.domain.commentLike.dao.CommentLikeRepository;
 import foot.footprint.global.error.exception.NotAuthorizedOrExistException;
 import foot.footprint.global.error.exception.NotExistsException;
 import foot.footprint.global.security.user.CustomUserDetails;
+import foot.footprint.global.util.ObjectSerializer;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 
@@ -24,6 +25,8 @@ public abstract class AbstrastFindArticleDetailsService implements FindArticleDe
     protected final FindCommentRepository findCommentRepository;
 
     protected final CommentLikeRepository commentLikeRepository;
+
+    protected final ObjectSerializer objectSerializer;
 
     protected Article findAndValidateArticle(Long articleId) {
         return findArticleRepository.findById(articleId)

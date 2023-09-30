@@ -112,6 +112,7 @@ const Comment = ({
   const onDeleteButtonClicked = () => {
     if (window.confirm("정말 삭제하시겠습니까?")) {
       deleteCommentApi({
+        articleId: articleId,
         commentId: comment.id,
         accessToken: accessToken,
         history: history

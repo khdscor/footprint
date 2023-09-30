@@ -19,6 +19,7 @@ import foot.footprint.domain.member.domain.AuthProvider;
 import foot.footprint.domain.member.domain.Member;
 import foot.footprint.domain.member.domain.Role;
 import foot.footprint.global.error.exception.NotAuthorizedOrExistException;
+import foot.footprint.global.util.ObjectSerializer;
 import java.util.Date;
 import java.util.Optional;
 import org.junit.jupiter.api.DisplayName;
@@ -42,6 +43,9 @@ public class CreateCommentServiceTest {
 
     @Mock
     private CreateCommentRepository createCommentRepository;
+
+    @Mock
+    private ObjectSerializer objectSerializer;
 
     @InjectMocks
     private CreateCommentOnPublicArticle createCommentOnPublicArticle;

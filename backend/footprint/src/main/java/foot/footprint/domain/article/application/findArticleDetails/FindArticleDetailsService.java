@@ -1,6 +1,6 @@
 package foot.footprint.domain.article.application.findArticleDetails;
 
-import foot.footprint.domain.article.dto.ArticlePageResponse;
+import foot.footprint.domain.article.dto.articleDetails.ArticlePageResponse;
 import foot.footprint.global.security.user.CustomUserDetails;
 
 public interface FindArticleDetailsService {

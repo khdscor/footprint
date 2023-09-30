@@ -4,6 +4,7 @@ import foot.footprint.domain.article.dao.FindArticleRepository;
 import foot.footprint.domain.article.domain.Article;
 import foot.footprint.domain.commentLike.dao.CommentLikeRepository;
 import foot.footprint.global.error.exception.WrongMapTypeException;
+import foot.footprint.global.util.ObjectSerializer;
 import foot.footprint.global.util.ValidateIsMine;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -13,9 +14,11 @@ import org.springframework.transaction.annotation.Transactional;
 @Qualifier("private")
 public class ChangePrivateCommentLikeService extends AbstractChangeCommentLikeService {
 
-    public ChangePrivateCommentLikeService(FindArticleRepository findArticleRepository,
-                                           CommentLikeRepository commentLikeRepository) {
-        super(findArticleRepository, commentLikeRepository);
+    public ChangePrivateCommentLikeService(
+        FindArticleRepository findArticleRepository,
+        CommentLikeRepository commentLikeRepository,
+        ObjectSerializer objectSerializer) {
+        super(findArticleRepository, commentLikeRepository, objectSerializer);
     }
 
     @Override
@@ -27,5 +30,6 @@ public class ChangePrivateCommentLikeService extends AbstractChangeCommentLikeSe
         }
         ValidateIsMine.validateArticleIsMine(article.getMember_id(), memberId);
         changeLike(commentId, memberId, hasILiked);
+        updateRedis(articleId, commentId);
     }
 }

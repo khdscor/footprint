@@ -3,6 +3,7 @@ package foot.footprint.domain.article.application.delete;
 import foot.footprint.domain.article.dao.DeleteArticleRepository;
 import foot.footprint.domain.article.exception.NotMatchMemberException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,6 +15,7 @@ public class DeleteGeneralArticleService implements DeleteArticleService{
 
     @Override
     @Transactional
+    @CacheEvict(key = "#articleId", value = "articleDetails", cacheManager = "redisCacheManager")
     public void delete(Long articleId, Long memberId) {
         int result = deleteArticleRepository.deleteById(articleId, memberId);
         if (result == 0) {

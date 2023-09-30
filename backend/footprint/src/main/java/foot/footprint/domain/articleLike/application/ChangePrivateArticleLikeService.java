@@ -5,6 +5,7 @@ import foot.footprint.domain.article.domain.Article;
 import foot.footprint.domain.articleLike.dao.ArticleLikeRepository;
 import foot.footprint.domain.articleLike.dto.ArticleLikeDto;
 import foot.footprint.global.error.exception.WrongMapTypeException;
+import foot.footprint.global.util.ObjectSerializer;
 import foot.footprint.global.util.ValidateIsMine;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -15,8 +16,8 @@ import org.springframework.transaction.annotation.Transactional;
 public class ChangePrivateArticleLikeService extends AbstractChangeArticleLikeService {
 
     public ChangePrivateArticleLikeService(ArticleLikeRepository articleLikeRepository,
-        FindArticleRepository findArticleRepository) {
-        super(articleLikeRepository, findArticleRepository);
+        FindArticleRepository findArticleRepository, ObjectSerializer objectSerializer) {
+        super(articleLikeRepository, findArticleRepository, objectSerializer);
     }
 
     @Override
@@ -28,5 +29,6 @@ public class ChangePrivateArticleLikeService extends AbstractChangeArticleLikeSe
         }
         ValidateIsMine.validateArticleIsMine(article.getMember_id(), articleLikeDto.getMemberId());
         changeLike(articleLikeDto);
+        updateRedis(articleLikeDto.getArticleId());
     }
 }

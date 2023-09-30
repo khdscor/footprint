@@ -1,7 +1,7 @@
 import axios from "axios";
 import {BACKEND_ADDRESS} from "../../constants/ADDRESS";
 
-const deleteCommentApi = ({ commentId, accessToken, history }) => {
+const deleteCommentApi = ({ articleId, commentId, accessToken, history }) => {
   if (!accessToken) {
     alert("로그인이 필요한 서비스입니다.")
     history.push('/login');
@@ -12,7 +12,7 @@ const deleteCommentApi = ({ commentId, accessToken, history }) => {
       Authorization: "Bearer " + accessToken
     }
   };
-  axios.delete(BACKEND_ADDRESS + "/comments/" + commentId, config)
+  axios.delete(BACKEND_ADDRESS + "/comments/" + articleId + "/" + commentId, config)
   .then(response => {
     if (response.status === 204) {
       alert("댓글이 삭제되었습니다 :)");

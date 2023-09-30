@@ -8,6 +8,7 @@ import foot.footprint.domain.member.dao.MemberRepository;
 import foot.footprint.domain.member.domain.Member;
 import foot.footprint.global.domain.AuthorDto;
 import foot.footprint.global.error.exception.WrongMapTypeException;
+import foot.footprint.global.util.ObjectSerializer;
 import foot.footprint.global.util.ValidateIsMine;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -17,9 +18,12 @@ import org.springframework.transaction.annotation.Transactional;
 @Qualifier("private")
 public class CreateCommentOnPrivateArticle extends AbstractCreateCommentService {
 
-    public CreateCommentOnPrivateArticle(FindArticleRepository findArticleRepository,
-        MemberRepository memberRepository, CreateCommentRepository createCommentRepository) {
-        super(findArticleRepository, memberRepository, createCommentRepository);
+    public CreateCommentOnPrivateArticle(
+        FindArticleRepository findArticleRepository,
+        MemberRepository memberRepository,
+        CreateCommentRepository createCommentRepository,
+        ObjectSerializer objectSerializer) {
+        super(findArticleRepository, memberRepository, createCommentRepository, objectSerializer);
     }
 
     @Override
@@ -32,6 +36,9 @@ public class CreateCommentOnPrivateArticle extends AbstractCreateCommentService 
         Member member = findAndValidateMember(memberId);
         AuthorDto authorDto = AuthorDto.buildAuthorDto(member);
         ValidateIsMine.validateArticleIsMine(article.getMember_id(), authorDto.getId());
-        return saveComment(articleId, content, authorDto);
+
+        CommentResponse response = saveComment(articleId, content, authorDto);
+        updateRedis(articleId, response);
+        return response;
     }
 }

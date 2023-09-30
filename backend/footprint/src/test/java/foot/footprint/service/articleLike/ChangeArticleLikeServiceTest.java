@@ -17,6 +17,7 @@ import foot.footprint.domain.articleLike.dto.ArticleLikeDto;
 import foot.footprint.domain.group.dao.ArticleGroupRepository;
 import foot.footprint.global.error.exception.NotAuthorizedOrExistException;
 import foot.footprint.global.error.exception.NotExistsException;
+import foot.footprint.global.util.ObjectSerializer;
 import java.util.Date;
 import java.util.Optional;
 import org.junit.jupiter.api.DisplayName;
@@ -38,6 +39,9 @@ public class ChangeArticleLikeServiceTest {
 
     @Mock
     private ArticleGroupRepository articleGroupRepository;
+
+    @Mock
+    private ObjectSerializer objectSerializer;
 
     @Spy
     @InjectMocks

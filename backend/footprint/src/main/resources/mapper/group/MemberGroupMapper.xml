@@ -18,12 +18,12 @@
     WHERE group_id = #{groupId} and member_id =#{memberId}
   </update>
   <select id="findMyImportantGroups" resultType="GroupSummaryResponse">
-    SELECT g.id, g.name
+    SELECT g.id as groupId, g.name
     FROM group_table g LEFT JOIN member_group m ON (g.id = m.group_id)
     WHERE m.member_id = #{memberId} AND m.important = true
   </select>
   <select id="findMyGroups" resultType="GroupSummaryResponse">
-    SELECT g.id, g.name
+    SELECT g.id as groupId, g.name
     FROM group_table g LEFT JOIN member_group m ON (g.id = m.group_id)
     WHERE m.member_id = #{memberId}
   </select>

@@ -2,8 +2,10 @@ package foot.footprint.global.domain;
 
 import foot.footprint.domain.member.domain.Member;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Getter
+@NoArgsConstructor
 public class AuthorDto {
 
     private Long id;

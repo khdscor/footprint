@@ -7,15 +7,14 @@ import static org.mockito.BDDMockito.given;
 import foot.footprint.domain.article.application.findArticleDetails.FindPublicArticleDetailsService;
 import foot.footprint.domain.article.dao.FindArticleRepository;
 import foot.footprint.domain.article.domain.Article;
-import foot.footprint.domain.article.dto.ArticleDetailsDto;
-import foot.footprint.domain.article.dto.ArticlePageDto;
-import foot.footprint.domain.article.dto.ArticlePageIfNonLoginDto;
-import foot.footprint.domain.article.dto.ArticlePageResponse;
-import foot.footprint.domain.articleLike.dao.ArticleLikeRepository;
-import foot.footprint.domain.comment.dao.FindCommentRepository;
+import foot.footprint.domain.article.dto.articleDetails.ArticleDetailsDto;
+import foot.footprint.domain.article.dto.articleDetails.ArticlePageDto;
+import foot.footprint.domain.article.dto.articleDetails.ArticlePageIfNonLoginDto;
+import foot.footprint.domain.article.dto.articleDetails.ArticlePageResponse;
 import foot.footprint.domain.comment.dto.CommentsDto;
 import foot.footprint.domain.commentLike.dao.CommentLikeRepository;
 import foot.footprint.global.security.user.CustomUserDetails;
+import foot.footprint.global.util.ObjectSerializer;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -35,14 +34,10 @@ public class FindArticleDetailsServiceTest {
     private FindArticleRepository findArticleRepository;
 
     @Mock
-    private ArticleLikeRepository articleLikeRepository;
-
-    @Mock
-    private FindCommentRepository findCommentRepository;
-
-    @Mock
     private CommentLikeRepository commentLikeRepository;
 
+    @Mock
+    private ObjectSerializer objectSerializer;
 
     @InjectMocks
     private FindPublicArticleDetailsService findPublicArticleDetailsService;
@@ -53,10 +48,9 @@ public class FindArticleDetailsServiceTest {
         Long articleId = 10L;
         //게시글 리턴
         Article article = buildArticle(memberId, true, true);
-        given(findArticleRepository.findById(any())).willReturn(Optional.ofNullable(article));
         //게시글 dto 리턴
         ArticleDetailsDto details = new ArticleDetailsDto(articleId, "title", "content", 1.0, 1.0,
-            memberId, "nickName", "image", new Date(), 0L);
+            true, true, memberId, "nickName", "image", new Date(), 0L);
         CommentsDto response = new CommentsDto(1L, "test", memberId, "nickName", "image",
             new Date(), 0L);
         List<CommentsDto> responses = new ArrayList<>();
@@ -73,6 +67,8 @@ public class FindArticleDetailsServiceTest {
             responses);
         given(findArticleRepository.findArticleDetailsIfNonLogin(articleId)).willReturn(
             Optional.of(nonLoginDto));
+        //objectSerializer - 캐시 데이터는 없다고 가정하고 리턴
+        given(objectSerializer.getData(any(), any())).willReturn(Optional.empty());
     }
 
     @Test

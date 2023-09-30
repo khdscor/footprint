@@ -30,7 +30,7 @@ public class DeleteCommentServiceTest {
 
         //when & then
         assertThatThrownBy(
-            () -> deleteGeneralCommentService.delete(any(), any()))
+            () -> deleteGeneralCommentService.delete(1L, 1L, 1L))
             .isInstanceOf(NotMatchMemberException.class);
     }
 }

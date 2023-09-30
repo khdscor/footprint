@@ -25,7 +25,8 @@
     (SELECT EXISTS ( SELECT 1 FROM article_like
     WHERE article_id = #{articleId} and member_id =#{memberId} )) as articleLike,
     a.id as id, a.title as title, a.content as content,
-    a.latitude as latitude, a.longitude as longitude, a.member_id as writerId,
+    a.latitude as latitude, a.longitude as longitude, a.public_map as publicMap,
+    a.private_map as privateMap, a.member_id as writerId,
     m.nick_name as writerName, m.image_url as writerImageUrl, a.create_date as createDate,
     (SELECT count(l.id) FROM article a LEFT JOIN article_like l ON a.id = l.article_id
     WHERE a.id = #{articleId} GROUP BY a.id ) as totalLikes,
@@ -46,6 +47,8 @@
       <result property="content" column="content"/>
       <result property="latitude" column="latitude"/>
       <result property="longitude" column="longitude"/>
+      <result property="publicMap" column="publicMap"/>
+      <result property="privateMap" column="privateMap"/>
       <result property="writerId" column="writerId"/>
       <result property="writerName" column="writerName"/>
       <result property="writerImageUrl" column="writerImageUrl"/>
@@ -65,7 +68,8 @@
   </resultMap>
   <select id="findArticleDetailsIfNonLogin" resultMap="ArticleDetailsIfNonLogin">
     select distinct a.id as articleId, a.id as id, a.title as title, a.content as content,
-    a.latitude as latitude, a.longitude as longitude, a.member_id as writerId,
+    a.latitude as latitude, a.longitude as longitude, a.public_map as publicMap,
+    a.private_map as privateMap, a.member_id as writerId,
     m.nick_name as writerName, m.image_url as writerImageUrl, a.create_date as createDate,
     (SELECT count(l.id) FROM article a LEFT JOIN article_like l ON a.id = l.article_id
     WHERE a.id = #{articleId} GROUP BY a.id ) as totalLikes,
@@ -85,6 +89,8 @@
       <result property="content" column="content"/>
       <result property="latitude" column="latitude"/>
       <result property="longitude" column="longitude"/>
+      <result property="publicMap" column="publicMap"/>
+      <result property="privateMap" column="privateMap"/>
       <result property="writerId" column="writerId"/>
       <result property="writerName" column="writerName"/>
       <result property="writerImageUrl" column="writerImageUrl"/>
