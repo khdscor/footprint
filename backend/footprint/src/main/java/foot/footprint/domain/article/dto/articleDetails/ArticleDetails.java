@@ -41,7 +41,11 @@ public class ArticleDetails {
             dto.getWriterName(), dto.getWriterImageUrl(), dto.getCreateDate(), dto.getTotalLikes());
     }
 
-    public void editContent(String content){
+    public void editContent(String content) {
         this.content = content;
+    }
+
+    public void updateTotalLikes(Long num) {
+        totalLikes += num;
     }
 }

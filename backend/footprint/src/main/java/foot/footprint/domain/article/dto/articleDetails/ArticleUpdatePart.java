@@ -7,7 +7,7 @@ public enum ArticleUpdatePart {
 
     CHANGE_LIKE("change_like") {
         public <T> void apply(ArticlePageResponse response, T data) {
-            response.getArticleDetails().editContent((String) data);
+            response.changeLike();
         }
     },
     CHANGE_LIKE_COMMENT("change_like_comment") {

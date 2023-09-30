@@ -38,4 +38,10 @@ public class ArticlePageResponse {
         this.commentLikes = commentLikes;
         this.myMemberId = myMemberId;
     }
+
+    public void changeLike() {
+        Long changeNum = articleLike ? -1L :1L;
+        articleDetails.updateTotalLikes(changeNum);
+        articleLike = !articleLike;
+    }
 }

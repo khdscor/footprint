@@ -4,6 +4,7 @@ import foot.footprint.domain.article.dao.FindArticleRepository;
 import foot.footprint.domain.articleLike.dao.ArticleLikeRepository;
 import foot.footprint.domain.articleLike.dto.ArticleLikeDto;
 import foot.footprint.domain.group.dao.ArticleGroupRepository;
+import foot.footprint.global.util.ObjectSerializer;
 import foot.footprint.global.util.ValidateIsMine;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -17,8 +18,9 @@ public class ChangeGroupedArticleLikeService extends AbstractChangeArticleLikeSe
 
     public ChangeGroupedArticleLikeService(ArticleLikeRepository articleLikeRepository,
         FindArticleRepository findArticleRepository,
-        ArticleGroupRepository articleGroupRepository) {
-        super(articleLikeRepository, findArticleRepository);
+        ArticleGroupRepository articleGroupRepository,
+        ObjectSerializer objectSerializer) {
+        super(articleLikeRepository, findArticleRepository, objectSerializer);
         this.articleGroupRepository = articleGroupRepository;
     }
 
@@ -29,5 +31,6 @@ public class ChangeGroupedArticleLikeService extends AbstractChangeArticleLikeSe
         ValidateIsMine.validateInMyGroup(articleLikeDto.getArticleId(),
             articleLikeDto.getMemberId(), articleGroupRepository);
         changeLike(articleLikeDto);
+        updateRedis(articleLikeDto.getArticleId());
     }
 }
