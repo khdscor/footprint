@@ -30,7 +30,7 @@ public class EditCommentServiceTest {
 
         //when & then
         assertThatThrownBy(
-            () -> editGeneralCommentService.edit(any(), any(), any()))
+            () -> editGeneralCommentService.edit(any(), any(), any(), any()))
             .isInstanceOf(NotMatchMemberException.class);
     }
 }
