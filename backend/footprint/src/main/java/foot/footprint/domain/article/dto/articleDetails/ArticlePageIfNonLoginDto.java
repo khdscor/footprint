@@ -1,4 +1,4 @@
-package foot.footprint.domain.article.dto;
+package foot.footprint.domain.article.dto.articleDetails;
 
 import foot.footprint.domain.comment.dto.CommentsDto;
 import java.util.List;

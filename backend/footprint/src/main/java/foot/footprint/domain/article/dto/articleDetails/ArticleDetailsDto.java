@@ -1,4 +1,4 @@
-package foot.footprint.domain.article.dto;
+package foot.footprint.domain.article.dto.articleDetails;
 
 import java.util.Date;
 import lombok.AllArgsConstructor;

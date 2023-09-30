@@ -2,9 +2,9 @@ package foot.footprint.domain.article.application.findArticleDetails;
 
 import foot.footprint.domain.article.dao.FindArticleRepository;
 import foot.footprint.domain.article.domain.Article;
-import foot.footprint.domain.article.dto.ArticlePageDto;
-import foot.footprint.domain.article.dto.ArticlePageIfNonLoginDto;
-import foot.footprint.domain.article.dto.ArticlePageResponse;
+import foot.footprint.domain.article.dto.articleDetails.ArticlePageDto;
+import foot.footprint.domain.article.dto.articleDetails.ArticlePageIfNonLoginDto;
+import foot.footprint.domain.article.dto.articleDetails.ArticlePageResponse;
 import foot.footprint.domain.articleLike.dao.ArticleLikeRepository;
 import foot.footprint.domain.comment.dao.FindCommentRepository;
 import foot.footprint.domain.commentLike.dao.CommentLikeRepository;

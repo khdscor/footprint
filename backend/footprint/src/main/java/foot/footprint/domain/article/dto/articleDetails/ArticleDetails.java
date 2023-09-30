@@ -1,4 +1,4 @@
-package foot.footprint.domain.article.dto;
+package foot.footprint.domain.article.dto.articleDetails;
 
 import foot.footprint.global.domain.AuthorDto;
 import java.util.Date;

@@ -1,7 +1,7 @@
 package foot.footprint.domain.article.api;
 
 import foot.footprint.domain.article.application.findArticleDetails.FindArticleDetailsService;
-import foot.footprint.domain.article.dto.ArticlePageResponse;
+import foot.footprint.domain.article.dto.articleDetails.ArticlePageResponse;
 import foot.footprint.global.domain.MapType;
 import foot.footprint.global.security.user.CustomUserDetails;
 import org.springframework.beans.factory.annotation.Qualifier;
