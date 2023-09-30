@@ -3,6 +3,7 @@ package foot.footprint.domain.commentLike.application;
 import foot.footprint.domain.article.dao.FindArticleRepository;
 import foot.footprint.domain.commentLike.dao.CommentLikeRepository;
 import foot.footprint.domain.group.dao.ArticleGroupRepository;
+import foot.footprint.global.util.ObjectSerializer;
 import foot.footprint.global.util.ValidateIsMine;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -15,10 +16,11 @@ public class ChangeGroupedCommentLikeService extends AbstractChangeCommentLikeSe
     private final ArticleGroupRepository articleGroupRepository;
 
     public ChangeGroupedCommentLikeService(
-            FindArticleRepository findArticleRepository,
-            CommentLikeRepository commentLikeRepository,
-            ArticleGroupRepository articleGroupRepository) {
-        super(findArticleRepository, commentLikeRepository);
+        FindArticleRepository findArticleRepository,
+        CommentLikeRepository commentLikeRepository,
+        ArticleGroupRepository articleGroupRepository,
+        ObjectSerializer objectSerializer) {
+        super(findArticleRepository, commentLikeRepository, objectSerializer);
         this.articleGroupRepository = articleGroupRepository;
     }
 
@@ -28,5 +30,6 @@ public class ChangeGroupedCommentLikeService extends AbstractChangeCommentLikeSe
         findAndValidateArticle(articleId);
         ValidateIsMine.validateInMyGroup(articleId, memberId, articleGroupRepository);
         changeLike(commentId, memberId, hasILiked);
+        updateRedis(articleId, commentId);
     }
 }

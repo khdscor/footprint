@@ -11,9 +11,9 @@ public enum ArticleUpdatePart {
             response.changeLike();
         }
     },
-    CHANGE_LIKE_COMMENT("change_like_comment") {
+    CHANGE_COMMENT_LIKE("change_comment_like") {
         public <T> void apply(ArticlePageResponse response, T data) {
-
+            response.changeCommentLike((Long) data);
         }
     },
     EDIT_ARTICLE("edit_article") {

@@ -48,4 +48,18 @@ public class ArticlePageResponse {
     public void addComment(CommentResponse comment) {
         comments.add(0, comment);
     }
+
+    public void changeCommentLike(Long commentId) {
+        Long num = -1L;
+        if (!commentLikes.remove(commentId)) {
+            commentLikes.add(commentId);
+            num = -num;
+        }
+        for (CommentResponse comment : comments) {
+            if (comment.getId().equals(commentId)) {
+                comment.updateTotalLikes(num);
+                break;
+            }
+        }
+    }
 }

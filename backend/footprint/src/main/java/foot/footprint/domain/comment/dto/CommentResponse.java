@@ -57,4 +57,8 @@ public class CommentResponse {
     public void editContent(String content){
         this.content = content;
     }
+
+    public void updateTotalLikes(Long num) {
+        totalLikes += num;
+    }
 }
