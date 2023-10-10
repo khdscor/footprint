@@ -15,7 +15,7 @@ public class DeleteGeneralArticleService implements DeleteArticleService{
 
     @Override
     @Transactional
-    @CacheEvict(key = "#articleId", value = "articleDetails", cacheManager = "redisCacheManager")
+    @CacheEvict(key = "#articleId", value = "articleDetails")
     public void delete(Long articleId, Long memberId) {
         int result = deleteArticleRepository.deleteById(articleId, memberId);
         if (result == 0) {
