@@ -26,24 +26,4 @@ public class RedisCacheConfig {
         redisTemplate.setConnectionFactory(connectionFactory);
         return redisTemplate;
     }
-
-    @Bean
-    public RedisCacheManager redisCacheManager(RedisConnectionFactory redisConnectionFactory) {
-
-        RedisCacheConfiguration redisCacheConfiguration = RedisCacheConfiguration.defaultCacheConfig()
-            .entryTtl(Duration.ofSeconds(30))
-            .disableCachingNullValues()
-            .serializeKeysWith(RedisSerializationContext
-                .SerializationPair
-                .fromSerializer(new StringRedisSerializer()))
-            .serializeValuesWith(RedisSerializationContext
-                .SerializationPair
-                .fromSerializer(new GenericJackson2JsonRedisSerializer()));
-
-        return RedisCacheManager
-            .RedisCacheManagerBuilder
-            .fromConnectionFactory(redisConnectionFactory)
-            .cacheDefaults(redisCacheConfiguration)
-            .build();
-    }
 }
