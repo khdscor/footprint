@@ -201,6 +201,11 @@ public class FIndArticleRepositoryTest extends RepositoryTest {
         assertThat(dto2).isPresent();
         assertThat(dto2.get().getComments()).hasSize(10);
 
+        //when & then : 로그인 하지 않았을 시
+        Optional<ArticlePageDto> dto3 = findArticleRepository.findArticleDetails(article.getId(),
+                null);
+        assertThat(dto3).isPresent();
+        assertThat(dto3.get().isArticleLike()).isFalse();
     }
 
     private void saveArticle(double lat, double lng, boolean publicMap, boolean privateMap) {

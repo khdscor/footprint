@@ -22,8 +22,15 @@
   </select>
   <select id="findArticleDetails" resultMap="ArticleDetails">
     select a.id as articleId,
-    (SELECT EXISTS ( SELECT 1 FROM article_like
-    WHERE article_id = #{articleId} and member_id =#{memberId} )) as articleLike,
+    <choose>
+      <when test="memberId !=null">
+        (SELECT EXISTS ( SELECT 1 FROM article_like
+        WHERE article_id = #{articleId} and member_id =#{memberId} )) as articleLike,
+      </when>
+      <otherwise>
+        false as articleLike,
+      </otherwise>
+    </choose>
     a.id as id, a.title as title, a.content as content,
     a.latitude as latitude, a.longitude as longitude, a.public_map as publicMap,
     a.private_map as privateMap, a.member_id as writerId,
