@@ -9,7 +9,6 @@ import foot.footprint.domain.article.dao.FindArticleRepository;
 import foot.footprint.domain.article.domain.Article;
 import foot.footprint.domain.article.dto.articleDetails.ArticleDetailsDto;
 import foot.footprint.domain.article.dto.articleDetails.ArticlePageDto;
-import foot.footprint.domain.article.dto.articleDetails.ArticlePageIfNonLoginDto;
 import foot.footprint.domain.article.dto.articleDetails.ArticlePageResponse;
 import foot.footprint.domain.comment.dto.CommentsDto;
 import foot.footprint.domain.commentLike.dao.CommentLikeRepository;
@@ -62,11 +61,6 @@ public class FindArticleDetailsServiceTest {
         commentLikes.add(1L);
         given(commentLikeRepository.findCommentIdsILiked(any(), any())).willReturn(
             new ArrayList<>(commentLikes));
-        //게시글 dto 리턴, 만약 로그인 하지 않았을 시
-        ArticlePageIfNonLoginDto nonLoginDto = new ArticlePageIfNonLoginDto(articleId, details,
-            responses);
-        given(findArticleRepository.findArticleDetailsIfNonLogin(articleId)).willReturn(
-            Optional.of(nonLoginDto));
         //objectSerializer - 캐시 데이터는 없다고 가정하고 리턴
         given(objectSerializer.getData(any(), any())).willReturn(Optional.empty());
     }

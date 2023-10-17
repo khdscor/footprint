@@ -73,46 +73,4 @@
       <result property="commentTotalLikes" column="commentTotalLikes"/>
     </collection>
   </resultMap>
-  <select id="findArticleDetailsIfNonLogin" resultMap="ArticleDetailsIfNonLogin">
-    select distinct a.id as articleId, a.id as id, a.title as title, a.content as content,
-    a.latitude as latitude, a.longitude as longitude, a.public_map as publicMap,
-    a.private_map as privateMap, a.member_id as writerId,
-    m.nick_name as writerName, m.image_url as writerImageUrl, a.create_date as createDate,
-    (SELECT count(l.id) FROM article a LEFT JOIN article_like l ON a.id = l.article_id
-    WHERE a.id = #{articleId} GROUP BY a.id ) as totalLikes,
-    c.id as commentId, c.content as commentContent, c.member_id as memberId, cm.nick_name as nickName,
-    cm.image_url as imageUrl, c.create_date as commentCreateDate, count(cl.id) as commentTotalLikes
-    FROM article a JOIN member m ON a.member_id = m.id
-    LEFT JOIN comment c ON a.id = c.article_id LEFT JOIN comment_like cl ON c.id = cl.comment_id
-    LEFT JOIN member cm ON c.member_id = cm.id
-    WHERE a.id = #{articleId}
-    GROUP BY c.id ORDER BY c.id DESC LIMIT 10
-  </select>
-  <resultMap id="ArticleDetailsIfNonLogin" type="ArticlePageIfNonLoginDto">
-    <id property="articleId" column="articleId"/>
-    <association property="articleDetails" javaType="ArticleDetailsDto">
-      <id property="id" column="id"/>
-      <result property="title" column="title"/>
-      <result property="content" column="content"/>
-      <result property="latitude" column="latitude"/>
-      <result property="longitude" column="longitude"/>
-      <result property="publicMap" column="publicMap"/>
-      <result property="privateMap" column="privateMap"/>
-      <result property="writerId" column="writerId"/>
-      <result property="writerName" column="writerName"/>
-      <result property="writerImageUrl" column="writerImageUrl"/>
-      <result property="createDate" column="createDate"/>
-      <result property="totalLikes" column="totalLikes"/>
-    </association>
-    <collection property="comments" notNullColumn="commentId"
-      ofType="foot.footprint.domain.comment.dto.CommentsDto">
-      <id property="commentId" column="commentId"/>
-      <result property="commentContent" column="commentContent"/>
-      <result property="memberId" column="memberId"/>
-      <result property="nickName" column="nickName"/>
-      <result property="imageUrl" column="imageUrl"/>
-      <result property="commentCreateDate" column="commentCreateDate"/>
-      <result property="commentTotalLikes" column="commentTotalLikes"/>
-    </collection>
-  </resultMap>
 </mapper>
