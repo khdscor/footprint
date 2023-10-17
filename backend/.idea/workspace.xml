@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e9c5eb8d-61e6-4bf1-a075-2ef5ca99f02a" name="변경" comment="refactor: Comment Service 구현체 네이밍 리펙토링" />
+    <list default="true" id="e9c5eb8d-61e6-4bf1-a075-2ef5ca99f02a" name="변경" comment="refactor: Group Service 구현체 네이밍 및 findGroupsService 내 인터페이스와 여러 구현체로 분리">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -75,22 +77,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_MARK_IGNORED_FILES_AS_EXCLUDED&quot;: &quot;true&quot;,
-    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/khdsc/IdeaProjects/footprint/backend/footprint/build.gradle&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.project.gradle&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_MARK_IGNORED_FILES_AS_EXCLUDED": "true",
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/khdsc/IdeaProjects/footprint/backend/footprint/build.gradle",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "reference.settingsdialog.project.gradle"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\khdsc\IdeaProjects\footprint\backend\footprint\src\main\resources\db\migration" />
@@ -227,20 +229,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1677633300752</updated>
-    </task>
-    <task id="LOCAL-00198" summary="feat: MemberGroupRepository#findAllByGroupId 구현">
-      <created>1688117654439</created>
-      <option name="number" value="00198" />
-      <option name="presentableId" value="LOCAL-00198" />
-      <option name="project" value="LOCAL" />
-      <updated>1688117654439</updated>
-    </task>
-    <task id="LOCAL-00199" summary="refactor:GroupRepository 테스트 수정">
-      <created>1688117678810</created>
-      <option name="number" value="00199" />
-      <option name="presentableId" value="LOCAL-00199" />
-      <option name="project" value="LOCAL" />
-      <updated>1688117678810</updated>
     </task>
     <task id="LOCAL-00200" summary="refactor:GroupRepository 테스트 수정">
       <created>1688117706547</created>
@@ -571,7 +559,21 @@
       <option name="project" value="LOCAL" />
       <updated>1694090873142</updated>
     </task>
-    <option name="localTasksCounter" value="247" />
+    <task id="LOCAL-00247" summary="refactor: Member Service 구현체 네이밍 리펙토링">
+      <created>1694091038777</created>
+      <option name="number" value="00247" />
+      <option name="presentableId" value="LOCAL-00247" />
+      <option name="project" value="LOCAL" />
+      <updated>1694091038777</updated>
+    </task>
+    <task id="LOCAL-00248" summary="refactor: Group Service 구현체 네이밍 및 findGroupsService 내 인터페이스와 여러 구현체로 분리">
+      <created>1694092421146</created>
+      <option name="number" value="00248" />
+      <option name="presentableId" value="LOCAL-00248" />
+      <option name="project" value="LOCAL" />
+      <updated>1694092421146</updated>
+    </task>
+    <option name="localTasksCounter" value="249" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -589,8 +591,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="refactor: findArticlesService 인터페이스와 여러 구현체들로 분리" />
-    <MESSAGE value="refactor: findArticlesService 인터페이스와 여러 구현체들로 분리 테스트" />
     <MESSAGE value="refactor: findArticlesController 인터페이스와 여러 구현체들로 분리" />
     <MESSAGE value="refactor: createArticle Api 인터페이스와 구현체로 분리" />
     <MESSAGE value="refactor: deleteArticle Api 인터페이스와 구현체로 분리" />
@@ -614,6 +614,8 @@
     <MESSAGE value="refactor: ArticleService 구현체 네이밍 리펙토링" />
     <MESSAGE value="refactor: ArticleLike, CommentLike Service 구현체 네이밍 리펙토링" />
     <MESSAGE value="refactor: Comment Service 구현체 네이밍 리펙토링" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor: Comment Service 구현체 네이밍 리펙토링" />
+    <MESSAGE value="refactor: Member Service 구현체 네이밍 리펙토링" />
+    <MESSAGE value="refactor: Group Service 구현체 네이밍 및 findGroupsService 내 인터페이스와 여러 구현체로 분리" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor: Group Service 구현체 네이밍 및 findGroupsService 내 인터페이스와 여러 구현체로 분리" />
   </component>
 </project>
