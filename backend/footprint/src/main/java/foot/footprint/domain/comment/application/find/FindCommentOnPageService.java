@@ -19,7 +19,7 @@ public class FindCommentOnPageService implements FindCommentService {
     public CommentOnPageResponse findComments(Long articleId, Long cursorId) {
         List<CommentResponse> comments = findCommentRepository.findAllByArticleIdOnPage(articleId,
             cursorId);
-        if (comments.size() < 10) {
+        if (comments.size() < 11) {
             return new CommentOnPageResponse(comments);
         }
         return new CommentOnPageResponse(comments, comments.get(9).getId());

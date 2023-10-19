@@ -18,7 +18,7 @@ public class CommentOnPageResponse {
     }
 
     public CommentOnPageResponse(List<CommentResponse> comments, Long cursorId) {
-        this.comments = comments;
+        this.comments = comments.subList(0, 10);
         this.cursorId = cursorId;
         hasNextPage = true;
     }
