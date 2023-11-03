@@ -23,7 +23,7 @@ public class DeleteGeneralCommentService implements DeleteCommentService {
         if (result == 0) {
             throw new NotMatchMemberException("댓글을 삭제할 권한이 없습니다.");
         }
-        String redisKey = "articleDetails::" + articleId;
+        String redisKey = "articleDetails::" + articleId + ":" + memberId;
         objectSerializer.updateArticleData(redisKey, ArticleUpdatePart.REMOVE_COMMENT, commentId);
     }
 }

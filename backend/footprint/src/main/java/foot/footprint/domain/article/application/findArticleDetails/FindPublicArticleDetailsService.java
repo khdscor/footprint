@@ -31,7 +31,15 @@ public class FindPublicArticleDetailsService extends AbstrastFindArticleDetailsS
     @Override
     @Transactional(readOnly = true)
     public ArticlePageResponse findDetails(Long articleId, CustomUserDetails userDetails) {
-        String redisKey = "articleDetails::" + articleId;
+        ArticlePageResponse response = new ArticlePageResponse();
+        // 로그인하지 않았을 경우
+        if (userDetails == null) {
+            addNonLoginInfo(articleId, response);
+            response.addLoginInfo(false, new ArrayList<>(), -1L);
+            return response;
+        }
+        // 로그인하였을 경우
+        String redisKey = "articleDetails::" + articleId + ":" + userDetails.getId();
         Optional<ArticlePageResponse> cache = objectSerializer.getData(redisKey,
             ArticlePageResponse.class);
         // redis에 데이터가 있을 경우 - DB 접근 x
@@ -40,16 +48,10 @@ public class FindPublicArticleDetailsService extends AbstrastFindArticleDetailsS
             return cache.get();
         }
         // redis에 데이터가 없을 경우 - DB 접근 o
-        ArticlePageResponse response = new ArticlePageResponse();
-        if (userDetails == null) {
-            addNonLoginInfo(articleId, response);
-            response.addLoginInfo(false, new ArrayList<>(), -1L);
-            return response;
-        }
         addLoginInfo(articleId, userDetails.getId(), response);
         validatePublicArticle(response);
         // redis에 저장
-        objectSerializer.saveData(redisKey, response, 30);
+        objectSerializer.saveData(redisKey, response, 10);
         return response;
     }
 

@@ -37,7 +37,7 @@ public class FindGroupedArticleDetailsService extends AbstrastFindArticleDetails
     public ArticlePageResponse findDetails(Long articleId, CustomUserDetails userDetails) {
         validateMember(userDetails);
         ValidateIsMine.validateInMyGroup(articleId, userDetails.getId(), articleGroupRepository);
-        String redisKey = "articleDetails::" + articleId;
+        String redisKey = "articleDetails::" + articleId + ":" + userDetails.getId();
         Optional<ArticlePageResponse> cache = objectSerializer.getData(redisKey,
             ArticlePageResponse.class);
         // redis에 데이터가 있을 경우 - DB 접근 x
@@ -48,7 +48,7 @@ public class FindGroupedArticleDetailsService extends AbstrastFindArticleDetails
         ArticlePageResponse response = new ArticlePageResponse();
         addLoginInfo(articleId, userDetails.getId(), response);
         // redis에 저장
-        objectSerializer.saveData(redisKey, response, 30);
+        objectSerializer.saveData(redisKey, response, 10);
         return response;
     }
 }

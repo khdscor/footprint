@@ -28,7 +28,7 @@ public class GeneralMemberService implements MemberService {
             return cacheData.get();
         }
         MemberImageResponse response = findByDB(memberId);
-        objectSerializer.saveData(redisKey, response, 30);
+        objectSerializer.saveData(redisKey, response, 10);
         return response;
     }
 
@@ -51,7 +51,7 @@ public class GeneralMemberService implements MemberService {
             return cache.get();
         }
         MyPageResponse response = memberRepository.findMyPageDetails(memberId);
-        objectSerializer.saveData(redisKey, response, 30);
+        objectSerializer.saveData(redisKey, response, 10);
         return response;
     }
 

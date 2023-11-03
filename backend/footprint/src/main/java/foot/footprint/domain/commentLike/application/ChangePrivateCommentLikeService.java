@@ -30,6 +30,6 @@ public class ChangePrivateCommentLikeService extends AbstractChangeCommentLikeSe
         }
         ValidateIsMine.validateArticleIsMine(article.getMember_id(), memberId);
         changeLike(commentId, memberId, hasILiked);
-        updateRedis(articleId, commentId);
+        updateRedis(articleId, memberId, commentId);
     }
 }

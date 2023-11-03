@@ -37,8 +37,9 @@ public abstract class AbstractChangeArticleLikeService implements ChangeArticleL
             .orElseThrow(() -> new NotExistsException(" 해당 게시글이 존재하지 않습니다."));
     }
 
-    protected void updateRedis (Long articleId) {
-        String redisKey = "articleDetails::" + articleId;
+    protected void updateRedis(ArticleLikeDto articleLikeDto) {
+        String redisKey =
+            "articleDetails::" + articleLikeDto.getArticleId() + ":" + articleLikeDto.getMemberId();
         objectSerializer.updateArticleData(redisKey, ArticleUpdatePart.CHANGE_LIKE, null);
     }
 }

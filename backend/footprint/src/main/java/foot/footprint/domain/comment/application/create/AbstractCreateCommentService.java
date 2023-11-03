@@ -38,8 +38,8 @@ public abstract class AbstractCreateCommentService implements CreateCommentServi
             .orElseThrow(() -> new NotExistsException("해당하는 회원이 존재하지 않습니다."));
     }
 
-    protected void updateRedis (Long articleId, CommentResponse response) {
-        String redisKey = "articleDetails::" + articleId;
+    protected void updateRedis (Long articleId, Long memberId, CommentResponse response) {
+        String redisKey = "articleDetails::" + articleId + ":" + memberId;
         objectSerializer.updateArticleData(redisKey, ArticleUpdatePart.ADD_COMMENT, response);
     }
 }

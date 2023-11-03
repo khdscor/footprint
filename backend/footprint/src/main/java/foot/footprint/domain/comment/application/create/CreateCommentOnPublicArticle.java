@@ -34,7 +34,7 @@ public class CreateCommentOnPublicArticle extends AbstractCreateCommentService {
         }
         Member member = findAndValidateMember(memberId);
         CommentResponse response = saveComment(id, content, AuthorDto.buildAuthorDto(member));
-        updateRedis(id, response);
+        updateRedis(id, memberId, response);
         return response;
     }
 }

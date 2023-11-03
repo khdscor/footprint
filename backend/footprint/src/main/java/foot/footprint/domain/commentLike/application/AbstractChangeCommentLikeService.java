@@ -38,8 +38,8 @@ public abstract class AbstractChangeCommentLikeService implements ChangeCommentL
         }
     }
 
-    protected void updateRedis(Long articleId, Long commentId) {
-        String redisKey = "articleDetails::" + articleId;
+    protected void updateRedis(Long articleId, Long memberId, Long commentId) {
+        String redisKey = "articleDetails::" + articleId + ":" + memberId;
         objectSerializer.updateArticleData(redisKey, ArticleUpdatePart.CHANGE_COMMENT_LIKE,
             commentId);
     }

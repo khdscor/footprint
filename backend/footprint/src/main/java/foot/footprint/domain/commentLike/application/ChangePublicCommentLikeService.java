@@ -28,6 +28,6 @@ public class ChangePublicCommentLikeService extends AbstractChangeCommentLikeSer
             throw new WrongMapTypeException("게시글이 전체지도에 포함되지 않습니다.");
         }
         changeLike(commentId, memberId, hasILiked);
-        updateRedis(articleId, commentId);
+        updateRedis(articleId, memberId, commentId);
     }
 }

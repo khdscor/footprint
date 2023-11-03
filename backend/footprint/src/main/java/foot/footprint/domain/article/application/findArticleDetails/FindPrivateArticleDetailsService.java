@@ -29,7 +29,7 @@ public class FindPrivateArticleDetailsService extends AbstrastFindArticleDetails
     @Transactional(readOnly = true)
     public ArticlePageResponse findDetails(Long articleId, CustomUserDetails userDetails) {
         validateMember(userDetails);
-        String redisKey = "articleDetails::" + articleId;
+        String redisKey = "articleDetails::" + articleId + ":" + userDetails.getId();
         Optional<ArticlePageResponse> cache = objectSerializer.getData(redisKey,
             ArticlePageResponse.class);
         // redis에 데이터가 있을 경우 - DB 접근 x
@@ -42,7 +42,7 @@ public class FindPrivateArticleDetailsService extends AbstrastFindArticleDetails
         addLoginInfo(articleId, userDetails.getId(), response);
         validatePrivateArticle(response, userDetails.getId());
         // redis에 저장
-        objectSerializer.saveData(redisKey, response, 30);
+        objectSerializer.saveData(redisKey, response, 10);
         return response;
     }
 

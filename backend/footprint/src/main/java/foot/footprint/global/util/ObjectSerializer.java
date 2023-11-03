@@ -47,7 +47,7 @@ public class ObjectSerializer {
         Optional<ArticlePageResponse> cache = getData(key, ArticlePageResponse.class);
         if (cache.isPresent()) {
             part.apply(cache.get(), data);
-            saveData(key, cache.get(), 30);
+            saveData(key, cache.get(), 10);
         }
     }
 }

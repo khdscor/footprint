@@ -23,7 +23,7 @@ public class EditGeneralArticleService implements EditArticleService {
         if (result == 0) {
             throw new NotMatchMemberException("글이 존재하지 않거나 수정할 권한이 없습니다.");
         }
-        String redisKey = "articleDetails::" + articleId;
+        String redisKey = "articleDetails::" + articleId + ":" + memberId;
         objectSerializer.updateArticleData(redisKey, ArticleUpdatePart.EDIT_ARTICLE, newContent);
     }
 }
