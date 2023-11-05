@@ -89,7 +89,7 @@ public class FindCommentRepositoryTest extends RepositoryTest {
             article.getId(), cursorId);
 
         //then
-        assertThat(responses).hasSize(10);
+        assertThat(responses).hasSize(11);
         assertThat(responses.get(0).getId()).isEqualTo(120L);
     }
 }
