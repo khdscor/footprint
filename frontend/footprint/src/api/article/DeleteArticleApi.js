@@ -5,7 +5,7 @@ const deleteArticleApi = ({articleId, accessToken, history}) => {
   if (!accessToken) {
     alert("로그인이 필요한 서비스입니다.")
     history.push('/login');
-    return Promise.reject("토큰이 없음");
+    return;
   }
   const config = {
     headers: {
@@ -25,11 +25,11 @@ const deleteArticleApi = ({articleId, accessToken, history}) => {
       history.push("/login");
     } else if(error.response.status === 400 || error.response.status === 404) {
       alert(error.response.data.errorMessage);
-      return Promise.reject();
+      return;
     } else {
       alert("글 삭제 실패");
     }
-    return Promise.reject();
+    return;
   });
 };
 export default deleteArticleApi;

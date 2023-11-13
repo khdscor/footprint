@@ -87,7 +87,8 @@ const CommentWriting = ({
               history
             ).then((commentPromise) => {
               setComments(new Array(commentPromise).concat(comments));
-              writingRef.current.style.height = "20px";
+              if(commentPromise !== null)
+                writingRef.current.style.height = "20px";
             });
           }
         }}

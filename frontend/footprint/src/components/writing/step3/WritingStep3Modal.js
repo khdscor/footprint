@@ -22,9 +22,7 @@ const WritingStep3Modal = (props) => {
   const [groups, setGroups] = useState([]);
 
   useEffect(() => {
-      findMyGroupsApi(props.history).then(groupsPromise => {
-        setGroups(groupsPromise)
-      });
+      findMyGroupsApi(props.history, setGroups);
   }, []);
 
   const onGroupCheckboxClicked = (groupId) => {

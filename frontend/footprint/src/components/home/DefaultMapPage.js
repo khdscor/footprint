@@ -108,10 +108,9 @@ const DefaultMapPage = (props) => {
         latitudeRange,
         center.lng(),
         longitudeRange,
-        props.history
-      ).then((mapArticlesPromise) => {
-        setArticles(mapArticlesPromise);
-      });
+        props.history,
+        setArticles
+      );
     } else if (mapType === GROUPED && groupId > 0) {
       findGroupedMapArticles(
         groupId,
@@ -121,13 +120,18 @@ const DefaultMapPage = (props) => {
         longitudeRange,
         props.history
       ).then((mapArticlesPromise) => {
-        setArticles(mapArticlesPromise);
+        if(mapArticlesPromise !== null) setArticles(mapArticlesPromise);
+      }).catch((error) => {
+        console.log(error)
       });
       findGroupNameApi({
         groupId: groupId,
         accessToken: accessToken,
         history: props.history
       }).then(groupPromise => setGroupName(groupPromise.name))
+      .catch((error) => {
+      console.log(error)
+    });
     }
   }, [zoom, center, mapType, groupId, myLocation]);
 

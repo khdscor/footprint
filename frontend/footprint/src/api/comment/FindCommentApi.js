@@ -7,7 +7,7 @@ const findCommentApi = (articleId, commentCursorId) => {
         .catch(error => {
           if (error.response.status === 500) {
             alert("알 수 없는 오류가 발생하였습니다. 관리자에게 문의해 주십시오.")
-            return Promise.reject();
+            return;
           } 
         });
 
