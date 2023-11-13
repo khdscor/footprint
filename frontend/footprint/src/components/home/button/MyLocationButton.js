@@ -11,7 +11,6 @@ const MyLocationButton = ({setCenter, defaultCenter, setDefaultCenter, setMyLoca
       lat: defaultCenter.lat+0.00000000000000000001,
       lng: defaultCenter.lng+0.00000000000000000001,
     })
-    alert("히히히히히");
   }
 
   const error = () => {

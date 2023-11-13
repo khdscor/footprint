@@ -10,7 +10,7 @@ const createWritingApi = ({title, content, center, publicMap, privateMap,
   if (!accessToken) {
     alert("로그인이 필요한 서비스입니다.")
     history.push('/login');
-    return Promise.reject("토큰이 없음");
+    return;
   }
   const body = {
     title: title,
@@ -51,7 +51,6 @@ const createWritingApi = ({title, content, center, publicMap, privateMap,
       } else if(error.response.status === 400 || error.response.status === 404) {
         alert(error.response.data.errorMessage);
         history.push("/");
-        return Promise.reject();
       } else alert("이유가 뭔지 모르겠지만 글쓰기 실패했음. 일단 홈화면으로...");
       history.push("/");
     });

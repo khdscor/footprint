@@ -1,4 +1,4 @@
-import axios from "axios";
+  import axios from "axios";
 import {BACKEND_ADDRESS} from "../../constants/ADDRESS";
 import {GROUPED, PRIVATE, PUBLIC} from "../../constants/MapType";
 import {ACCESS_TOKEN} from "../../constants/SessionStorage";
@@ -12,13 +12,13 @@ export const findPublicMapArticles = (latitude, latitudeRange, longitude, longit
   .then(response => response.data);
 };
 
-export const findPrivateMapArticles = (latitude, latitudeRange, longitude, longitudeRange, history) => {
+export const findPrivateMapArticles = (latitude, latitudeRange, longitude, longitudeRange, history, setARticles) => {
   const accessToken = sessionStorage.getItem(ACCESS_TOKEN);
 
   if (!accessToken) {
     alert("로그인이 필요한 서비스입니다.")
     history.push('/login');
-    return Promise.reject("토큰이 없음");
+    return null;
   }
   const config = {
     headers: {
@@ -30,15 +30,15 @@ export const findPrivateMapArticles = (latitude, latitudeRange, longitude, longi
     + "&latitudeRange=" + latitudeRange
     + "&longitude=" + longitude
     + "&longitudeRange=" + longitudeRange, config)
-  .then(response => response.data)
+  .then(response => {setARticles(response.data)})
   .catch(error => {
     if (error.response.status === 401 || error.response.status === 403) {
       alert("로그인이 만료되었습니다. 다시 로그인해주세요.");
       history.push("/login");
-      return Promise.reject();
+      return null;
     } else if(error.response.status === 400 || error.response.status === 404) {
       alert(error.response.data.errorMessage);
-      return Promise.reject();
+      return null;
     } else alert("이유가 뭔지 모르겠지만 개인지도 글 가져오기에 실패했음...");
   });
 };
@@ -61,10 +61,10 @@ export const findGroupedMapArticles = (groupId, latitude, latitudeRange, longitu
     if (error.response.status === 401 || error.response.status === 403) {
       alert("로그인이 만료되었습니다. 다시 로그인해주세요.");
       history.push("/login");
-      return;
+      return Promise.reject("에러에러");
     } else if(error.response.status === 400 || error.response.status === 404) {
       alert(error.response.data.errorMessage);
-      return Promise.reject();
+      return Promise.reject("에러에러");
     } else alert("그룹지도 글 가져오기에 실패함ㅜ");
   });
 };

@@ -19,11 +19,11 @@ const deportMemberApi = ({groupId, userId, accessToken}) => {
       alert("로그인이 만료되었습니다. 다시 로그인해주세요.");
     } else if (error.response.status === 400 || error.response.status === 404) {
       alert(error.response.data.errorMessage);
-      return Promise.reject();
+      return;
     } else {
       alert("그룹 추방 실패..원인을 모르겠네요");
     }
-    return Promise.reject();
+    return;
   });
 };
 export default deportMemberApi;

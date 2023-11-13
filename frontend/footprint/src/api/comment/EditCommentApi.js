@@ -5,7 +5,7 @@ const editCommentApi = ({ newContent, articleId, id, accessToken, history }) => 
   if (!accessToken) {
     alert("로그인이 필요한 서비스입니다.")
     history.push('/login');
-    return Promise.reject("토큰이 없음");
+    return;
   }
   const body = {
     content : newContent
@@ -28,11 +28,11 @@ const editCommentApi = ({ newContent, articleId, id, accessToken, history }) => 
       history.push("/login");
     } else if(error.response.status === 400 || error.response.status === 404) {
       alert(error.response.data.errorMessage);
-      return Promise.reject();
+      return;
     } else {
       alert("댓글 수정 실패");
     }
-    return Promise.reject();
+    return;
   });
 };
 export default editCommentApi;

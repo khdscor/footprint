@@ -24,7 +24,6 @@ public class Article {
     private boolean public_map;
     private String title;
     private Long member_id;
-    private final static Long CONTENT_MAN_LENGTH = 10L;
     public Article(Long id, String content, Date create_date, Double latitude, Double longitude,
         boolean private_map, boolean public_map, String title, Long member_id) {
         this.id = id;
@@ -36,7 +35,6 @@ public class Article {
         this.public_map = public_map;
         this.title = title;
         this.member_id = member_id;
-        Assert.isTrue(content.length() <= CONTENT_MAN_LENGTH);
     }
 
     public static Article createArticle(CreateArticleRequest request, Long userId) {
