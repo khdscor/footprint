@@ -98,10 +98,9 @@ const DefaultMapPage = (props) => {
         center.lat(),
         latitudeRange,
         center.lng(),
-        longitudeRange
-      ).then((mapArticlesPromise) => {
-        setArticles(mapArticlesPromise);
-      });
+        longitudeRange,
+        setArticles
+      );
     } else if (mapType === PRIVATE) {
       findPrivateMapArticles(
         center.lat(),
@@ -118,20 +117,15 @@ const DefaultMapPage = (props) => {
         latitudeRange,
         center.lng(),
         longitudeRange,
-        props.history
-      ).then((mapArticlesPromise) => {
-        if(mapArticlesPromise !== null) setArticles(mapArticlesPromise);
-      }).catch((error) => {
-        console.log(error)
-      });
+        props.history,
+        setArticles
+      );
       findGroupNameApi({
         groupId: groupId,
         accessToken: accessToken,
-        history: props.history
-      }).then(groupPromise => setGroupName(groupPromise.name))
-      .catch((error) => {
-      console.log(error)
-    });
+        history: props.history,
+        setGroupName
+      });
     }
   }, [zoom, center, mapType, groupId, myLocation]);
 
