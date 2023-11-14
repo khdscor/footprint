@@ -45,8 +45,7 @@ const Menu = ({
   }, [isMenuOpen]);
 
   useEffect(() => {
-    findMyImportantGroupsApi({accessToken})
-    .then(responsePromise => setImportantGroups(responsePromise));
+    findMyImportantGroupsApi({accessToken, setImportantGroups});
   }, [accessToken]);
 
   return (<>

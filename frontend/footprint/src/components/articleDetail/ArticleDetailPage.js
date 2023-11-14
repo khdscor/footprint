@@ -58,20 +58,8 @@ const ArticleDetailPage = (props) => {
 
   useEffect(() => {
     if (mapType === GROUPED || mapType === PUBLIC || mapType === PRIVATE) {
-      findWritingApi(articleId, mapType, props.history).then(
-        (articlePromise) => {
-          setArticle(articlePromise.articleDetails);
-          setArticleTotalLikes(articlePromise.articleDetails.totalLikes);
-          setHasILiked(articlePromise.articleLike);
-          setComments(articlePromise.comments);
-          if(articlePromise.comments.length >= 10){
-            setCommentCursorId(articlePromise.comments[9].id);
-            setHasNextPage(true);
-          }
-          setHasILikedListInComment(articlePromise.commentLikes);
-          setMyId(articlePromise.myMemberId)
-        }
-      );
+      findWritingApi(articleId, mapType, props.history, setArticle, setArticleTotalLikes,setHasILiked, 
+        setComments, setCommentCursorId, setHasNextPage, setHasILikedListInComment, setMyId);
     } else {
       alert("주소가 올바르지 않습니다.");
       props.history.push("/");
@@ -84,12 +72,7 @@ const [hasNextPage, setHasNextPage] = useState(false); // 다음 페이지 유�
 const [ref, inView] = useInView() // react-intersection-observer 라이브러리
 
 const updateComments = () => {
-  findCommentApi(articleId, commentCursorId).then(
-    (commentPromise) => {
-      setComments([...comments.concat(commentPromise.comments)]);
-      setHasNextPage(commentPromise.hasNextPage);
-      setCommentCursorId(commentPromise.cursorId);
-    })
+  findCommentApi(articleId, commentCursorId, setComments, comments, setHasNextPage, setCommentCursorId);
 };
 
 useEffect(() => {

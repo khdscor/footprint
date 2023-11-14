@@ -1,9 +1,9 @@
 import axios from "axios";
 import {BACKEND_ADDRESS} from "../../constants/ADDRESS";
 
-const findMyImportantGroupsApi = ({accessToken}) => {
+const findMyImportantGroupsApi = ({accessToken, setImportantGroups}) => {
   if (!accessToken) {
-    return Promise.resolve([]);
+    return;
   }
   const config = {
     headers: {
@@ -13,10 +13,10 @@ const findMyImportantGroupsApi = ({accessToken}) => {
   return axios.get(BACKEND_ADDRESS + "/groups/mine/important", config)
   .then(response => {
     if (response.status === 200) {
-      return response.data
+      setImportantGroups(response.data);
     }
   })
-  .catch(() => Promise.resolve([]));
+  .catch(() => {return;});
 };
 
 export default findMyImportantGroupsApi;

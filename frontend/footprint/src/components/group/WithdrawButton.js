@@ -13,7 +13,7 @@ const WithdrawButtonStyle = styled.div`
 
 const WithdrawButton = ({groupId, accessToken, history}) => {
   const onWithdrawButtonClicked = () => {
-    withdrawGroupApi({groupId, accessToken, history})
+    withdrawGroupApi({groupId, accessToken, history});
   };
   return (
       <WithdrawButtonStyle onClick={()=>{
