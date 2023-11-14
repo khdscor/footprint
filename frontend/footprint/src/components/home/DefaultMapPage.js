@@ -133,9 +133,7 @@ const DefaultMapPage = (props) => {
     if (!accessToken) {
       return;
     }
-    findUserImageUrlApi(accessToken).then((userImageUrlPromise) => {
-      setUserImageUrl(userImageUrlPromise);
-    });
+    findUserImageUrlApi(accessToken, setUserImageUrl);
   }, [accessToken]);
 
   return (

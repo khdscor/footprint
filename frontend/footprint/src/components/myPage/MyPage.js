@@ -33,11 +33,7 @@ const MyPage = (props) => {
       props.history.push("/login");
       return;
     }
-    findUserApi(accessToken).then(userPromise => {
-    setUser(userPromise.myInfo)
-    setMyGroups(userPromise.myGroups)
-    setMyArticles(userPromise.myArticles)
-    });
+    findUserApi(accessToken, setUser, setMyGroups, setMyArticles);
   }, [accessToken]);
 
   return (
