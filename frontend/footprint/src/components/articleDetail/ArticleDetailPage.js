@@ -72,12 +72,7 @@ const [hasNextPage, setHasNextPage] = useState(false); // 다음 페이지 유�
 const [ref, inView] = useInView() // react-intersection-observer 라이브러리
 
 const updateComments = () => {
-  findCommentApi(articleId, commentCursorId).then(
-    (commentPromise) => {
-      setComments([...comments.concat(commentPromise.comments)]);
-      setHasNextPage(commentPromise.hasNextPage);
-      setCommentCursorId(commentPromise.cursorId);
-    })
+  findCommentApi(articleId, commentCursorId, setComments, comments, setHasNextPage, setCommentCursorId);
 };
 
 useEffect(() => {
