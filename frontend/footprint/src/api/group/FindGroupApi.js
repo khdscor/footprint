@@ -1,7 +1,7 @@
 import axios from "axios";
 import {BACKEND_ADDRESS} from "../../constants/ADDRESS";
 
-const findGroupApi = ({ groupId, accessToken, history }) => {
+const findGroupApi = ({ groupId, accessToken, history, setGroup, setGroupMembers}) => {
   if (!accessToken) {
     alert("로그인이 필요한 서비스입니다.")
     history.push('/login');
@@ -15,7 +15,8 @@ const findGroupApi = ({ groupId, accessToken, history }) => {
   return axios.get(BACKEND_ADDRESS + "/groups/" + groupId, config)
   .then(response => {
     if (response.status === 200) {
-      return response.data
+      setGroup(response.data.groupInfo)
+      setGroupMembers(response.data.memberDetails)
     }
   })
   .catch(error => {

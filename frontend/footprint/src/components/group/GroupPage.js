@@ -30,10 +30,9 @@ const GroupPage = (props) => {
     findGroupApi({
       groupId: groupId,
       accessToken: accessToken,
-      history: props.history
-    }).then(groupPromise => {
-      setGroup(groupPromise.groupInfo)
-      setGroupMembers(groupPromise.memberDetails)
+      history: props.history,
+      setGroup,
+      setGroupMembers
     });
   }, [groupId, accessToken]);
 
