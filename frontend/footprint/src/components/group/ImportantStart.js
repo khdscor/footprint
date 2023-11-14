@@ -24,7 +24,8 @@ const ImportantStart = ({group, setGroup, accessToken, history}) => {
             name: group.name,
             invitationCode: group.invitationCode,
             important: !group.important,
-            createDate: group.createDate
+            createDate: group.createDate,
+            owner: group.owner
           })
         }
       }}

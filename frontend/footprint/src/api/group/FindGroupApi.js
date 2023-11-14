@@ -16,6 +16,7 @@ const findGroupApi = ({ groupId, accessToken, history, setGroup, setGroupMembers
   .then(response => {
     if (response.status === 200) {
       setGroup(response.data.groupInfo)
+      console.log(response.data)
       setGroupMembers(response.data.memberDetails)
     }
   })
