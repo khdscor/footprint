@@ -1,265 +1,196 @@
-INFO  23-09-30 10:19:51[background-preinit] [Version:21] - HV000001: Hibernate Validator 6.2.5.Final
-INFO  23-09-30 10:19:51[restartedMain] [FootprintApplication:55] - Starting FootprintApplication using Java 11.0.19 on DESKTOP-4HIFCAO with PID 9752 (C:\Users\khdsc\IdeaProjects\footprint\backend\footprint\build\classes\java\main started by khdsc in C:\Users\khdsc\IdeaProjects\footprint\backend\footprint)
-INFO  23-09-30 10:19:51[restartedMain] [FootprintApplication:637] - The following 3 profiles are active: "rds", "oauth", "redis"
-INFO  23-09-30 10:19:51[restartedMain] [DevToolsPropertyDefaultsPostProcessor:255] - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-INFO  23-09-30 10:19:51[restartedMain] [DevToolsPropertyDefaultsPostProcessor:255] - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-INFO  23-09-30 10:19:54[restartedMain] [RepositoryConfigurationDelegate:262] - Multiple Spring Data modules found, entering strict repository configuration mode
-INFO  23-09-30 10:19:54[restartedMain] [RepositoryConfigurationDelegate:132] - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
-INFO  23-09-30 10:19:54[restartedMain] [RepositoryConfigurationDelegate:201] - Finished Spring Data repository scanning in 205 ms. Found 0 Redis repository interfaces.
-INFO  23-09-30 10:19:57[restartedMain] [TomcatWebServer:108] - Tomcat initialized with port(s): 8080 (http)
-INFO  23-09-30 10:19:57[restartedMain] [Http11NioProtocol:173] - Initializing ProtocolHandler ["http-nio-8080"]
-INFO  23-09-30 10:19:57[restartedMain] [StandardService:173] - Starting service [Tomcat]
-INFO  23-09-30 10:19:57[restartedMain] [StandardEngine:173] - Starting Servlet engine: [Apache Tomcat/9.0.71]
-INFO  23-09-30 10:19:57[restartedMain] [[/]:173] - Initializing Spring embedded WebApplicationContext
-INFO  23-09-30 10:19:57[restartedMain] [ServletWebServerApplicationContext:292] - Root WebApplicationContext: initialization completed in 5951 ms
-INFO  23-09-30 10:20:04[restartedMain] [DefaultSecurityFilterChain:55] - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@74a46b86, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@ab5b544, org.springframework.security.web.context.SecurityContextPersistenceFilter@79816cea, org.springframework.security.web.header.HeaderWriterFilter@cc94878, org.springframework.web.filter.CorsFilter@1e90999e, org.springframework.security.web.authentication.logout.LogoutFilter@2c5040aa, org.springframework.security.oauth2.client.web.OAuth2AuthorizationRequestRedirectFilter@79d0f7e9, org.springframework.security.oauth2.client.web.OAuth2LoginAuthenticationFilter@38d59c90, foot.footprint.global.security.JwtAuthenticationFilter@7aa38d9f, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@2cd7fb41, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@19d0497, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@2f28ba45, org.springframework.security.web.session.SessionManagementFilter@15797c2d, org.springframework.security.web.access.ExceptionTranslationFilter@7b93c643, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@4904036f]
-INFO  23-09-30 10:20:06[restartedMain] [VersionPrinter:49] - Flyway Community Edition 5.2.4 by Boxfuse
-INFO  23-09-30 10:20:06[restartedMain] [HikariDataSource:110] - HikariPool-1 - Starting...
-INFO  23-09-30 10:20:07[restartedMain] [HikariDataSource:123] - HikariPool-1 - Start completed.
-INFO  23-09-30 10:20:07[restartedMain] [DatabaseFactory:49] - Database: jdbc:mysql://footprintdb.ceekjekckdhv.ap-northeast-2.rds.amazonaws.com:3306/footprintDB (MySQL 8.0)
-INFO  23-09-30 10:20:08[restartedMain] [DbValidate:49] - Successfully validated 22 migrations (execution time 00:00.202s)
-INFO  23-09-30 10:20:08[restartedMain] [DbMigrate:49] - Current version of schema `footprintDB`: 7.2
-INFO  23-09-30 10:20:08[restartedMain] [DbMigrate:49] - Schema `footprintDB` is up to date. No migration necessary.
-INFO  23-09-30 10:20:08[restartedMain] [OptionalLiveReloadServer:59] - LiveReload server is running on port 35729
-INFO  23-09-30 10:20:09[restartedMain] [Http11NioProtocol:173] - Starting ProtocolHandler ["http-nio-8080"]
-INFO  23-09-30 10:20:09[restartedMain] [TomcatWebServer:220] - Tomcat started on port(s): 8080 (http) with context path ''
-INFO  23-09-30 10:20:09[restartedMain] [FootprintApplication:61] - Started FootprintApplication in 18.86 seconds (JVM running for 20.26)
-INFO  23-09-30 10:20:42[http-nio-8080-exec-2] [[/]:173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
-INFO  23-09-30 10:20:42[http-nio-8080-exec-2] [DispatcherServlet:525] - Initializing Servlet 'dispatcherServlet'
-INFO  23-09-30 10:20:42[http-nio-8080-exec-2] [DispatcherServlet:547] - Completed initialization in 5 ms
-ERROR 23-09-30 10:20:50[http-nio-8080-exec-8] [[dispatcherServlet]:175] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is org.springframework.data.redis.RedisConnectionFailureException: Unable to connect to Redis; nested exception is io.lettuce.core.RedisConnectionException: Unable to connect to localhost:6379] with root cause
-java.net.ConnectException: Connection refused: no further information
-	at java.base/sun.nio.ch.SocketChannelImpl.checkConnect(Native Method)
-	at java.base/sun.nio.ch.SocketChannelImpl.finishConnect(SocketChannelImpl.java:779)
-	at io.netty.channel.socket.nio.NioSocketChannel.doFinishConnect(NioSocketChannel.java:337)
-	at io.netty.channel.nio.AbstractNioChannel$AbstractNioUnsafe.finishConnect(AbstractNioChannel.java:334)
-	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:776)
-	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:724)
-	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:650)
-	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:562)
-	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:997)
-	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
-	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
-	at java.base/java.lang.Thread.run(Thread.java:834)
-INFO  23-09-30 10:22:01[http-nio-8080-exec-5] [ArticleLogAdvice:35] - 회원번호 40가 게시글 41에 editArticle를 시도하였습니다.
-INFO  23-09-30 10:22:01[http-nio-8080-exec-5] [ArticleLogAdvice:38] - 회원번호 40에 의해 게시글 41에 editArticle가 실행되였습니다.
-INFO  23-09-30 10:23:12[http-nio-8080-exec-6] [ArticleLogAdvice:35] - 회원번호 40가 게시글 41에 editArticle를 시도하였습니다.
-INFO  23-09-30 10:23:12[http-nio-8080-exec-6] [ArticleLogAdvice:38] - 회원번호 40에 의해 게시글 41에 editArticle가 실행되였습니다.
-INFO  23-09-30 10:23:25[http-nio-8080-exec-7] [ArticleLogAdvice:35] - 회원번호 40가 게시글 41에 editArticle를 시도하였습니다.
-INFO  23-09-30 10:23:25[http-nio-8080-exec-7] [ArticleLogAdvice:38] - 회원번호 40에 의해 게시글 41에 editArticle가 실행되였습니다.
-INFO  23-09-30 10:23:38[http-nio-8080-exec-9] [ArticleLogAdvice:35] - 회원번호 40가 게시글 41에 editArticle를 시도하였습니다.
-INFO  23-09-30 10:23:38[http-nio-8080-exec-9] [ArticleLogAdvice:38] - 회원번호 40에 의해 게시글 41에 editArticle가 실행되였습니다.
-INFO  23-09-30 10:24:36[restartedMain] [FootprintApplication:55] - Starting FootprintApplication using Java 11.0.19 on DESKTOP-4HIFCAO with PID 16604 (C:\Users\khdsc\IdeaProjects\footprint\backend\footprint\build\classes\java\main started by khdsc in C:\Users\khdsc\IdeaProjects\footprint\backend\footprint)
-INFO  23-09-30 10:24:36[background-preinit] [Version:21] - HV000001: Hibernate Validator 6.2.5.Final
-INFO  23-09-30 10:24:36[restartedMain] [FootprintApplication:637] - The following 3 profiles are active: "rds", "oauth", "redis"
-INFO  23-09-30 10:24:36[restartedMain] [DevToolsPropertyDefaultsPostProcessor:255] - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-INFO  23-09-30 10:24:36[restartedMain] [DevToolsPropertyDefaultsPostProcessor:255] - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-INFO  23-09-30 10:24:38[restartedMain] [RepositoryConfigurationDelegate:262] - Multiple Spring Data modules found, entering strict repository configuration mode
-INFO  23-09-30 10:24:38[restartedMain] [RepositoryConfigurationDelegate:132] - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
-INFO  23-09-30 10:24:38[restartedMain] [RepositoryConfigurationDelegate:201] - Finished Spring Data repository scanning in 75 ms. Found 0 Redis repository interfaces.
-INFO  23-09-30 10:24:41[restartedMain] [TomcatWebServer:108] - Tomcat initialized with port(s): 8080 (http)
-INFO  23-09-30 10:24:41[restartedMain] [Http11NioProtocol:173] - Initializing ProtocolHandler ["http-nio-8080"]
-INFO  23-09-30 10:24:41[restartedMain] [StandardService:173] - Starting service [Tomcat]
-INFO  23-09-30 10:24:41[restartedMain] [StandardEngine:173] - Starting Servlet engine: [Apache Tomcat/9.0.71]
-INFO  23-09-30 10:25:09[background-preinit] [Version:21] - HV000001: Hibernate Validator 6.2.5.Final
-INFO  23-09-30 10:25:09[restartedMain] [FootprintApplication:55] - Starting FootprintApplication using Java 11.0.19 on DESKTOP-4HIFCAO with PID 280 (C:\Users\khdsc\IdeaProjects\footprint\backend\footprint\build\classes\java\main started by khdsc in C:\Users\khdsc\IdeaProjects\footprint\backend\footprint)
-INFO  23-09-30 10:25:09[restartedMain] [FootprintApplication:637] - The following 3 profiles are active: "rds", "oauth", "redis"
-INFO  23-09-30 10:25:09[restartedMain] [DevToolsPropertyDefaultsPostProcessor:255] - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-INFO  23-09-30 10:25:09[restartedMain] [DevToolsPropertyDefaultsPostProcessor:255] - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-INFO  23-09-30 10:25:11[restartedMain] [RepositoryConfigurationDelegate:262] - Multiple Spring Data modules found, entering strict repository configuration mode
-INFO  23-09-30 10:25:11[restartedMain] [RepositoryConfigurationDelegate:132] - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
-INFO  23-09-30 10:25:11[restartedMain] [RepositoryConfigurationDelegate:201] - Finished Spring Data repository scanning in 134 ms. Found 0 Redis repository interfaces.
-INFO  23-09-30 10:25:14[restartedMain] [TomcatWebServer:108] - Tomcat initialized with port(s): 8080 (http)
-INFO  23-09-30 10:25:14[restartedMain] [Http11NioProtocol:173] - Initializing ProtocolHandler ["http-nio-8080"]
-INFO  23-09-30 10:25:14[restartedMain] [StandardService:173] - Starting service [Tomcat]
-INFO  23-09-30 10:25:14[restartedMain] [StandardEngine:173] - Starting Servlet engine: [Apache Tomcat/9.0.71]
-INFO  23-09-30 10:25:14[restartedMain] [[/]:173] - Initializing Spring embedded WebApplicationContext
-INFO  23-09-30 10:25:14[restartedMain] [ServletWebServerApplicationContext:292] - Root WebApplicationContext: initialization completed in 4896 ms
-INFO  23-09-30 10:25:18[restartedMain] [DefaultSecurityFilterChain:55] - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@75bc79c, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@11cb391d, org.springframework.security.web.context.SecurityContextPersistenceFilter@373f61e2, org.springframework.security.web.header.HeaderWriterFilter@535eaf9b, org.springframework.web.filter.CorsFilter@73bd4e1d, org.springframework.security.web.authentication.logout.LogoutFilter@df5cb4d, org.springframework.security.oauth2.client.web.OAuth2AuthorizationRequestRedirectFilter@21c6e812, org.springframework.security.oauth2.client.web.OAuth2LoginAuthenticationFilter@171ea158, foot.footprint.global.security.JwtAuthenticationFilter@72f731f7, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@51b9c635, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@124da2e5, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@87c8e71, org.springframework.security.web.session.SessionManagementFilter@1a477164, org.springframework.security.web.access.ExceptionTranslationFilter@452e01b2, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@71f05cca]
-INFO  23-09-30 10:25:19[restartedMain] [VersionPrinter:49] - Flyway Community Edition 5.2.4 by Boxfuse
-INFO  23-09-30 10:25:19[restartedMain] [HikariDataSource:110] - HikariPool-1 - Starting...
-INFO  23-09-30 10:25:20[restartedMain] [HikariDataSource:123] - HikariPool-1 - Start completed.
-INFO  23-09-30 10:25:20[restartedMain] [DatabaseFactory:49] - Database: jdbc:mysql://footprintdb.ceekjekckdhv.ap-northeast-2.rds.amazonaws.com:3306/footprintDB (MySQL 8.0)
-INFO  23-09-30 10:25:21[restartedMain] [DbValidate:49] - Successfully validated 22 migrations (execution time 00:00.219s)
-INFO  23-09-30 10:25:21[restartedMain] [DbMigrate:49] - Current version of schema `footprintDB`: 7.2
-INFO  23-09-30 10:25:21[restartedMain] [DbMigrate:49] - Schema `footprintDB` is up to date. No migration necessary.
-INFO  23-09-30 10:25:21[restartedMain] [OptionalLiveReloadServer:59] - LiveReload server is running on port 35729
-INFO  23-09-30 10:25:21[restartedMain] [Http11NioProtocol:173] - Starting ProtocolHandler ["http-nio-8080"]
-INFO  23-09-30 10:25:22[restartedMain] [TomcatWebServer:220] - Tomcat started on port(s): 8080 (http) with context path ''
-INFO  23-09-30 10:25:22[restartedMain] [FootprintApplication:61] - Started FootprintApplication in 14.2 seconds (JVM running for 15.421)
-INFO  23-09-30 10:27:57[http-nio-8080-exec-3] [[/]:173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
-INFO  23-09-30 10:27:57[http-nio-8080-exec-3] [DispatcherServlet:525] - Initializing Servlet 'dispatcherServlet'
-INFO  23-09-30 10:27:57[http-nio-8080-exec-3] [DispatcherServlet:547] - Completed initialization in 2 ms
-INFO  23-09-30 10:28:08[http-nio-8080-exec-5] [ArticleLogAdvice:35] - 회원번호 40가 게시글 41에 editArticle를 시도하였습니다.
-INFO  23-09-30 10:28:08[http-nio-8080-exec-9] [ArticleLogAdvice:35] - 회원번호 40가 게시글 41에 editArticle를 시도하였습니다.
-INFO  23-09-30 10:28:08[http-nio-8080-exec-9] [ArticleLogAdvice:38] - 회원번호 40에 의해 게시글 41에 editArticle가 실행되였습니다.
-INFO  23-09-30 10:28:09[http-nio-8080-exec-5] [ArticleLogAdvice:38] - 회원번호 40에 의해 게시글 41에 editArticle가 실행되였습니다.
-INFO  23-09-30 10:28:18[http-nio-8080-exec-8] [ArticleLogAdvice:35] - 회원번호 40가 게시글 41에 editArticle를 시도하였습니다.
-INFO  23-09-30 10:28:19[http-nio-8080-exec-8] [ArticleLogAdvice:38] - 회원번호 40에 의해 게시글 41에 editArticle가 실행되였습니다.
-INFO  23-09-30 10:48:14[background-preinit] [Version:21] - HV000001: Hibernate Validator 6.2.5.Final
-INFO  23-09-30 10:48:14[restartedMain] [FootprintApplication:55] - Starting FootprintApplication using Java 11.0.19 on DESKTOP-4HIFCAO with PID 240 (C:\Users\khdsc\IdeaProjects\footprint\backend\footprint\build\classes\java\main started by khdsc in C:\Users\khdsc\IdeaProjects\footprint\backend\footprint)
-INFO  23-09-30 10:48:14[restartedMain] [FootprintApplication:637] - The following 3 profiles are active: "rds", "oauth", "redis"
-INFO  23-09-30 10:48:14[restartedMain] [DevToolsPropertyDefaultsPostProcessor:255] - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-INFO  23-09-30 10:48:14[restartedMain] [DevToolsPropertyDefaultsPostProcessor:255] - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-INFO  23-09-30 10:48:17[restartedMain] [RepositoryConfigurationDelegate:262] - Multiple Spring Data modules found, entering strict repository configuration mode
-INFO  23-09-30 10:48:17[restartedMain] [RepositoryConfigurationDelegate:132] - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
-INFO  23-09-30 10:48:17[restartedMain] [RepositoryConfigurationDelegate:201] - Finished Spring Data repository scanning in 68 ms. Found 0 Redis repository interfaces.
-INFO  23-09-30 10:48:20[restartedMain] [TomcatWebServer:108] - Tomcat initialized with port(s): 8080 (http)
-INFO  23-09-30 10:48:20[restartedMain] [Http11NioProtocol:173] - Initializing ProtocolHandler ["http-nio-8080"]
-INFO  23-09-30 10:48:20[restartedMain] [StandardService:173] - Starting service [Tomcat]
-INFO  23-09-30 10:48:20[restartedMain] [StandardEngine:173] - Starting Servlet engine: [Apache Tomcat/9.0.71]
-INFO  23-09-30 10:48:20[restartedMain] [[/]:173] - Initializing Spring embedded WebApplicationContext
-INFO  23-09-30 10:48:20[restartedMain] [ServletWebServerApplicationContext:292] - Root WebApplicationContext: initialization completed in 5322 ms
-INFO  23-09-30 10:48:24[restartedMain] [DefaultSecurityFilterChain:55] - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@78b54e06, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@1398aad0, org.springframework.security.web.context.SecurityContextPersistenceFilter@5138c3f3, org.springframework.security.web.header.HeaderWriterFilter@1b4d20b8, org.springframework.web.filter.CorsFilter@6e16cb6b, org.springframework.security.web.authentication.logout.LogoutFilter@24e76638, org.springframework.security.oauth2.client.web.OAuth2AuthorizationRequestRedirectFilter@56dc56d, org.springframework.security.oauth2.client.web.OAuth2LoginAuthenticationFilter@77715058, foot.footprint.global.security.JwtAuthenticationFilter@6fa129a0, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@35c956c1, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@4d991a2b, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@4fc7bcfd, org.springframework.security.web.session.SessionManagementFilter@7de8cd03, org.springframework.security.web.access.ExceptionTranslationFilter@7b9abf55, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@65ec9255]
-INFO  23-09-30 10:48:25[restartedMain] [VersionPrinter:49] - Flyway Community Edition 5.2.4 by Boxfuse
-INFO  23-09-30 10:48:25[restartedMain] [HikariDataSource:110] - HikariPool-1 - Starting...
-INFO  23-09-30 10:48:26[restartedMain] [HikariDataSource:123] - HikariPool-1 - Start completed.
-INFO  23-09-30 10:48:26[restartedMain] [DatabaseFactory:49] - Database: jdbc:mysql://footprintdb.ceekjekckdhv.ap-northeast-2.rds.amazonaws.com:3306/footprintDB (MySQL 8.0)
-INFO  23-09-30 10:48:27[restartedMain] [DbValidate:49] - Successfully validated 22 migrations (execution time 00:00.218s)
-INFO  23-09-30 10:48:27[restartedMain] [DbMigrate:49] - Current version of schema `footprintDB`: 7.2
-INFO  23-09-30 10:48:27[restartedMain] [DbMigrate:49] - Schema `footprintDB` is up to date. No migration necessary.
-INFO  23-09-30 10:48:27[restartedMain] [OptionalLiveReloadServer:59] - LiveReload server is running on port 35729
-INFO  23-09-30 10:48:27[restartedMain] [Http11NioProtocol:173] - Starting ProtocolHandler ["http-nio-8080"]
-INFO  23-09-30 10:48:27[restartedMain] [TomcatWebServer:220] - Tomcat started on port(s): 8080 (http) with context path ''
-INFO  23-09-30 10:48:27[restartedMain] [FootprintApplication:61] - Started FootprintApplication in 14.808 seconds (JVM running for 16.002)
-INFO  23-09-30 10:48:33[http-nio-8080-exec-1] [[/]:173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
-INFO  23-09-30 10:48:33[http-nio-8080-exec-1] [DispatcherServlet:525] - Initializing Servlet 'dispatcherServlet'
-INFO  23-09-30 10:48:33[http-nio-8080-exec-1] [DispatcherServlet:547] - Completed initialization in 6 ms
-INFO  23-09-30 10:48:44[http-nio-8080-exec-2] [ArticleLogAdvice:35] - 회원번호 40가 게시글 41에 editArticle를 시도하였습니다.
-INFO  23-09-30 10:48:44[http-nio-8080-exec-2] [ArticleLogAdvice:38] - 회원번호 40에 의해 게시글 41에 editArticle가 실행되였습니다.
-INFO  23-09-30 10:48:48[http-nio-8080-exec-4] [ArticleLogAdvice:35] - 회원번호 40가 게시글 41에 editArticle를 시도하였습니다.
-INFO  23-09-30 10:48:48[http-nio-8080-exec-4] [ArticleLogAdvice:38] - 회원번호 40에 의해 게시글 41에 editArticle가 실행되였습니다.
-INFO  23-09-30 11:01:15[background-preinit] [Version:21] - HV000001: Hibernate Validator 6.2.5.Final
-INFO  23-09-30 11:01:15[restartedMain] [FootprintApplication:55] - Starting FootprintApplication using Java 11.0.19 on DESKTOP-4HIFCAO with PID 11388 (C:\Users\khdsc\IdeaProjects\footprint\backend\footprint\build\classes\java\main started by khdsc in C:\Users\khdsc\IdeaProjects\footprint\backend\footprint)
-INFO  23-09-30 11:01:15[restartedMain] [FootprintApplication:637] - The following 3 profiles are active: "rds", "oauth", "redis"
-INFO  23-09-30 11:01:15[restartedMain] [DevToolsPropertyDefaultsPostProcessor:255] - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-INFO  23-09-30 11:01:15[restartedMain] [DevToolsPropertyDefaultsPostProcessor:255] - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-INFO  23-09-30 11:01:17[restartedMain] [RepositoryConfigurationDelegate:262] - Multiple Spring Data modules found, entering strict repository configuration mode
-INFO  23-09-30 11:01:17[restartedMain] [RepositoryConfigurationDelegate:132] - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
-INFO  23-09-30 11:01:17[restartedMain] [RepositoryConfigurationDelegate:201] - Finished Spring Data repository scanning in 114 ms. Found 0 Redis repository interfaces.
-INFO  23-09-30 11:01:20[restartedMain] [TomcatWebServer:108] - Tomcat initialized with port(s): 8080 (http)
-INFO  23-09-30 11:01:20[restartedMain] [Http11NioProtocol:173] - Initializing ProtocolHandler ["http-nio-8080"]
-INFO  23-09-30 11:01:20[restartedMain] [StandardService:173] - Starting service [Tomcat]
-INFO  23-09-30 11:01:20[restartedMain] [StandardEngine:173] - Starting Servlet engine: [Apache Tomcat/9.0.71]
-INFO  23-09-30 11:01:21[restartedMain] [[/]:173] - Initializing Spring embedded WebApplicationContext
-INFO  23-09-30 11:01:21[restartedMain] [ServletWebServerApplicationContext:292] - Root WebApplicationContext: initialization completed in 5394 ms
-INFO  23-09-30 11:01:25[restartedMain] [DefaultSecurityFilterChain:55] - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@7a6678b4, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@78aa3779, org.springframework.security.web.context.SecurityContextPersistenceFilter@4015aa9a, org.springframework.security.web.header.HeaderWriterFilter@7b30440f, org.springframework.web.filter.CorsFilter@33766d8d, org.springframework.security.web.authentication.logout.LogoutFilter@55cf41f9, org.springframework.security.oauth2.client.web.OAuth2AuthorizationRequestRedirectFilter@757ef60f, org.springframework.security.oauth2.client.web.OAuth2LoginAuthenticationFilter@59c25aa3, foot.footprint.global.security.JwtAuthenticationFilter@27d71aff, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@1b63561c, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@57c9b3bd, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@61205952, org.springframework.security.web.session.SessionManagementFilter@6d894f1e, org.springframework.security.web.access.ExceptionTranslationFilter@96d2298, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@21fd5f09]
-INFO  23-09-30 11:01:26[restartedMain] [VersionPrinter:49] - Flyway Community Edition 5.2.4 by Boxfuse
-INFO  23-09-30 11:01:26[restartedMain] [HikariDataSource:110] - HikariPool-1 - Starting...
-INFO  23-09-30 11:01:27[restartedMain] [HikariDataSource:123] - HikariPool-1 - Start completed.
-INFO  23-09-30 11:01:27[restartedMain] [DatabaseFactory:49] - Database: jdbc:mysql://footprintdb.ceekjekckdhv.ap-northeast-2.rds.amazonaws.com:3306/footprintDB (MySQL 8.0)
-INFO  23-09-30 11:01:27[restartedMain] [DbValidate:49] - Successfully validated 22 migrations (execution time 00:00.141s)
-INFO  23-09-30 11:01:27[restartedMain] [DbMigrate:49] - Current version of schema `footprintDB`: 7.2
-INFO  23-09-30 11:01:27[restartedMain] [DbMigrate:49] - Schema `footprintDB` is up to date. No migration necessary.
-INFO  23-09-30 11:01:28[restartedMain] [OptionalLiveReloadServer:59] - LiveReload server is running on port 35729
-INFO  23-09-30 11:01:28[restartedMain] [Http11NioProtocol:173] - Starting ProtocolHandler ["http-nio-8080"]
-INFO  23-09-30 11:01:28[restartedMain] [TomcatWebServer:220] - Tomcat started on port(s): 8080 (http) with context path ''
-INFO  23-09-30 11:01:28[restartedMain] [FootprintApplication:61] - Started FootprintApplication in 14.153 seconds (JVM running for 15.366)
-INFO  23-09-30 11:01:44[http-nio-8080-exec-4] [[/]:173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
-INFO  23-09-30 11:01:44[http-nio-8080-exec-4] [DispatcherServlet:525] - Initializing Servlet 'dispatcherServlet'
-INFO  23-09-30 11:01:44[http-nio-8080-exec-4] [DispatcherServlet:547] - Completed initialization in 2 ms
-INFO  23-09-30 11:01:59[http-nio-8080-exec-3] [CommentLogAdvice:36] - 회원번호 40가 게시글 78에 댓글 78에 editComment를 시도하였습니다.
-INFO  23-09-30 11:01:59[http-nio-8080-exec-3] [CommentLogAdvice:39] - 회원번호 40에 의해 게시글 78에 댓글 78에 editComment가 실행되었습니다.
-INFO  23-09-30 11:02:16[http-nio-8080-exec-9] [CommentLogAdvice:36] - 회원번호 40가 게시글 78에 댓글 78에 editComment를 시도하였습니다.
-INFO  23-09-30 11:02:16[http-nio-8080-exec-9] [CommentLogAdvice:39] - 회원번호 40에 의해 게시글 78에 댓글 78에 editComment가 실행되었습니다.
-INFO  23-09-30 11:03:03[background-preinit] [Version:21] - HV000001: Hibernate Validator 6.2.5.Final
-INFO  23-09-30 11:03:03[restartedMain] [FootprintApplication:55] - Starting FootprintApplication using Java 11.0.19 on DESKTOP-4HIFCAO with PID 792 (C:\Users\khdsc\IdeaProjects\footprint\backend\footprint\build\classes\java\main started by khdsc in C:\Users\khdsc\IdeaProjects\footprint\backend\footprint)
-INFO  23-09-30 11:03:03[restartedMain] [FootprintApplication:637] - The following 3 profiles are active: "rds", "oauth", "redis"
-INFO  23-09-30 11:03:03[restartedMain] [DevToolsPropertyDefaultsPostProcessor:255] - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-INFO  23-09-30 11:03:03[restartedMain] [DevToolsPropertyDefaultsPostProcessor:255] - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-INFO  23-09-30 11:03:05[restartedMain] [RepositoryConfigurationDelegate:262] - Multiple Spring Data modules found, entering strict repository configuration mode
-INFO  23-09-30 11:03:05[restartedMain] [RepositoryConfigurationDelegate:132] - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
-INFO  23-09-30 11:03:05[restartedMain] [RepositoryConfigurationDelegate:201] - Finished Spring Data repository scanning in 76 ms. Found 0 Redis repository interfaces.
-INFO  23-09-30 11:03:08[restartedMain] [TomcatWebServer:108] - Tomcat initialized with port(s): 8080 (http)
-INFO  23-09-30 11:03:08[restartedMain] [Http11NioProtocol:173] - Initializing ProtocolHandler ["http-nio-8080"]
-INFO  23-09-30 11:03:08[restartedMain] [StandardService:173] - Starting service [Tomcat]
-INFO  23-09-30 11:03:08[restartedMain] [StandardEngine:173] - Starting Servlet engine: [Apache Tomcat/9.0.71]
-INFO  23-09-30 11:03:08[restartedMain] [[/]:173] - Initializing Spring embedded WebApplicationContext
-INFO  23-09-30 11:03:08[restartedMain] [ServletWebServerApplicationContext:292] - Root WebApplicationContext: initialization completed in 5117 ms
-INFO  23-09-30 11:03:12[restartedMain] [DefaultSecurityFilterChain:55] - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@55f241, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@7fb563d8, org.springframework.security.web.context.SecurityContextPersistenceFilter@3eefe59e, org.springframework.security.web.header.HeaderWriterFilter@7e8cc4c2, org.springframework.web.filter.CorsFilter@2b3d1ab2, org.springframework.security.web.authentication.logout.LogoutFilter@7ee0abce, org.springframework.security.oauth2.client.web.OAuth2AuthorizationRequestRedirectFilter@42f661d, org.springframework.security.oauth2.client.web.OAuth2LoginAuthenticationFilter@1c090aa6, foot.footprint.global.security.JwtAuthenticationFilter@4f087a71, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@7a661cd0, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@1716387f, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@3bd01656, org.springframework.security.web.session.SessionManagementFilter@2ad109c1, org.springframework.security.web.access.ExceptionTranslationFilter@5b95a19b, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@5c282d27]
-INFO  23-09-30 11:03:13[restartedMain] [VersionPrinter:49] - Flyway Community Edition 5.2.4 by Boxfuse
-INFO  23-09-30 11:03:13[restartedMain] [HikariDataSource:110] - HikariPool-1 - Starting...
-INFO  23-09-30 11:03:13[restartedMain] [HikariDataSource:123] - HikariPool-1 - Start completed.
-INFO  23-09-30 11:03:13[restartedMain] [DatabaseFactory:49] - Database: jdbc:mysql://footprintdb.ceekjekckdhv.ap-northeast-2.rds.amazonaws.com:3306/footprintDB (MySQL 8.0)
-INFO  23-09-30 11:03:14[restartedMain] [DbValidate:49] - Successfully validated 22 migrations (execution time 00:00.127s)
-INFO  23-09-30 11:03:14[restartedMain] [DbMigrate:49] - Current version of schema `footprintDB`: 7.2
-INFO  23-09-30 11:03:14[restartedMain] [DbMigrate:49] - Schema `footprintDB` is up to date. No migration necessary.
-INFO  23-09-30 11:03:14[restartedMain] [OptionalLiveReloadServer:59] - LiveReload server is running on port 35729
-INFO  23-09-30 11:03:14[restartedMain] [Http11NioProtocol:173] - Starting ProtocolHandler ["http-nio-8080"]
-INFO  23-09-30 11:03:14[restartedMain] [TomcatWebServer:220] - Tomcat started on port(s): 8080 (http) with context path ''
-INFO  23-09-30 11:03:14[restartedMain] [FootprintApplication:61] - Started FootprintApplication in 12.521 seconds (JVM running for 13.757)
-INFO  23-09-30 11:06:46[http-nio-8080-exec-1] [[/]:173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
-INFO  23-09-30 11:06:46[http-nio-8080-exec-1] [DispatcherServlet:525] - Initializing Servlet 'dispatcherServlet'
-INFO  23-09-30 11:06:46[http-nio-8080-exec-1] [DispatcherServlet:547] - Completed initialization in 5 ms
-INFO  23-09-30 11:06:55[http-nio-8080-exec-5] [CommentLogAdvice:36] - 회원번호 40가 게시글 78에 댓글 78에 editComment를 시도하였습니다.
-INFO  23-09-30 11:06:55[http-nio-8080-exec-5] [CommentLogAdvice:39] - 회원번호 40에 의해 게시글 78에 댓글 78에 editComment가 실행되었습니다.
-INFO  23-09-30 11:08:20[background-preinit] [Version:21] - HV000001: Hibernate Validator 6.2.5.Final
-INFO  23-09-30 11:08:20[restartedMain] [FootprintApplication:55] - Starting FootprintApplication using Java 11.0.19 on DESKTOP-4HIFCAO with PID 9992 (C:\Users\khdsc\IdeaProjects\footprint\backend\footprint\build\classes\java\main started by khdsc in C:\Users\khdsc\IdeaProjects\footprint\backend\footprint)
-INFO  23-09-30 11:08:20[restartedMain] [FootprintApplication:637] - The following 3 profiles are active: "rds", "oauth", "redis"
-INFO  23-09-30 11:08:20[restartedMain] [DevToolsPropertyDefaultsPostProcessor:255] - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-INFO  23-09-30 11:08:20[restartedMain] [DevToolsPropertyDefaultsPostProcessor:255] - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-INFO  23-09-30 11:08:22[restartedMain] [RepositoryConfigurationDelegate:262] - Multiple Spring Data modules found, entering strict repository configuration mode
-INFO  23-09-30 11:08:22[restartedMain] [RepositoryConfigurationDelegate:132] - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
-INFO  23-09-30 11:08:22[restartedMain] [RepositoryConfigurationDelegate:201] - Finished Spring Data repository scanning in 128 ms. Found 0 Redis repository interfaces.
-INFO  23-09-30 11:08:25[restartedMain] [TomcatWebServer:108] - Tomcat initialized with port(s): 8080 (http)
-INFO  23-09-30 11:08:25[restartedMain] [Http11NioProtocol:173] - Initializing ProtocolHandler ["http-nio-8080"]
-INFO  23-09-30 11:08:25[restartedMain] [StandardService:173] - Starting service [Tomcat]
-INFO  23-09-30 11:08:25[restartedMain] [StandardEngine:173] - Starting Servlet engine: [Apache Tomcat/9.0.71]
-INFO  23-09-30 11:08:25[restartedMain] [[/]:173] - Initializing Spring embedded WebApplicationContext
-INFO  23-09-30 11:08:25[restartedMain] [ServletWebServerApplicationContext:292] - Root WebApplicationContext: initialization completed in 5027 ms
-INFO  23-09-30 11:08:29[restartedMain] [DefaultSecurityFilterChain:55] - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@442fa93d, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@50ab2392, org.springframework.security.web.context.SecurityContextPersistenceFilter@6f61dae2, org.springframework.security.web.header.HeaderWriterFilter@3153295a, org.springframework.web.filter.CorsFilter@342a2a22, org.springframework.security.web.authentication.logout.LogoutFilter@36d10fb6, org.springframework.security.oauth2.client.web.OAuth2AuthorizationRequestRedirectFilter@1e814228, org.springframework.security.oauth2.client.web.OAuth2LoginAuthenticationFilter@7b13eed3, foot.footprint.global.security.JwtAuthenticationFilter@14f9c7c6, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@7ba87ee2, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@4fa05c7, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@788bd3d5, org.springframework.security.web.session.SessionManagementFilter@3bceeea6, org.springframework.security.web.access.ExceptionTranslationFilter@6759096, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@1ba4fd68]
-INFO  23-09-30 11:08:30[restartedMain] [VersionPrinter:49] - Flyway Community Edition 5.2.4 by Boxfuse
-INFO  23-09-30 11:08:30[restartedMain] [HikariDataSource:110] - HikariPool-1 - Starting...
-INFO  23-09-30 11:08:31[restartedMain] [HikariDataSource:123] - HikariPool-1 - Start completed.
-INFO  23-09-30 11:08:31[restartedMain] [DatabaseFactory:49] - Database: jdbc:mysql://footprintdb.ceekjekckdhv.ap-northeast-2.rds.amazonaws.com:3306/footprintDB (MySQL 8.0)
-INFO  23-09-30 11:08:31[restartedMain] [DbValidate:49] - Successfully validated 22 migrations (execution time 00:00.130s)
-INFO  23-09-30 11:08:31[restartedMain] [DbMigrate:49] - Current version of schema `footprintDB`: 7.2
-INFO  23-09-30 11:08:31[restartedMain] [DbMigrate:49] - Schema `footprintDB` is up to date. No migration necessary.
-INFO  23-09-30 11:08:32[restartedMain] [OptionalLiveReloadServer:59] - LiveReload server is running on port 35729
-INFO  23-09-30 11:08:32[restartedMain] [Http11NioProtocol:173] - Starting ProtocolHandler ["http-nio-8080"]
-INFO  23-09-30 11:08:32[restartedMain] [TomcatWebServer:220] - Tomcat started on port(s): 8080 (http) with context path ''
-INFO  23-09-30 11:08:32[restartedMain] [FootprintApplication:61] - Started FootprintApplication in 13.32 seconds (JVM running for 14.956)
-INFO  23-09-30 11:08:49[http-nio-8080-exec-1] [[/]:173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
-INFO  23-09-30 11:08:49[http-nio-8080-exec-1] [DispatcherServlet:525] - Initializing Servlet 'dispatcherServlet'
-INFO  23-09-30 11:08:49[http-nio-8080-exec-1] [DispatcherServlet:547] - Completed initialization in 4 ms
-INFO  23-09-30 11:11:59[http-nio-8080-exec-1] [CommentLogAdvice:36] - 회원번호 40가 게시글 78에 댓글 78에 editComment를 시도하였습니다.
-INFO  23-09-30 11:11:59[http-nio-8080-exec-1] [CommentLogAdvice:39] - 회원번호 40에 의해 게시글 78에 댓글 78에 editComment가 실행되었습니다.
-INFO  23-09-30 11:12:38[http-nio-8080-exec-2] [CommentLogAdvice:36] - 회원번호 40가 게시글 78에 댓글 78에 editComment를 시도하였습니다.
-INFO  23-09-30 11:12:38[http-nio-8080-exec-2] [CommentLogAdvice:39] - 회원번호 40에 의해 게시글 78에 댓글 78에 editComment가 실행되었습니다.
-INFO  23-09-30 11:13:05[background-preinit] [Version:21] - HV000001: Hibernate Validator 6.2.5.Final
-INFO  23-09-30 11:13:05[restartedMain] [FootprintApplication:55] - Starting FootprintApplication using Java 11.0.19 on DESKTOP-4HIFCAO with PID 16140 (C:\Users\khdsc\IdeaProjects\footprint\backend\footprint\build\classes\java\main started by khdsc in C:\Users\khdsc\IdeaProjects\footprint\backend\footprint)
-INFO  23-09-30 11:13:05[restartedMain] [FootprintApplication:637] - The following 3 profiles are active: "rds", "oauth", "redis"
-INFO  23-09-30 11:13:05[restartedMain] [DevToolsPropertyDefaultsPostProcessor:255] - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-INFO  23-09-30 11:13:05[restartedMain] [DevToolsPropertyDefaultsPostProcessor:255] - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-INFO  23-09-30 11:13:07[restartedMain] [RepositoryConfigurationDelegate:262] - Multiple Spring Data modules found, entering strict repository configuration mode
-INFO  23-09-30 11:13:07[restartedMain] [RepositoryConfigurationDelegate:132] - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
-INFO  23-09-30 11:13:07[restartedMain] [RepositoryConfigurationDelegate:201] - Finished Spring Data repository scanning in 94 ms. Found 0 Redis repository interfaces.
-INFO  23-09-30 11:13:10[restartedMain] [TomcatWebServer:108] - Tomcat initialized with port(s): 8080 (http)
-INFO  23-09-30 11:13:10[restartedMain] [Http11NioProtocol:173] - Initializing ProtocolHandler ["http-nio-8080"]
-INFO  23-09-30 11:13:10[restartedMain] [StandardService:173] - Starting service [Tomcat]
-INFO  23-09-30 11:13:10[restartedMain] [StandardEngine:173] - Starting Servlet engine: [Apache Tomcat/9.0.71]
-INFO  23-09-30 11:13:10[restartedMain] [[/]:173] - Initializing Spring embedded WebApplicationContext
-INFO  23-09-30 11:13:10[restartedMain] [ServletWebServerApplicationContext:292] - Root WebApplicationContext: initialization completed in 5025 ms
-INFO  23-09-30 11:13:14[restartedMain] [DefaultSecurityFilterChain:55] - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@44d11c47, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@a1a6125, org.springframework.security.web.context.SecurityContextPersistenceFilter@5e461524, org.springframework.security.web.header.HeaderWriterFilter@39f2b53a, org.springframework.web.filter.CorsFilter@514dcf60, org.springframework.security.web.authentication.logout.LogoutFilter@237ce2c3, org.springframework.security.oauth2.client.web.OAuth2AuthorizationRequestRedirectFilter@6305b008, org.springframework.security.oauth2.client.web.OAuth2LoginAuthenticationFilter@73d50b25, foot.footprint.global.security.JwtAuthenticationFilter@4bb8e3fd, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@356ce5a2, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@41af8c50, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@11c9bbe5, org.springframework.security.web.session.SessionManagementFilter@3cc6dad5, org.springframework.security.web.access.ExceptionTranslationFilter@3251ad41, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@769eb414]
-INFO  23-09-30 11:13:15[restartedMain] [VersionPrinter:49] - Flyway Community Edition 5.2.4 by Boxfuse
-INFO  23-09-30 11:13:15[restartedMain] [HikariDataSource:110] - HikariPool-1 - Starting...
-INFO  23-09-30 11:13:15[restartedMain] [HikariDataSource:123] - HikariPool-1 - Start completed.
-INFO  23-09-30 11:13:15[restartedMain] [DatabaseFactory:49] - Database: jdbc:mysql://footprintdb.ceekjekckdhv.ap-northeast-2.rds.amazonaws.com:3306/footprintDB (MySQL 8.0)
-INFO  23-09-30 11:13:15[restartedMain] [DbValidate:49] - Successfully validated 22 migrations (execution time 00:00.106s)
-INFO  23-09-30 11:13:16[restartedMain] [DbMigrate:49] - Current version of schema `footprintDB`: 7.2
-INFO  23-09-30 11:13:16[restartedMain] [DbMigrate:49] - Schema `footprintDB` is up to date. No migration necessary.
-INFO  23-09-30 11:13:16[restartedMain] [OptionalLiveReloadServer:59] - LiveReload server is running on port 35729
-INFO  23-09-30 11:13:16[restartedMain] [Http11NioProtocol:173] - Starting ProtocolHandler ["http-nio-8080"]
-INFO  23-09-30 11:13:16[restartedMain] [TomcatWebServer:220] - Tomcat started on port(s): 8080 (http) with context path ''
-INFO  23-09-30 11:13:16[restartedMain] [FootprintApplication:61] - Started FootprintApplication in 12.652 seconds (JVM running for 13.884)
-INFO  23-09-30 11:14:06[http-nio-8080-exec-1] [[/]:173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
-INFO  23-09-30 11:14:06[http-nio-8080-exec-1] [DispatcherServlet:525] - Initializing Servlet 'dispatcherServlet'
-INFO  23-09-30 11:14:06[http-nio-8080-exec-1] [DispatcherServlet:547] - Completed initialization in 2 ms
-INFO  23-09-30 11:14:35[http-nio-8080-exec-2] [CommentLogAdvice:36] - 회원번호 40가 게시글 41에 댓글 78에 editComment를 시도하였습니다.
-INFO  23-09-30 11:14:35[http-nio-8080-exec-5] [CommentLogAdvice:36] - 회원번호 40가 게시글 41에 댓글 78에 editComment를 시도하였습니다.
-INFO  23-09-30 11:14:35[http-nio-8080-exec-2] [CommentLogAdvice:39] - 회원번호 40에 의해 게시글 41에 댓글 78에 editComment가 실행되었습니다.
-INFO  23-09-30 11:14:35[http-nio-8080-exec-5] [CommentLogAdvice:39] - 회원번호 40에 의해 게시글 41에 댓글 78에 editComment가 실행되었습니다.
-INFO  23-09-30 11:14:45[http-nio-8080-exec-5] [ArticleLogAdvice:35] - 회원번호 40가 게시글 41에 createComment를 시도하였습니다.
-INFO  23-09-30 11:14:45[http-nio-8080-exec-5] [ArticleLogAdvice:38] - 회원번호 40에 의해 게시글 41에 createComment가 실행되였습니다.
-INFO  23-09-30 11:14:51[http-nio-8080-exec-6] [CommentLogAdvice:36] - 회원번호 40가 게시글 41에 댓글 78에 editComment를 시도하였습니다.
-INFO  23-09-30 11:14:51[http-nio-8080-exec-6] [CommentLogAdvice:39] - 회원번호 40에 의해 게시글 41에 댓글 78에 editComment가 실행되었습니다.
+INFO  23-11-06 00:04:39[restartedMain] [FootprintApplication:55] - Starting FootprintApplication using Java 11.0.19 on DESKTOP-3MFG3DB with PID 15160 (C:\Users\PC\Desktop\������Ʈ\footprint\backend\footprint\build\classes\java\main started by PC in C:\Users\PC\Desktop\������Ʈ\footprint\backend\footprint)
+INFO  23-11-06 00:04:39[background-preinit] [Version:21] - HV000001: Hibernate Validator 6.2.5.Final
+INFO  23-11-06 00:04:39[restartedMain] [FootprintApplication:637] - The following 3 profiles are active: "rds", "oauth", "redis"
+INFO  23-11-06 00:04:39[restartedMain] [DevToolsPropertyDefaultsPostProcessor:255] - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+INFO  23-11-06 00:04:39[restartedMain] [DevToolsPropertyDefaultsPostProcessor:255] - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+INFO  23-11-06 00:04:40[restartedMain] [RepositoryConfigurationDelegate:262] - Multiple Spring Data modules found, entering strict repository configuration mode
+INFO  23-11-06 00:04:40[restartedMain] [RepositoryConfigurationDelegate:132] - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+INFO  23-11-06 00:04:40[restartedMain] [RepositoryConfigurationDelegate:201] - Finished Spring Data repository scanning in 37 ms. Found 0 Redis repository interfaces.
+INFO  23-11-06 00:04:41[restartedMain] [TomcatWebServer:108] - Tomcat initialized with port(s): 8080 (http)
+INFO  23-11-06 00:04:41[restartedMain] [Http11NioProtocol:173] - Initializing ProtocolHandler ["http-nio-8080"]
+INFO  23-11-06 00:04:41[restartedMain] [StandardService:173] - Starting service [Tomcat]
+INFO  23-11-06 00:04:41[restartedMain] [StandardEngine:173] - Starting Servlet engine: [Apache Tomcat/9.0.71]
+INFO  23-11-06 00:04:41[restartedMain] [[/]:173] - Initializing Spring embedded WebApplicationContext
+INFO  23-11-06 00:04:41[restartedMain] [ServletWebServerApplicationContext:292] - Root WebApplicationContext: initialization completed in 1683 ms
+INFO  23-11-06 00:04:42[restartedMain] [DefaultSecurityFilterChain:55] - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@51ddea2a, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@765340f5, org.springframework.security.web.context.SecurityContextPersistenceFilter@d915d3c, org.springframework.security.web.header.HeaderWriterFilter@46426c56, org.springframework.web.filter.CorsFilter@7678afc3, org.springframework.security.web.authentication.logout.LogoutFilter@67779456, org.springframework.security.oauth2.client.web.OAuth2AuthorizationRequestRedirectFilter@1ff932e9, org.springframework.security.oauth2.client.web.OAuth2LoginAuthenticationFilter@69a7bd8d, foot.footprint.global.security.JwtAuthenticationFilter@3e1d07d5, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@31984623, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@2174f4e9, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@608ae172, org.springframework.security.web.session.SessionManagementFilter@21def525, org.springframework.security.web.access.ExceptionTranslationFilter@58d09864, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@4f9dddcf]
+INFO  23-11-06 00:04:42[restartedMain] [VersionPrinter:49] - Flyway Community Edition 5.2.4 by Boxfuse
+INFO  23-11-06 00:04:42[restartedMain] [HikariDataSource:110] - HikariPool-1 - Starting...
+ERROR 23-11-06 00:04:44[restartedMain] [HikariPool:594] - HikariPool-1 - Exception during pool initialization.
+com.mysql.cj.jdbc.exceptions.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+	at com.mysql.cj.jdbc.exceptions.SQLError.createCommunicationsException(SQLError.java:174)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:64)
+	at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:824)
+	at com.mysql.cj.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:444)
+	at com.mysql.cj.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:237)
+	at com.mysql.cj.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:198)
+	at com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:138)
+	at com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:364)
+	at com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:206)
+	at com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:476)
+	at com.zaxxer.hikari.pool.HikariPool.checkFailFast(HikariPool.java:561)
+	at com.zaxxer.hikari.pool.HikariPool.<init>(HikariPool.java:115)
+	at com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:112)
+	at org.flywaydb.core.internal.jdbc.JdbcUtils.openConnection(JdbcUtils.java:56)
+	at org.flywaydb.core.internal.database.DatabaseFactory.createDatabase(DatabaseFactory.java:72)
+	at org.flywaydb.core.Flyway.execute(Flyway.java:1670)
+	at org.flywaydb.core.Flyway.migrate(Flyway.java:1356)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.springframework.boot.autoconfigure.flyway.FlywayMigrationInitializer.afterPropertiesSet(FlywayMigrationInitializer.java:70)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1863)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1800)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:620)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:322)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:955)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:918)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:583)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:147)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:731)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:408)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:307)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1303)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1292)
+	at foot.footprint.FootprintApplication.main(FootprintApplication.java:10)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:49)
+Caused by: com.mysql.cj.exceptions.CJCommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:490)
+	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:61)
+	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:105)
+	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:151)
+	at com.mysql.cj.exceptions.ExceptionFactory.createCommunicationsException(ExceptionFactory.java:167)
+	at com.mysql.cj.protocol.a.NativeSocketConnection.connect(NativeSocketConnection.java:89)
+	at com.mysql.cj.NativeSession.connect(NativeSession.java:120)
+	at com.mysql.cj.jdbc.ConnectionImpl.connectOneTryOnly(ConnectionImpl.java:944)
+	at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:814)
+	... 44 common frames omitted
+Caused by: java.net.UnknownHostException: �˷��� ȣ��Ʈ�� �����ϴ� (footprintdb.ceekjekckdhv.ap-northeast-2.rds.amazonaws.com)
+	at java.base/java.net.Inet6AddressImpl.lookupAllHostAddr(Native Method)
+	at java.base/java.net.InetAddress$PlatformNameService.lookupAllHostAddr(InetAddress.java:929)
+	at java.base/java.net.InetAddress.getAddressesFromNameService(InetAddress.java:1538)
+	at java.base/java.net.InetAddress$NameServiceAddresses.get(InetAddress.java:848)
+	at java.base/java.net.InetAddress.getAllByName0(InetAddress.java:1527)
+	at java.base/java.net.InetAddress.getAllByName(InetAddress.java:1380)
+	at java.base/java.net.InetAddress.getAllByName(InetAddress.java:1302)
+	at com.mysql.cj.protocol.StandardSocketFactory.connect(StandardSocketFactory.java:130)
+	at com.mysql.cj.protocol.a.NativeSocketConnection.connect(NativeSocketConnection.java:63)
+	... 47 common frames omitted
+WARN  23-11-06 00:04:44[restartedMain] [AnnotationConfigServletWebServerApplicationContext:591] - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'flywayInitializer' defined in class path resource [org/springframework/boot/autoconfigure/flyway/FlywayAutoConfiguration$FlywayConfiguration.class]: Invocation of init method failed; nested exception is java.lang.reflect.InvocationTargetException
+INFO  23-11-06 00:04:44[restartedMain] [StandardService:173] - Stopping service [Tomcat]
+INFO  23-11-06 00:04:44[restartedMain] [ConditionEvaluationReportLoggingListener:136] - 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+ERROR 23-11-06 00:04:44[restartedMain] [SpringApplication:821] - Application run failed
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'flywayInitializer' defined in class path resource [org/springframework/boot/autoconfigure/flyway/FlywayAutoConfiguration$FlywayConfiguration.class]: Invocation of init method failed; nested exception is java.lang.reflect.InvocationTargetException
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1804)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:620)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:322)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:955)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:918)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:583)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:147)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:731)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:408)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:307)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1303)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1292)
+	at foot.footprint.FootprintApplication.main(FootprintApplication.java:10)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:49)
+Caused by: java.lang.reflect.InvocationTargetException: null
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.springframework.boot.autoconfigure.flyway.FlywayMigrationInitializer.afterPropertiesSet(FlywayMigrationInitializer.java:70)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1863)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1800)
+	... 23 common frames omitted
+Caused by: org.flywaydb.core.internal.exception.FlywaySqlException: 
+Unable to obtain connection from database: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+SQL State  : 08S01
+Error Code : 0
+Message    : Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+
+	at org.flywaydb.core.internal.jdbc.JdbcUtils.openConnection(JdbcUtils.java:60)
+	at org.flywaydb.core.internal.database.DatabaseFactory.createDatabase(DatabaseFactory.java:72)
+	at org.flywaydb.core.Flyway.execute(Flyway.java:1670)
+	at org.flywaydb.core.Flyway.migrate(Flyway.java:1356)
+	... 30 common frames omitted
+Caused by: com.mysql.cj.jdbc.exceptions.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+	at com.mysql.cj.jdbc.exceptions.SQLError.createCommunicationsException(SQLError.java:174)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:64)
+	at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:824)
+	at com.mysql.cj.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:444)
+	at com.mysql.cj.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:237)
+	at com.mysql.cj.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:198)
+	at com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:138)
+	at com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:364)
+	at com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:206)
+	at com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:476)
+	at com.zaxxer.hikari.pool.HikariPool.checkFailFast(HikariPool.java:561)
+	at com.zaxxer.hikari.pool.HikariPool.<init>(HikariPool.java:115)
+	at com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:112)
+	at org.flywaydb.core.internal.jdbc.JdbcUtils.openConnection(JdbcUtils.java:56)
+	... 33 common frames omitted
+Caused by: com.mysql.cj.exceptions.CJCommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:490)
+	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:61)
+	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:105)
+	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:151)
+	at com.mysql.cj.exceptions.ExceptionFactory.createCommunicationsException(ExceptionFactory.java:167)
+	at com.mysql.cj.protocol.a.NativeSocketConnection.connect(NativeSocketConnection.java:89)
+	at com.mysql.cj.NativeSession.connect(NativeSession.java:120)
+	at com.mysql.cj.jdbc.ConnectionImpl.connectOneTryOnly(ConnectionImpl.java:944)
+	at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:814)
+	... 44 common frames omitted
+Caused by: java.net.UnknownHostException: �˷��� ȣ��Ʈ�� �����ϴ� (footprintdb.ceekjekckdhv.ap-northeast-2.rds.amazonaws.com)
+	at java.base/java.net.Inet6AddressImpl.lookupAllHostAddr(Native Method)
+	at java.base/java.net.InetAddress$PlatformNameService.lookupAllHostAddr(InetAddress.java:929)
+	at java.base/java.net.InetAddress.getAddressesFromNameService(InetAddress.java:1538)
+	at java.base/java.net.InetAddress$NameServiceAddresses.get(InetAddress.java:848)
+	at java.base/java.net.InetAddress.getAllByName0(InetAddress.java:1527)
+	at java.base/java.net.InetAddress.getAllByName(InetAddress.java:1380)
+	at java.base/java.net.InetAddress.getAllByName(InetAddress.java:1302)
+	at com.mysql.cj.protocol.StandardSocketFactory.connect(StandardSocketFactory.java:130)
+	at com.mysql.cj.protocol.a.NativeSocketConnection.connect(NativeSocketConnection.java:63)
+	... 47 common frames omitted

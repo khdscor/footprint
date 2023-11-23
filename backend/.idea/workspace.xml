@@ -4,8 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e9c5eb8d-61e6-4bf1-a075-2ef5ca99f02a" name="변경" comment="refactor: Group Service 구현체 네이밍 및 findGroupsService 내 인터페이스와 여러 구현체로 분리">
+    <list default="true" id="e9c5eb8d-61e6-4bf1-a075-2ef5ca99f02a" name="변경" comment="test: createGroup 테스트를 일시적으로 제한(실제 DB 지속 생성 방지)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/footprint/footprint/log/err_log.log" beforeDir="false" afterPath="$PROJECT_DIR$/footprint/footprint/log/err_log.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/footprint/footprint/log/testLog.log" beforeDir="false" afterPath="$PROJECT_DIR$/footprint/footprint/log/testLog.log" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,7 +35,13 @@
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="footprint" type="f1a62948:ProjectNode" />
-                <item name="Run Configurations" type="7b0102dc:RunConfigurationsNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="footprint" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="application" type="c8890929:TasksNode$1" />
               </path>
             </expand>
             <select />
@@ -77,22 +85,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_MARK_IGNORED_FILES_AS_EXCLUDED": "true",
-    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "main",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/khdsc/IdeaProjects/footprint/backend/footprint/build.gradle",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "reference.settingsdialog.project.gradle"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_MARK_IGNORED_FILES_AS_EXCLUDED&quot;: &quot;true&quot;,
+    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/khdsc/IdeaProjects/footprint/backend/footprint/build.gradle&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.project.gradle&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\khdsc\IdeaProjects\footprint\backend\footprint\src\main\resources\db\migration" />
@@ -129,64 +137,69 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CreateBulkArticleTest.create" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="footprint [bootRun]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/footprint" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="bootRun" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <ForceTestExec>false</ForceTestExec>
+      <method v="2" />
+    </configuration>
+    <configuration name="footprint [dependencies]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/footprint" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="dependencies" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <ForceTestExec>false</ForceTestExec>
+      <method v="2" />
+    </configuration>
+    <configuration name="All in footprint.test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="footprint.test" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="foot.footprint.bulkInsert.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="foot.footprint.bulkInsert" />
-      <option name="MAIN_CLASS_NAME" value="foot.footprint.bulkInsert.CreateBulkArticleTest" />
-      <option name="METHOD_NAME" value="create" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="DeleteArticleRepositoryTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="FindArticleDetailsServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="footprint.test" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="foot.footprint.repository.article.*" />
+          <option name="PATTERN" value="foot.footprint.service.article.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="foot.footprint.repository.article" />
-      <option name="MAIN_CLASS_NAME" value="foot.footprint.repository.article.DeleteArticleRepositoryTest" />
+      <option name="PACKAGE_NAME" value="foot.footprint.service.article" />
+      <option name="MAIN_CLASS_NAME" value="foot.footprint.service.article.FindArticleDetailsServiceTest" />
       <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="FIndArticleRepositoryTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="footprint.test" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="foot.footprint.repository.article.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="foot.footprint.repository.article" />
-      <option name="MAIN_CLASS_NAME" value="foot.footprint.repository.article.FIndArticleRepositoryTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="FIndArticleRepositoryTest.findArticlesTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="footprint.test" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="foot.footprint.repository.article.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="foot.footprint.repository.article" />
-      <option name="MAIN_CLASS_NAME" value="foot.footprint.repository.article.FIndArticleRepositoryTest" />
-      <option name="METHOD_NAME" value="findArticlesTest" />
-      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -206,18 +219,18 @@
     </configuration>
     <list>
       <item itemvalue="Application.FootprintApplication" />
-      <item itemvalue="JUnit.CreateBulkArticleTest.create" />
-      <item itemvalue="JUnit.DeleteArticleRepositoryTest" />
-      <item itemvalue="JUnit.FIndArticleRepositoryTest" />
-      <item itemvalue="JUnit.FIndArticleRepositoryTest.findArticlesTest" />
+      <item itemvalue="Gradle.footprint [dependencies]" />
+      <item itemvalue="Gradle.footprint [bootRun]" />
+      <item itemvalue="JUnit.All in footprint.test" />
+      <item itemvalue="JUnit.FindArticleDetailsServiceTest" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.CreateBulkArticleTest.create" />
+        <item itemvalue="Gradle.footprint [dependencies]" />
         <item itemvalue="Application.FootprintApplication" />
-        <item itemvalue="JUnit.FIndArticleRepositoryTest" />
-        <item itemvalue="JUnit.DeleteArticleRepositoryTest" />
-        <item itemvalue="JUnit.FIndArticleRepositoryTest.findArticlesTest" />
+        <item itemvalue="Gradle.footprint [bootRun]" />
+        <item itemvalue="JUnit.FindArticleDetailsServiceTest" />
+        <item itemvalue="JUnit.All in footprint.test" />
       </list>
     </recent_temporary>
   </component>
@@ -229,13 +242,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1677633300752</updated>
-    </task>
-    <task id="LOCAL-00200" summary="refactor:GroupRepository 테스트 수정">
-      <created>1688117706547</created>
-      <option name="number" value="00200" />
-      <option name="presentableId" value="LOCAL-00200" />
-      <option name="project" value="LOCAL" />
-      <updated>1688117706548</updated>
     </task>
     <task id="LOCAL-00201" summary="refactor:serviceTest 빠른 객체 생성을 위한 SetUpMethods 구현">
       <created>1688120141904</created>
@@ -573,7 +579,14 @@
       <option name="project" value="LOCAL" />
       <updated>1694092421146</updated>
     </task>
-    <option name="localTasksCounter" value="249" />
+    <task id="LOCAL-00249" summary="test: createGroup 테스트를 일시적으로 제한(실제 DB 지속 생성 방지)">
+      <created>1700745463391</created>
+      <option name="number" value="00249" />
+      <option name="presentableId" value="LOCAL-00249" />
+      <option name="project" value="LOCAL" />
+      <updated>1700745463392</updated>
+    </task>
+    <option name="localTasksCounter" value="250" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -591,7 +604,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="refactor: findArticlesController 인터페이스와 여러 구현체들로 분리" />
     <MESSAGE value="refactor: createArticle Api 인터페이스와 구현체로 분리" />
     <MESSAGE value="refactor: deleteArticle Api 인터페이스와 구현체로 분리" />
     <MESSAGE value="refactor: editArticle Api 인터페이스와 구현체로 분리" />
@@ -616,6 +628,7 @@
     <MESSAGE value="refactor: Comment Service 구현체 네이밍 리펙토링" />
     <MESSAGE value="refactor: Member Service 구현체 네이밍 리펙토링" />
     <MESSAGE value="refactor: Group Service 구현체 네이밍 및 findGroupsService 내 인터페이스와 여러 구현체로 분리" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor: Group Service 구현체 네이밍 및 findGroupsService 내 인터페이스와 여러 구현체로 분리" />
+    <MESSAGE value="test: createGroup 테스트를 일시적으로 제한(실제 DB 지속 생성 방지)" />
+    <option name="LAST_COMMIT_MESSAGE" value="test: createGroup 테스트를 일시적으로 제한(실제 DB 지속 생성 방지)" />
   </component>
 </project>
