@@ -19,7 +19,7 @@ const signUpApi = (email, password, nickName, history) => {
   .catch(error => {
     if (error.response.status === 401 || error.response.status === 400) {
       alert(error.response.data.errorMessage);
-      return Promise.reject();
+      return;
     }
     alert("뭔지 모르지만 회원가입실패?! 홈으로..");
     history.push("/");

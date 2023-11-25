@@ -29,6 +29,6 @@ public class ChangePublicArticleLikeService extends AbstractChangeArticleLikeSer
             throw new WrongMapTypeException("게시글이 전체지도에 포함되지 않습니다.");
         }
         changeLike(articleLikeDto);
-        updateRedis(articleLikeDto.getArticleId());
+        updateRedis(articleLikeDto);
     }
 }

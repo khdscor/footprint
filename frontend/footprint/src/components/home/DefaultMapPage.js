@@ -98,20 +98,18 @@ const DefaultMapPage = (props) => {
         center.lat(),
         latitudeRange,
         center.lng(),
-        longitudeRange
-      ).then((mapArticlesPromise) => {
-        setArticles(mapArticlesPromise);
-      });
+        longitudeRange,
+        setArticles
+      );
     } else if (mapType === PRIVATE) {
       findPrivateMapArticles(
         center.lat(),
         latitudeRange,
         center.lng(),
         longitudeRange,
-        props.history
-      ).then((mapArticlesPromise) => {
-        setArticles(mapArticlesPromise);
-      });
+        props.history,
+        setArticles
+      );
     } else if (mapType === GROUPED && groupId > 0) {
       findGroupedMapArticles(
         groupId,
@@ -119,15 +117,15 @@ const DefaultMapPage = (props) => {
         latitudeRange,
         center.lng(),
         longitudeRange,
-        props.history
-      ).then((mapArticlesPromise) => {
-        setArticles(mapArticlesPromise);
-      });
+        props.history,
+        setArticles
+      );
       findGroupNameApi({
         groupId: groupId,
         accessToken: accessToken,
-        history: props.history
-      }).then(groupPromise => setGroupName(groupPromise.name))
+        history: props.history,
+        setGroupName
+      });
     }
   }, [zoom, center, mapType, groupId, myLocation]);
 
@@ -135,9 +133,7 @@ const DefaultMapPage = (props) => {
     if (!accessToken) {
       return;
     }
-    findUserImageUrlApi(accessToken).then((userImageUrlPromise) => {
-      setUserImageUrl(userImageUrlPromise);
-    });
+    findUserImageUrlApi(accessToken, setUserImageUrl);
   }, [accessToken]);
 
   return (

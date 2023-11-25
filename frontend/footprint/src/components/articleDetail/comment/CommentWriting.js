@@ -84,11 +84,11 @@ const CommentWriting = ({
               articleId,
               mapType,
               accessToken,
-              history
-            ).then((commentPromise) => {
-              setComments(new Array(commentPromise).concat(comments));
-              writingRef.current.style.height = "20px";
-            });
+              history,
+              setComments,
+              comments,
+              writingRef
+            );
           }
         }}
       >

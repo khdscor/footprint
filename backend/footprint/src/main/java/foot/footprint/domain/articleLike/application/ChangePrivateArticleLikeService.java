@@ -29,6 +29,6 @@ public class ChangePrivateArticleLikeService extends AbstractChangeArticleLikeSe
         }
         ValidateIsMine.validateArticleIsMine(article.getMember_id(), articleLikeDto.getMemberId());
         changeLike(articleLikeDto);
-        updateRedis(articleLikeDto.getArticleId());
+        updateRedis(articleLikeDto);
     }
 }

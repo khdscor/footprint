@@ -31,6 +31,6 @@ public class ChangeGroupedArticleLikeService extends AbstractChangeArticleLikeSe
         ValidateIsMine.validateInMyGroup(articleLikeDto.getArticleId(),
             articleLikeDto.getMemberId(), articleGroupRepository);
         changeLike(articleLikeDto);
-        updateRedis(articleLikeDto.getArticleId());
+        updateRedis(articleLikeDto);
     }
 }

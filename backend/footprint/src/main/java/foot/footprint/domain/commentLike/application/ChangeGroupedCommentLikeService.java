@@ -30,6 +30,6 @@ public class ChangeGroupedCommentLikeService extends AbstractChangeCommentLikeSe
         findAndValidateArticle(articleId);
         ValidateIsMine.validateInMyGroup(articleId, memberId, articleGroupRepository);
         changeLike(commentId, memberId, hasILiked);
-        updateRedis(articleId, commentId);
+        updateRedis(articleId, memberId, commentId);
     }
 }

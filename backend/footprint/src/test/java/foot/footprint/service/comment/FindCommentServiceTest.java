@@ -37,7 +37,7 @@ public class FindCommentServiceTest {
     public void FindCommentInPage() {
         //given
         List<CommentResponse> responses = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 11; i++) {
             EasyRandom commentEasyRandom = CommentFeatureFactory.create((long) i, 1L, 1L);
             Comment comment = commentEasyRandom.nextObject(Comment.class);
             EasyRandom memberEasyRandom = MemberFeatureFactory.create(1L);

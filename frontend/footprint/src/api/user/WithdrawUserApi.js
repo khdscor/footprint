@@ -6,7 +6,7 @@ const withdrawUserApi = ({accessToken, history}) => {
   if (!accessToken) {
     alert("로그인이 필요한 서비스입니다.")
     history.push('/login');
-    return Promise.reject("토큰이 없음");
+    return;
   }
   const config = {
     headers: {
@@ -26,11 +26,11 @@ const withdrawUserApi = ({accessToken, history}) => {
         history.push("/login");
       } else if(error.response.status === 400 || error.response.status === 404) {
         alert(error.response.data.errorMessage);
-        return Promise.reject();
+        return;
       } else {
         alert("회원 탈퇴 실패ㅜ");
       }
-      return Promise.reject();
+      return;
     });
 };
 

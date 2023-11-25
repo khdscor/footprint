@@ -38,7 +38,7 @@ public class CreateCommentOnPrivateArticle extends AbstractCreateCommentService 
         ValidateIsMine.validateArticleIsMine(article.getMember_id(), authorDto.getId());
 
         CommentResponse response = saveComment(articleId, content, authorDto);
-        updateRedis(articleId, response);
+        updateRedis(articleId, memberId, response);
         return response;
     }
 }
