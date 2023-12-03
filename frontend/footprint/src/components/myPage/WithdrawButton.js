@@ -1,6 +1,7 @@
 import React from 'react';
 import withdrawUserApi from "../../api/user/WithdrawUserApi";
 import styled from "styled-components";
+import {ACCESS_TOKEN} from "../../constants/SessionStorage";
 
 const WithdrawButtonStyle = styled.div`
   color: #777777;
@@ -11,6 +12,8 @@ const WithdrawButtonStyle = styled.div`
 const WithdrawButton = ({nickName, accessToken, history}) => {
   const onWithdrawButtonClicked = () => {
     withdrawUserApi({accessToken, history})
+    sessionStorage.removeItem(ACCESS_TOKEN);
+    history.push("/");
   };
   return (
         <WithdrawButtonStyle onClick={()=>{
