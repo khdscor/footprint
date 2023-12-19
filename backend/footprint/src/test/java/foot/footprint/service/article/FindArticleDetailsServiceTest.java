@@ -10,6 +10,8 @@ import foot.footprint.domain.article.domain.Article;
 import foot.footprint.domain.article.dto.articleDetails.ArticleDetailsDto;
 import foot.footprint.domain.article.dto.articleDetails.ArticlePageDto;
 import foot.footprint.domain.article.dto.articleDetails.ArticlePageResponse;
+import foot.footprint.domain.article.dto.articleDetails.ArticlePrivateDetailsDto;
+import foot.footprint.domain.article.dto.articleDetails.MyCommentLikesInArticle;
 import foot.footprint.domain.comment.dto.CommentsDto;
 import foot.footprint.domain.commentLike.dao.CommentLikeRepository;
 import foot.footprint.global.security.user.CustomUserDetails;
@@ -54,13 +56,16 @@ public class FindArticleDetailsServiceTest {
             new Date(), 0L);
         List<CommentsDto> responses = new ArrayList<>();
         responses.add(response);
-        ArticlePageDto dto = new ArticlePageDto(articleId, details, true, responses);
-        given(findArticleRepository.findArticleDetails(any(), any())).willReturn(Optional.of(dto));
-        //댓글 좋아요 리스트 리턴
-        List<Long> commentLikes = new ArrayList<>();
-        commentLikes.add(1L);
-        given(commentLikeRepository.findCommentIdsILiked(any(), any())).willReturn(
-            new ArrayList<>(commentLikes));
+        ArticlePageDto dto = new ArticlePageDto(articleId, details, responses);
+        given(findArticleRepository.findArticleDetails(any())).willReturn(Optional.of(dto));
+        //댓글 좋아요 리스트 및 내 좋아요 리턴
+
+        List<MyCommentLikesInArticle> myComments = new ArrayList<>();
+        myComments.add(new MyCommentLikesInArticle(1L));
+        ArticlePrivateDetailsDto privateDto = new ArticlePrivateDetailsDto(articleId, true,
+            myComments);
+        given(findArticleRepository.findArticlePrivateDetails(any(), any())).willReturn(
+            Optional.of(privateDto));
         //objectSerializer - 캐시 데이터는 없다고 가정하고 리턴
         given(objectSerializer.getData(any(), any())).willReturn(Optional.empty());
     }
@@ -86,7 +91,8 @@ public class FindArticleDetailsServiceTest {
         assertThat(response.getMyMemberId()).isEqualTo(memberId);
 
         //when 유저 정보가 null(로그인하지 않는 상태)
-        ArticlePageResponse response2 = findPublicArticleDetailsService.findDetails(articleId, null);
+        ArticlePageResponse response2 = findPublicArticleDetailsService.findDetails(articleId,
+            null);
 
         //then
         assertThat(response2.getArticleDetails().getId()).isEqualTo(articleId);
