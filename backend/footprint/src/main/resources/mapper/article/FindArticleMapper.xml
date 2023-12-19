@@ -63,4 +63,22 @@
       <result property="commentTotalLikes" column="commentTotalLikes"/>
     </collection>
   </resultMap>
+
+
+  <select id="findArticlePrivateDetails" resultMap="ArticlePrivateDetails">
+    SELECT
+    #{articleId} as articleId,
+    (SELECT EXISTS ( SELECT 1 FROM article_like
+    WHERE article_id = #{articleId} and member_id =#{memberId} )) as articleLike,
+    (SELECT c.id FROM comment c JOIN comment_like l ON c.id = l.comment_id
+    WHERE c.article_id = #{articleId} AND l.member_id=#{memberId}) as commentId
+  </select>
+  <resultMap id="ArticlePrivateDetails" type="ArticlePrivateDetailsDto">
+    <id property="articleId" column="articleId"/>
+    <id property="articleLike" column="articleLike"/>
+    <collection property="commentLikes" notNullColumn="commentId"
+      ofType="foot.footprint.domain.article.dto.articleDetails.MyCommentLikesInArticle">
+      <id property="commentId" column="commentId"/>
+    </collection>
+  </resultMap>
 </mapper>
