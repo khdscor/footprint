@@ -12,6 +12,5 @@ import lombok.NoArgsConstructor;
 public class ArticlePageDto {
     private Long articleId;
     private ArticleDetailsDto articleDetails;
-    private boolean articleLike;
     private List<CommentsDto> comments;
 }

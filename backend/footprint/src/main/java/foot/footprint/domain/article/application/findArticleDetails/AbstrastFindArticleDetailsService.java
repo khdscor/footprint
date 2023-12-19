@@ -33,17 +33,17 @@ public abstract class AbstrastFindArticleDetailsService implements FindArticleDe
     }
 
     protected void addNonLoginInfo(Long articleId, ArticlePageResponse response) {
-        ArticlePageDto dto = findArticleRepository.findArticleDetails(articleId, null)
+        ArticlePageDto dto = findArticleRepository.findArticleDetails(articleId)
             .orElseThrow(() -> new NotExistsException("해당 게시글이 존재하지 않습니다."));
         response.addNonLoginInfo(dto.getArticleDetails(), dto.getComments());
     }
 
     protected void addLoginInfo(Long articleId, Long memberId, ArticlePageResponse response) {
-        ArticlePageDto dto = findArticleRepository.findArticleDetails(articleId, memberId)
+        ArticlePageDto dto = findArticleRepository.findArticleDetails(articleId)
             .orElseThrow(() -> new NotExistsException("해당 게시글이 존재하지 않습니다."));
         List<Long> commentLikes = commentLikeRepository.findCommentIdsILiked(articleId, memberId);
         response.addNonLoginInfo(dto.getArticleDetails(), dto.getComments());
-        response.addLoginInfo(dto.isArticleLike(), commentLikes, memberId);
+        response.addLoginInfo(true, commentLikes, memberId);
     }
 
     protected void validateMember(CustomUserDetails userDetails) {

@@ -23,5 +23,5 @@ public interface FindArticleRepository {
     @Select("Select * from article where id=#{articleId}")
     Optional<Article> findById(Long articleId);
 
-    Optional<ArticlePageDto> findArticleDetails(Long articleId, Long memberId);
+    Optional<ArticlePageDto> findArticleDetails(Long articleId);
 }
