@@ -61,7 +61,7 @@ public class FindArticleDetailsServiceTest {
         //댓글 좋아요 리스트 및 내 좋아요 리턴
 
         List<MyCommentLikesInArticle> myComments = new ArrayList<>();
-        myComments.add(new MyCommentLikesInArticle(1L));
+        myComments.add(new MyCommentLikesInArticle(1L, memberId));
         ArticlePrivateDetailsDto privateDto = new ArticlePrivateDetailsDto(articleId, true,
             myComments);
         given(findArticleRepository.findArticlePrivateDetails(any(), any())).willReturn(

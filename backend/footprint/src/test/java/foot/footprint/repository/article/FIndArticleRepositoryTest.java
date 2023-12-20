@@ -246,7 +246,7 @@ public class FIndArticleRepositoryTest extends RepositoryTest {
         assertThat(detailsDto1.get().isArticleLike()).isTrue();
         assertThat(detailsDto2.get().isArticleLike()).isFalse();
         assertThat(detailsDto1.get().getCommentLikes()).hasSize(0);
-        assertThat(detailsDto2.get().getCommentLikes()).hasSize(1);
+        assertThat(detailsDto2.get().getCommentLikes()).hasSize(3);
     }
 
     private void saveArticle(double lat, double lng, boolean publicMap, boolean privateMap) {

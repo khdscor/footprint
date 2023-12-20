@@ -67,11 +67,14 @@
 
   <select id="findArticlePrivateDetails" resultMap="ArticlePrivateDetails">
     SELECT
-    #{articleId} as articleId,
+    a.id as articleId,
     (SELECT EXISTS ( SELECT 1 FROM article_like
     WHERE article_id = #{articleId} and member_id =#{memberId} )) as articleLike,
-    (SELECT c.id FROM comment c JOIN comment_like l ON c.id = l.comment_id
-    WHERE c.article_id = #{articleId} AND l.member_id=#{memberId}) as commentId
+    c.id as commentId,
+    l.member_id as memberId
+    FROM article a LEFT JOIN comment c ON a.id = c.article_id
+    LEFT JOIN comment_like l ON c.id = l.comment_id
+    WHERE a.id = #{articleId}
   </select>
   <resultMap id="ArticlePrivateDetails" type="ArticlePrivateDetailsDto">
     <id property="articleId" column="articleId"/>
@@ -79,6 +82,7 @@
     <collection property="commentLikes" notNullColumn="commentId"
       ofType="foot.footprint.domain.article.dto.articleDetails.MyCommentLikesInArticle">
       <id property="commentId" column="commentId"/>
+      <result property="memberId" column="memberId"/>
     </collection>
   </resultMap>
 </mapper>

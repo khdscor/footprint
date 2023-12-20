@@ -9,4 +9,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class MyCommentLikesInArticle {
     private Long commentId;
+    private Long memberId;
+
+    public boolean hasMemberId(){
+        return this.memberId != null;
+    }
 }

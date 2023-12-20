@@ -35,10 +35,14 @@ public class ArticlePageResponse {
             .collect(Collectors.toList());
     }
 
-    public void addLoginInfo(boolean articleLike, List<MyCommentLikesInArticle> commentLikes, Long myMemberId) {
+    public void addLoginInfo(boolean articleLike, List<MyCommentLikesInArticle> commentLikes,
+        Long myMemberId) {
         this.articleLike = articleLike;
         for (MyCommentLikesInArticle commentLike : commentLikes) {
-            this.commentLikes.add(commentLike.getCommentId());
+            if (commentLike.hasMemberId() &&
+                commentLike.getMemberId().equals(myMemberId)) {
+                this.commentLikes.add(commentLike.getCommentId());
+            }
         }
         this.myMemberId = myMemberId;
     }
@@ -53,8 +57,8 @@ public class ArticlePageResponse {
         comments.add(0, comment);
     }
 
-    public void removeComment(Long commentId){
-        for (int i =0; i < comments.size(); i++) {
+    public void removeComment(Long commentId) {
+        for (int i = 0; i < comments.size(); i++) {
             if (comments.get(i).getId().equals(commentId)) {
                 comments.remove(i);
                 break;
