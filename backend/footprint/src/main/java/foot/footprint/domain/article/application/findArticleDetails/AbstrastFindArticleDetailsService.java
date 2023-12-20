@@ -12,6 +12,7 @@ import foot.footprint.global.error.exception.NotAuthorizedOrExistException;
 import foot.footprint.global.error.exception.NotExistsException;
 import foot.footprint.global.security.user.CustomUserDetails;
 import foot.footprint.global.util.ObjectSerializer;
+import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
@@ -32,18 +33,26 @@ public abstract class AbstrastFindArticleDetailsService implements FindArticleDe
             .orElseThrow(() -> new NotExistsException("해당 게시글이 존재하지 않습니다."));
     }
 
-    protected void addNonLoginInfo(Long articleId, ArticlePageResponse response) {
+    protected void addNonLoginInfo(ArticlePageResponse response, Long articleId) {
+        String redisKey = "articleDetails::" + articleId;
+        Optional<ArticlePageDto> cache = objectSerializer.getData(redisKey, ArticlePageDto.class);
+        // redis에 데이터가 있을 경우 - DB 접근 x
+        if (cache.isPresent()) {
+            response.addNonLoginInfo(cache.get().getArticleDetails(), cache.get().getComments());
+            objectSerializer.saveData(redisKey, cache.get(), 10);
+            return;
+        }
+        // redis에 데이터가 없을 경우 - DB 접근 o
         ArticlePageDto dto = findArticleRepository.findArticleDetails(articleId)
             .orElseThrow(() -> new NotExistsException("해당 게시글이 존재하지 않습니다."));
         response.addNonLoginInfo(dto.getArticleDetails(), dto.getComments());
+        //redis에 저장
+        objectSerializer.saveData(redisKey, dto, 10);
     }
 
     protected void addLoginInfo(Long articleId, Long memberId, ArticlePageResponse response) {
-        ArticlePageDto dto = findArticleRepository.findArticleDetails(articleId)
-            .orElseThrow(() -> new NotExistsException("해당 게시글이 존재하지 않습니다."));
         ArticlePrivateDetailsDto privateDto = findArticleRepository.findArticlePrivateDetails(
             articleId, memberId).orElseThrow(() -> new NotExistsException("해당 게시글이 존재하지 않습니다."));
-        response.addNonLoginInfo(dto.getArticleDetails(), dto.getComments());
         response.addLoginInfo(privateDto.isArticleLike(), privateDto.getCommentLikes(), memberId);
     }
 
