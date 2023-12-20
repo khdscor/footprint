@@ -1,7 +1,7 @@
 package foot.footprint.global.util;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import foot.footprint.domain.article.dto.articleDetails.ArticlePageResponse;
+import foot.footprint.domain.article.dto.articleDetails.ArticlePageDto;
 import foot.footprint.domain.article.dto.articleDetails.ArticleUpdatePart;
 import foot.footprint.global.error.exception.WrongAccessRedisException;
 import java.util.Optional;
@@ -44,7 +44,7 @@ public class ObjectSerializer {
     }
 
     public<T> void updateArticleData(String key, ArticleUpdatePart part, T data) {
-        Optional<ArticlePageResponse> cache = getData(key, ArticlePageResponse.class);
+        Optional<ArticlePageDto> cache = getData(key, ArticlePageDto.class);
         if (cache.isPresent()) {
             part.apply(cache.get(), data);
             saveData(key, cache.get(), 10);

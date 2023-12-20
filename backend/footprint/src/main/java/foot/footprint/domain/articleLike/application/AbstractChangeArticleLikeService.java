@@ -39,7 +39,8 @@ public abstract class AbstractChangeArticleLikeService implements ChangeArticleL
 
     protected void updateRedis(ArticleLikeDto articleLikeDto) {
         String redisKey =
-            "articleDetails::" + articleLikeDto.getArticleId() + ":" + articleLikeDto.getMemberId();
-        objectSerializer.updateArticleData(redisKey, ArticleUpdatePart.CHANGE_LIKE, null);
+            "articleDetails::" + articleLikeDto.getArticleId();
+        objectSerializer.updateArticleData(redisKey, ArticleUpdatePart.CHANGE_LIKE,
+            articleLikeDto.isHasILiked());
     }
 }
