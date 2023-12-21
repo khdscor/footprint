@@ -19,7 +19,7 @@ public enum ArticleUpdatePart {
     },
     EDIT_ARTICLE("edit_article") {
         public <T> void apply(ArticlePageDto dto, T data) {
-//            response.getArticleDetails().editContent((String) data);
+            dto.getArticleDetails().editContent((String) data);
         }
     },
     EDIT_COMMENT("edit_comment") {

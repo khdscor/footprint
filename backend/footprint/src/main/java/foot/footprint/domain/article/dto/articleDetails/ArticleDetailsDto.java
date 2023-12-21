@@ -26,4 +26,8 @@ public class ArticleDetailsDto {
     public void updateTotalLikes(Long num) {
         totalLikes += num;
     }
+
+    public void editContent(String content) {
+        this.content = content;
+    }
 }
