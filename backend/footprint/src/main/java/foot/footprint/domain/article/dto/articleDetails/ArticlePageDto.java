@@ -3,6 +3,7 @@ package foot.footprint.domain.article.dto.articleDetails;
 import foot.footprint.domain.comment.dto.CommentResponse;
 import foot.footprint.domain.comment.dto.CommentUpdateDto;
 import foot.footprint.domain.comment.dto.CommentsDto;
+import java.util.Date;
 import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -48,12 +49,12 @@ public class ArticlePageDto {
 //        }
 //    }
 //
-//    public void changeCommentContent(CommentUpdateDto dto) {
-//        for (CommentResponse comment : comments) {
-//            if (comment.getId().equals(dto.getId())) {
-//                comment.editContent(dto.getNewContent());
-//                break;
-//            }
-//        }
-//    }
+    public void changeCommentContent(CommentUpdateDto dto) {
+        for (CommentsDto comment : comments) {
+            if (comment.getCommentId().equals(dto.getId())) {
+                comment.editContent(dto.getNewContent());
+                break;
+            }
+        }
+    }
 }

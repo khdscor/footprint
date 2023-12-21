@@ -24,7 +24,7 @@ public class EditGeneralCommentService implements EditCommentService {
         if (result == 0) {
             throw new NotMatchMemberException("댓글을 수정할 권한이 없습니다.");
         }
-        String redisKey = "articleDetails::" + articleId + ":" + memberId;
+        String redisKey = "articleDetails::" + articleId;
         objectSerializer.updateArticleData(redisKey, ArticleUpdatePart.EDIT_COMMENT,
             new CommentUpdateDto(commentId, newContent));
     }

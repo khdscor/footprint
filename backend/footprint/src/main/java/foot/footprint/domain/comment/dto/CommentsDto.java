@@ -24,4 +24,12 @@ public class CommentsDto {
             response.getAuthor().getNickName(), response.getAuthor().getImageUrl(),
             response.getCreateDate(), response.getTotalLikes());
     }
+
+    public void editContent(String content){
+        this.commentContent = content;
+    }
+
+    public void updateTotalLikes(Long num) {
+        commentTotalLikes += num;
+    }
 }

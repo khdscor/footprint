@@ -24,7 +24,7 @@ public enum ArticleUpdatePart {
     },
     EDIT_COMMENT("edit_comment") {
         public <T> void apply(ArticlePageDto dto, T data) {
-//            response.changeCommentContent((CommentUpdateDto) data);
+            dto.changeCommentContent((CommentUpdateDto) data);
         }
     },
     ADD_COMMENT("add_comment") {
