@@ -39,7 +39,7 @@ public abstract class AbstrastFindArticleDetailsService implements FindArticleDe
         // redis에 데이터가 있을 경우 - DB 접근 x
         if (cache.isPresent()) {
             response.addNonLoginInfo(cache.get().getArticleDetails(), cache.get().getComments());
-            objectSerializer.saveData(redisKey, cache.get(), 10);
+            objectSerializer.saveData(redisKey, cache.get(), 60);
             return;
         }
         // redis에 데이터가 없을 경우 - DB 접근 o
@@ -47,7 +47,7 @@ public abstract class AbstrastFindArticleDetailsService implements FindArticleDe
             .orElseThrow(() -> new NotExistsException("해당 게시글이 존재하지 않습니다."));
         response.addNonLoginInfo(dto.getArticleDetails(), dto.getComments());
         //redis에 저장
-        objectSerializer.saveData(redisKey, dto, 10);
+        objectSerializer.saveData(redisKey, dto, 60);
     }
 
     protected void addLoginInfo(Long articleId, Long memberId, ArticlePageResponse response) {
