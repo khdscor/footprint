@@ -22,4 +22,12 @@ public class ArticleDetailsDto {
     private String writerImageUrl;
     private Date createDate;
     private Long totalLikes;
+
+    public void updateTotalLikes(Long num) {
+        totalLikes += num;
+    }
+
+    public void editContent(String content) {
+        this.content = content;
+    }
 }

@@ -12,6 +12,4 @@ public interface CommentLikeRepository {
 
     @Delete("DELETE FROM comment_like WHERE comment_id=#{commentId} and member_id=#{memberId}")
     int deleteCommentLike(Long commentId, Long memberId);
-
-    List<Long> findCommentIdsILiked(Long articleId, Long memberId);
 }

@@ -9,7 +9,6 @@ import foot.footprint.domain.group.dao.ArticleGroupRepository;
 import foot.footprint.global.security.user.CustomUserDetails;
 import foot.footprint.global.util.ObjectSerializer;
 import foot.footprint.global.util.ValidateIsMine;
-import java.util.Optional;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -37,18 +36,9 @@ public class FindGroupedArticleDetailsService extends AbstrastFindArticleDetails
     public ArticlePageResponse findDetails(Long articleId, CustomUserDetails userDetails) {
         validateMember(userDetails);
         ValidateIsMine.validateInMyGroup(articleId, userDetails.getId(), articleGroupRepository);
-        String redisKey = "articleDetails::" + articleId + ":" + userDetails.getId();
-        Optional<ArticlePageResponse> cache = objectSerializer.getData(redisKey,
-            ArticlePageResponse.class);
-        // redis에 데이터가 있을 경우 - DB 접근 x
-        if (cache.isPresent()) {
-            return cache.get();
-        }
-        // redis에 데이터가 없을 경우 - DB 접근 o
         ArticlePageResponse response = new ArticlePageResponse();
+        addNonLoginInfo(response, articleId);
         addLoginInfo(articleId, userDetails.getId(), response);
-        // redis에 저장
-        objectSerializer.saveData(redisKey, response, 10);
         return response;
     }
 }

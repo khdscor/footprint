@@ -9,7 +9,6 @@ import foot.footprint.global.error.exception.WrongMapTypeException;
 import foot.footprint.global.security.user.CustomUserDetails;
 import foot.footprint.global.util.ObjectSerializer;
 import foot.footprint.global.util.ValidateIsMine;
-import java.util.Optional;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -29,20 +28,10 @@ public class FindPrivateArticleDetailsService extends AbstrastFindArticleDetails
     @Transactional(readOnly = true)
     public ArticlePageResponse findDetails(Long articleId, CustomUserDetails userDetails) {
         validateMember(userDetails);
-        String redisKey = "articleDetails::" + articleId + ":" + userDetails.getId();
-        Optional<ArticlePageResponse> cache = objectSerializer.getData(redisKey,
-            ArticlePageResponse.class);
-        // redis에 데이터가 있을 경우 - DB 접근 x
-        if (cache.isPresent()) {
-            validatePrivateArticle(cache.get(), userDetails.getId());
-            return cache.get();
-        }
-        // redis에 데이터가 없을 경우 - DB 접근 o
         ArticlePageResponse response = new ArticlePageResponse();
+        addNonLoginInfo(response, articleId);
         addLoginInfo(articleId, userDetails.getId(), response);
         validatePrivateArticle(response, userDetails.getId());
-        // redis에 저장
-        objectSerializer.saveData(redisKey, response, 10);
         return response;
     }
 

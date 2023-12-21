@@ -5,6 +5,7 @@ import foot.footprint.domain.article.domain.Article;
 import foot.footprint.domain.article.dto.articleDetails.ArticleUpdatePart;
 import foot.footprint.domain.commentLike.dao.CommentLikeRepository;
 import foot.footprint.domain.commentLike.domain.CommentLike;
+import foot.footprint.domain.commentLike.dto.ChangeTotalLikesDto;
 import foot.footprint.global.error.exception.NotExistsException;
 import foot.footprint.global.util.ObjectSerializer;
 import lombok.RequiredArgsConstructor;
@@ -38,9 +39,9 @@ public abstract class AbstractChangeCommentLikeService implements ChangeCommentL
         }
     }
 
-    protected void updateRedis(Long articleId, Long memberId, Long commentId) {
-        String redisKey = "articleDetails::" + articleId + ":" + memberId;
+    protected void updateRedis(Long articleId, Long commentId, boolean hasILiked) {
+        String redisKey = "articleDetails::" + articleId;
         objectSerializer.updateArticleData(redisKey, ArticleUpdatePart.CHANGE_COMMENT_LIKE,
-            commentId);
+            new ChangeTotalLikesDto(commentId, hasILiked));
     }
 }

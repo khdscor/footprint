@@ -22,15 +22,6 @@
   </select>
   <select id="findArticleDetails" resultMap="ArticleDetails">
     select a.id as articleId,
-    <choose>
-      <when test="memberId !=null">
-        (SELECT EXISTS ( SELECT 1 FROM article_like
-        WHERE article_id = #{articleId} and member_id =#{memberId} )) as articleLike,
-      </when>
-      <otherwise>
-        false as articleLike,
-      </otherwise>
-    </choose>
     a.id as id, a.title as title, a.content as content,
     a.latitude as latitude, a.longitude as longitude, a.public_map as publicMap,
     a.private_map as privateMap, a.member_id as writerId,
@@ -47,7 +38,6 @@
   </select>
   <resultMap id="ArticleDetails" type="ArticlePageDto">
     <id property="articleId" column="articleId"/>
-    <result property="articleLike" column="articleLike"/>
     <association property="articleDetails" javaType="ArticleDetailsDto">
       <id property="id" column="id"/>
       <result property="title" column="title"/>
@@ -71,6 +61,28 @@
       <result property="imageUrl" column="imageUrl"/>
       <result property="commentCreateDate" column="commentCreateDate"/>
       <result property="commentTotalLikes" column="commentTotalLikes"/>
+    </collection>
+  </resultMap>
+
+
+  <select id="findArticlePrivateDetails" resultMap="ArticlePrivateDetails">
+    SELECT
+    a.id as articleId,
+    (SELECT EXISTS ( SELECT 1 FROM article_like
+    WHERE article_id = #{articleId} and member_id =#{memberId} )) as articleLike,
+    c.id as commentId,
+    l.member_id as memberId
+    FROM article a LEFT JOIN comment c ON a.id = c.article_id
+    LEFT JOIN comment_like l ON c.id = l.comment_id
+    WHERE a.id = #{articleId}
+  </select>
+  <resultMap id="ArticlePrivateDetails" type="ArticlePrivateDetailsDto">
+    <id property="articleId" column="articleId"/>
+    <id property="articleLike" column="articleLike"/>
+    <collection property="commentLikes" notNullColumn="commentId"
+      ofType="foot.footprint.domain.article.dto.articleDetails.MyCommentLikesInArticle">
+      <id property="commentId" column="commentId"/>
+      <result property="memberId" column="memberId"/>
     </collection>
   </resultMap>
 </mapper>

@@ -6,6 +6,7 @@ import foot.footprint.domain.article.domain.Article;
 import foot.footprint.domain.article.domain.LocationRange;
 import foot.footprint.domain.article.dto.articleDetails.ArticlePageDto;
 import foot.footprint.domain.article.dto.ArticleRangeRequest;
+import foot.footprint.domain.article.dto.articleDetails.ArticlePrivateDetailsDto;
 import foot.footprint.domain.articleLike.dao.ArticleLikeRepository;
 import foot.footprint.domain.articleLike.domain.ArticleLike;
 import foot.footprint.domain.comment.dao.CreateCommentRepository;
@@ -167,15 +168,18 @@ public class FIndArticleRepositoryTest extends RepositoryTest {
         commentLikeRepository.saveCommentLike(commentLike3);
 
         //when
-        Optional<ArticlePageDto> dto = findArticleRepository.findArticleDetails(article.getId(),
-            member1.getId());
+        Optional<ArticlePageDto> dto = findArticleRepository.findArticleDetails(article.getId());
+        Optional<ArticlePrivateDetailsDto> detailsDto = findArticleRepository
+            .findArticlePrivateDetails(article.getId(), member1.getId());
 
         //then
+
         assertThat(dto).isPresent();
+        assertThat(detailsDto).isPresent();
+        assertThat(detailsDto.get().getCommentLikes()).hasSize(2);
         assertThat(dto.get().getArticleId()).isEqualTo(article.getId());
         assertThat(dto.get().getArticleDetails().getContent()).isEqualTo(article.getContent());
         assertThat(dto.get().getArticleDetails().getTotalLikes()).isEqualTo(2);
-        assertThat(dto.get().isArticleLike()).isTrue();
         assertThat(dto.get().getComments().size()).isEqualTo(2);
         assertThat(dto.get().getComments().get(0).getNickName()).isEqualTo(member2.getNick_name());
         assertThat(dto.get().getComments().get(0).getMemberId()).isEqualTo(member2.getId());
@@ -194,18 +198,55 @@ public class FIndArticleRepositoryTest extends RepositoryTest {
         assertThat(resultComment).isEqualTo(13);
 
         //when
-        Optional<ArticlePageDto> dto2 = findArticleRepository.findArticleDetails(article.getId(),
-            member1.getId());
+        Optional<ArticlePageDto> dto2 = findArticleRepository.findArticleDetails(article.getId());
 
         //then
         assertThat(dto2).isPresent();
         assertThat(dto2.get().getComments()).hasSize(10);
 
         //when & then : 로그인 하지 않았을 시
-        Optional<ArticlePageDto> dto3 = findArticleRepository.findArticleDetails(article.getId(),
-                null);
+        Optional<ArticlePageDto> dto3 = findArticleRepository.findArticleDetails(article.getId());
         assertThat(dto3).isPresent();
-        assertThat(dto3.get().isArticleLike()).isFalse();
+    }
+
+    @Test
+    public void findArticlePrivateDetails() {
+        //given
+        Member member1 = buildMember();
+        memberRepository.saveMember(member1);
+        Member member2 = buildMember();
+        memberRepository.saveMember(member2);
+        Article article1 = buildArticle(member1.getId());
+        createArticleRepository.saveArticle(article1);
+        Article article2 = buildArticle(member1.getId());
+        createArticleRepository.saveArticle(article2);
+        ArticleLike articleLike1 = buildArticleLike(member1.getId(), article1.getId());
+        articleLikeRepository.saveArticleLike(articleLike1);
+        Comment comment1 = buildComment(member1.getId(), article2.getId());
+        Comment comment2 = buildComment(member1.getId(), article2.getId());
+        Comment comment3 = buildComment(member1.getId(), article2.getId());
+        createCommentRepository.saveComment(comment1);
+        createCommentRepository.saveComment(comment2);
+        createCommentRepository.saveComment(comment3);
+        CommentLike commentLike1 = buildCommentLike(comment1.getId(), member1.getId());
+        CommentLike commentLike2 = buildCommentLike(comment2.getId(), member2.getId());
+        commentLikeRepository.saveCommentLike(commentLike1);
+        commentLikeRepository.saveCommentLike(commentLike2);
+
+        //when
+        Optional<ArticlePrivateDetailsDto> detailsDto1 = findArticleRepository
+            .findArticlePrivateDetails(article1.getId(), member1.getId());
+        Optional<ArticlePrivateDetailsDto> detailsDto2 = findArticleRepository
+            .findArticlePrivateDetails(article2.getId(), member1.getId());
+
+        //then
+        assertThat(detailsDto1.isPresent()).isTrue();
+        assertThat(detailsDto2.isPresent()).isTrue();
+        assertThat(detailsDto1.get().getArticleId()).isEqualTo(article1.getId());
+        assertThat(detailsDto1.get().isArticleLike()).isTrue();
+        assertThat(detailsDto2.get().isArticleLike()).isFalse();
+        assertThat(detailsDto1.get().getCommentLikes()).hasSize(0);
+        assertThat(detailsDto2.get().getCommentLikes()).hasSize(3);
     }
 
     private void saveArticle(double lat, double lng, boolean publicMap, boolean privateMap) {

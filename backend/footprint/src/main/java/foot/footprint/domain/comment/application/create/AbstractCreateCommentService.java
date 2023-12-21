@@ -6,6 +6,7 @@ import foot.footprint.domain.article.dto.articleDetails.ArticleUpdatePart;
 import foot.footprint.domain.comment.dao.CreateCommentRepository;
 import foot.footprint.domain.comment.domain.Comment;
 import foot.footprint.domain.comment.dto.CommentResponse;
+import foot.footprint.domain.comment.dto.CommentsDto;
 import foot.footprint.domain.member.dao.MemberRepository;
 import foot.footprint.domain.member.domain.Member;
 import foot.footprint.global.domain.AuthorDto;
@@ -38,8 +39,9 @@ public abstract class AbstractCreateCommentService implements CreateCommentServi
             .orElseThrow(() -> new NotExistsException("해당하는 회원이 존재하지 않습니다."));
     }
 
-    protected void updateRedis (Long articleId, Long memberId, CommentResponse response) {
-        String redisKey = "articleDetails::" + articleId + ":" + memberId;
-        objectSerializer.updateArticleData(redisKey, ArticleUpdatePart.ADD_COMMENT, response);
+    protected void updateRedis (Long articleId, CommentResponse response) {
+        String redisKey = "articleDetails::" + articleId;
+        CommentsDto dto = CommentsDto.toDto(response);
+        objectSerializer.updateArticleData(redisKey, ArticleUpdatePart.ADD_COMMENT, dto);
     }
 }

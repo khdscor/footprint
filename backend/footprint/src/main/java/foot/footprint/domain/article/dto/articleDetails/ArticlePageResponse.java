@@ -1,8 +1,8 @@
 package foot.footprint.domain.article.dto.articleDetails;
 
 import foot.footprint.domain.comment.dto.CommentResponse;
-import foot.footprint.domain.comment.dto.CommentUpdateDto;
 import foot.footprint.domain.comment.dto.CommentsDto;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import lombok.Getter;
@@ -13,7 +13,7 @@ public class ArticlePageResponse {
     private ArticleDetails articleDetails;
     private boolean articleLike;
     private List<CommentResponse> comments;
-    private List<Long> commentLikes;
+    private List<Long> commentLikes = new ArrayList<>();
     private Long myMemberId;
 
     public ArticlePageResponse(ArticleDetailsDto articleDetails, boolean articleLike,
@@ -34,51 +34,15 @@ public class ArticlePageResponse {
             .collect(Collectors.toList());
     }
 
-    public void addLoginInfo(boolean articleLike, List<Long> commentLikes, Long myMemberId) {
+    public void addLoginInfo(boolean articleLike, List<MyCommentLikesInArticle> commentLikes,
+        Long myMemberId) {
         this.articleLike = articleLike;
-        this.commentLikes = commentLikes;
+        for (MyCommentLikesInArticle commentLike : commentLikes) {
+            if (commentLike.hasMemberId() &&
+                commentLike.getMemberId().equals(myMemberId)) {
+                this.commentLikes.add(commentLike.getCommentId());
+            }
+        }
         this.myMemberId = myMemberId;
-    }
-
-    public void changeLike() {
-        Long changeNum = articleLike ? -1L : 1L;
-        articleDetails.updateTotalLikes(changeNum);
-        articleLike = !articleLike;
-    }
-
-    public void addComment(CommentResponse comment) {
-        comments.add(0, comment);
-    }
-
-    public void removeComment(Long commentId){
-        for (int i =0; i < comments.size(); i++) {
-            if (comments.get(i).getId().equals(commentId)) {
-                comments.remove(i);
-                break;
-            }
-        }
-    }
-
-    public void changeCommentLike(Long commentId) {
-        Long num = -1L;
-        if (!commentLikes.remove(commentId)) {
-            commentLikes.add(commentId);
-            num = -num;
-        }
-        for (CommentResponse comment : comments) {
-            if (comment.getId().equals(commentId)) {
-                comment.updateTotalLikes(num);
-                break;
-            }
-        }
-    }
-
-    public void changeCommentContent(CommentUpdateDto dto) {
-        for (CommentResponse comment : comments) {
-            if (comment.getId().equals(dto.getId())) {
-                comment.editContent(dto.getNewContent());
-                break;
-            }
-        }
     }
 }

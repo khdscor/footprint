@@ -9,7 +9,6 @@ import foot.footprint.global.error.exception.WrongMapTypeException;
 import foot.footprint.global.security.user.CustomUserDetails;
 import foot.footprint.global.util.ObjectSerializer;
 import java.util.ArrayList;
-import java.util.Optional;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,12 +17,9 @@ import org.springframework.transaction.annotation.Transactional;
 @Qualifier("public")
 public class FindPublicArticleDetailsService extends AbstrastFindArticleDetailsService {
 
-    public FindPublicArticleDetailsService(
-        FindArticleRepository findArticleRepository,
-        ArticleLikeRepository articleLikeRepository,
-        FindCommentRepository findCommentRepository,
-        CommentLikeRepository commentLikeRepository,
-        ObjectSerializer objectSerializer) {
+    public FindPublicArticleDetailsService(FindArticleRepository findArticleRepository,
+        ArticleLikeRepository articleLikeRepository, FindCommentRepository findCommentRepository,
+        CommentLikeRepository commentLikeRepository, ObjectSerializer objectSerializer) {
         super(findArticleRepository, articleLikeRepository, findCommentRepository,
             commentLikeRepository, objectSerializer);
     }
@@ -32,26 +28,15 @@ public class FindPublicArticleDetailsService extends AbstrastFindArticleDetailsS
     @Transactional(readOnly = true)
     public ArticlePageResponse findDetails(Long articleId, CustomUserDetails userDetails) {
         ArticlePageResponse response = new ArticlePageResponse();
+        addNonLoginInfo(response, articleId);
+        validatePublicArticle(response);
         // 로그인하지 않았을 경우
         if (userDetails == null) {
-            addNonLoginInfo(articleId, response);
             response.addLoginInfo(false, new ArrayList<>(), -1L);
             return response;
         }
         // 로그인하였을 경우
-        String redisKey = "articleDetails::" + articleId + ":" + userDetails.getId();
-        Optional<ArticlePageResponse> cache = objectSerializer.getData(redisKey,
-            ArticlePageResponse.class);
-        // redis에 데이터가 있을 경우 - DB 접근 x
-        if (cache.isPresent()) {
-            validatePublicArticle(cache.get());
-            return cache.get();
-        }
-        // redis에 데이터가 없을 경우 - DB 접근 o
         addLoginInfo(articleId, userDetails.getId(), response);
-        validatePublicArticle(response);
-        // redis에 저장
-        objectSerializer.saveData(redisKey, response, 10);
         return response;
     }
 
