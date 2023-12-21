@@ -21,9 +21,9 @@ public class ArticlePageDto {
         articleDetails.updateTotalLikes(changeNum);
     }
 
-//    public void addComment(CommentResponse comment) {
-//        comments.add(0, comment);
-//    }
+    public void addComment(CommentsDto comment) {
+        comments.add(0, comment);
+    }
 //
 //    public void removeComment(Long commentId) {
 //        for (int i = 0; i < comments.size(); i++) {

@@ -37,7 +37,7 @@ public class CreateCommentOnGroupedArticle extends AbstractCreateCommentService 
         AuthorDto authorDto = AuthorDto.buildAuthorDto(member);
         ValidateIsMine.validateInMyGroup(articleId, authorDto.getId(), articleGroupRepository);
         CommentResponse response = saveComment(articleId, content, authorDto);
-        updateRedis(articleId, memberId, response);
+        updateRedis(articleId, response);
         return response;
     }
 }

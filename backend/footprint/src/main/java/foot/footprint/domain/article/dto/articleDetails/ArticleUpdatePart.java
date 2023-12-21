@@ -3,6 +3,7 @@ package foot.footprint.domain.article.dto.articleDetails;
 
 import foot.footprint.domain.comment.dto.CommentResponse;
 import foot.footprint.domain.comment.dto.CommentUpdateDto;
+import foot.footprint.domain.comment.dto.CommentsDto;
 
 public enum ArticleUpdatePart {
 
@@ -28,7 +29,7 @@ public enum ArticleUpdatePart {
     },
     ADD_COMMENT("add_comment") {
         public <T> void apply(ArticlePageDto dto, T data) {
-//            response.addComment((CommentResponse) data);
+            dto.addComment((CommentsDto) data);
         }
     },
     REMOVE_COMMENT("remove_comment") {
