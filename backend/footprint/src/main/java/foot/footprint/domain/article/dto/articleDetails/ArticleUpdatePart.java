@@ -1,7 +1,5 @@
 package foot.footprint.domain.article.dto.articleDetails;
 
-
-import foot.footprint.domain.comment.dto.CommentResponse;
 import foot.footprint.domain.comment.dto.CommentUpdateDto;
 import foot.footprint.domain.comment.dto.CommentsDto;
 import foot.footprint.domain.commentLike.dto.ChangeTotalLikesDto;
@@ -35,7 +33,7 @@ public enum ArticleUpdatePart {
     },
     REMOVE_COMMENT("remove_comment") {
         public <T> void apply(ArticlePageDto dto, T data) {
-//            response.removeComment((Long) data);
+            dto.removeComment((Long) data);
         }
     };
 
