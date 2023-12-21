@@ -4,6 +4,7 @@ package foot.footprint.domain.article.dto.articleDetails;
 import foot.footprint.domain.comment.dto.CommentResponse;
 import foot.footprint.domain.comment.dto.CommentUpdateDto;
 import foot.footprint.domain.comment.dto.CommentsDto;
+import foot.footprint.domain.commentLike.dto.ChangeTotalLikesDto;
 
 public enum ArticleUpdatePart {
 
@@ -14,7 +15,7 @@ public enum ArticleUpdatePart {
     },
     CHANGE_COMMENT_LIKE("change_comment_like") {
         public <T> void apply(ArticlePageDto dto, T data) {
-//            response.changeCommentLike((Long) data);
+            dto.changeCommentLike((ChangeTotalLikesDto) data);
         }
     },
     EDIT_ARTICLE("edit_article") {

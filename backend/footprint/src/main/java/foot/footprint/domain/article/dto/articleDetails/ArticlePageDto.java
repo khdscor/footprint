@@ -3,6 +3,7 @@ package foot.footprint.domain.article.dto.articleDetails;
 import foot.footprint.domain.comment.dto.CommentResponse;
 import foot.footprint.domain.comment.dto.CommentUpdateDto;
 import foot.footprint.domain.comment.dto.CommentsDto;
+import foot.footprint.domain.commentLike.dto.ChangeTotalLikesDto;
 import java.util.Date;
 import java.util.List;
 import lombok.AllArgsConstructor;
@@ -13,6 +14,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ArticlePageDto {
+
     private Long articleId;
     private ArticleDetailsDto articleDetails;
     private List<CommentsDto> comments;
@@ -34,21 +36,17 @@ public class ArticlePageDto {
 //            }
 //        }
 //    }
-//
-//    public void changeCommentLike(Long commentId) {
-//        Long num = -1L;
-//        if (!commentLikes.remove(commentId)) {
-//            commentLikes.add(commentId);
-//            num = -num;
-//        }
-//        for (CommentResponse comment : comments) {
-//            if (comment.getId().equals(commentId)) {
-//                comment.updateTotalLikes(num);
-//                break;
-//            }
-//        }
-//    }
-//
+
+    public void changeCommentLike(ChangeTotalLikesDto dto) {
+        for (CommentsDto comment : comments) {
+            if (comment.getCommentId().equals(dto.getCommentId())) {
+                Long num = dto.isHasLiked() ? -1L : 1L;
+                comment.updateTotalLikes(num);
+                break;
+            }
+        }
+    }
+
     public void changeCommentContent(CommentUpdateDto dto) {
         for (CommentsDto comment : comments) {
             if (comment.getCommentId().equals(dto.getId())) {
