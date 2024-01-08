@@ -16,7 +16,7 @@ import java.util.Objects;
 
 @Service
 @RequiredArgsConstructor
-public class CreateGeneralArticleService implements CreateArticleService{
+public class CreateGeneralArticleService implements CreateArticleService {
 
     private final CreateArticleRepository articleRepository;
 
@@ -27,7 +27,9 @@ public class CreateGeneralArticleService implements CreateArticleService{
     @Override
     @Transactional
     public Long create(CreateArticleDto dto, Long memberId) {
-        Article article = Article.createArticle(dto, memberId);
+        Article article = Article.createArticle(
+            dto.getTitle(), dto.getContent(), dto.getLatitude(), dto.getLongitude(),
+            dto.isPublicMap(), dto.isPrivateMap(), memberId);
         validateMapType(dto);
         articleRepository.saveArticle(article);
         if (!dto.getGroupIdsToBeIncluded().isEmpty()) {
