@@ -2,6 +2,7 @@ package foot.footprint.domain.article.api;
 
 import foot.footprint.domain.article.application.create.CreateArticleService;
 import foot.footprint.domain.article.dto.CreateArticleRequest;
+import foot.footprint.domain.article.dto.CreateArticleDto;
 import foot.footprint.global.aop.article.CreateArticleLog;
 import foot.footprint.global.error.exception.WrongInputException;
 import foot.footprint.global.security.user.CustomUserDetails;
@@ -28,7 +29,8 @@ public class CreateArticleController {
     public ResponseEntity<Void> createArticle(@RequestBody @Valid CreateArticleRequest request,
         @AuthenticationPrincipal CustomUserDetails userDetails) {
         validateLocation(request.getLatitude(), request.getLongitude());
-        Long articleId = createArticleService.create(request, userDetails.getId());
+        Long articleId = createArticleService.create(CreateArticleDto.create(request),
+            userDetails.getId());
 
         if (request.isPublicMap()) {
             return buildArticleCreateResponse("/articles/public/" + articleId);

@@ -2,7 +2,7 @@ package foot.footprint.domain.article.application.create;
 
 import foot.footprint.domain.article.dao.CreateArticleRepository;
 import foot.footprint.domain.article.domain.Article;
-import foot.footprint.domain.article.dto.CreateArticleRequest;
+import foot.footprint.domain.article.dto.CreateArticleDto;
 import foot.footprint.domain.article.exception.NotIncludedMapException;
 import foot.footprint.domain.group.dao.ArticleGroupRepository;
 import foot.footprint.domain.group.dao.GroupRepository;
@@ -26,28 +26,28 @@ public class CreateGeneralArticleService implements CreateArticleService{
 
     @Override
     @Transactional
-    public Long create(CreateArticleRequest request, Long memberId) {
-        Article article = Article.createArticle(request, memberId);
-        validateMapType(request);
+    public Long create(CreateArticleDto dto, Long memberId) {
+        Article article = Article.createArticle(dto, memberId);
+        validateMapType(dto);
         articleRepository.saveArticle(article);
-        if (!request.getGroupIdsToBeIncluded().isEmpty()) {
+        if (!dto.getGroupIdsToBeIncluded().isEmpty()) {
             articleGroupRepository.saveArticleGroupList(
-                createArticleGroupList(request, article.getId(), memberId));
+                createArticleGroupList(dto, article.getId(), memberId));
         }
         return article.getId();
     }
 
-    private void validateMapType(CreateArticleRequest request) {
-        List<Long> groups = request.getGroupIdsToBeIncluded();
-        if (!request.isPublicMap() && !request.isPrivateMap()
+    private void validateMapType(CreateArticleDto dto) {
+        List<Long> groups = dto.getGroupIdsToBeIncluded();
+        if (!dto.isPublicMap() && !dto.isPrivateMap()
             && (Objects.isNull(groups) || groups.isEmpty())) {
             throw new NotIncludedMapException("전체지도, 그룹지도, 개인지도 중 하나는 포함해야합니다.");
         }
     }
 
-    private List<ArticleGroup> createArticleGroupList(CreateArticleRequest request, Long articleId,
+    private List<ArticleGroup> createArticleGroupList(CreateArticleDto dto, Long articleId,
         Long memberId) {
-        List<Long> groupIds = request.getGroupIdsToBeIncluded();
+        List<Long> groupIds = dto.getGroupIdsToBeIncluded();
         checkAreMyGroups(groupIds, memberId);
         List<ArticleGroup> articleGroupList = new ArrayList<>();
         for (Long groupId : groupIds) {

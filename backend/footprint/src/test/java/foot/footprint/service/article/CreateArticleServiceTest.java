@@ -11,7 +11,7 @@ import static org.mockito.Mockito.verify;
 import foot.footprint.domain.article.application.create.CreateGeneralArticleService;
 import foot.footprint.domain.article.dao.CreateArticleRepository;
 import foot.footprint.domain.article.domain.Article;
-import foot.footprint.domain.article.dto.CreateArticleRequest;
+import foot.footprint.domain.article.dto.CreateArticleDto;
 import foot.footprint.domain.article.exception.NotIncludedMapException;
 import foot.footprint.domain.group.dao.ArticleGroupRepository;
 import foot.footprint.domain.group.dao.GroupRepository;
@@ -54,7 +54,7 @@ public class CreateArticleServiceTest {
 
         ArgumentCaptor<Article> captor = ArgumentCaptor.forClass(Article.class);
         ArgumentCaptor<List<ArticleGroup>> captor2 = ArgumentCaptor.forClass(java.util.List.class);
-        CreateArticleRequest createArticleRequest = new CreateArticleRequest("title", "content",
+        CreateArticleDto createArticleDto = new CreateArticleDto("title", "content",
             10.0, 10.0, true, true, groupIdsToBeIncluded);
 
         given(createArticleRepository.saveArticle(any()))
@@ -64,16 +64,16 @@ public class CreateArticleServiceTest {
         given(groupRepository.findAllByMemberId(any()))
             .willReturn(groupIdsToBeIncluded);
         //when
-        createGeneralArticleService.create(createArticleRequest, memberId);
+        createGeneralArticleService.create(createArticleDto, memberId);
 
         //then
         verify(createArticleRepository, times(1)).saveArticle(captor.capture());
         verify(articleGroupRepository, times(1)).saveArticleGroupList(captor2.capture());
         Article article = captor.getValue();
         List<ArticleGroup> articleGroups = captor2.getValue();
-        assertThat(createArticleRequest.getTitle()).isEqualTo(article.getTitle());
-        assertThat(createArticleRequest.getContent()).isEqualTo(article.getContent());
-        assertThat(createArticleRequest.getGroupIdsToBeIncluded().size()).isEqualTo(
+        assertThat(createArticleDto.getTitle()).isEqualTo(article.getTitle());
+        assertThat(createArticleDto.getContent()).isEqualTo(article.getContent());
+        assertThat(createArticleDto.getGroupIdsToBeIncluded().size()).isEqualTo(
             articleGroups.size());
         assertThat(articleGroups.get(0).getArticle_id()).isEqualTo(article.getId());
 
@@ -82,11 +82,11 @@ public class CreateArticleServiceTest {
         List<Long> groupIds = new ArrayList<>();
         groupIds.add(groupId1);
         groupIds.add(100L);
-        createArticleRequest.updateGroupIdList(groupIds);
+        createArticleDto.updateGroupIdList(groupIds);
 
         //when & then
         assertThatThrownBy(
-            () -> createGeneralArticleService.create(createArticleRequest, memberId))
+            () -> createGeneralArticleService.create(createArticleDto, memberId))
             .isInstanceOf(NotIncludedMapException.class);
     }
 
@@ -95,12 +95,12 @@ public class CreateArticleServiceTest {
     public void create_IfNotExistsMapType() {
         //given
         Long memberId = 1L;
-        CreateArticleRequest createArticleRequest = new CreateArticleRequest("title", "content",
+        CreateArticleDto createArticleDto = new CreateArticleDto("title", "content",
             10.0, 10.0, false, false, new ArrayList<>());
 
         //when & then
         assertThatThrownBy(
-            () -> createGeneralArticleService.create(createArticleRequest, memberId))
+            () -> createGeneralArticleService.create(createArticleDto, memberId))
             .isInstanceOf(NotIncludedMapException.class);
     }
 }

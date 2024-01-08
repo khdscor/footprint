@@ -1,8 +1,8 @@
 package foot.footprint.domain.article.application.create;
 
-import foot.footprint.domain.article.dto.CreateArticleRequest;
+import foot.footprint.domain.article.dto.CreateArticleDto;
 
 public interface CreateArticleService {
 
-    Long create(CreateArticleRequest request, Long memberId);
+    Long create(CreateArticleDto request, Long memberId);
 }

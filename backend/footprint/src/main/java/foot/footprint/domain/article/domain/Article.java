@@ -1,13 +1,12 @@
 package foot.footprint.domain.article.domain;
 
-import foot.footprint.domain.article.dto.CreateArticleRequest;
+import foot.footprint.domain.article.dto.CreateArticleDto;
 import java.util.Date;
 import java.util.Objects;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-import org.springframework.util.Assert;
 
 @Getter
 @ToString
@@ -37,14 +36,14 @@ public class Article {
         this.member_id = member_id;
     }
 
-    public static Article createArticle(CreateArticleRequest request, Long userId) {
+    public static Article createArticle(CreateArticleDto dto, Long userId) {
         return Article.builder()
-            .content(request.getContent())
-            .latitude(request.getLatitude())
-            .longitude(request.getLongitude())
-            .public_map(request.isPublicMap())
-            .private_map(request.isPrivateMap())
-            .title(request.getTitle())
+            .content(dto.getContent())
+            .latitude(dto.getLatitude())
+            .longitude(dto.getLongitude())
+            .public_map(dto.isPublicMap())
+            .private_map(dto.isPrivateMap())
+            .title(dto.getTitle())
             .create_date(new Date())
             .member_id(userId).build();
     }
