@@ -22,7 +22,8 @@ public abstract class AbstractChangeArticleLikeService implements ChangeArticleL
             deleteLike(articleLikeDto);
             return;
         }
-        articleLikeRepository.saveArticleLike(ArticleLike.createArticleLike(articleLikeDto));
+        articleLikeRepository.saveArticleLike(ArticleLike.createArticleLike(articleLikeDto.getMemberId(),
+                articleLikeDto.getArticleId()));
     }
 
     private void deleteLike(ArticleLikeDto articleLikeDto) {
@@ -34,13 +35,13 @@ public abstract class AbstractChangeArticleLikeService implements ChangeArticleL
 
     protected Article findAndValidateArticle(Long articleId) {
         return findArticleRepository.findById(articleId)
-            .orElseThrow(() -> new NotExistsException(" 해당 게시글이 존재하지 않습니다."));
+                .orElseThrow(() -> new NotExistsException(" 해당 게시글이 존재하지 않습니다."));
     }
 
     protected void updateRedis(ArticleLikeDto articleLikeDto) {
         String redisKey =
-            "articleDetails::" + articleLikeDto.getArticleId();
+                "articleDetails::" + articleLikeDto.getArticleId();
         objectSerializer.updateArticleData(redisKey, ArticleUpdatePart.CHANGE_LIKE,
-            articleLikeDto.isHasILiked());
+                articleLikeDto.isHasILiked());
     }
 }
