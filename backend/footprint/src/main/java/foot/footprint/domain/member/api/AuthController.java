@@ -2,6 +2,8 @@ package foot.footprint.domain.member.api;
 
 import foot.footprint.domain.member.application.auth.AuthService;
 import foot.footprint.domain.member.dto.AuthResponse;
+import foot.footprint.domain.member.dto.authDto.LoginDto;
+import foot.footprint.domain.member.dto.authDto.SignUpDto;
 import foot.footprint.domain.member.dto.authRequest.LoginRequest;
 import foot.footprint.domain.member.dto.authRequest.SignUpRequest;
 import foot.footprint.global.aop.auth.LoginLog;
@@ -33,14 +35,14 @@ public class AuthController {
     @PostMapping("/login")
     public ResponseEntity<AuthResponse> login(
         @RequestBody @Valid LoginRequest loginRequest) {
-        String token = loginService.process(loginRequest);
+        String token = loginService.process(LoginDto.create(loginRequest));
         return ResponseEntity.ok(new AuthResponse(token));
     }
 
     @SignUpLog
     @PostMapping("/signup")
     public ResponseEntity<Void> register(@RequestBody @Valid SignUpRequest signUpRequest) {
-        signUpService.process(signUpRequest);
+        signUpService.process(SignUpDto.create(signUpRequest));
 
         return ResponseEntity.status(HttpStatus.CREATED)
             .build();

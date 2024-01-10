@@ -1,6 +1,6 @@
 package foot.footprint.domain.member.domain;
 
-import foot.footprint.domain.member.dto.authRequest.SignUpRequest;
+import foot.footprint.domain.member.dto.authDto.SignUpDto;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -40,7 +40,7 @@ public class Member {
         this.refresh_token = refresh_token;
     }
 
-    public static Member createMember(SignUpRequest request, PasswordEncoder passwordEncoder) {
+    public static Member createMember(SignUpDto request, PasswordEncoder passwordEncoder) {
         return Member.builder()
             .email(request.getEmail())
             .image_url("https://ifh.cc/g/2tAMnG.png")

@@ -2,8 +2,8 @@ package foot.footprint.domain.member.application.auth;
 
 import foot.footprint.domain.member.dao.MemberRepository;
 import foot.footprint.domain.member.domain.Member;
-import foot.footprint.domain.member.dto.authRequest.AuthRequest;
-import foot.footprint.domain.member.dto.authRequest.SignUpRequest;
+import foot.footprint.domain.member.dto.authDto.AuthDto;
+import foot.footprint.domain.member.dto.authDto.SignUpDto;
 import foot.footprint.domain.member.exception.AlreadyExistedEmailException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -21,16 +21,16 @@ public class SignUpService implements AuthService {
 
     @Override
     @Transactional
-    public String process(AuthRequest authRequest) {
-        SignUpRequest signUpRequest = (SignUpRequest) authRequest;
-        verifyEmail(signUpRequest);
-        Member member = Member.createMember(signUpRequest, passwordEncoder);
+    public String process(AuthDto authDto) {
+        SignUpDto signUpDto = (SignUpDto) authDto;
+        verifyEmail(signUpDto.getEmail());
+        Member member = Member.createMember(signUpDto, passwordEncoder);
         memberRepository.saveMember(member);
         return "";
     }
 
-    private void verifyEmail(SignUpRequest signUpRequest) {
-        if (memberRepository.existsByEmail(signUpRequest.getEmail())) {
+    private void verifyEmail(String email) {
+        if (memberRepository.existsByEmail(email)) {
             throw new AlreadyExistedEmailException("이미 사용중인 이메일입니다.");
         }
     }

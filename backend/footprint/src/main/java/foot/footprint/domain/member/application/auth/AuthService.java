@@ -1,8 +1,8 @@
 package foot.footprint.domain.member.application.auth;
 
-import foot.footprint.domain.member.dto.authRequest.AuthRequest;
+import foot.footprint.domain.member.dto.authDto.AuthDto;
 
 public interface AuthService {
 
-    String process(AuthRequest authRequest);
+    String process(AuthDto authDto);
 }
