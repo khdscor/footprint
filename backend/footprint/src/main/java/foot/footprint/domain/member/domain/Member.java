@@ -41,7 +41,7 @@ public class Member {
     public static Member createMember(String email, String nickName, String password) {
         return Member.builder()
             .email(email)
-            .image_url("https://ifh.cc/g/2tAMnG.png")
+            .image_url("https://ifh.cc/g/f5Yjo0.png")
             .provider(AuthProvider.local)
             .nick_name(nickName)
             .role(Role.USER)
