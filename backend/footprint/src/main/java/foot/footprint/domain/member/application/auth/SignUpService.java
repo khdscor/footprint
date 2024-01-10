@@ -24,7 +24,8 @@ public class SignUpService implements AuthService {
     public String process(AuthDto authDto) {
         SignUpDto signUpDto = (SignUpDto) authDto;
         verifyEmail(signUpDto.getEmail());
-        Member member = Member.createMember(signUpDto, passwordEncoder);
+        Member member = Member.createMember(signUpDto.getEmail(), signUpDto.getNickName(),
+                passwordEncoder.encode(signUpDto.getPassword()));
         memberRepository.saveMember(member);
         return "";
     }

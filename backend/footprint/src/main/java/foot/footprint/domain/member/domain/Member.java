@@ -1,12 +1,10 @@
 package foot.footprint.domain.member.domain;
 
-import foot.footprint.domain.member.dto.authDto.SignUpDto;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 import java.util.Date;
-import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Getter
 @ToString
@@ -40,14 +38,14 @@ public class Member {
         this.refresh_token = refresh_token;
     }
 
-    public static Member createMember(SignUpDto request, PasswordEncoder passwordEncoder) {
+    public static Member createMember(String email, String nickName, String password) {
         return Member.builder()
-            .email(request.getEmail())
+            .email(email)
             .image_url("https://ifh.cc/g/2tAMnG.png")
             .provider(AuthProvider.local)
-            .nick_name(request.getNickName())
+            .nick_name(nickName)
             .role(Role.USER)
             .join_date(new Date())
-            .password(passwordEncoder.encode(request.getPassword())).build();
+            .password(password).build();
     }
 }
