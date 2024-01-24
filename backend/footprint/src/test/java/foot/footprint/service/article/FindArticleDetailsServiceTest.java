@@ -8,7 +8,7 @@ import foot.footprint.domain.article.application.findArticleDetails.FindPublicAr
 import foot.footprint.domain.article.dao.FindArticleRepository;
 import foot.footprint.domain.article.domain.Article;
 import foot.footprint.domain.article.dto.articleDetails.*;
-import foot.footprint.domain.comment.dto.CommentsDto;
+import foot.footprint.domain.article.dto.articleDetails.CommentsDto;
 import foot.footprint.domain.commentLike.dao.CommentLikeRepository;
 import foot.footprint.global.security.user.CustomUserDetails;
 import foot.footprint.global.util.ObjectSerializer;
@@ -58,7 +58,7 @@ public class FindArticleDetailsServiceTest {
 
         List<MyCommentLikesInArticle> myComments = new ArrayList<>();
         myComments.add(new MyCommentLikesInArticle(1L, memberId));
-        ArticlePrivateDetailsDto privateDto = new ArticlePrivateDetailsDto(articleId, true,
+        ArticlePagePrivateDetailsDto privateDto = new ArticlePagePrivateDetailsDto(articleId, true,
             myComments);
         given(findArticleRepository.findArticlePrivateDetails(any(), any())).willReturn(
             Optional.of(privateDto));

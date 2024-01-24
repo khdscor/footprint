@@ -1,7 +1,7 @@
 package foot.footprint.domain.article.dto.articleDetails;
 
 import foot.footprint.domain.comment.dto.CommentResponse;
-import foot.footprint.domain.comment.dto.CommentsDto;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;

@@ -32,7 +32,7 @@
     <result property="content" column="content"/>
     <result property="createDate" column="createDate"/>
     <result property="totalLikes" column="totalLikes"/>
-    <association property="author" javaType="foot.footprint.global.domain.AuthorDto">
+    <association property="author" javaType="foot.footprint.domain.comment.dto.AuthorDto">
       <id property="id" column="userId"/>
       <result property="nickName" column="nickName"/>
       <result property="imageUrl" column="imageUrl"/>

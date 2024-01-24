@@ -1,4 +1,4 @@
-package foot.footprint.global.domain;
+package foot.footprint.domain.comment.dto;
 
 import foot.footprint.domain.member.domain.Member;
 import lombok.Getter;
