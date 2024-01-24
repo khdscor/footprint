@@ -39,6 +39,6 @@ public class FindPrivateArticleDetailsService extends AbstrastFindArticleDetails
         if (!response.getArticleDetails().isPrivateMap()) {
             throw new WrongMapTypeException("게시글이 개인지도에 포함되지 않습니다.");
         }
-        Validate.validateArticleIsMine(myId, response.getArticleDetails().getAuthor().getId());
+        Validate.validateArticleIsMine(myId, response.getArticleDetails().getWriterId());
     }
 }

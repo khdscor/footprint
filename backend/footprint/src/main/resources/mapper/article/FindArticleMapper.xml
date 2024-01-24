@@ -38,7 +38,7 @@
   </select>
   <resultMap id="ArticleDetails" type="ArticlePageDto">
     <id property="articleId" column="articleId"/>
-    <association property="articleDetails" javaType="ArticleDetailsDto">
+    <association property="articleDetails" javaType="ArticleDetails">
       <id property="id" column="id"/>
       <result property="title" column="title"/>
       <result property="content" column="content"/>

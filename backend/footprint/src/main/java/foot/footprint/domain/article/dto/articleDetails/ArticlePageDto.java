@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 public class ArticlePageDto {
 
     private Long articleId;
-    private ArticleDetailsDto articleDetails;
+    private ArticleDetails articleDetails;
     private List<CommentsDto> comments;
 
     public void changeLike(boolean hasLiked) {
