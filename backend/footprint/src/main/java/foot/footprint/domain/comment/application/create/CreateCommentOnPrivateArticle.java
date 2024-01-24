@@ -9,7 +9,7 @@ import foot.footprint.domain.member.domain.Member;
 import foot.footprint.global.domain.AuthorDto;
 import foot.footprint.global.error.exception.WrongMapTypeException;
 import foot.footprint.global.util.ObjectSerializer;
-import foot.footprint.global.util.ValidateIsMine;
+import foot.footprint.global.util.Validate;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -35,7 +35,7 @@ public class CreateCommentOnPrivateArticle extends AbstractCreateCommentService 
         }
         Member member = findAndValidateMember(memberId);
         AuthorDto authorDto = AuthorDto.buildAuthorDto(member);
-        ValidateIsMine.validateArticleIsMine(article.getMember_id(), authorDto.getId());
+        Validate.validateArticleIsMine(article.getMember_id(), authorDto.getId());
 
         CommentResponse response = saveComment(articleId, content, authorDto);
         updateRedis(articleId, response);

@@ -4,10 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e9c5eb8d-61e6-4bf1-a075-2ef5ca99f02a" name="변경" comment="test: createGroup 테스트를 일시적으로 제한(실제 DB 지속 생성 방지)">
+    <list default="true" id="e9c5eb8d-61e6-4bf1-a075-2ef5ca99f02a" name="변경" comment="refactor: Member 회원가입 시 주어지는 이미지 Url 갱신">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/footprint/footprint/log/err_log.log" beforeDir="false" afterPath="$PROJECT_DIR$/footprint/footprint/log/err_log.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/footprint/footprint/log/testLog.log" beforeDir="false" afterPath="$PROJECT_DIR$/footprint/footprint/log/testLog.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/footprint/src/main/java/foot/footprint/domain/group/domain/MemberGroup.java" beforeDir="false" afterPath="$PROJECT_DIR$/footprint/src/main/java/foot/footprint/domain/group/domain/MemberGroup.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/footprint/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/footprint/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,13 +37,7 @@
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="footprint" type="f1a62948:ProjectNode" />
-                <item name="Tasks" type="e4a08cd1:TasksNode" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="footprint" type="f1a62948:ProjectNode" />
-                <item name="Tasks" type="e4a08cd1:TasksNode" />
-                <item name="application" type="c8890929:TasksNode$1" />
+                <item name="Run Configurations" type="7b0102dc:RunConfigurationsNode" />
               </path>
             </expand>
             <select />
@@ -91,10 +87,9 @@
     &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;refactor#17&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/khdsc/IdeaProjects/footprint/backend/footprint/build.gradle&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/PC/Desktop/프로젝트/msa/khds/khds&quot;,
     &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
@@ -137,7 +132,79 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="footprint [bootRun]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="AuthServiceTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/footprint" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;foot.footprint.service.member.AuthServiceTest&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <ForceTestExec>true</ForceTestExec>
+      <method v="2" />
+    </configuration>
+    <configuration name="ChangeArticleLikeServiceTest.changeArticleLike_IfPublicArticle" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/footprint" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;foot.footprint.service.articleLike.ChangeArticleLikeServiceTest.changeArticleLike_IfPublicArticle&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <ForceTestExec>true</ForceTestExec>
+      <method v="2" />
+    </configuration>
+    <configuration name="MemberServiceTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/footprint" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;foot.footprint.service.member.MemberServiceTest&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <ForceTestExec>true</ForceTestExec>
+      <method v="2" />
+    </configuration>
+    <configuration name="footprint [bootJar]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$/footprint" />
@@ -148,7 +215,7 @@
         </option>
         <option name="taskNames">
           <list>
-            <option value="bootRun" />
+            <option value="bootJar" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -158,51 +225,6 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <ForceTestExec>false</ForceTestExec>
       <method v="2" />
-    </configuration>
-    <configuration name="footprint [dependencies]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$/footprint" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value="dependencies" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <ForceTestExec>false</ForceTestExec>
-      <method v="2" />
-    </configuration>
-    <configuration name="All in footprint.test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="footprint.test" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="TEST_OBJECT" value="package" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="FindArticleDetailsServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="footprint.test" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="foot.footprint.service.article.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="foot.footprint.service.article" />
-      <option name="MAIN_CLASS_NAME" value="foot.footprint.service.article.FindArticleDetailsServiceTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
     </configuration>
     <configuration default="true" type="JetRunConfigurationType">
       <module name="backend" />
@@ -219,18 +241,18 @@
     </configuration>
     <list>
       <item itemvalue="Application.FootprintApplication" />
-      <item itemvalue="Gradle.footprint [dependencies]" />
-      <item itemvalue="Gradle.footprint [bootRun]" />
-      <item itemvalue="JUnit.All in footprint.test" />
-      <item itemvalue="JUnit.FindArticleDetailsServiceTest" />
+      <item itemvalue="Gradle.AuthServiceTest" />
+      <item itemvalue="Gradle.ChangeArticleLikeServiceTest.changeArticleLike_IfPublicArticle" />
+      <item itemvalue="Gradle.MemberServiceTest" />
+      <item itemvalue="Gradle.footprint [bootJar]" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.footprint [dependencies]" />
+        <item itemvalue="Gradle.MemberServiceTest" />
+        <item itemvalue="Gradle.AuthServiceTest" />
+        <item itemvalue="Gradle.ChangeArticleLikeServiceTest.changeArticleLike_IfPublicArticle" />
         <item itemvalue="Application.FootprintApplication" />
-        <item itemvalue="Gradle.footprint [bootRun]" />
-        <item itemvalue="JUnit.FindArticleDetailsServiceTest" />
-        <item itemvalue="JUnit.All in footprint.test" />
+        <item itemvalue="Gradle.footprint [bootJar]" />
       </list>
     </recent_temporary>
   </component>
@@ -242,62 +264,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1677633300752</updated>
-    </task>
-    <task id="LOCAL-00201" summary="refactor:serviceTest 빠른 객체 생성을 위한 SetUpMethods 구현">
-      <created>1688120141904</created>
-      <option name="number" value="00201" />
-      <option name="presentableId" value="LOCAL-00201" />
-      <option name="project" value="LOCAL" />
-      <updated>1688120141904</updated>
-    </task>
-    <task id="LOCAL-00202" summary="refactor:SecessionGroupService 리펙토링 및 테스트">
-      <created>1688120175259</created>
-      <option name="number" value="00202" />
-      <option name="presentableId" value="LOCAL-00202" />
-      <option name="project" value="LOCAL" />
-      <updated>1688120175259</updated>
-    </task>
-    <task id="LOCAL-00203" summary="feat: findGroupDetails 시 GroupDetailsDto로 조회되도록 수정 및 테스트">
-      <created>1688124075774</created>
-      <option name="number" value="00203" />
-      <option name="presentableId" value="LOCAL-00203" />
-      <option name="project" value="LOCAL" />
-      <updated>1688124075774</updated>
-    </task>
-    <task id="LOCAL-00204" summary="feat: findGroupDetails 시 자신이 그룹장인지 확인할 수 있도록 수정">
-      <created>1688124127285</created>
-      <option name="number" value="00204" />
-      <option name="presentableId" value="LOCAL-00204" />
-      <option name="project" value="LOCAL" />
-      <updated>1688124127285</updated>
-    </task>
-    <task id="LOCAL-00205" summary="refactor: changeArticleLikeService 인터페이스와 구현체로 분리">
-      <created>1688643929863</created>
-      <option name="number" value="00205" />
-      <option name="presentableId" value="LOCAL-00205" />
-      <option name="project" value="LOCAL" />
-      <updated>1688643929863</updated>
-    </task>
-    <task id="LOCAL-00206" summary="refactor: changeArticleLikeService 인터페이스와 구현체로 분리에 따른 테스트 코드 수정">
-      <created>1688643943173</created>
-      <option name="number" value="00206" />
-      <option name="presentableId" value="LOCAL-00206" />
-      <option name="project" value="LOCAL" />
-      <updated>1688643943174</updated>
-    </task>
-    <task id="LOCAL-00207" summary="refactor: changeArticleLikeService 인터페이스와 구현체로 분리에 따른 controller 리펙토링">
-      <created>1688643964368</created>
-      <option name="number" value="00207" />
-      <option name="presentableId" value="LOCAL-00207" />
-      <option name="project" value="LOCAL" />
-      <updated>1688643964368</updated>
-    </task>
-    <task id="LOCAL-00208" summary="refactor: changeArticleLikeController 의존성 주입을 final로 설정하고 생성자를 통하도록 리펙토링">
-      <created>1688645432771</created>
-      <option name="number" value="00208" />
-      <option name="presentableId" value="LOCAL-00208" />
-      <option name="project" value="LOCAL" />
-      <updated>1688645432771</updated>
     </task>
     <task id="LOCAL-00209" summary="refactor: changeArticleLikeController 의존성 주입을 final로 설정하고 생성자를 통하도록 리펙토링">
       <created>1688645467054</created>
@@ -586,7 +552,63 @@
       <option name="project" value="LOCAL" />
       <updated>1700745463392</updated>
     </task>
-    <option name="localTasksCounter" value="250" />
+    <task id="LOCAL-00250" summary="test: createGroup 테스트를 일시적으로 제한(실제 DB 지속 생성 방지)">
+      <created>1700894509460</created>
+      <option name="number" value="00250" />
+      <option name="presentableId" value="LOCAL-00250" />
+      <option name="project" value="LOCAL" />
+      <updated>1700894509460</updated>
+    </task>
+    <task id="LOCAL-00251" summary="test: createGroup 테스트를 일시적으로 제한(실제 DB 지속 생성 방지)">
+      <created>1700894521983</created>
+      <option name="number" value="00251" />
+      <option name="presentableId" value="LOCAL-00251" />
+      <option name="project" value="LOCAL" />
+      <updated>1700894521984</updated>
+    </task>
+    <task id="LOCAL-00252" summary="feat: 충돌 해결">
+      <created>1700894635210</created>
+      <option name="number" value="00252" />
+      <option name="presentableId" value="LOCAL-00252" />
+      <option name="project" value="LOCAL" />
+      <updated>1700894635210</updated>
+    </task>
+    <task id="LOCAL-00253" summary="fix: 회원 탈퇴 잘못된 url 수정">
+      <created>1701438305684</created>
+      <option name="number" value="00253" />
+      <option name="presentableId" value="LOCAL-00253" />
+      <option name="project" value="LOCAL" />
+      <updated>1701438305684</updated>
+    </task>
+    <task id="LOCAL-00254" summary="refactor: ArticleLike 도메인이 dto를 의존하지 않도록 수정">
+      <created>1704890056740</created>
+      <option name="number" value="00254" />
+      <option name="presentableId" value="LOCAL-00254" />
+      <option name="project" value="LOCAL" />
+      <updated>1704890056741</updated>
+    </task>
+    <task id="LOCAL-00255" summary="refactor: AutController와 AuthService의 dto 분리">
+      <created>1704893349907</created>
+      <option name="number" value="00255" />
+      <option name="presentableId" value="LOCAL-00255" />
+      <option name="project" value="LOCAL" />
+      <updated>1704893349907</updated>
+    </task>
+    <task id="LOCAL-00256" summary="refactor: Member 엔티티의 Dto 의존 제거">
+      <created>1704894160211</created>
+      <option name="number" value="00256" />
+      <option name="presentableId" value="LOCAL-00256" />
+      <option name="project" value="LOCAL" />
+      <updated>1704894160211</updated>
+    </task>
+    <task id="LOCAL-00257" summary="refactor: Member 회원가입 시 주어지는 이미지 Url 갱신">
+      <created>1704894267692</created>
+      <option name="number" value="00257" />
+      <option name="presentableId" value="LOCAL-00257" />
+      <option name="project" value="LOCAL" />
+      <updated>1704894267692</updated>
+    </task>
+    <option name="localTasksCounter" value="258" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -604,12 +626,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="refactor: createArticle Api 인터페이스와 구현체로 분리" />
-    <MESSAGE value="refactor: deleteArticle Api 인터페이스와 구현체로 분리" />
-    <MESSAGE value="refactor: editArticle Api 인터페이스와 구현체로 분리" />
-    <MESSAGE value="refactor: memberService Api 인터페이스와 구현체로 분리" />
-    <MESSAGE value="refactor: GroupChangeImportantService Api 인터페이스와 구현체로 분리" />
-    <MESSAGE value="refactor: GroupService Api 인터페이스와 구현체로 분리" />
     <MESSAGE value="refactor: FIndArticleDetailsService Api 인터페이스와 3가지 구현체로 분리" />
     <MESSAGE value="refactor: FIndArticleDetailsController Api 인터페이스와 3가지 구현체로 분리" />
     <MESSAGE value="refactor: CommentLikeService Api 인터페이스와 3가지 구현체로 분리 및 테스트" />
@@ -629,6 +645,12 @@
     <MESSAGE value="refactor: Member Service 구현체 네이밍 리펙토링" />
     <MESSAGE value="refactor: Group Service 구현체 네이밍 및 findGroupsService 내 인터페이스와 여러 구현체로 분리" />
     <MESSAGE value="test: createGroup 테스트를 일시적으로 제한(실제 DB 지속 생성 방지)" />
-    <option name="LAST_COMMIT_MESSAGE" value="test: createGroup 테스트를 일시적으로 제한(실제 DB 지속 생성 방지)" />
+    <MESSAGE value="feat: 충돌 해결" />
+    <MESSAGE value="fix: 회원 탈퇴 잘못된 url 수정" />
+    <MESSAGE value="refactor: ArticleLike 도메인이 dto를 의존하지 않도록 수정" />
+    <MESSAGE value="refactor: AutController와 AuthService의 dto 분리" />
+    <MESSAGE value="refactor: Member 엔티티의 Dto 의존 제거" />
+    <MESSAGE value="refactor: Member 회원가입 시 주어지는 이미지 Url 갱신" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor: Member 회원가입 시 주어지는 이미지 Url 갱신" />
   </component>
 </project>
