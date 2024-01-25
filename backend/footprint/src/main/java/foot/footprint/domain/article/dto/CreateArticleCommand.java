@@ -10,20 +10,22 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class CreateArticleDto {
+public class CreateArticleCommand {
 
     private String title;
     private String content;
+    private Long memberId;
     private double latitude;    // 위도
     private double longitude;   // 경도
     private boolean publicMap;
     private boolean privateMap;
     private List<Long> groupIdsToBeIncluded;
 
-    public static CreateArticleDto create(CreateArticleRequest request) {
-        return CreateArticleDto.builder()
+    public static CreateArticleCommand create(CreateArticleRequest request, Long memberId) {
+        return CreateArticleCommand.builder()
             .title(request.getTitle())
             .content(request.getContent())
+            .memberId(memberId)
             .latitude(request.getLatitude())
             .longitude(request.getLongitude())
             .publicMap(request.isPublicMap())

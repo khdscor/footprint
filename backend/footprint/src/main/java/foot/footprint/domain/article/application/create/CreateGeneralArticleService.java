@@ -2,7 +2,7 @@ package foot.footprint.domain.article.application.create;
 
 import foot.footprint.domain.article.dao.CreateArticleRepository;
 import foot.footprint.domain.article.domain.Article;
-import foot.footprint.domain.article.dto.CreateArticleDto;
+import foot.footprint.domain.article.dto.CreateArticleCommand;
 import foot.footprint.domain.article.exception.NotIncludedMapException;
 import foot.footprint.domain.group.dao.ArticleGroupRepository;
 import foot.footprint.domain.group.dao.GroupRepository;
@@ -26,20 +26,20 @@ public class CreateGeneralArticleService implements CreateArticleService {
 
     @Override
     @Transactional
-    public Long create(CreateArticleDto dto, Long memberId) {
+    public Long create(CreateArticleCommand command) {
         Article article = Article.createArticle(
-            dto.getTitle(), dto.getContent(), dto.getLatitude(), dto.getLongitude(),
-            dto.isPublicMap(), dto.isPrivateMap(), memberId);
-        validateMapType(dto);
+            command.getTitle(), command.getContent(), command.getLatitude(), command.getLongitude(),
+            command.isPublicMap(), command.isPrivateMap(), command.getMemberId());
+        validateMapType(command);
         articleRepository.saveArticle(article);
-        if (!dto.getGroupIdsToBeIncluded().isEmpty()) {
+        if (!command.getGroupIdsToBeIncluded().isEmpty()) {
             articleGroupRepository.saveArticleGroupList(
-                createArticleGroupList(dto, article.getId(), memberId));
+                createArticleGroupList(command, article.getId(), command.getMemberId()));
         }
         return article.getId();
     }
 
-    private void validateMapType(CreateArticleDto dto) {
+    private void validateMapType(CreateArticleCommand dto) {
         List<Long> groups = dto.getGroupIdsToBeIncluded();
         if (!dto.isPublicMap() && !dto.isPrivateMap()
             && (Objects.isNull(groups) || groups.isEmpty())) {
@@ -47,8 +47,8 @@ public class CreateGeneralArticleService implements CreateArticleService {
         }
     }
 
-    private List<ArticleGroup> createArticleGroupList(CreateArticleDto dto, Long articleId,
-        Long memberId) {
+    private List<ArticleGroup> createArticleGroupList(CreateArticleCommand dto, Long articleId,
+                                                      Long memberId) {
         List<Long> groupIds = dto.getGroupIdsToBeIncluded();
         checkAreMyGroups(groupIds, memberId);
         List<ArticleGroup> articleGroupList = new ArrayList<>();
