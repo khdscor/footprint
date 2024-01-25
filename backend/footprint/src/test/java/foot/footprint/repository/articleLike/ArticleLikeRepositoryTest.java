@@ -41,20 +41,6 @@ public class ArticleLikeRepositoryTest extends RepositoryTest {
     }
 
     @Test
-    public void existsMyLike() {
-        //given
-        ArticleLike articleLike = setUpArticleLike();
-        ArticleLikeDto articleLikeDto = new ArticleLikeDto(articleLike.getArticle_id(),
-            articleLike.getMember_id());
-        ArticleLikeDto dummyDto = new ArticleLikeDto(100L,
-            1L);
-
-        //when & then
-        assertThat(articleLikeRepository.existsMyLike(articleLikeDto)).isTrue();
-        assertThat(articleLikeRepository.existsMyLike(dummyDto)).isFalse();
-    }
-
-    @Test
     public void deleteArticleLike() {
         //given
         ArticleLike articleLike = setUpArticleLike();

@@ -8,8 +8,6 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface ArticleLikeRepository {
 
-    boolean existsMyLike(ArticleLikeDto articleLikeDto);
-
     @Delete("DELETE FROM article_like WHERE article_id=#{articleId} and member_id=#{memberId}")
     int deleteArticleLike(ArticleLikeDto articleLikeDto);
 
