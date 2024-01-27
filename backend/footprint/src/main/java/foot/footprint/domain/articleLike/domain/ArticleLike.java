@@ -1,6 +1,5 @@
 package foot.footprint.domain.articleLike.domain;
 
-import foot.footprint.domain.articleLike.dto.ArticleLikeDto;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

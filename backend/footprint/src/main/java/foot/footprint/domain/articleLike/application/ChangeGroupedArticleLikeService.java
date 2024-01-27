@@ -2,7 +2,7 @@ package foot.footprint.domain.articleLike.application;
 
 import foot.footprint.domain.article.dao.FindArticleRepository;
 import foot.footprint.domain.articleLike.dao.ArticleLikeRepository;
-import foot.footprint.domain.articleLike.dto.ArticleLikeDto;
+import foot.footprint.domain.articleLike.dto.ArticleLikeCommand;
 import foot.footprint.domain.group.dao.ArticleGroupRepository;
 import foot.footprint.global.error.exception.NotAuthorizedOrExistException;
 import foot.footprint.global.util.ObjectSerializer;
@@ -26,11 +26,11 @@ public class ChangeGroupedArticleLikeService extends AbstractChangeArticleLikeSe
 
     @Override
     @Transactional
-    public void changeArticleLike(ArticleLikeDto articleLikeDto) {
-        findAndValidateArticle(articleLikeDto.getArticleId());
-        validateInMyGroup(articleLikeDto.getArticleId(), articleLikeDto.getMemberId());
-        changeLike(articleLikeDto);
-        updateRedis(articleLikeDto);
+    public void changeArticleLike(ArticleLikeCommand articleLikeCommand) {
+        findAndValidateArticle(articleLikeCommand.getArticleId());
+        validateInMyGroup(articleLikeCommand.getArticleId(), articleLikeCommand.getMemberId());
+        changeLike(articleLikeCommand);
+        updateRedis(articleLikeCommand);
     }
 
     private void validateInMyGroup(Long articleId, Long memberId) {

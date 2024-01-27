@@ -6,7 +6,7 @@ import foot.footprint.domain.article.dao.CreateArticleRepository;
 import foot.footprint.domain.article.domain.Article;
 import foot.footprint.domain.articleLike.dao.ArticleLikeRepository;
 import foot.footprint.domain.articleLike.domain.ArticleLike;
-import foot.footprint.domain.articleLike.dto.ArticleLikeDto;
+import foot.footprint.domain.articleLike.dto.ArticleLikeCommand;
 import foot.footprint.domain.member.dao.MemberRepository;
 import foot.footprint.domain.member.domain.Member;
 import foot.footprint.repository.RepositoryTest;
@@ -44,11 +44,12 @@ public class ArticleLikeRepositoryTest extends RepositoryTest {
     public void deleteArticleLike() {
         //given
         ArticleLike articleLike = setUpArticleLike();
-        ArticleLikeDto articleLikeDto = new ArticleLikeDto(articleLike.getArticle_id(),
+        ArticleLikeCommand command = new ArticleLikeCommand(articleLike.getArticle_id(),
             articleLike.getMember_id());
 
         //when
-        int result = articleLikeRepository.deleteArticleLike(articleLikeDto);
+        int result = articleLikeRepository.deleteArticleLike(command.getArticleId(),
+            command.getMemberId());
 
         //then
         assertThat(result).isEqualTo(1);
