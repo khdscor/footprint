@@ -2,8 +2,9 @@ package foot.footprint.domain.article.application.findArticles;
 
 import foot.footprint.domain.article.dao.FindArticleRepository;
 import foot.footprint.domain.article.domain.Article;
-import foot.footprint.domain.article.domain.LocationRange;
-import foot.footprint.domain.article.dto.ArticleMapResponse;
+import foot.footprint.domain.article.dto.articles.ArticleMapResponse;
+import foot.footprint.domain.article.dto.articles.ArticleMapCommand;
+import foot.footprint.domain.article.dto.articles.PublicArticleMapCommand;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -19,9 +20,10 @@ public class FindPublicArticlesService implements FindArticlesService {
 
     @Override
     @Transactional(readOnly = true)
-    public List<ArticleMapResponse> findArticles(Long memberId, Long groupId,
-        LocationRange locationRange) {
-        List<Article> articles = findArticleRepository.findPublicArticles(locationRange);
+    public List<ArticleMapResponse> findArticles(ArticleMapCommand command) {
+        PublicArticleMapCommand publicCommand = (PublicArticleMapCommand) command;
+        List<Article> articles = findArticleRepository.findPublicArticles(
+            publicCommand.getLocationRange());
         return ArticleMapResponse.toResponses(articles);
     }
 }

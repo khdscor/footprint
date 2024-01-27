@@ -5,7 +5,7 @@ import foot.footprint.domain.article.dao.FindArticleRepository;
 import foot.footprint.domain.article.domain.Article;
 import foot.footprint.domain.article.domain.LocationRange;
 import foot.footprint.domain.article.dto.articleDetails.ArticlePageDto;
-import foot.footprint.domain.article.dto.ArticleRangeRequest;
+import foot.footprint.domain.article.dto.articles.ArticleRangeRequest;
 import foot.footprint.domain.article.dto.articleDetails.ArticlePagePrivateDetailsDto;
 import foot.footprint.domain.articleLike.dao.ArticleLikeRepository;
 import foot.footprint.domain.articleLike.domain.ArticleLike;

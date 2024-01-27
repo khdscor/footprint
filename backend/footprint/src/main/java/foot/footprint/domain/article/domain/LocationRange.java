@@ -1,6 +1,6 @@
 package foot.footprint.domain.article.domain;
 
-import foot.footprint.domain.article.dto.ArticleRangeRequest;
+import foot.footprint.domain.article.dto.articles.ArticleRangeRequest;
 import lombok.Getter;
 
 @Getter

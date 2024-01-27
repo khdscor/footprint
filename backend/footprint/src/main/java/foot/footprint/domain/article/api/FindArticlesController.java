@@ -2,8 +2,11 @@ package foot.footprint.domain.article.api;
 
 import foot.footprint.domain.article.application.findArticles.FindArticlesService;
 import foot.footprint.domain.article.domain.LocationRange;
-import foot.footprint.domain.article.dto.ArticleMapResponse;
-import foot.footprint.domain.article.dto.ArticleRangeRequest;
+import foot.footprint.domain.article.dto.articles.ArticleMapResponse;
+import foot.footprint.domain.article.dto.articles.ArticleRangeRequest;
+import foot.footprint.domain.article.dto.articles.GroupedArticleMapCommand;
+import foot.footprint.domain.article.dto.articles.PrivateArticleMapCommand;
+import foot.footprint.domain.article.dto.articles.PublicArticleMapCommand;
 import foot.footprint.global.error.exception.WrongInputException;
 import foot.footprint.global.security.user.CustomUserDetails;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -38,9 +41,8 @@ public class FindArticlesController {
     public ResponseEntity<List<ArticleMapResponse>> findPublicMapArticles(
         ArticleRangeRequest request) {
         validateLocation(request);
-        LocationRange locationRange = new LocationRange(request);
-        List<ArticleMapResponse> publicMapArticles = findPublicArticles.findArticles(null,
-            null, locationRange);
+        PublicArticleMapCommand command = new PublicArticleMapCommand(new LocationRange(request));
+        List<ArticleMapResponse> publicMapArticles = findPublicArticles.findArticles(command);
         return ResponseEntity.ok().body(publicMapArticles);
     }
 
@@ -48,9 +50,9 @@ public class FindArticlesController {
     public ResponseEntity<List<ArticleMapResponse>> findPrivateMapArticles(
         ArticleRangeRequest request, @AuthenticationPrincipal CustomUserDetails userDetails) {
         validateLocation(request);
-        LocationRange locationRange = new LocationRange(request);
-        List<ArticleMapResponse> privateMapArticles = findPrivateArticles.findArticles(
-            userDetails.getId(), null, locationRange);
+        PrivateArticleMapCommand command = new PrivateArticleMapCommand(
+            new LocationRange(request), userDetails.getId());
+        List<ArticleMapResponse> privateMapArticles = findPrivateArticles.findArticles(command);
         return ResponseEntity.ok().body(privateMapArticles);
     }
 
@@ -59,9 +61,9 @@ public class FindArticlesController {
         @RequestParam(value = "groupId") Long groupId, ArticleRangeRequest request,
         @AuthenticationPrincipal CustomUserDetails userDetails) {
         validateLocation(request);
-        LocationRange locationRange = new LocationRange(request);
-        List<ArticleMapResponse> groupedArticles = findGroupedArticles.findArticles(
-            userDetails.getId(), groupId, locationRange);
+        GroupedArticleMapCommand command = new GroupedArticleMapCommand(
+            new LocationRange(request), userDetails.getId(), groupId);
+        List<ArticleMapResponse> groupedArticles = findGroupedArticles.findArticles(command);
         return ResponseEntity.ok().body(groupedArticles);
     }
 
