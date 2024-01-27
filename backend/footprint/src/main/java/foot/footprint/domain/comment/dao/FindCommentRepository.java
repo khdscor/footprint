@@ -12,7 +12,5 @@ public interface FindCommentRepository {
     @Select("select * from comment where id =#{commentId}")
     Comment findById(Long commentId);
 
-    List<CommentResponse> findAllByArticleId(Long articleId);
-
     List<CommentResponse> findAllByArticleIdOnPage(Long articleId, Long cursorId);
 }

@@ -1,7 +1,6 @@
 package foot.footprint.domain.article.dto.articleDetails;
 
 import foot.footprint.domain.comment.dto.CommentUpdateDto;
-import foot.footprint.domain.comment.dto.CommentsDto;
 import foot.footprint.domain.commentLike.dto.ChangeTotalLikesDto;
 
 public enum ArticleUpdatePart {

@@ -2,7 +2,7 @@ package foot.footprint.domain.article.dao;
 
 import foot.footprint.domain.article.domain.Article;
 import foot.footprint.domain.article.domain.LocationRange;
-import foot.footprint.domain.article.dto.articleDetails.ArticlePrivateDetailsDto;
+import foot.footprint.domain.article.dto.articleDetails.ArticlePagePrivateDetailsDto;
 import foot.footprint.domain.article.dto.articleDetails.ArticlePageDto;
 import java.util.Optional;
 import org.apache.ibatis.annotations.Mapper;
@@ -26,5 +26,5 @@ public interface FindArticleRepository {
 
     Optional<ArticlePageDto> findArticleDetails(Long articleId);
 
-    Optional<ArticlePrivateDetailsDto> findArticlePrivateDetails(Long articleId, Long memberId);
+    Optional<ArticlePagePrivateDetailsDto> findArticlePrivateDetails(Long articleId, Long memberId);
 }

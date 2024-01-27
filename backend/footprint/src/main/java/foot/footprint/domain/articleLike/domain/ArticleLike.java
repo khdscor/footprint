@@ -22,10 +22,10 @@ public class ArticleLike {
         this.member_id = member_id;
     }
 
-    public static ArticleLike createArticleLike(ArticleLikeDto articleLikeDto) {
+    public static ArticleLike createArticleLike(Long member_id, Long article_id) {
         return ArticleLike.builder()
-            .member_id(articleLikeDto.getMemberId())
-            .article_id(articleLikeDto.getArticleId())
+            .member_id(member_id)
+            .article_id(article_id)
             .build();
     }
 }

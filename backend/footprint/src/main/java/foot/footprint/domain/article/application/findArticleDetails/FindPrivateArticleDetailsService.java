@@ -8,7 +8,7 @@ import foot.footprint.domain.commentLike.dao.CommentLikeRepository;
 import foot.footprint.global.error.exception.WrongMapTypeException;
 import foot.footprint.global.security.user.CustomUserDetails;
 import foot.footprint.global.util.ObjectSerializer;
-import foot.footprint.global.util.ValidateIsMine;
+import foot.footprint.global.util.Validate;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,10 +18,10 @@ import org.springframework.transaction.annotation.Transactional;
 public class FindPrivateArticleDetailsService extends AbstrastFindArticleDetailsService {
 
     public FindPrivateArticleDetailsService(FindArticleRepository findArticleRepository,
-        ArticleLikeRepository articleLikeRepository, FindCommentRepository findCommentRepository,
-        CommentLikeRepository commentLikeRepository, ObjectSerializer objectSerializer) {
+                                            ArticleLikeRepository articleLikeRepository, FindCommentRepository findCommentRepository,
+                                            CommentLikeRepository commentLikeRepository, ObjectSerializer objectSerializer) {
         super(findArticleRepository, articleLikeRepository, findCommentRepository,
-            commentLikeRepository, objectSerializer);
+                commentLikeRepository, objectSerializer);
     }
 
     @Override
@@ -39,7 +39,6 @@ public class FindPrivateArticleDetailsService extends AbstrastFindArticleDetails
         if (!response.getArticleDetails().isPrivateMap()) {
             throw new WrongMapTypeException("게시글이 개인지도에 포함되지 않습니다.");
         }
-        ValidateIsMine.validateArticleIsMine(myId,
-            response.getArticleDetails().getAuthor().getId());
+        Validate.validateArticleIsMine(myId, response.getArticleDetails().getWriterId());
     }
 }

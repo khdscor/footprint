@@ -108,8 +108,8 @@ useEffect(() => {
             author={
               article
                 ? {
-                    nickName: article.author ? article.author.nickName : "",
-                    imageUrl: article.author ? article.author.imageUrl : "",
+                    nickName: article ? article.writerName : "",
+                    imageUrl: article ? article.writerImageUrl : "",
                   }
                 : {
                     nickName: "",
@@ -132,7 +132,7 @@ useEffect(() => {
             hasILiked={hasILiked}
             setHasILiked={setHasILiked}
             history={props.history}
-            isMyArticle={article ? article.author.id === myId : false}
+            isMyArticle={article ? article.writerId === myId : false}
             setIsChangeContentModalOpened={setIsChangeContentModalOpeneded}
           />
         </PostBox>

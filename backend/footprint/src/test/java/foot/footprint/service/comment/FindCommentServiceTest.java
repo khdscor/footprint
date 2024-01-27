@@ -12,7 +12,7 @@ import foot.footprint.domain.comment.dto.CommentResponse;
 import foot.footprint.domain.member.domain.Member;
 import foot.footprint.featureFactory.CommentFeatureFactory;
 import foot.footprint.featureFactory.MemberFeatureFactory;
-import foot.footprint.global.domain.AuthorDto;
+import foot.footprint.domain.comment.dto.AuthorDto;
 import java.util.ArrayList;
 import java.util.List;
 import org.jeasy.random.EasyRandom;

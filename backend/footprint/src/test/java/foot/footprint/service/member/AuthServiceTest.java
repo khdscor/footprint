@@ -6,8 +6,8 @@ import foot.footprint.domain.member.dao.MemberRepository;
 import foot.footprint.domain.member.domain.AuthProvider;
 import foot.footprint.domain.member.domain.Role;
 import foot.footprint.domain.member.domain.Member;
-import foot.footprint.domain.member.dto.authRequest.LoginRequest;
-import foot.footprint.domain.member.dto.authRequest.SignUpRequest;
+import foot.footprint.domain.member.dto.authDto.LoginDto;
+import foot.footprint.domain.member.dto.authDto.SignUpDto;
 import foot.footprint.domain.member.exception.AlreadyExistedEmailException;
 import foot.footprint.domain.member.exception.NotMatchPasswordException;
 import foot.footprint.global.error.exception.NotExistsException;
@@ -57,14 +57,14 @@ public class AuthServiceTest {
         //given
         String testToken = "testtset";
         setUser();
-        LoginRequest loginRequest = new LoginRequest("email", "password");
+        LoginDto loginDto = new LoginDto("email", "password");
         given(memberRepository.findByEmail("email")).willReturn(Optional.ofNullable(member));
-        given(passwordEncoder.matches(loginRequest.getPassword(), member.getPassword())).willReturn(
+        given(passwordEncoder.matches(loginDto.getPassword(), member.getPassword())).willReturn(
             true);
         given(tokenProvider.createAccessToken(any(), any())).willReturn(testToken);
 
         //when
-        String token = loginService.process(loginRequest);
+        String token = loginService.process(loginDto);
 
         //then
         assertThat(token).isEqualTo(testToken);
@@ -74,22 +74,22 @@ public class AuthServiceTest {
     @DisplayName("로그인 실패할 경우")
     public void Login_IfNotExistsEmail() {
         //given
-        LoginRequest loginRequest = new LoginRequest("email", "password");
+        LoginDto loginDto = new LoginDto("email", "password");
 
         //when & then
         assertThatThrownBy(
-            () -> loginService.process(loginRequest))
+            () -> loginService.process(loginDto))
             .isInstanceOf(NotExistsException.class);
 
         //given
         setUser();
         given(memberRepository.findByEmail("email")).willReturn(Optional.ofNullable(member));
-        given(passwordEncoder.matches(loginRequest.getPassword(), member.getPassword())).willReturn(
+        given(passwordEncoder.matches(loginDto.getPassword(), member.getPassword())).willReturn(
             false);
 
         //when & then
         assertThatThrownBy(
-            () -> loginService.process(loginRequest))
+            () -> loginService.process(loginDto))
             .isInstanceOf(NotMatchPasswordException.class);
     }
 
@@ -98,17 +98,17 @@ public class AuthServiceTest {
     public void SignUp() {
         //given
         ArgumentCaptor<Member> captor = ArgumentCaptor.forClass(Member.class);
-        SignUpRequest signUpRequest = new SignUpRequest("nickName", "email", "password");
+        SignUpDto signUpDto = new SignUpDto("nickName", "email", "password");
         given(memberRepository.saveMember(any())).willReturn(1L);
         given(memberRepository.existsByEmail(any())).willReturn(false);
 
         //when
-        signUpService.process(signUpRequest);
+        signUpService.process(signUpDto);
 
         //then
         verify(memberRepository, times(1)).saveMember(captor.capture());
         Member member = captor.getValue();
-        assertThat(signUpRequest.getNickName()).isEqualTo(member.getNick_name());
+        assertThat(signUpDto.getNickName()).isEqualTo(member.getNick_name());
     }
 
     @Test
@@ -116,12 +116,12 @@ public class AuthServiceTest {
     public void SignUp_IfExistsEmail() {
         //given
         boolean test = true;
-        SignUpRequest signUpRequest = new SignUpRequest("nickName", "email", "password");
+        SignUpDto signUpDto = new SignUpDto("nickName", "email", "password");
         given(memberRepository.existsByEmail(any())).willReturn(true);
 
         //when & then
         assertThatThrownBy(
-            () -> signUpService.process(signUpRequest))
+            () -> signUpService.process(signUpDto))
             .isInstanceOf(AlreadyExistedEmailException.class);
     }
 

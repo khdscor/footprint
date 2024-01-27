@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class ArticlePrivateDetailsDto {
+public class ArticlePagePrivateDetailsDto {
     private Long articleId;
     private boolean articleLike;
     private List<MyCommentLikesInArticle> commentLikes;

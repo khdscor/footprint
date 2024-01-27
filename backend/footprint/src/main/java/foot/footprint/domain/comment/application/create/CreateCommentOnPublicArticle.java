@@ -6,7 +6,7 @@ import foot.footprint.domain.comment.dao.CreateCommentRepository;
 import foot.footprint.domain.comment.dto.CommentResponse;
 import foot.footprint.domain.member.dao.MemberRepository;
 import foot.footprint.domain.member.domain.Member;
-import foot.footprint.global.domain.AuthorDto;
+import foot.footprint.domain.comment.dto.AuthorDto;
 import foot.footprint.global.error.exception.WrongMapTypeException;
 import foot.footprint.global.util.ObjectSerializer;
 import org.springframework.beans.factory.annotation.Qualifier;

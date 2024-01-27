@@ -1,7 +1,6 @@
 package foot.footprint.domain.article.dto.articleDetails;
 
 import foot.footprint.domain.comment.dto.CommentUpdateDto;
-import foot.footprint.domain.comment.dto.CommentsDto;
 import foot.footprint.domain.commentLike.dto.ChangeTotalLikesDto;
 import java.util.List;
 import lombok.AllArgsConstructor;
@@ -14,7 +13,7 @@ import lombok.NoArgsConstructor;
 public class ArticlePageDto {
 
     private Long articleId;
-    private ArticleDetailsDto articleDetails;
+    private ArticleDetails articleDetails;
     private List<CommentsDto> comments;
 
     public void changeLike(boolean hasLiked) {
