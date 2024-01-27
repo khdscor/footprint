@@ -7,7 +7,7 @@ import static org.mockito.BDDMockito.given;
 import foot.footprint.domain.comment.application.find.FindCommentOnPageService;
 import foot.footprint.domain.comment.dao.FindCommentRepository;
 import foot.footprint.domain.comment.domain.Comment;
-import foot.footprint.domain.comment.dto.CommentOnPageResponse;
+import foot.footprint.domain.comment.dto.CommentsOnPageResponse;
 import foot.footprint.domain.comment.dto.CommentResponse;
 import foot.footprint.domain.member.domain.Member;
 import foot.footprint.featureFactory.CommentFeatureFactory;
@@ -49,7 +49,7 @@ public class FindCommentServiceTest {
             .willReturn(responses);
 
         //when
-        CommentOnPageResponse response = findCommentOnPageService.findComments(1L, 10L);
+        CommentsOnPageResponse response = findCommentOnPageService.findComments(1L, 10L);
 
         //then
         assertThat(response.isHasNextPage()).isTrue();
@@ -74,7 +74,7 @@ public class FindCommentServiceTest {
             .willReturn(responses);
 
         //when
-        CommentOnPageResponse response = findCommentOnPageService.findComments(1L, 6L);
+        CommentsOnPageResponse response = findCommentOnPageService.findComments(1L, 6L);
 
         //then
         assertThat(response.isHasNextPage()).isFalse();

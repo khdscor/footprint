@@ -1,7 +1,7 @@
 package foot.footprint.domain.comment.api;
 
 import foot.footprint.domain.comment.application.find.FindCommentService;
-import foot.footprint.domain.comment.dto.CommentOnPageResponse;
+import foot.footprint.domain.comment.dto.CommentsOnPageResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,12 +15,12 @@ public class FindCommentController {
     private final FindCommentService findCommentService;
 
     @GetMapping("/comments/read/{articleId}/{cursorId}")
-    public ResponseEntity<CommentOnPageResponse> findCommentsOnPage(
+    public ResponseEntity<CommentsOnPageResponse> findCommentsOnPage(
         @PathVariable("articleId") Long articleId, @PathVariable("cursorId") Long cursorId) {
         if (cursorId < 0) {
-            return ResponseEntity.ok().body(new CommentOnPageResponse());
+            return ResponseEntity.ok().body(new CommentsOnPageResponse());
         }
-        CommentOnPageResponse response = findCommentService.findComments(articleId, cursorId);
+        CommentsOnPageResponse response = findCommentService.findComments(articleId, cursorId);
         return ResponseEntity.ok().body(response);
     }
 }
