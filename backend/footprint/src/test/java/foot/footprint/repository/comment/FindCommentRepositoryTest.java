@@ -7,7 +7,7 @@ import foot.footprint.domain.article.domain.Article;
 import foot.footprint.domain.comment.dao.CreateCommentRepository;
 import foot.footprint.domain.comment.dao.FindCommentRepository;
 import foot.footprint.domain.comment.domain.Comment;
-import foot.footprint.domain.comment.dto.CommentResponse;
+import foot.footprint.domain.comment.dto.CommentDto;
 import foot.footprint.domain.commentLike.dao.CommentLikeRepository;
 import foot.footprint.domain.member.dao.MemberRepository;
 import foot.footprint.domain.member.domain.Member;
@@ -55,11 +55,11 @@ public class FindCommentRepositoryTest extends RepositoryTest {
         Long cursorId = 121L;
         //when
 
-        List<CommentResponse> responses = findCommentRepository.findAllByArticleIdOnPage(
+        List<CommentDto> responses = findCommentRepository.findAllByArticleIdOnPage(
             article.getId(), cursorId);
 
         //then
         assertThat(responses).hasSize(11);
-        assertThat(responses.get(0).getId()).isEqualTo(120L);
+        assertThat(responses.get(0).getCommentId()).isEqualTo(120L);
     }
 }

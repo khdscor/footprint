@@ -6,7 +6,7 @@ import foot.footprint.domain.article.dto.articleDetails.ArticleUpdatePart;
 import foot.footprint.domain.comment.dao.CreateCommentRepository;
 import foot.footprint.domain.comment.domain.Comment;
 import foot.footprint.domain.comment.dto.CommentResponse;
-import foot.footprint.domain.article.dto.articleDetails.CommentsDto;
+import foot.footprint.domain.comment.dto.CommentDto;
 import foot.footprint.domain.member.dao.MemberRepository;
 import foot.footprint.domain.member.domain.Member;
 import foot.footprint.domain.comment.dto.Author;
@@ -41,7 +41,7 @@ public abstract class AbstractCreateCommentService implements CreateCommentServi
 
     protected void updateRedis (Long articleId, CommentResponse response) {
         String redisKey = "articleDetails::" + articleId;
-        CommentsDto dto = CommentsDto.toDto(response);
+        CommentDto dto = CommentDto.toDto(response);
         objectSerializer.updateArticleData(redisKey, ArticleUpdatePart.ADD_COMMENT, dto);
     }
 }

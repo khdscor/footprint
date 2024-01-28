@@ -8,7 +8,7 @@ import foot.footprint.domain.article.application.findArticleDetails.FindPublicAr
 import foot.footprint.domain.article.dao.FindArticleRepository;
 import foot.footprint.domain.article.domain.Article;
 import foot.footprint.domain.article.dto.articleDetails.*;
-import foot.footprint.domain.article.dto.articleDetails.CommentsDto;
+import foot.footprint.domain.comment.dto.CommentDto;
 import foot.footprint.domain.commentLike.dao.CommentLikeRepository;
 import foot.footprint.global.security.user.CustomUserDetails;
 import foot.footprint.global.util.ObjectSerializer;
@@ -48,9 +48,9 @@ public class FindArticleDetailsServiceTest {
         //게시글 dto 리턴
         ArticleDetails details = new ArticleDetails(articleId, "title", "content", 1.0, 1.0,
             true, true, memberId, "nickName", "image", new Date(), 0L);
-        CommentsDto response = new CommentsDto(1L, "test", memberId, "nickName", "image",
+        CommentDto response = new CommentDto(1L, "test", memberId, "nickName", "image",
             new Date(), 0L);
-        List<CommentsDto> responses = new ArrayList<>();
+        List<CommentDto> responses = new ArrayList<>();
         responses.add(response);
         ArticlePageDto dto = new ArticlePageDto(articleId, details, responses);
         given(findArticleRepository.findArticleDetails(any())).willReturn(Optional.of(dto));

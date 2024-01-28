@@ -8,7 +8,7 @@
     c.content as content,
     c.create_date as createDate,
     count(l.id) as totalLikes,
-    c.member_id as userId,
+    c.member_id as memberId,
     m.nick_name as nickName,
     m.image_url as imageUrl
     FROM comment c LEFT JOIN comment_like as l ON (c.id = l.comment_id)
@@ -19,15 +19,13 @@
     </if>
     GROUP BY c.id ORDER BY c.id desc LIMIT 11
   </select>
-  <resultMap id="findCommentsOnNextPage" type="CommentResponse">
-    <id property="id" column="id"/>
-    <result property="content" column="content"/>
-    <result property="createDate" column="createDate"/>
-    <result property="totalLikes" column="totalLikes"/>
-    <association property="author" javaType="foot.footprint.domain.comment.dto.Author">
-      <id property="id" column="userId"/>
-      <result property="nickName" column="nickName"/>
-      <result property="imageUrl" column="imageUrl"/>
-    </association>
+  <resultMap id="findCommentsOnNextPage" type="CommentDto">
+    <id property="commentId" column="id"/>
+    <result property="commentContent" column="content"/>
+    <result property="memberId" column="memberId"/>
+    <result property="nickName" column="nickName"/>
+    <result property="imageUrl" column="imageUrl"/>
+    <result property="commentCreateDate" column="createDate"/>
+    <result property="commentTotalLikes" column="totalLikes"/>
   </resultMap>
 </mapper>

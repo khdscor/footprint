@@ -1,6 +1,5 @@
 package foot.footprint.domain.comment.dto;
 
-import foot.footprint.domain.article.dto.articleDetails.CommentsDto;
 import foot.footprint.domain.comment.domain.Comment;
 
 import java.util.Date;
@@ -38,15 +37,15 @@ public class CommentResponse {
         );
     }
 
-    public static CommentResponse toCommentResponse(CommentsDto commentsDto) {
+    public static CommentResponse toCommentResponse(CommentDto commentDto) {
         return new CommentResponse(
-            commentsDto.getCommentId(),
-            commentsDto.getCommentContent(),
-            commentsDto.getMemberId(),
-            commentsDto.getNickName(),
-            commentsDto.getImageUrl(),
-            commentsDto.getCommentCreateDate(),
-            commentsDto.getCommentTotalLikes()
+            commentDto.getCommentId(),
+            commentDto.getCommentContent(),
+            commentDto.getMemberId(),
+            commentDto.getNickName(),
+            commentDto.getImageUrl(),
+            commentDto.getCommentCreateDate(),
+            commentDto.getCommentTotalLikes()
         );
     }
 }

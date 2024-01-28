@@ -53,7 +53,7 @@
       <result property="totalLikes" column="totalLikes"/>
     </association>
     <collection property="comments" notNullColumn="commentId"
-      ofType="foot.footprint.domain.article.dto.articleDetails.CommentsDto">
+      ofType="foot.footprint.domain.comment.dto.CommentDto">
       <id property="commentId" column="commentId"/>
       <result property="commentContent" column="commentContent"/>
       <result property="memberId" column="memberId"/>
@@ -63,8 +63,6 @@
       <result property="commentTotalLikes" column="commentTotalLikes"/>
     </collection>
   </resultMap>
-
-
   <select id="findArticlePrivateDetails" resultMap="ArticlePrivateDetails">
     SELECT
     a.id as articleId,
