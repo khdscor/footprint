@@ -6,7 +6,7 @@ import foot.footprint.domain.comment.dto.CommentResponse;
 import foot.footprint.domain.group.dao.ArticleGroupRepository;
 import foot.footprint.domain.member.dao.MemberRepository;
 import foot.footprint.domain.member.domain.Member;
-import foot.footprint.domain.comment.dto.AuthorDto;
+import foot.footprint.domain.comment.dto.Author;
 import foot.footprint.global.error.exception.NotAuthorizedOrExistException;
 import foot.footprint.global.util.ObjectSerializer;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -34,9 +34,8 @@ public class CreateCommentOnGroupedArticle extends AbstractCreateCommentService 
     public CommentResponse createComment(Long articleId, String content, Long memberId) {
         findAndValidateArticle(articleId);
         Member member = findAndValidateMember(memberId);
-        AuthorDto authorDto = AuthorDto.buildAuthorDto(member);
-        validateInMyGroup(articleId, authorDto.getId());
-        CommentResponse response = saveComment(articleId, content, authorDto);
+        validateInMyGroup(articleId, memberId);
+        CommentResponse response = saveComment(articleId, content, Author.buildAuthor(member));
         updateRedis(articleId, response);
         return response;
     }

@@ -6,7 +6,7 @@ import foot.footprint.domain.comment.dao.CreateCommentRepository;
 import foot.footprint.domain.comment.dto.CommentResponse;
 import foot.footprint.domain.member.dao.MemberRepository;
 import foot.footprint.domain.member.domain.Member;
-import foot.footprint.domain.comment.dto.AuthorDto;
+import foot.footprint.domain.comment.dto.Author;
 import foot.footprint.global.error.exception.WrongMapTypeException;
 import foot.footprint.global.util.ObjectSerializer;
 import foot.footprint.global.util.Validate;
@@ -34,10 +34,8 @@ public class CreateCommentOnPrivateArticle extends AbstractCreateCommentService 
             throw new WrongMapTypeException("게시글이 전체지도에 포함되지 않습니다.");
         }
         Member member = findAndValidateMember(memberId);
-        AuthorDto authorDto = AuthorDto.buildAuthorDto(member);
-        Validate.validateArticleIsMine(article.getMember_id(), authorDto.getId());
-
-        CommentResponse response = saveComment(articleId, content, authorDto);
+        Validate.validateArticleIsMine(article.getMember_id(), memberId);
+        CommentResponse response = saveComment(articleId, content, Author.buildAuthor(member));
         updateRedis(articleId, response);
         return response;
     }

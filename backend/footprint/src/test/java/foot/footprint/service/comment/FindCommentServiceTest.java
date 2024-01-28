@@ -12,7 +12,7 @@ import foot.footprint.domain.comment.dto.CommentResponse;
 import foot.footprint.domain.member.domain.Member;
 import foot.footprint.featureFactory.CommentFeatureFactory;
 import foot.footprint.featureFactory.MemberFeatureFactory;
-import foot.footprint.domain.comment.dto.AuthorDto;
+import foot.footprint.domain.comment.dto.Author;
 import java.util.ArrayList;
 import java.util.List;
 import org.jeasy.random.EasyRandom;
@@ -42,8 +42,8 @@ public class FindCommentServiceTest {
             Comment comment = commentEasyRandom.nextObject(Comment.class);
             EasyRandom memberEasyRandom = MemberFeatureFactory.create(1L);
             Member member = memberEasyRandom.nextObject(Member.class);
-            AuthorDto authorDto = AuthorDto.buildAuthorDto(member);
-            responses.add(CommentResponse.toCommentResponse(comment, authorDto));
+            Author author = Author.buildAuthor(member);
+            responses.add(CommentResponse.toCommentResponse(comment, author));
         }
         given(findCommentRepository.findAllByArticleIdOnPage(any(), any()))
             .willReturn(responses);
@@ -67,8 +67,8 @@ public class FindCommentServiceTest {
             Comment comment = commentEasyRandom.nextObject(Comment.class);
             EasyRandom memberEasyRandom = MemberFeatureFactory.create(1L);
             Member member = memberEasyRandom.nextObject(Member.class);
-            AuthorDto authorDto = AuthorDto.buildAuthorDto(member);
-            responses.add(CommentResponse.toCommentResponse(comment, authorDto));
+            Author author = Author.buildAuthor(member);
+            responses.add(CommentResponse.toCommentResponse(comment, author));
         }
         given(findCommentRepository.findAllByArticleIdOnPage(any(), any()))
             .willReturn(responses);

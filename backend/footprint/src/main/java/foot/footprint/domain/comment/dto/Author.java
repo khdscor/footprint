@@ -6,19 +6,19 @@ import lombok.NoArgsConstructor;
 
 @Getter
 @NoArgsConstructor
-public class AuthorDto {
+public class Author {
 
     private Long id;
     private String nickName;
     private String imageUrl;
 
-    public AuthorDto(Long id, String nickName, String imageUrl) {
+    public Author(Long id, String nickName, String imageUrl) {
         this.id = id;
         this.nickName = nickName;
         this.imageUrl = imageUrl;
     }
 
-    public static AuthorDto buildAuthorDto(Member member) {
-        return new AuthorDto(member.getId(), member.getNick_name(), member.getImage_url());
+    public static Author buildAuthor(Member member) {
+        return new Author(member.getId(), member.getNick_name(), member.getImage_url());
     }
 }
