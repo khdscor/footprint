@@ -2,6 +2,7 @@ package foot.footprint.domain.commentLike.application;
 
 import foot.footprint.domain.article.dao.FindArticleRepository;
 import foot.footprint.domain.commentLike.dao.CommentLikeRepository;
+import foot.footprint.domain.commentLike.dto.ChangeCommentLikeCommand;
 import foot.footprint.domain.group.dao.ArticleGroupRepository;
 import foot.footprint.global.error.exception.NotAuthorizedOrExistException;
 import foot.footprint.global.util.ObjectSerializer;
@@ -26,11 +27,11 @@ public class ChangeGroupedCommentLikeService extends AbstractChangeCommentLikeSe
 
     @Override
     @Transactional
-    public void changeMyLike(Long commentId, Long articleId, Boolean hasILiked, Long memberId) {
-        findAndValidateArticle(articleId);
-        validateInMyGroup(articleId, memberId);
-        changeLike(commentId, memberId, hasILiked);
-        updateRedis(articleId, commentId, hasILiked);
+    public void changeMyLike(ChangeCommentLikeCommand command) {
+        findAndValidateArticle(command.getArticleId());
+        validateInMyGroup(command.getArticleId(), command.getMemberId());
+        changeLike(command.getCommentId(), command.getMemberId(), command.isHasILiked());
+        updateRedis(command.getArticleId(), command.getCommentId(), command.isHasILiked());
     }
 
     private void validateInMyGroup(Long articleId, Long memberId) {
