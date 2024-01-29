@@ -6,8 +6,8 @@ import foot.footprint.domain.member.dao.MemberRepository;
 import foot.footprint.domain.member.domain.AuthProvider;
 import foot.footprint.domain.member.domain.Role;
 import foot.footprint.domain.member.domain.Member;
-import foot.footprint.domain.member.dto.authDto.LoginDto;
-import foot.footprint.domain.member.dto.authDto.SignUpDto;
+import foot.footprint.domain.member.dto.authDto.LoginCommand;
+import foot.footprint.domain.member.dto.authDto.SignUpCommand;
 import foot.footprint.domain.member.exception.AlreadyExistedEmailException;
 import foot.footprint.domain.member.exception.NotMatchPasswordException;
 import foot.footprint.global.error.exception.NotExistsException;
@@ -57,7 +57,7 @@ public class AuthServiceTest {
         //given
         String testToken = "testtset";
         setUser();
-        LoginDto loginDto = new LoginDto("email", "password");
+        LoginCommand loginDto = new LoginCommand("email", "password");
         given(memberRepository.findByEmail("email")).willReturn(Optional.ofNullable(member));
         given(passwordEncoder.matches(loginDto.getPassword(), member.getPassword())).willReturn(
             true);
@@ -74,7 +74,7 @@ public class AuthServiceTest {
     @DisplayName("로그인 실패할 경우")
     public void Login_IfNotExistsEmail() {
         //given
-        LoginDto loginDto = new LoginDto("email", "password");
+        LoginCommand loginDto = new LoginCommand("email", "password");
 
         //when & then
         assertThatThrownBy(
@@ -98,7 +98,7 @@ public class AuthServiceTest {
     public void SignUp() {
         //given
         ArgumentCaptor<Member> captor = ArgumentCaptor.forClass(Member.class);
-        SignUpDto signUpDto = new SignUpDto("nickName", "email", "password");
+        SignUpCommand signUpDto = new SignUpCommand("nickName", "email", "password");
         given(memberRepository.saveMember(any())).willReturn(1L);
         given(memberRepository.existsByEmail(any())).willReturn(false);
 
@@ -116,7 +116,7 @@ public class AuthServiceTest {
     public void SignUp_IfExistsEmail() {
         //given
         boolean test = true;
-        SignUpDto signUpDto = new SignUpDto("nickName", "email", "password");
+        SignUpCommand signUpDto = new SignUpCommand("nickName", "email", "password");
         given(memberRepository.existsByEmail(any())).willReturn(true);
 
         //when & then

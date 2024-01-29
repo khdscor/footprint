@@ -4,16 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e9c5eb8d-61e6-4bf1-a075-2ef5ca99f02a" name="변경" comment="refactor: group#deportMember api -&gt; service 간 command dto를 두어 혼란을 방지">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="e9c5eb8d-61e6-4bf1-a075-2ef5ca99f02a" name="변경" comment="refactor: MemberGroupRepository#findMyGroups, ImportGroups 반환타입을 response -&gt; domain 으로 변경">
       <change beforePath="$PROJECT_DIR$/footprint/footprint/log/err_log.log" beforeDir="false" afterPath="$PROJECT_DIR$/footprint/footprint/log/err_log.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/footprint/footprint/log/testLog.log" beforeDir="false" afterPath="$PROJECT_DIR$/footprint/footprint/log/testLog.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/footprint/src/main/java/foot/footprint/domain/group/application/findGroup/FindMyGroupsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/footprint/src/main/java/foot/footprint/domain/group/application/findGroup/FindMyGroupsService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/footprint/src/main/java/foot/footprint/domain/group/application/findGroup/FindMyImportantGroupsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/footprint/src/main/java/foot/footprint/domain/group/application/findGroup/FindMyImportantGroupsService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/footprint/src/main/java/foot/footprint/domain/group/dao/MemberGroupRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/footprint/src/main/java/foot/footprint/domain/group/dao/MemberGroupRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/footprint/src/main/java/foot/footprint/domain/group/dto/find/GroupSummaryResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/footprint/src/main/java/foot/footprint/domain/group/dto/find/GroupSummaryResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/footprint/src/main/resources/mapper/group/MemberGroupMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/footprint/src/main/resources/mapper/group/MemberGroupMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/footprint/src/test/java/foot/footprint/repository/group/MeemberGroupRepositoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/footprint/src/test/java/foot/footprint/repository/group/MeemberGroupRepositoryTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/footprint/src/main/java/foot/footprint/domain/member/api/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/footprint/src/main/java/foot/footprint/domain/member/api/AuthController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/footprint/src/main/java/foot/footprint/domain/member/application/auth/AuthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/footprint/src/main/java/foot/footprint/domain/member/application/auth/AuthService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/footprint/src/main/java/foot/footprint/domain/member/application/auth/LoginService.java" beforeDir="false" afterPath="$PROJECT_DIR$/footprint/src/main/java/foot/footprint/domain/member/application/auth/LoginService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/footprint/src/main/java/foot/footprint/domain/member/application/auth/SignUpService.java" beforeDir="false" afterPath="$PROJECT_DIR$/footprint/src/main/java/foot/footprint/domain/member/application/auth/SignUpService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/footprint/src/main/java/foot/footprint/domain/member/dto/authDto/AuthDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/footprint/src/main/java/foot/footprint/domain/member/dto/authDto/AuthCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/footprint/src/main/java/foot/footprint/domain/member/dto/authDto/LoginDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/footprint/src/main/java/foot/footprint/domain/member/dto/authDto/LoginCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/footprint/src/main/java/foot/footprint/domain/member/dto/authDto/SignUpDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/footprint/src/main/java/foot/footprint/domain/member/dto/authDto/SignUpCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/footprint/src/test/java/foot/footprint/service/member/AuthServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/footprint/src/test/java/foot/footprint/service/member/AuthServiceTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -623,7 +624,7 @@
       <option name="project" value="LOCAL" />
       <updated>1704894267692</updated>
     </task>
-    <option name="localTasksCounter" value="267" />
+    <option name="localTasksCounter" value="268" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -641,7 +642,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="refactor: public, private 지정 등 기타 리펙토링" />
     <MESSAGE value="test: easyRandom을 통한 테스트 객체 생성 로직 구현 및 article bulkInsert 테스트" />
     <MESSAGE value="test: easyRandom을 통한 테스트 객체 생성 로직 구현 및 article bulkInsert 테스트 및 insert" />
     <MESSAGE value="refactor: index 적용을 위해 findPublicAndPrivateArticles 를 두개의 메서드로 분리 및 테스트" />
@@ -666,6 +666,7 @@
     <MESSAGE value="refactor: CreateArticleDto 를 CreateArticleCommand 로 수정(controller -&gt; service 로직의 dto는 command로 명칭하기로 결정)" />
     <MESSAGE value="refactor: 사용되지 않고있는 메서드, 클래스 제거" />
     <MESSAGE value="refactor: group#deportMember api -&gt; service 간 command dto를 두어 혼란을 방지" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor: group#deportMember api -&gt; service 간 command dto를 두어 혼란을 방지" />
+    <MESSAGE value="refactor: MemberGroupRepository#findMyGroups, ImportGroups 반환타입을 response -&gt; domain 으로 변경" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor: MemberGroupRepository#findMyGroups, ImportGroups 반환타입을 response -&gt; domain 으로 변경" />
   </component>
 </project>

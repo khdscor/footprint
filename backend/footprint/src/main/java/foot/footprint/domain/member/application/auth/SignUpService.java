@@ -2,8 +2,8 @@ package foot.footprint.domain.member.application.auth;
 
 import foot.footprint.domain.member.dao.MemberRepository;
 import foot.footprint.domain.member.domain.Member;
-import foot.footprint.domain.member.dto.authDto.AuthDto;
-import foot.footprint.domain.member.dto.authDto.SignUpDto;
+import foot.footprint.domain.member.dto.authDto.AuthCommand;
+import foot.footprint.domain.member.dto.authDto.SignUpCommand;
 import foot.footprint.domain.member.exception.AlreadyExistedEmailException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -21,8 +21,8 @@ public class SignUpService implements AuthService {
 
     @Override
     @Transactional
-    public String process(AuthDto authDto) {
-        SignUpDto signUpDto = (SignUpDto) authDto;
+    public String process(AuthCommand authCommand) {
+        SignUpCommand signUpDto = (SignUpCommand) authCommand;
         verifyEmail(signUpDto.getEmail());
         Member member = Member.createMember(signUpDto.getEmail(), signUpDto.getNickName(),
                 passwordEncoder.encode(signUpDto.getPassword()));

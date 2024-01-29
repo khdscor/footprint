@@ -2,8 +2,8 @@ package foot.footprint.domain.member.application.auth;
 
 import foot.footprint.domain.member.domain.Member;
 import foot.footprint.domain.member.domain.Role;
-import foot.footprint.domain.member.dto.authDto.AuthDto;
-import foot.footprint.domain.member.dto.authDto.LoginDto;
+import foot.footprint.domain.member.dto.authDto.AuthCommand;
+import foot.footprint.domain.member.dto.authDto.LoginCommand;
 import foot.footprint.domain.member.exception.NotMatchPasswordException;
 import foot.footprint.domain.member.dao.MemberRepository;
 import foot.footprint.global.error.exception.NotExistsException;
@@ -25,8 +25,8 @@ public class LoginService implements AuthService{
 
     @Override
     @Transactional(readOnly = true)
-    public String process(AuthDto authDto) {
-        LoginDto loginDto = (LoginDto) authDto;
+    public String process(AuthCommand authCommand) {
+        LoginCommand loginDto = (LoginCommand) authCommand;
         Member member = findMember(loginDto.getEmail());
         verifyPassword(loginDto.getPassword(), member);
         return tokenProvider.createAccessToken(String.valueOf(member.getId()), Role.USER);
