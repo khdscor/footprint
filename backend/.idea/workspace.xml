@@ -4,17 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e9c5eb8d-61e6-4bf1-a075-2ef5ca99f02a" name="변경" comment="refactor: MemberGroupRepository#findMyGroups, ImportGroups 반환타입을 response -&gt; domain 으로 변경">
+    <list default="true" id="e9c5eb8d-61e6-4bf1-a075-2ef5ca99f02a" name="변경" comment="refactor: MyPageResponse 내에 GroupSummary 를 member 폴더 내에 MyGroupSummary 로 대체">
       <change beforePath="$PROJECT_DIR$/footprint/footprint/log/err_log.log" beforeDir="false" afterPath="$PROJECT_DIR$/footprint/footprint/log/err_log.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/footprint/footprint/log/testLog.log" beforeDir="false" afterPath="$PROJECT_DIR$/footprint/footprint/log/testLog.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/footprint/src/main/java/foot/footprint/domain/member/api/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/footprint/src/main/java/foot/footprint/domain/member/api/AuthController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/footprint/src/main/java/foot/footprint/domain/member/application/auth/AuthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/footprint/src/main/java/foot/footprint/domain/member/application/auth/AuthService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/footprint/src/main/java/foot/footprint/domain/member/application/auth/LoginService.java" beforeDir="false" afterPath="$PROJECT_DIR$/footprint/src/main/java/foot/footprint/domain/member/application/auth/LoginService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/footprint/src/main/java/foot/footprint/domain/member/application/auth/SignUpService.java" beforeDir="false" afterPath="$PROJECT_DIR$/footprint/src/main/java/foot/footprint/domain/member/application/auth/SignUpService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/footprint/src/main/java/foot/footprint/domain/member/dto/authDto/AuthDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/footprint/src/main/java/foot/footprint/domain/member/dto/authDto/AuthCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/footprint/src/main/java/foot/footprint/domain/member/dto/authDto/LoginDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/footprint/src/main/java/foot/footprint/domain/member/dto/authDto/LoginCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/footprint/src/main/java/foot/footprint/domain/member/dto/authDto/SignUpDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/footprint/src/main/java/foot/footprint/domain/member/dto/authDto/SignUpCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/footprint/src/test/java/foot/footprint/service/member/AuthServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/footprint/src/test/java/foot/footprint/service/member/AuthServiceTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -116,11 +108,11 @@
       <recent name="C:\Users\khdsc\IdeaProjects\footprint\backend\footprint\src\main\resources\db\migration" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="foot.footprint.domain.member.dto.auth" />
       <recent name="foot.footprint.domain.article.application.findArticles" />
       <recent name="foot.footprint.domain.comment.application.create" />
       <recent name="foot.footprint.global.domain" />
       <recent name="foot.footprint.global.aop.auth" />
-      <recent name="foot.footprint.global.aop.otherLogs" />
     </key>
   </component>
   <component name="RunManager" selected="Gradle.MeemberGroupRepositoryTest">
@@ -624,7 +616,7 @@
       <option name="project" value="LOCAL" />
       <updated>1704894267692</updated>
     </task>
-    <option name="localTasksCounter" value="268" />
+    <option name="localTasksCounter" value="271" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -642,8 +634,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="test: easyRandom을 통한 테스트 객체 생성 로직 구현 및 article bulkInsert 테스트" />
-    <MESSAGE value="test: easyRandom을 통한 테스트 객체 생성 로직 구현 및 article bulkInsert 테스트 및 insert" />
     <MESSAGE value="refactor: index 적용을 위해 findPublicAndPrivateArticles 를 두개의 메서드로 분리 및 테스트" />
     <MESSAGE value="refactor: publicMap, privateMap articles 찾기 index 구현 및 적용, 테스트" />
     <MESSAGE value="refactor: grouped articles 찾기 index 구현 및 적용, 테스트 - 진행중" />
@@ -667,6 +657,8 @@
     <MESSAGE value="refactor: 사용되지 않고있는 메서드, 클래스 제거" />
     <MESSAGE value="refactor: group#deportMember api -&gt; service 간 command dto를 두어 혼란을 방지" />
     <MESSAGE value="refactor: MemberGroupRepository#findMyGroups, ImportGroups 반환타입을 response -&gt; domain 으로 변경" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor: MemberGroupRepository#findMyGroups, ImportGroups 반환타입을 response -&gt; domain 으로 변경" />
+    <MESSAGE value="refactor: AutoDto 를 AutoCommand 로 수정" />
+    <MESSAGE value="refactor: MyPageResponse 내에 GroupSummary 를 member 폴더 내에 MyGroupSummary 로 대체" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor: MyPageResponse 내에 GroupSummary 를 member 폴더 내에 MyGroupSummary 로 대체" />
   </component>
 </project>
