@@ -1,6 +1,8 @@
 package foot.footprint.domain.comment.application.delete;
 
+import foot.footprint.domain.comment.dto.DeleteCommentCommand;
+
 public interface DeleteCommentService {
 
-    void delete(Long articleId, Long commentId, Long memberId);
+    void delete(DeleteCommentCommand command);
 }

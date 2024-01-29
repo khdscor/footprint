@@ -4,7 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e9c5eb8d-61e6-4bf1-a075-2ef5ca99f02a" name="변경" comment="refactor: MyPageResponse 내에 GroupSummary 를 member 폴더 내에 MyGroupSummary 로 대체">
+    <list default="true" id="e9c5eb8d-61e6-4bf1-a075-2ef5ca99f02a" name="변경" comment="refactor: CommentController -&gt; Service 간 command 를 사용하도록 수정">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/footprint/footprint/log/err_log.log" beforeDir="false" afterPath="$PROJECT_DIR$/footprint/footprint/log/err_log.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/footprint/footprint/log/testLog.log" beforeDir="false" afterPath="$PROJECT_DIR$/footprint/footprint/log/testLog.log" afterDir="false" />
     </list>
@@ -115,8 +116,8 @@
       <recent name="foot.footprint.global.aop.auth" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.MeemberGroupRepositoryTest">
-    <configuration name="CreateArticleServiceTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+  <component name="RunManager" selected="Gradle.DeleteCommentServiceTest.edit">
+    <configuration name="CreateCommentServiceTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$/footprint" />
@@ -129,7 +130,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;foot.footprint.service.article.CreateArticleServiceTest&quot;" />
+            <option value="&quot;foot.footprint.service.comment.CreateCommentServiceTest&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -140,7 +141,7 @@
       <ForceTestExec>true</ForceTestExec>
       <method v="2" />
     </configuration>
-    <configuration name="DeportMemberServiceTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="DeleteCommentServiceTest.edit" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$/footprint" />
@@ -153,7 +154,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;foot.footprint.service.group.DeportMemberServiceTest&quot;" />
+            <option value="&quot;foot.footprint.service.comment.DeleteCommentServiceTest.edit&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -164,7 +165,7 @@
       <ForceTestExec>true</ForceTestExec>
       <method v="2" />
     </configuration>
-    <configuration name="FindCommentRepositoryTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="EditCommentServiceTest.edit" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$/footprint" />
@@ -177,7 +178,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;foot.footprint.repository.comment.FindCommentRepositoryTest&quot;" />
+            <option value="&quot;foot.footprint.service.comment.EditCommentServiceTest.edit&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -188,7 +189,7 @@
       <ForceTestExec>true</ForceTestExec>
       <method v="2" />
     </configuration>
-    <configuration name="MeemberGroupRepositoryTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="MemberRepositoryTest.findMyPageDetails" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$/footprint" />
@@ -201,7 +202,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;foot.footprint.repository.group.MeemberGroupRepositoryTest&quot;" />
+            <option value="&quot;foot.footprint.repository.member.MemberRepositoryTest.findMyPageDetails&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -248,18 +249,18 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Gradle.DeportMemberServiceTest" />
-      <item itemvalue="Gradle.MeemberGroupRepositoryTest" />
-      <item itemvalue="Gradle.CreateArticleServiceTest" />
-      <item itemvalue="Gradle.FindCommentRepositoryTest" />
+      <item itemvalue="Gradle.CreateCommentServiceTest" />
+      <item itemvalue="Gradle.DeleteCommentServiceTest.edit" />
+      <item itemvalue="Gradle.EditCommentServiceTest.edit" />
+      <item itemvalue="Gradle.MemberRepositoryTest.findMyPageDetails" />
       <item itemvalue="Gradle.Tests in 'footprint.test'" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.MeemberGroupRepositoryTest" />
-        <item itemvalue="Gradle.DeportMemberServiceTest" />
-        <item itemvalue="Gradle.FindCommentRepositoryTest" />
-        <item itemvalue="Gradle.CreateArticleServiceTest" />
+        <item itemvalue="Gradle.DeleteCommentServiceTest.edit" />
+        <item itemvalue="Gradle.EditCommentServiceTest.edit" />
+        <item itemvalue="Gradle.CreateCommentServiceTest" />
+        <item itemvalue="Gradle.MemberRepositoryTest.findMyPageDetails" />
         <item itemvalue="Gradle.Tests in 'footprint.test'" />
       </list>
     </recent_temporary>
@@ -616,7 +617,7 @@
       <option name="project" value="LOCAL" />
       <updated>1704894267692</updated>
     </task>
-    <option name="localTasksCounter" value="271" />
+    <option name="localTasksCounter" value="276" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -634,8 +635,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="refactor: index 적용을 위해 findPublicAndPrivateArticles 를 두개의 메서드로 분리 및 테스트" />
-    <MESSAGE value="refactor: publicMap, privateMap articles 찾기 index 구현 및 적용, 테스트" />
     <MESSAGE value="refactor: grouped articles 찾기 index 구현 및 적용, 테스트 - 진행중" />
     <MESSAGE value="refactor: ArticleService 구현체 네이밍 리펙토링" />
     <MESSAGE value="refactor: ArticleLike, CommentLike Service 구현체 네이밍 리펙토링" />
@@ -659,6 +658,8 @@
     <MESSAGE value="refactor: MemberGroupRepository#findMyGroups, ImportGroups 반환타입을 response -&gt; domain 으로 변경" />
     <MESSAGE value="refactor: AutoDto 를 AutoCommand 로 수정" />
     <MESSAGE value="refactor: MyPageResponse 내에 GroupSummary 를 member 폴더 내에 MyGroupSummary 로 대체" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor: MyPageResponse 내에 GroupSummary 를 member 폴더 내에 MyGroupSummary 로 대체" />
+    <MESSAGE value="refactor: ChangeCommentLikeService dto 를 Command 로 수정" />
+    <MESSAGE value="refactor: CommentController -&gt; Service 간 command 를 사용하도록 수정" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor: CommentController -&gt; Service 간 command 를 사용하도록 수정" />
   </component>
 </project>

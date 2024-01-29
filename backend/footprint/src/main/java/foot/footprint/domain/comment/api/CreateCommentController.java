@@ -2,6 +2,7 @@ package foot.footprint.domain.comment.api;
 
 import foot.footprint.domain.comment.application.create.CreateCommentService;
 import foot.footprint.domain.comment.dto.CommentResponse;
+import foot.footprint.domain.comment.dto.CreateCommentCommand;
 import foot.footprint.domain.comment.dto.CreateCommentRequest;
 import foot.footprint.global.aop.article.ArticleLog;
 import foot.footprint.global.domain.MapType;
@@ -47,14 +48,15 @@ public class CreateCommentController {
 
     private CommentResponse createComment(MapType mapType, Long articleId, String content,
         Long memberId) {
+        CreateCommentCommand command = new CreateCommentCommand(articleId, content, memberId);
         if (mapType == MapType.PUBLIC) {
-            return createCommentOnPublicArticle.createComment(articleId, content, memberId);
+            return createCommentOnPublicArticle.createComment(command);
         }
         if (mapType == MapType.PRIVATE) {
-            return createCommentOnPrivateArticle.createComment(articleId, content, memberId);
+            return createCommentOnPrivateArticle.createComment(command);
         }
         if (mapType == MapType.GROUPED) {
-            return createCommentOnGroupedArticle.createComment(articleId, content, memberId);
+            return createCommentOnGroupedArticle.createComment(command);
         }
         return null;
     }
