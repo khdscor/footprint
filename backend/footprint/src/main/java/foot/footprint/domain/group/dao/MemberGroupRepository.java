@@ -1,5 +1,6 @@
 package foot.footprint.domain.group.dao;
 
+import foot.footprint.domain.group.domain.Group;
 import foot.footprint.domain.group.domain.MemberGroup;
 import foot.footprint.domain.group.dto.find.GroupSummaryResponse;
 import java.util.List;
@@ -26,9 +27,9 @@ public interface MemberGroupRepository {
     @Select("SELECT * FROM member_group WHERE id=#{id}")
     Optional<MemberGroup> findById(Long id);
 
-    List<GroupSummaryResponse> findMyImportantGroups(Long memberId);
+    List<Group> findMyImportantGroups(Long memberId);
 
-    List<GroupSummaryResponse> findMyGroups(Long memberId);
+    List<Group> findMyGroups(Long memberId);
 
     @Select("SELECT * FROM member_group WHERE group_id = #{groupId} ORDER BY id")
     List<MemberGroup> findAllByGroupId(Long groupId);
