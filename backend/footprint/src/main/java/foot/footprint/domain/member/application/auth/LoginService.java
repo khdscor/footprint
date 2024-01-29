@@ -2,8 +2,8 @@ package foot.footprint.domain.member.application.auth;
 
 import foot.footprint.domain.member.domain.Member;
 import foot.footprint.domain.member.domain.Role;
-import foot.footprint.domain.member.dto.authDto.AuthCommand;
-import foot.footprint.domain.member.dto.authDto.LoginCommand;
+import foot.footprint.domain.member.dto.auth.AuthCommand;
+import foot.footprint.domain.member.dto.auth.LoginCommand;
 import foot.footprint.domain.member.exception.NotMatchPasswordException;
 import foot.footprint.domain.member.dao.MemberRepository;
 import foot.footprint.global.error.exception.NotExistsException;

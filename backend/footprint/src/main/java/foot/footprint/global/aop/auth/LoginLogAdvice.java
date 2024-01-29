@@ -1,6 +1,6 @@
 package foot.footprint.global.aop.auth;
 
-import foot.footprint.domain.member.dto.authRequest.LoginRequest;
+import foot.footprint.domain.member.dto.auth.LoginRequest;
 import java.lang.reflect.Method;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;

@@ -1,4 +1,4 @@
-package foot.footprint.domain.member.dto.authRequest;
+package foot.footprint.domain.member.dto.auth;
 
 import lombok.Getter;
 

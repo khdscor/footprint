@@ -2,8 +2,8 @@ package foot.footprint.domain.member.application.auth;
 
 import foot.footprint.domain.member.dao.MemberRepository;
 import foot.footprint.domain.member.domain.Member;
-import foot.footprint.domain.member.dto.authDto.AuthCommand;
-import foot.footprint.domain.member.dto.authDto.SignUpCommand;
+import foot.footprint.domain.member.dto.auth.AuthCommand;
+import foot.footprint.domain.member.dto.auth.SignUpCommand;
 import foot.footprint.domain.member.exception.AlreadyExistedEmailException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Qualifier;

@@ -1,6 +1,6 @@
 package foot.footprint.domain.member.application.auth;
 
-import foot.footprint.domain.member.dto.authDto.AuthCommand;
+import foot.footprint.domain.member.dto.auth.AuthCommand;
 
 public interface AuthService {
 

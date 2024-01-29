@@ -2,10 +2,10 @@ package foot.footprint.domain.member.api;
 
 import foot.footprint.domain.member.application.auth.AuthService;
 import foot.footprint.domain.member.dto.AuthResponse;
-import foot.footprint.domain.member.dto.authDto.LoginCommand;
-import foot.footprint.domain.member.dto.authDto.SignUpCommand;
-import foot.footprint.domain.member.dto.authRequest.LoginRequest;
-import foot.footprint.domain.member.dto.authRequest.SignUpRequest;
+import foot.footprint.domain.member.dto.auth.LoginCommand;
+import foot.footprint.domain.member.dto.auth.SignUpCommand;
+import foot.footprint.domain.member.dto.auth.LoginRequest;
+import foot.footprint.domain.member.dto.auth.SignUpRequest;
 import foot.footprint.global.aop.auth.LoginLog;
 import foot.footprint.global.aop.auth.SignUpLog;
 import javax.validation.Valid;

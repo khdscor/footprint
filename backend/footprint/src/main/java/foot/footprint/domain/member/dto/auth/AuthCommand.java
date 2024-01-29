@@ -1,4 +1,4 @@
-package foot.footprint.domain.member.dto.authDto;
+package foot.footprint.domain.member.dto.auth;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

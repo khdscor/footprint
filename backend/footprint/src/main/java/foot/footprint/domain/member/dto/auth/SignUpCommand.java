@@ -1,6 +1,5 @@
-package foot.footprint.domain.member.dto.authDto;
+package foot.footprint.domain.member.dto.auth;
 
-import foot.footprint.domain.member.dto.authRequest.SignUpRequest;
 import lombok.Getter;
 
 @Getter

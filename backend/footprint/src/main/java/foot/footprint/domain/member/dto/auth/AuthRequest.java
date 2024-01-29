@@ -1,4 +1,4 @@
-package foot.footprint.domain.member.dto.authRequest;
+package foot.footprint.domain.member.dto.auth;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
