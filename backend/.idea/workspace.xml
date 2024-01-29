@@ -4,15 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e9c5eb8d-61e6-4bf1-a075-2ef5ca99f02a" name="변경" comment="refactor: ArticleDetailsResponse 과정 파일 위치 수정">
+    <list default="true" id="e9c5eb8d-61e6-4bf1-a075-2ef5ca99f02a" name="변경" comment="refactor: 사용되지 않고있는 메서드, 클래스 제거">
+      <change afterPath="$PROJECT_DIR$/footprint/src/main/java/foot/footprint/domain/group/dto/DeportMemberCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/footprint/footprint/log/err_log.log" beforeDir="false" afterPath="$PROJECT_DIR$/footprint/footprint/log/err_log.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/footprint/footprint/log/testLog.log" beforeDir="false" afterPath="$PROJECT_DIR$/footprint/footprint/log/testLog.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/footprint/src/main/java/foot/footprint/domain/article/api/CreateArticleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/footprint/src/main/java/foot/footprint/domain/article/api/CreateArticleController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/footprint/src/main/java/foot/footprint/domain/article/application/create/CreateArticleService.java" beforeDir="false" afterPath="$PROJECT_DIR$/footprint/src/main/java/foot/footprint/domain/article/application/create/CreateArticleService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/footprint/src/main/java/foot/footprint/domain/article/application/create/CreateGeneralArticleService.java" beforeDir="false" afterPath="$PROJECT_DIR$/footprint/src/main/java/foot/footprint/domain/article/application/create/CreateGeneralArticleService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/footprint/src/main/java/foot/footprint/domain/article/dto/CreateArticleDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/footprint/src/main/java/foot/footprint/domain/article/dto/CreateArticleCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/footprint/src/test/java/foot/footprint/service/article/CreateArticleServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/footprint/src/test/java/foot/footprint/service/article/CreateArticleServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/footprint/src/main/java/foot/footprint/domain/group/api/DeportMemberController.java" beforeDir="false" afterPath="$PROJECT_DIR$/footprint/src/main/java/foot/footprint/domain/group/api/DeportMemberController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/footprint/src/main/java/foot/footprint/domain/group/application/deportMember/DeportGeneralMemberService.java" beforeDir="false" afterPath="$PROJECT_DIR$/footprint/src/main/java/foot/footprint/domain/group/application/deportMember/DeportGeneralMemberService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/footprint/src/main/java/foot/footprint/domain/group/application/deportMember/DeportMemberService.java" beforeDir="false" afterPath="$PROJECT_DIR$/footprint/src/main/java/foot/footprint/domain/group/application/deportMember/DeportMemberService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -121,7 +120,7 @@
       <recent name="foot.footprint.global.aop.otherLogs" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.Tests in 'footprint.test'">
+  <component name="RunManager" selected="Gradle.FindCommentRepositoryTest">
     <configuration name="FootprintApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="foot.footprint.FootprintApplication" />
       <module name="footprint.main" />
@@ -135,7 +134,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="FIndArticleRepositoryTest.findArticleDetails" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="CreateArticleServiceTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$/footprint" />
@@ -148,7 +147,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;foot.footprint.repository.article.FIndArticleRepositoryTest.findArticleDetails&quot;" />
+            <option value="&quot;foot.footprint.service.article.CreateArticleServiceTest&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -183,7 +182,7 @@
       <ForceTestExec>true</ForceTestExec>
       <method v="2" />
     </configuration>
-    <configuration name="MemberServiceTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="FindCommentRepositoryTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$/footprint" />
@@ -196,7 +195,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;foot.footprint.service.member.MemberServiceTest&quot;" />
+            <option value="&quot;foot.footprint.repository.comment.FindCommentRepositoryTest&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -244,18 +243,18 @@
     </configuration>
     <list>
       <item itemvalue="Application.FootprintApplication" />
-      <item itemvalue="Gradle.FIndArticleRepositoryTest.findArticleDetails" />
+      <item itemvalue="Gradle.CreateArticleServiceTest" />
+      <item itemvalue="Gradle.FindCommentRepositoryTest" />
       <item itemvalue="Gradle.FindArticleDetailsServiceTest" />
       <item itemvalue="Gradle.Tests in 'footprint.test'" />
-      <item itemvalue="Gradle.MemberServiceTest" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.FindCommentRepositoryTest" />
+        <item itemvalue="Gradle.CreateArticleServiceTest" />
         <item itemvalue="Gradle.Tests in 'footprint.test'" />
         <item itemvalue="Application.FootprintApplication" />
         <item itemvalue="Gradle.FindArticleDetailsServiceTest" />
-        <item itemvalue="Gradle.FIndArticleRepositoryTest.findArticleDetails" />
-        <item itemvalue="Gradle.MemberServiceTest" />
       </list>
     </recent_temporary>
   </component>
@@ -611,7 +610,7 @@
       <option name="project" value="LOCAL" />
       <updated>1704894267692</updated>
     </task>
-    <option name="localTasksCounter" value="263" />
+    <option name="localTasksCounter" value="266" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -629,9 +628,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="refactor: CommentLikeController Api 인터페이스와 3가지 구현체로 분리 및 테스트" />
-    <MESSAGE value="refactor: Login, SignUP request가 상속하는 클래스를 생성하여 Service method 매개변수 통일" />
-    <MESSAGE value="refactor: Login, SignUP service 로 하나의 인터페이스와 2개의 구현체로 분리 구현" />
     <MESSAGE value="refactor: Login, SignUP service 로 하나의 인터페이스와 2개의 구현체로 분리 구현(controller 수정)" />
     <MESSAGE value="refactor: public, private 지정 등 기타 리펙토링" />
     <MESSAGE value="test: easyRandom을 통한 테스트 객체 생성 로직 구현 및 article bulkInsert 테스트" />
@@ -654,6 +650,9 @@
     <MESSAGE value="refactor: ValidateInMyGroup 를 외부 유틸로직에서 제외, 각 서비스마다 메서드 구현" />
     <MESSAGE value="refactor: 불필요한 dto 중복 제거(ArticleDetailsDto)" />
     <MESSAGE value="refactor: ArticleDetailsResponse 과정 파일 위치 수정" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor: ArticleDetailsResponse 과정 파일 위치 수정" />
+    <MESSAGE value="refactor: CreateArticleRequest 를 CreateArticleCommand 로 수정(controller -&gt; service 로직의 dto는 command로 명칭하기로 결정)" />
+    <MESSAGE value="refactor: CreateArticleDto 를 CreateArticleCommand 로 수정(controller -&gt; service 로직의 dto는 command로 명칭하기로 결정)" />
+    <MESSAGE value="refactor: 사용되지 않고있는 메서드, 클래스 제거" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor: 사용되지 않고있는 메서드, 클래스 제거" />
   </component>
 </project>

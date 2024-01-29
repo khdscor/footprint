@@ -1,6 +1,7 @@
 package foot.footprint.domain.group.api;
 
 import foot.footprint.domain.group.application.deportMember.DeportMemberService;
+import foot.footprint.domain.group.dto.DeportMemberCommand;
 import foot.footprint.global.aop.group.GroupLog;
 import foot.footprint.global.security.user.CustomUserDetails;
 import lombok.RequiredArgsConstructor;
@@ -24,7 +25,7 @@ public class DeportMemberController {
     public ResponseEntity<Void> deportMember(@PathVariable("groupId") Long groupId,
         @PathVariable("memberId") Long memberId,
         @AuthenticationPrincipal CustomUserDetails userDetails) {
-        deportMemberService.deport(groupId, memberId, userDetails.getId());
+        deportMemberService.deport(new DeportMemberCommand(groupId, memberId, userDetails.getId()));
 
         return ResponseEntity.noContent().build();
     }
