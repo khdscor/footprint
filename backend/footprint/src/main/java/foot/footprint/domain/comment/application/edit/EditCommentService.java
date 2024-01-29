@@ -1,6 +1,8 @@
 package foot.footprint.domain.comment.application.edit;
 
+import foot.footprint.domain.comment.dto.EditCommentCommand;
+
 public interface EditCommentService {
 
-    void edit(Long articleId, Long commentId, Long memberId, String newContent);
+    void edit(EditCommentCommand command);
 }

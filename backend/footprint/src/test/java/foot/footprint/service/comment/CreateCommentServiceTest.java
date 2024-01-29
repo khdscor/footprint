@@ -13,6 +13,7 @@ import foot.footprint.domain.comment.application.create.CreateCommentOnPrivateAr
 import foot.footprint.domain.comment.application.create.CreateCommentOnPublicArticle;
 import foot.footprint.domain.comment.dao.CreateCommentRepository;
 import foot.footprint.domain.comment.dto.CommentResponse;
+import foot.footprint.domain.comment.dto.CreateCommentCommand;
 import foot.footprint.domain.group.dao.ArticleGroupRepository;
 import foot.footprint.domain.member.dao.MemberRepository;
 import foot.footprint.domain.member.domain.AuthProvider;
@@ -66,10 +67,10 @@ public class CreateCommentServiceTest {
             Optional.ofNullable(createMember(memberId)));
         given(findArticleRepository.findById(any())).willReturn(
             Optional.ofNullable(createArticle(memberId, false, true)));
+        CreateCommentCommand command = new CreateCommentCommand(1L, content, memberId);
 
         //when
-        CommentResponse response = createCommentOnPublicArticle.createComment(1L, content,
-            memberId);
+        CommentResponse response = createCommentOnPublicArticle.createComment(command);
 
         //then
         assertThat(response.getAuthor().getId()).isEqualTo(memberId);
@@ -87,10 +88,10 @@ public class CreateCommentServiceTest {
             Optional.ofNullable(createMember(memberId)));
         given(findArticleRepository.findById(any())).willReturn(
             Optional.ofNullable(createArticle(memberId, true, false)));
+        CreateCommentCommand command = new CreateCommentCommand(1L, content, memberId);
 
         //when
-        CommentResponse response = createCommentOnPrivateArticle.createComment(1L, content,
-            memberId);
+        CommentResponse response = createCommentOnPrivateArticle.createComment(command);
 
         //then
         assertThat(response.getAuthor().getId()).isEqualTo(memberId);
@@ -99,10 +100,11 @@ public class CreateCommentServiceTest {
         //given 개인 권한이 없을 시 예외 처리
         given(memberRepository.findById(any())).willReturn(
             Optional.ofNullable(createMember(anotherId)));
+        CreateCommentCommand command2 = new CreateCommentCommand(1L, content, anotherId);
 
         //when & then
         assertThatThrownBy(
-            () -> createCommentOnPrivateArticle.createComment(1L, content, anotherId)).isInstanceOf(
+            () -> createCommentOnPrivateArticle.createComment(command2)).isInstanceOf(
             NotMatchMemberException.class);
     }
 
@@ -117,10 +119,11 @@ public class CreateCommentServiceTest {
         given(findArticleRepository.findById(any())).willReturn(
             Optional.ofNullable(createArticle(memberId, false, false)));
         given(articleGroupRepository.existsArticleInMyGroup(any(), any())).willReturn(false);
+        CreateCommentCommand command = new CreateCommentCommand(1L, content, memberId);
 
         //when & then
         assertThatThrownBy(
-            () -> createCommentOnGroupedArticle.createComment(1L, content, memberId)).isInstanceOf(
+            () -> createCommentOnGroupedArticle.createComment(command)).isInstanceOf(
             NotAuthorizedOrExistException.class);
     }
 

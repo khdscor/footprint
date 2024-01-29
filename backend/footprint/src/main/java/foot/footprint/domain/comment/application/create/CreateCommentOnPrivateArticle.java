@@ -4,6 +4,7 @@ import foot.footprint.domain.article.dao.FindArticleRepository;
 import foot.footprint.domain.article.domain.Article;
 import foot.footprint.domain.comment.dao.CreateCommentRepository;
 import foot.footprint.domain.comment.dto.CommentResponse;
+import foot.footprint.domain.comment.dto.CreateCommentCommand;
 import foot.footprint.domain.member.dao.MemberRepository;
 import foot.footprint.domain.member.domain.Member;
 import foot.footprint.domain.comment.dto.Author;
@@ -28,15 +29,15 @@ public class CreateCommentOnPrivateArticle extends AbstractCreateCommentService 
 
     @Override
     @Transactional
-    public CommentResponse createComment(Long articleId, String content, Long memberId) {
-        Article article = findAndValidateArticle(articleId);
+    public CommentResponse createComment(CreateCommentCommand command) {
+        Article article = findAndValidateArticle(command.getArticleId());
         if (!article.isPrivate_map()) {
             throw new WrongMapTypeException("게시글이 전체지도에 포함되지 않습니다.");
         }
-        Member member = findAndValidateMember(memberId);
-        Validate.validateArticleIsMine(article.getMember_id(), memberId);
-        CommentResponse response = saveComment(articleId, content, Author.buildAuthor(member));
-        updateRedis(articleId, response);
+        Member member = findAndValidateMember(command.getMemberId());
+        Validate.validateArticleIsMine(article.getMember_id(), command.getMemberId());
+        CommentResponse response = saveComment(command.getArticleId(), command.getContent(), Author.buildAuthor(member));
+        updateRedis(command.getArticleId(), response);
         return response;
     }
 }
