@@ -6,7 +6,6 @@ import foot.footprint.domain.group.dao.GroupRepository;
 import foot.footprint.domain.group.dao.MemberGroupRepository;
 import foot.footprint.domain.group.domain.Group;
 import foot.footprint.domain.group.domain.MemberGroup;
-import foot.footprint.domain.group.dto.find.GroupSummaryResponse;
 import foot.footprint.domain.member.dao.MemberRepository;
 import foot.footprint.domain.member.domain.Member;
 import foot.footprint.repository.RepositoryTest;
@@ -146,7 +145,7 @@ public class MeemberGroupRepositoryTest extends RepositoryTest {
         memberGroupRepository.saveMemberGroup(memberGroup1);
 
         //when
-        List<GroupSummaryResponse> responses = memberGroupRepository.findMyImportantGroups(
+        List<Group> responses = memberGroupRepository.findMyImportantGroups(
             member.getId());
 
         //then
@@ -164,7 +163,7 @@ public class MeemberGroupRepositoryTest extends RepositoryTest {
         memberGroupRepository.saveMemberGroup(memberGroup1);
 
         //when
-        List<GroupSummaryResponse> responses = memberGroupRepository.findMyGroups(member.getId());
+        List<Group> responses = memberGroupRepository.findMyGroups(member.getId());
 
         //then
         assertThat(responses).hasSize(1);

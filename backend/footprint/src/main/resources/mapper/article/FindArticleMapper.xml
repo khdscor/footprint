@@ -38,7 +38,7 @@
   </select>
   <resultMap id="ArticleDetails" type="ArticlePageDto">
     <id property="articleId" column="articleId"/>
-    <association property="articleDetails" javaType="ArticleDetailsDto">
+    <association property="articleDetails" javaType="ArticleDetails">
       <id property="id" column="id"/>
       <result property="title" column="title"/>
       <result property="content" column="content"/>
@@ -53,7 +53,7 @@
       <result property="totalLikes" column="totalLikes"/>
     </association>
     <collection property="comments" notNullColumn="commentId"
-      ofType="foot.footprint.domain.comment.dto.CommentsDto">
+      ofType="foot.footprint.domain.comment.dto.CommentDto">
       <id property="commentId" column="commentId"/>
       <result property="commentContent" column="commentContent"/>
       <result property="memberId" column="memberId"/>
@@ -63,8 +63,6 @@
       <result property="commentTotalLikes" column="commentTotalLikes"/>
     </collection>
   </resultMap>
-
-
   <select id="findArticlePrivateDetails" resultMap="ArticlePrivateDetails">
     SELECT
     a.id as articleId,
@@ -76,7 +74,7 @@
     LEFT JOIN comment_like l ON c.id = l.comment_id
     WHERE a.id = #{articleId}
   </select>
-  <resultMap id="ArticlePrivateDetails" type="ArticlePrivateDetailsDto">
+  <resultMap id="ArticlePrivateDetails" type="ArticlePagePrivateDetailsDto">
     <id property="articleId" column="articleId"/>
     <id property="articleLike" column="articleLike"/>
     <collection property="commentLikes" notNullColumn="commentId"

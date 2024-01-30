@@ -4,9 +4,11 @@ import foot.footprint.domain.article.application.findArticles.FindGroupedArticle
 import foot.footprint.domain.article.application.findArticles.FindPublicArticlesService;
 import foot.footprint.domain.article.domain.Article;
 import foot.footprint.domain.article.domain.LocationRange;
-import foot.footprint.domain.article.dto.ArticleMapResponse;
+import foot.footprint.domain.article.dto.articles.ArticleMapResponse;
 import foot.footprint.domain.article.dao.FindArticleRepository;
-import foot.footprint.domain.article.dto.ArticleRangeRequest;
+import foot.footprint.domain.article.dto.articles.ArticleRangeRequest;
+import foot.footprint.domain.article.dto.articles.GroupedArticleMapCommand;
+import foot.footprint.domain.article.dto.articles.PublicArticleMapCommand;
 import foot.footprint.domain.group.dao.MemberGroupRepository;
 import foot.footprint.global.error.exception.NotAuthorizedOrExistException;
 import org.junit.jupiter.api.DisplayName;
@@ -51,15 +53,15 @@ public class FindArticlesServiceTest {
         List<Article> articles = createArticleList(createArticle());
         LocationRange locationRange = new LocationRange(
             new ArticleRangeRequest(10.0, 10.0, 10.0, 10.0));
+        PublicArticleMapCommand command = new PublicArticleMapCommand(locationRange);
         given(findArticleRepository.findPublicArticles(locationRange)).willReturn(articles);
 
         //when
-        List<ArticleMapResponse> responses = findPublicArticlesService.findArticles(null, null,
-            locationRange);
+        List<ArticleMapResponse> responses = findPublicArticlesService.findArticles(command);
 
         //then
         verify(findArticleRepository, times(1)).findPublicArticles(locationRange);
-        verify(findPublicArticlesService, times(1)).findArticles(null, null, locationRange);
+        verify(findPublicArticlesService, times(1)).findArticles(command);
         assertThat(responses).hasSize(1);
     }
 
@@ -70,25 +72,24 @@ public class FindArticlesServiceTest {
         List<Article> articles = createArticleList(createArticle());
         LocationRange locationRange = new LocationRange(
             new ArticleRangeRequest(10.0, 10.0, 10.0, 10.0));
+        GroupedArticleMapCommand command = new GroupedArticleMapCommand(locationRange, 1L, 1L);
         given(findArticleRepository.findArticlesByGroup(1L, locationRange)).willReturn(articles);
-        given(memberGroupRepository.existsMemberInGroup(anyLong(), anyLong()))
-            .willReturn(true);
+        given(memberGroupRepository.existsMemberInGroup(anyLong(), anyLong())).willReturn(true);
 
         //when
-        List<ArticleMapResponse> responses = findGroupedArticlesService.findArticles(1L, 1L,
-            locationRange);
+        List<ArticleMapResponse> responses = findGroupedArticlesService.findArticles(command);
 
         //then
         assertThat(responses.size()).isEqualTo(1);
 
         // member가 group에 속하지 않을 시
         //given
-        given(memberGroupRepository.existsMemberInGroup(anyLong(), anyLong()))
-            .willReturn(false);
+        given(memberGroupRepository.existsMemberInGroup(anyLong(), anyLong())).willReturn(false);
 
         // when & then
-        assertThatThrownBy(() -> findGroupedArticlesService.findArticles(1L, 1L,
-            locationRange)).isInstanceOf(NotAuthorizedOrExistException.class);
+        assertThatThrownBy(
+            () -> findGroupedArticlesService.findArticles(command)).isInstanceOf(
+            NotAuthorizedOrExistException.class);
     }
 
     private Article createArticle() {

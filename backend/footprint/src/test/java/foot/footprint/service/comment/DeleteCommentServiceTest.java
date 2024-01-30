@@ -7,6 +7,7 @@ import static org.mockito.BDDMockito.given;
 import foot.footprint.domain.article.exception.NotMatchMemberException;
 import foot.footprint.domain.comment.application.delete.DeleteGeneralCommentService;
 import foot.footprint.domain.comment.dao.DeleteCommentRepository;
+import foot.footprint.domain.comment.dto.DeleteCommentCommand;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -30,7 +31,7 @@ public class DeleteCommentServiceTest {
 
         //when & then
         assertThatThrownBy(
-            () -> deleteGeneralCommentService.delete(1L, 1L, 1L))
+            () -> deleteGeneralCommentService.delete(new DeleteCommentCommand(1L, 1L, 1L)))
             .isInstanceOf(NotMatchMemberException.class);
     }
 }

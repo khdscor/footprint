@@ -1,6 +1,5 @@
 package foot.footprint.domain.comment.dto;
 
-import foot.footprint.global.domain.AuthorDto;
 import java.util.Date;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,7 +8,7 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class CommentsDto {
+public class CommentDto {
 
     private Long commentId;
     private String commentContent;
@@ -19,8 +18,8 @@ public class CommentsDto {
     private Date commentCreateDate;
     private Long commentTotalLikes;
 
-    public static CommentsDto toDto(CommentResponse response){
-        return new CommentsDto(response.getId(), response.getContent(), response.getAuthor().getId(),
+    public static CommentDto toDto(CommentResponse response){
+        return new CommentDto(response.getId(), response.getContent(), response.getAuthor().getId(),
             response.getAuthor().getNickName(), response.getAuthor().getImageUrl(),
             response.getCreateDate(), response.getTotalLikes());
     }

@@ -7,12 +7,11 @@ import static org.mockito.BDDMockito.given;
 import foot.footprint.domain.comment.application.find.FindCommentOnPageService;
 import foot.footprint.domain.comment.dao.FindCommentRepository;
 import foot.footprint.domain.comment.domain.Comment;
-import foot.footprint.domain.comment.dto.CommentOnPageResponse;
-import foot.footprint.domain.comment.dto.CommentResponse;
+import foot.footprint.domain.comment.dto.CommentDto;
+import foot.footprint.domain.comment.dto.CommentsOnPageResponse;
 import foot.footprint.domain.member.domain.Member;
 import foot.footprint.featureFactory.CommentFeatureFactory;
 import foot.footprint.featureFactory.MemberFeatureFactory;
-import foot.footprint.global.domain.AuthorDto;
 import java.util.ArrayList;
 import java.util.List;
 import org.jeasy.random.EasyRandom;
@@ -36,24 +35,24 @@ public class FindCommentServiceTest {
     @DisplayName("커서기반 댓글 페이지 조회 - 다음페이지가 있을 시")
     public void FindCommentInPage() {
         //given
-        List<CommentResponse> responses = new ArrayList<>();
+        List<CommentDto> responses = new ArrayList<>();
         for (int i = 0; i < 11; i++) {
             EasyRandom commentEasyRandom = CommentFeatureFactory.create((long) i, 1L, 1L);
             Comment comment = commentEasyRandom.nextObject(Comment.class);
             EasyRandom memberEasyRandom = MemberFeatureFactory.create(1L);
             Member member = memberEasyRandom.nextObject(Member.class);
-            AuthorDto authorDto = AuthorDto.buildAuthorDto(member);
-            responses.add(CommentResponse.toCommentResponse(comment, authorDto));
+            CommentDto dto = new CommentDto(comment.getId(), comment.getContent(), member.getId(),
+                member.getNick_name(), member.getImage_url(), comment.getCreate_date(), 0L);
+            responses.add(dto);
         }
-        given(findCommentRepository.findAllByArticleIdOnPage(any(), any()))
-            .willReturn(responses);
+        given(findCommentRepository.findAllByArticleIdOnPage(any(), any())).willReturn(responses);
 
         //when
-        CommentOnPageResponse response = findCommentOnPageService.findComments(1L, 10L);
+        CommentsOnPageResponse response = findCommentOnPageService.findComments(1L, 10L);
 
         //then
         assertThat(response.isHasNextPage()).isTrue();
-        assertThat(response.getCursorId()).isEqualTo(responses.get(9).getId());
+        assertThat(response.getCursorId()).isEqualTo(responses.get(9).getCommentId());
         assertThat(response.getComments()).hasSize(10);
     }
 
@@ -61,20 +60,20 @@ public class FindCommentServiceTest {
     @DisplayName("커서기반 댓글 페이지 조회 - 다음페이지가 없을 시")
     public void FindCommentInPage_IfCommentsSizeLt10() {
         //given
-        List<CommentResponse> responses = new ArrayList<>();
+        List<CommentDto> responses = new ArrayList<>();
         for (int i = 0; i < 6; i++) {
             EasyRandom commentEasyRandom = CommentFeatureFactory.create((long) i, 1L, 1L);
             Comment comment = commentEasyRandom.nextObject(Comment.class);
             EasyRandom memberEasyRandom = MemberFeatureFactory.create(1L);
             Member member = memberEasyRandom.nextObject(Member.class);
-            AuthorDto authorDto = AuthorDto.buildAuthorDto(member);
-            responses.add(CommentResponse.toCommentResponse(comment, authorDto));
+            CommentDto dto = new CommentDto(comment.getId(), comment.getContent(), member.getId(),
+                member.getNick_name(), member.getImage_url(), comment.getCreate_date(), 0L);
+            responses.add(dto);
         }
-        given(findCommentRepository.findAllByArticleIdOnPage(any(), any()))
-            .willReturn(responses);
+        given(findCommentRepository.findAllByArticleIdOnPage(any(), any())).willReturn(responses);
 
         //when
-        CommentOnPageResponse response = findCommentOnPageService.findComments(1L, 6L);
+        CommentsOnPageResponse response = findCommentOnPageService.findComments(1L, 6L);
 
         //then
         assertThat(response.isHasNextPage()).isFalse();

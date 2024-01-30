@@ -1,4 +1,4 @@
-package foot.footprint.domain.article.dto;
+package foot.footprint.domain.article.dto.articles;
 
 import foot.footprint.domain.article.domain.Article;
 import lombok.AllArgsConstructor;

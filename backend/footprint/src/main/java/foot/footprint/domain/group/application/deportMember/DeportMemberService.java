@@ -1,6 +1,8 @@
 package foot.footprint.domain.group.application.deportMember;
 
+import foot.footprint.domain.group.dto.DeportMemberCommand;
+
 public interface DeportMemberService {
 
-    void deport(Long groupId, Long memberId, Long myId);
+    void deport(DeportMemberCommand command);
 }

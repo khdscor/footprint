@@ -11,6 +11,7 @@ import foot.footprint.domain.group.dao.ArticleGroupRepository;
 import foot.footprint.domain.group.dao.GroupRepository;
 import foot.footprint.domain.group.dao.MemberGroupRepository;
 import foot.footprint.domain.group.domain.Group;
+import foot.footprint.domain.group.dto.DeportMemberCommand;
 import foot.footprint.global.error.exception.NotExistsException;
 import java.util.Date;
 import java.util.Optional;
@@ -49,7 +50,7 @@ public class DeportMemberServiceTest {
 
         //when & then
         assertThatThrownBy(
-            () -> deportGeneralMemberService.deport(1L, 1L, ownerId))
+            () -> deportGeneralMemberService.deport(new DeportMemberCommand(1L, 1L, ownerId)))
             .isInstanceOf(NotMatchMemberException.class);
     }
 
@@ -64,7 +65,7 @@ public class DeportMemberServiceTest {
 
         //when & then
         assertThatThrownBy(
-            () -> deportGeneralMemberService.deport(1L, 1L, ownerId))
+            () -> deportGeneralMemberService.deport(new DeportMemberCommand(1L, 1L, ownerId)))
             .isInstanceOf(NotExistsException.class);
     }
 

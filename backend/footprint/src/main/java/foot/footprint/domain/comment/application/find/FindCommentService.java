@@ -1,8 +1,8 @@
 package foot.footprint.domain.comment.application.find;
 
-import foot.footprint.domain.comment.dto.CommentOnPageResponse;
+import foot.footprint.domain.comment.dto.CommentsOnPageResponse;
 
 public interface FindCommentService {
 
-    CommentOnPageResponse findComments(Long articleId, Long cursorId);
+    CommentsOnPageResponse findComments(Long articleId, Long cursorId);
 }

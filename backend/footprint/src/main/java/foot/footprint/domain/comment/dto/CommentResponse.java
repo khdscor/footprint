@@ -1,7 +1,7 @@
 package foot.footprint.domain.comment.dto;
 
 import foot.footprint.domain.comment.domain.Comment;
-import foot.footprint.global.domain.AuthorDto;
+
 import java.util.Date;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,7 +12,7 @@ public class CommentResponse {
 
     private Long id;
     private String content;
-    private AuthorDto author;
+    private Author author;
     private Date createDate;
     private Long totalLikes;
 
@@ -20,32 +20,32 @@ public class CommentResponse {
         Date createDate, Long totalLikes) {
         this.id = id;
         this.content = content;
-        this.author = new AuthorDto(userId, nickName, imageUrl);
+        this.author = new Author(userId, nickName, imageUrl);
         this.createDate = createDate;
         this.totalLikes = totalLikes;
     }
 
-    public static CommentResponse toCommentResponse(Comment comment, AuthorDto authorDto) {
+    public static CommentResponse toCommentResponse(Comment comment, Author author) {
         return new CommentResponse(
             comment.getId(),
             comment.getContent(),
-            authorDto.getId(),
-            authorDto.getNickName(),
-            authorDto.getImageUrl(),
+            author.getId(),
+            author.getNickName(),
+            author.getImageUrl(),
             comment.getCreate_date(),
             0L
         );
     }
 
-    public static CommentResponse toCommentResponse(CommentsDto commentsDto) {
+    public static CommentResponse toCommentResponse(CommentDto commentDto) {
         return new CommentResponse(
-            commentsDto.getCommentId(),
-            commentsDto.getCommentContent(),
-            commentsDto.getMemberId(),
-            commentsDto.getNickName(),
-            commentsDto.getImageUrl(),
-            commentsDto.getCommentCreateDate(),
-            commentsDto.getCommentTotalLikes()
+            commentDto.getCommentId(),
+            commentDto.getCommentContent(),
+            commentDto.getMemberId(),
+            commentDto.getNickName(),
+            commentDto.getImageUrl(),
+            commentDto.getCommentCreateDate(),
+            commentDto.getCommentTotalLikes()
         );
     }
 }

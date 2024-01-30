@@ -4,9 +4,10 @@ import foot.footprint.domain.article.dao.FindArticleRepository;
 import foot.footprint.domain.article.domain.Article;
 import foot.footprint.domain.comment.dao.CreateCommentRepository;
 import foot.footprint.domain.comment.dto.CommentResponse;
+import foot.footprint.domain.comment.dto.CreateCommentCommand;
 import foot.footprint.domain.member.dao.MemberRepository;
 import foot.footprint.domain.member.domain.Member;
-import foot.footprint.global.domain.AuthorDto;
+import foot.footprint.domain.comment.dto.Author;
 import foot.footprint.global.error.exception.WrongMapTypeException;
 import foot.footprint.global.util.ObjectSerializer;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -27,14 +28,14 @@ public class CreateCommentOnPublicArticle extends AbstractCreateCommentService {
 
     @Override
     @Transactional
-    public CommentResponse createComment(Long id, String content, Long memberId) {
-        Article article = findAndValidateArticle(id);
+    public CommentResponse createComment(CreateCommentCommand command) {
+        Article article = findAndValidateArticle(command.getArticleId());
         if (!article.isPublic_map()) {
             throw new WrongMapTypeException("게시글이 전체지도에 포함되지 않습니다.");
         }
-        Member member = findAndValidateMember(memberId);
-        CommentResponse response = saveComment(id, content, AuthorDto.buildAuthorDto(member));
-        updateRedis(id, response);
+        Member member = findAndValidateMember(command.getMemberId());
+        CommentResponse response = saveComment(command.getArticleId(), command.getContent(), Author.buildAuthor(member));
+        updateRedis(command.getArticleId(), response);
         return response;
     }
 }

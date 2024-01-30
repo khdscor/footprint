@@ -5,8 +5,8 @@ import foot.footprint.domain.article.dao.FindArticleRepository;
 import foot.footprint.domain.article.domain.Article;
 import foot.footprint.domain.article.domain.LocationRange;
 import foot.footprint.domain.article.dto.articleDetails.ArticlePageDto;
-import foot.footprint.domain.article.dto.ArticleRangeRequest;
-import foot.footprint.domain.article.dto.articleDetails.ArticlePrivateDetailsDto;
+import foot.footprint.domain.article.dto.articles.ArticleRangeRequest;
+import foot.footprint.domain.article.dto.articleDetails.ArticlePagePrivateDetailsDto;
 import foot.footprint.domain.articleLike.dao.ArticleLikeRepository;
 import foot.footprint.domain.articleLike.domain.ArticleLike;
 import foot.footprint.domain.comment.dao.CreateCommentRepository;
@@ -169,7 +169,7 @@ public class FIndArticleRepositoryTest extends RepositoryTest {
 
         //when
         Optional<ArticlePageDto> dto = findArticleRepository.findArticleDetails(article.getId());
-        Optional<ArticlePrivateDetailsDto> detailsDto = findArticleRepository
+        Optional<ArticlePagePrivateDetailsDto> detailsDto = findArticleRepository
             .findArticlePrivateDetails(article.getId(), member1.getId());
 
         //then
@@ -234,9 +234,9 @@ public class FIndArticleRepositoryTest extends RepositoryTest {
         commentLikeRepository.saveCommentLike(commentLike2);
 
         //when
-        Optional<ArticlePrivateDetailsDto> detailsDto1 = findArticleRepository
+        Optional<ArticlePagePrivateDetailsDto> detailsDto1 = findArticleRepository
             .findArticlePrivateDetails(article1.getId(), member1.getId());
-        Optional<ArticlePrivateDetailsDto> detailsDto2 = findArticleRepository
+        Optional<ArticlePagePrivateDetailsDto> detailsDto2 = findArticleRepository
             .findArticlePrivateDetails(article2.getId(), member1.getId());
 
         //then

@@ -1,7 +1,7 @@
 package foot.footprint.domain.article.dto.articleDetails;
 
 import foot.footprint.domain.comment.dto.CommentUpdateDto;
-import foot.footprint.domain.comment.dto.CommentsDto;
+import foot.footprint.domain.comment.dto.CommentDto;
 import foot.footprint.domain.commentLike.dto.ChangeTotalLikesDto;
 
 public enum ArticleUpdatePart {
@@ -28,7 +28,7 @@ public enum ArticleUpdatePart {
     },
     ADD_COMMENT("add_comment") {
         public <T> void apply(ArticlePageDto dto, T data) {
-            dto.addComment((CommentsDto) data);
+            dto.addComment((CommentDto) data);
         }
     },
     REMOVE_COMMENT("remove_comment") {

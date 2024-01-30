@@ -1,7 +1,8 @@
 package foot.footprint.domain.article.dto.articleDetails;
 
 import foot.footprint.domain.comment.dto.CommentResponse;
-import foot.footprint.domain.comment.dto.CommentsDto;
+
+import foot.footprint.domain.comment.dto.CommentDto;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -16,9 +17,9 @@ public class ArticlePageResponse {
     private List<Long> commentLikes = new ArrayList<>();
     private Long myMemberId;
 
-    public ArticlePageResponse(ArticleDetailsDto articleDetails, boolean articleLike,
+    public ArticlePageResponse(ArticleDetails articleDetails, boolean articleLike,
         List<CommentResponse> comments, List<Long> commentLikes, Long myMemberId) {
-        this.articleDetails = ArticleDetails.toArticleDetails(articleDetails);
+        this.articleDetails = articleDetails;
         this.articleLike = articleLike;
         this.comments = comments;
         this.commentLikes = commentLikes;
@@ -28,8 +29,8 @@ public class ArticlePageResponse {
     public ArticlePageResponse() {
     }
 
-    public void addNonLoginInfo(ArticleDetailsDto articleDetails, List<CommentsDto> comments) {
-        this.articleDetails = ArticleDetails.toArticleDetails(articleDetails);
+    public void addNonLoginInfo(ArticleDetails articleDetails, List<CommentDto> comments) {
+        this.articleDetails = articleDetails;
         this.comments = comments.stream().map(CommentResponse::toCommentResponse)
             .collect(Collectors.toList());
     }

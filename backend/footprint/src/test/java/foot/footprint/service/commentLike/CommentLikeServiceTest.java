@@ -13,6 +13,7 @@ import foot.footprint.domain.commentLike.application.ChangeGroupedCommentLikeSer
 import foot.footprint.domain.commentLike.application.ChangePrivateCommentLikeService;
 import foot.footprint.domain.commentLike.application.ChangePublicCommentLikeService;
 import foot.footprint.domain.commentLike.dao.CommentLikeRepository;
+import foot.footprint.domain.commentLike.dto.ChangeCommentLikeCommand;
 import foot.footprint.domain.group.dao.ArticleGroupRepository;
 import foot.footprint.global.error.exception.NotAuthorizedOrExistException;
 import foot.footprint.global.error.exception.NotExistsException;
@@ -60,7 +61,7 @@ public class CommentLikeServiceTest {
         given(commentLikeRepository.saveCommentLike(any())).willReturn(1);
 
         //when
-        changePublicCommentLikeService.changeMyLike(1L, 1L, false, 1L);
+        changePublicCommentLikeService.changeMyLike(new ChangeCommentLikeCommand(1L, 1L, false, 1L));
 
         //then
         verify(commentLikeRepository, times(1)).saveCommentLike(any());
@@ -70,7 +71,7 @@ public class CommentLikeServiceTest {
         given(commentLikeRepository.deleteCommentLike(any(), any())).willReturn(1);
 
         //when
-        changePublicCommentLikeService.changeMyLike(1L, 1L, true, 1L);
+        changePublicCommentLikeService.changeMyLike(new ChangeCommentLikeCommand(1L, 1L, true, 1L));
 
         //then
         verify(commentLikeRepository, times(1)).deleteCommentLike(any(), any());
@@ -80,7 +81,7 @@ public class CommentLikeServiceTest {
 
         //when & then
         assertThatThrownBy(
-            () -> changePublicCommentLikeService.changeMyLike(1L, 1L, true, 1L))
+            () -> changePublicCommentLikeService.changeMyLike(new ChangeCommentLikeCommand(1L, 1L, true, 1L)))
             .isInstanceOf(NotExistsException.class);
     }
 
@@ -94,7 +95,7 @@ public class CommentLikeServiceTest {
 
         //when & then
         assertThatThrownBy(
-            () -> changePrivateCommentLikeService.changeMyLike(1L, 1L, true, 2L))
+            () -> changePrivateCommentLikeService.changeMyLike(new ChangeCommentLikeCommand(1L, 1L, true, 2L)))
             .isInstanceOf(NotMatchMemberException.class);
     }
 
@@ -109,7 +110,7 @@ public class CommentLikeServiceTest {
 
         //when & then
         assertThatThrownBy(
-            () -> changeGroupedCommentLikeService.changeMyLike(1L, 1L, true, 2L))
+            () -> changeGroupedCommentLikeService.changeMyLike(new ChangeCommentLikeCommand(1L, 1L, true, 2L)))
             .isInstanceOf(NotAuthorizedOrExistException.class);
     }
 

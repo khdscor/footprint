@@ -4,7 +4,7 @@ import foot.footprint.domain.article.dao.FindArticleRepository;
 import foot.footprint.domain.article.domain.Article;
 import foot.footprint.domain.article.dto.articleDetails.ArticlePageDto;
 import foot.footprint.domain.article.dto.articleDetails.ArticlePageResponse;
-import foot.footprint.domain.article.dto.articleDetails.ArticlePrivateDetailsDto;
+import foot.footprint.domain.article.dto.articleDetails.ArticlePagePrivateDetailsDto;
 import foot.footprint.domain.articleLike.dao.ArticleLikeRepository;
 import foot.footprint.domain.comment.dao.FindCommentRepository;
 import foot.footprint.domain.commentLike.dao.CommentLikeRepository;
@@ -51,7 +51,7 @@ public abstract class AbstrastFindArticleDetailsService implements FindArticleDe
     }
 
     protected void addLoginInfo(Long articleId, Long memberId, ArticlePageResponse response) {
-        ArticlePrivateDetailsDto privateDto = findArticleRepository.findArticlePrivateDetails(
+        ArticlePagePrivateDetailsDto privateDto = findArticleRepository.findArticlePrivateDetails(
             articleId, memberId).orElseThrow(() -> new NotExistsException("해당 게시글이 존재하지 않습니다."));
         response.addLoginInfo(privateDto.isArticleLike(), privateDto.getCommentLikes(), memberId);
     }

@@ -1,6 +1,7 @@
 package foot.footprint.domain.commentLike.api;
 
 import foot.footprint.domain.commentLike.application.ChangeCommentLikeService;
+import foot.footprint.domain.commentLike.dto.ChangeCommentLikeCommand;
 import foot.footprint.global.aop.comment.CommentLog;
 import foot.footprint.global.domain.MapType;
 import foot.footprint.global.security.user.CustomUserDetails;
@@ -46,14 +47,15 @@ public class CommentLikeController {
 
     private void changeCommentLike(MapType mapType, Long commentId, Long articleId, Long memberId,
         Boolean hasILiked) {
+        ChangeCommentLikeCommand command = new ChangeCommentLikeCommand(commentId, articleId, hasILiked, memberId);
         if (mapType == MapType.PUBLIC) {
-            changePublicCommentLike.changeMyLike(commentId, articleId, hasILiked, memberId);
+            changePublicCommentLike.changeMyLike(command);
         }
         if (mapType == MapType.PRIVATE) {
-            changePrivateCommentLike.changeMyLike(commentId, articleId, hasILiked, memberId);
+            changePrivateCommentLike.changeMyLike(command);
         }
         if (mapType == MapType.GROUPED) {
-            changeGroupedCommentLike.changeMyLike(commentId, articleId, hasILiked, memberId);
+            changeGroupedCommentLike.changeMyLike(command);
         }
     }
 }

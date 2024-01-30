@@ -36,8 +36,4 @@ public class CreateArticleRequest {
         this.privateMap = privateMap;
         this.groupIdsToBeIncluded = groupIdsToBeIncluded;
     }
-
-    public void updateGroupIdList(List<Long> groupIdsToBeIncluded) {
-        this.groupIdsToBeIncluded = groupIdsToBeIncluded;
-    }
 }

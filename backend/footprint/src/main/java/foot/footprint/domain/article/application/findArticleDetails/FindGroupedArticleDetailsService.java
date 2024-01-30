@@ -6,9 +6,9 @@ import foot.footprint.domain.articleLike.dao.ArticleLikeRepository;
 import foot.footprint.domain.comment.dao.FindCommentRepository;
 import foot.footprint.domain.commentLike.dao.CommentLikeRepository;
 import foot.footprint.domain.group.dao.ArticleGroupRepository;
+import foot.footprint.global.error.exception.NotAuthorizedOrExistException;
 import foot.footprint.global.security.user.CustomUserDetails;
 import foot.footprint.global.util.ObjectSerializer;
-import foot.footprint.global.util.ValidateIsMine;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -35,10 +35,16 @@ public class FindGroupedArticleDetailsService extends AbstrastFindArticleDetails
     @Transactional(readOnly = true)
     public ArticlePageResponse findDetails(Long articleId, CustomUserDetails userDetails) {
         validateMember(userDetails);
-        ValidateIsMine.validateInMyGroup(articleId, userDetails.getId(), articleGroupRepository);
+        validateInMyGroup(articleId, userDetails.getId());
         ArticlePageResponse response = new ArticlePageResponse();
         addNonLoginInfo(response, articleId);
         addLoginInfo(articleId, userDetails.getId(), response);
         return response;
+    }
+
+    private void validateInMyGroup(Long articleId, Long memberId) {
+        if (!articleGroupRepository.existsArticleInMyGroup(articleId, memberId)) {
+            throw new NotAuthorizedOrExistException("해당글에 접근할 권한이 없습니다.");
+        }
     }
 }

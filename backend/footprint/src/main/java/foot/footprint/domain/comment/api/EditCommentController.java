@@ -3,6 +3,7 @@ package foot.footprint.domain.comment.api;
 
 import foot.footprint.domain.comment.application.edit.EditCommentService;
 import foot.footprint.domain.comment.dto.CommentResponse;
+import foot.footprint.domain.comment.dto.EditCommentCommand;
 import foot.footprint.domain.comment.dto.EditCommentRequest;
 import foot.footprint.global.aop.comment.CommentLog;
 import foot.footprint.global.security.user.CustomUserDetails;
@@ -30,8 +31,8 @@ public class EditCommentController {
         @PathVariable("commentId") Long commentId,
         @RequestBody @Valid EditCommentRequest editCommentRequest,
         @AuthenticationPrincipal CustomUserDetails userDetails) {
-        editCommentService.edit(articleId, commentId, userDetails.getId(),
-            editCommentRequest.getContent());
+        editCommentService.edit(new EditCommentCommand(articleId, commentId, userDetails.getId(),
+            editCommentRequest.getContent()));
         return ResponseEntity.noContent()
             .build();
     }

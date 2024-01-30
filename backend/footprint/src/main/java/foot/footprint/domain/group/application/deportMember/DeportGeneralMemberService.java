@@ -6,6 +6,7 @@ import foot.footprint.domain.group.dao.ArticleGroupRepository;
 import foot.footprint.domain.group.dao.GroupRepository;
 import foot.footprint.domain.group.dao.MemberGroupRepository;
 import foot.footprint.domain.group.domain.Group;
+import foot.footprint.domain.group.dto.DeportMemberCommand;
 import foot.footprint.global.error.exception.NotExistsException;
 import java.util.Objects;
 import lombok.RequiredArgsConstructor;
@@ -26,10 +27,10 @@ public class DeportGeneralMemberService implements DeportMemberService{
 
     @Override
     @Transactional
-    public void deport(Long groupId, Long memberId, Long myId) {
-        validateGroupIsMine(groupId, myId, memberId);
-        organizeArticle(groupId, memberId);
-        int deleted = memberGroupRepository.deleteMemberGroup(groupId, memberId);
+    public void deport(DeportMemberCommand command) {
+        validateGroupIsMine(command.getGroupId(), command.getMyId(), command.getTargetMemberId());
+        organizeArticle(command.getGroupId(), command.getTargetMemberId());
+        int deleted = memberGroupRepository.deleteMemberGroup(command.getGroupId(), command.getTargetMemberId());
         if (deleted == 0) {
             throw new NotExistsException("해당인원이 그룹에 이미 존재하지 않습니다.");
         }

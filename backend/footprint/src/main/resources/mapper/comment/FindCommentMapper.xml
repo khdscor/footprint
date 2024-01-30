@@ -2,21 +2,13 @@
 <!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="foot.footprint.domain.comment.dao.FindCommentRepository">
-  <select id="findAllByArticleId" resultType="CommentResponse">
-    SELECT c.id, c.content, c.member_id, m.nick_name, m.image_url, c.create_date, count(l.id)
-    FROM comment c LEFT JOIN comment_like as l ON (c.id = l.comment_id)
-    LEFT JOIN member m ON (c.member_id = m.id)
-    WHERE c.article_id = #{articleId}
-    GROUP BY c.id
-    ORDER BY c.create_date desc
-  </select>
   <select id="findAllByArticleIdOnPage" resultMap="findCommentsOnNextPage">
     SELECT
     c.id as id,
     c.content as content,
     c.create_date as createDate,
     count(l.id) as totalLikes,
-    c.member_id as userId,
+    c.member_id as memberId,
     m.nick_name as nickName,
     m.image_url as imageUrl
     FROM comment c LEFT JOIN comment_like as l ON (c.id = l.comment_id)
@@ -27,15 +19,13 @@
     </if>
     GROUP BY c.id ORDER BY c.id desc LIMIT 11
   </select>
-  <resultMap id="findCommentsOnNextPage" type="CommentResponse">
-    <id property="id" column="id"/>
-    <result property="content" column="content"/>
-    <result property="createDate" column="createDate"/>
-    <result property="totalLikes" column="totalLikes"/>
-    <association property="author" javaType="foot.footprint.global.domain.AuthorDto">
-      <id property="id" column="userId"/>
-      <result property="nickName" column="nickName"/>
-      <result property="imageUrl" column="imageUrl"/>
-    </association>
+  <resultMap id="findCommentsOnNextPage" type="CommentDto">
+    <id property="commentId" column="id"/>
+    <result property="commentContent" column="content"/>
+    <result property="memberId" column="memberId"/>
+    <result property="nickName" column="nickName"/>
+    <result property="imageUrl" column="imageUrl"/>
+    <result property="commentCreateDate" column="createDate"/>
+    <result property="commentTotalLikes" column="totalLikes"/>
   </resultMap>
 </mapper>

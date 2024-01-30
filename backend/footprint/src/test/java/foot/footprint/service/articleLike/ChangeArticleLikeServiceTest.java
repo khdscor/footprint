@@ -13,7 +13,7 @@ import foot.footprint.domain.articleLike.application.ChangeGroupedArticleLikeSer
 import foot.footprint.domain.articleLike.application.ChangePrivateArticleLikeService;
 import foot.footprint.domain.articleLike.application.ChangePublicArticleLikeService;
 import foot.footprint.domain.articleLike.dao.ArticleLikeRepository;
-import foot.footprint.domain.articleLike.dto.ArticleLikeDto;
+import foot.footprint.domain.articleLike.dto.ArticleLikeCommand;
 import foot.footprint.domain.group.dao.ArticleGroupRepository;
 import foot.footprint.global.error.exception.NotAuthorizedOrExistException;
 import foot.footprint.global.error.exception.NotExistsException;
@@ -62,9 +62,9 @@ public class ChangeArticleLikeServiceTest {
         Long articleId = 1L;
         Long memberId = 1L;
         Article article = buildArticle(memberId, true, true);
-        ArticleLikeDto likedArticle = new ArticleLikeDto(articleId, memberId, true);
-        ArticleLikeDto notLikedArticle = new ArticleLikeDto(articleId, memberId, false);
-        given(articleLikeRepository.deleteArticleLike(any()))
+        ArticleLikeCommand likedArticle = new ArticleLikeCommand(articleId, memberId, true);
+        ArticleLikeCommand notLikedArticle = new ArticleLikeCommand(articleId, memberId, false);
+        given(articleLikeRepository.deleteArticleLike(any(), any()))
             .willReturn(1);
         given(findArticleRepository.findById(any()))
             .willReturn(Optional.ofNullable(article));
@@ -73,7 +73,7 @@ public class ChangeArticleLikeServiceTest {
         publicArticleLikeService.changeArticleLike(likedArticle);
 
         //then
-        verify(articleLikeRepository, times(1)).deleteArticleLike(any());
+        verify(articleLikeRepository, times(1)).deleteArticleLike(any(), any());
         verify(articleLikeRepository, times(0)).saveArticleLike(any());
 
         //when
@@ -83,7 +83,7 @@ public class ChangeArticleLikeServiceTest {
         verify(articleLikeRepository, times(1)).saveArticleLike(any());
 
         //given
-        given(articleLikeRepository.deleteArticleLike(any()))
+        given(articleLikeRepository.deleteArticleLike(any(), any()))
             .willReturn(0);
 
         //when & then
@@ -101,13 +101,13 @@ public class ChangeArticleLikeServiceTest {
         Long memberId = 1L;
         Long anotherMemberId = 2L;
         Article article = buildArticle(memberId, false, true);
-        ArticleLikeDto articleLikeDto = new ArticleLikeDto(articleId, anotherMemberId);
+        ArticleLikeCommand articleLikeCommand = new ArticleLikeCommand(articleId, anotherMemberId);
         given(findArticleRepository.findById(any()))
             .willReturn(Optional.ofNullable(article));
 
         //when & then
         assertThatThrownBy(
-            () -> privateArticleLikeService.changeArticleLike(articleLikeDto))
+            () -> privateArticleLikeService.changeArticleLike(articleLikeCommand))
             .isInstanceOf(NotMatchMemberException.class);
     }
 
@@ -120,7 +120,7 @@ public class ChangeArticleLikeServiceTest {
         Long memberId = 1L;
         Long anotherMemberId = 2L;
         Article article = buildArticle(memberId, false, false);
-        ArticleLikeDto articleLikeDto = new ArticleLikeDto(articleId, anotherMemberId);
+        ArticleLikeCommand articleLikeCommand = new ArticleLikeCommand(articleId, anotherMemberId);
         given(findArticleRepository.findById(any()))
             .willReturn(Optional.ofNullable(article));
         given(articleGroupRepository.existsArticleInMyGroup(any(), any()))
@@ -128,7 +128,7 @@ public class ChangeArticleLikeServiceTest {
 
         //when & then
         assertThatThrownBy(
-            () -> groupedArticleLikeService.changeArticleLike(articleLikeDto))
+            () -> groupedArticleLikeService.changeArticleLike(articleLikeCommand))
             .isInstanceOf(NotAuthorizedOrExistException.class);
     }
 
