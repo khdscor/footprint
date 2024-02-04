@@ -51,15 +51,18 @@ public class CreateGeneralArticleService implements CreateArticleService {
     }
 
     private List<ArticleGroup> createArticleGroupList(CreateArticleCommand command, Long articleId, Long memberId) {
-        List<Long> requestGroupIds = command.getGroupIdsToBeIncluded();
         List<Long> myGroupIds = groupRepository.findAllByMemberId(memberId);
         List<ArticleGroup> articleGroupList = new ArrayList<>();
-        for (Long groupId : requestGroupIds) {
-            if (!myGroupIds.contains(groupId)) {
-                throw new NotIncludedMapException("그룹 목록에 가입되어있지 않는 그룹이 포함되어 있습니다.");
-            }
+        for (Long groupId : command.getGroupIdsToBeIncluded()) {
+            validateInMyGroup(myGroupIds, groupId);
             articleGroupList.add(ArticleGroup.createArticleGroup(groupId, articleId));
         }
         return articleGroupList;
+    }
+
+    private void validateInMyGroup(List<Long> myGroupIds, Long groupId) {
+        if (!myGroupIds.contains(groupId)) {
+            throw new NotIncludedMapException("그룹 목록에 가입되어있지 않는 그룹이 포함되어 있습니다.");
+        }
     }
 }
