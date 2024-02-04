@@ -7,10 +7,13 @@ import foot.footprint.domain.article.exception.NotIncludedMapException;
 import foot.footprint.domain.group.dao.ArticleGroupRepository;
 import foot.footprint.domain.group.dao.GroupRepository;
 import foot.footprint.domain.group.domain.ArticleGroup;
+
 import java.util.ArrayList;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
 import java.util.List;
 import java.util.Objects;
 
@@ -28,42 +31,35 @@ public class CreateGeneralArticleService implements CreateArticleService {
     @Transactional
     public Long create(CreateArticleCommand command) {
         Article article = Article.createArticle(
-            command.getTitle(), command.getContent(), command.getLatitude(), command.getLongitude(),
-            command.isPublicMap(), command.isPrivateMap(), command.getMemberId());
+                command.getTitle(), command.getContent(), command.getLatitude(), command.getLongitude(),
+                command.isPublicMap(), command.isPrivateMap(), command.getMemberId());
         validateMapType(command);
         articleRepository.saveArticle(article);
         if (!command.getGroupIdsToBeIncluded().isEmpty()) {
             articleGroupRepository.saveArticleGroupList(
-                createArticleGroupList(command, article.getId(), command.getMemberId()));
+                    createArticleGroupList(command, article.getId(), command.getMemberId()));
         }
         return article.getId();
     }
 
-    private void validateMapType(CreateArticleCommand dto) {
-        List<Long> groups = dto.getGroupIdsToBeIncluded();
-        if (!dto.isPublicMap() && !dto.isPrivateMap()
-            && (Objects.isNull(groups) || groups.isEmpty())) {
+    private void validateMapType(CreateArticleCommand command) {
+        List<Long> groups = command.getGroupIdsToBeIncluded();
+        if (!command.isPublicMap() && !command.isPrivateMap()
+                && (Objects.isNull(groups) || groups.isEmpty())) {
             throw new NotIncludedMapException("전체지도, 그룹지도, 개인지도 중 하나는 포함해야합니다.");
         }
     }
 
-    private List<ArticleGroup> createArticleGroupList(CreateArticleCommand dto, Long articleId,
-                                                      Long memberId) {
-        List<Long> groupIds = dto.getGroupIdsToBeIncluded();
-        checkAreMyGroups(groupIds, memberId);
-        List<ArticleGroup> articleGroupList = new ArrayList<>();
-        for (Long groupId : groupIds) {
-            articleGroupList.add(ArticleGroup.createArticleGroup(groupId, articleId));
-        }
-        return articleGroupList;
-    }
-
-    private void checkAreMyGroups(List<Long> groupIds, Long memberId) {
+    private List<ArticleGroup> createArticleGroupList(CreateArticleCommand command, Long articleId, Long memberId) {
+        List<Long> requestGroupIds = command.getGroupIdsToBeIncluded();
         List<Long> myGroupIds = groupRepository.findAllByMemberId(memberId);
-        for (Long groupId : groupIds) {
+        List<ArticleGroup> articleGroupList = new ArrayList<>();
+        for (Long groupId : requestGroupIds) {
             if (!myGroupIds.contains(groupId)) {
                 throw new NotIncludedMapException("그룹 목록에 가입되어있지 않는 그룹이 포함되어 있습니다.");
             }
+            articleGroupList.add(ArticleGroup.createArticleGroup(groupId, articleId));
         }
+        return articleGroupList;
     }
 }
