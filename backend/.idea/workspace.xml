@@ -4,9 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e9c5eb8d-61e6-4bf1-a075-2ef5ca99f02a" name="변경" comment="refactor: CommentController -&gt; Service 간 command 를 사용하도록 수정">
+    <list default="true" id="e9c5eb8d-61e6-4bf1-a075-2ef5ca99f02a" name="변경" comment="refactor: CreateArticleService 내 그룹 리스트를 저장하는 로직 리펙토링(필드 변수 제거 및 메서드의 분리)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/footprint/footprint/log/testLog.log" beforeDir="false" afterPath="$PROJECT_DIR$/footprint/footprint/log/testLog.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/footprint/src/main/java/foot/footprint/domain/article/application/create/CreateGeneralArticleService.java" beforeDir="false" afterPath="$PROJECT_DIR$/footprint/src/main/java/foot/footprint/domain/article/application/create/CreateGeneralArticleService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/footprint/src/main/java/foot/footprint/domain/article/dto/CreateArticleCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/footprint/src/main/java/foot/footprint/domain/article/dto/CreateArticleCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/footprint/src/main/java/foot/footprint/domain/article/dto/CreateArticleRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/footprint/src/main/java/foot/footprint/domain/article/dto/CreateArticleRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/footprint/src/main/java/foot/footprint/domain/group/dao/GroupRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/footprint/src/main/java/foot/footprint/domain/group/dao/GroupRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/footprint/src/test/java/foot/footprint/repository/group/GroupRepositoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/footprint/src/test/java/foot/footprint/repository/group/GroupRepositoryTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/footprint/src/test/java/foot/footprint/service/article/CreateArticleServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/footprint/src/test/java/foot/footprint/service/article/CreateArticleServiceTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -153,30 +159,6 @@
       <ForceTestExec>true</ForceTestExec>
       <method v="2" />
     </configuration>
-    <configuration name="CreateCommentServiceTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$/footprint" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":test" />
-            <option value="--tests" />
-            <option value="&quot;foot.footprint.service.comment.CreateCommentServiceTest&quot;" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <ForceTestExec>true</ForceTestExec>
-      <method v="2" />
-    </configuration>
     <configuration name="DeleteCommentServiceTest.edit" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -225,6 +207,30 @@
       <ForceTestExec>true</ForceTestExec>
       <method v="2" />
     </configuration>
+    <configuration name="GroupRepositoryTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/footprint" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;foot.footprint.repository.group.GroupRepositoryTest&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <ForceTestExec>true</ForceTestExec>
+      <method v="2" />
+    </configuration>
     <configuration default="true" type="JetRunConfigurationType">
       <module name="backend" />
       <method v="2">
@@ -241,17 +247,17 @@
     <list>
       <item itemvalue="Application.FootprintApplication" />
       <item itemvalue="Gradle.CreateArticleServiceTest" />
-      <item itemvalue="Gradle.CreateCommentServiceTest" />
+      <item itemvalue="Gradle.GroupRepositoryTest" />
       <item itemvalue="Gradle.DeleteCommentServiceTest.edit" />
       <item itemvalue="Gradle.EditCommentServiceTest.edit" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Gradle.CreateArticleServiceTest" />
+        <item itemvalue="Gradle.GroupRepositoryTest" />
         <item itemvalue="Application.FootprintApplication" />
         <item itemvalue="Gradle.DeleteCommentServiceTest.edit" />
         <item itemvalue="Gradle.EditCommentServiceTest.edit" />
-        <item itemvalue="Gradle.CreateCommentServiceTest" />
       </list>
     </recent_temporary>
   </component>
@@ -607,7 +613,7 @@
       <option name="project" value="LOCAL" />
       <updated>1704894267692</updated>
     </task>
-    <option name="localTasksCounter" value="276" />
+    <option name="localTasksCounter" value="280" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -625,11 +631,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="refactor: grouped articles 찾기 index 구현 및 적용, 테스트 - 진행중" />
-    <MESSAGE value="refactor: ArticleService 구현체 네이밍 리펙토링" />
-    <MESSAGE value="refactor: ArticleLike, CommentLike Service 구현체 네이밍 리펙토링" />
-    <MESSAGE value="refactor: Comment Service 구현체 네이밍 리펙토링" />
-    <MESSAGE value="refactor: Member Service 구현체 네이밍 리펙토링" />
     <MESSAGE value="refactor: Group Service 구현체 네이밍 및 findGroupsService 내 인터페이스와 여러 구현체로 분리" />
     <MESSAGE value="test: createGroup 테스트를 일시적으로 제한(실제 DB 지속 생성 방지)" />
     <MESSAGE value="feat: 충돌 해결" />
@@ -650,6 +651,11 @@
     <MESSAGE value="refactor: MyPageResponse 내에 GroupSummary 를 member 폴더 내에 MyGroupSummary 로 대체" />
     <MESSAGE value="refactor: ChangeCommentLikeService dto 를 Command 로 수정" />
     <MESSAGE value="refactor: CommentController -&gt; Service 간 command 를 사용하도록 수정" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor: CommentController -&gt; Service 간 command 를 사용하도록 수정" />
+    <MESSAGE value="refactor: CreateArticleService 내 그룹 리스트드를 저장하는 로직 리펙토링(두번의 for문을 하나로 묶기(서로 상반되는 내용이 아니기에 묶는 것으로 결정))" />
+    <MESSAGE value="refactor: CreateArticleService 내 그룹 리스트드를 저장하는 로직 리펙토링(메서드의 분리)" />
+    <MESSAGE value="refactor: CreateArticleService 내 그룹 리스트를 저장하는 로직 리펙토링(두번의 for문을 하나로 묶기(서로 상반되는 내용이 아니기에 묶는 것으로 결정))" />
+    <MESSAGE value="refactor: CreateArticleService 내 그룹 리스트를 저장하는 로직 리펙토링(메서드의 분리)" />
+    <MESSAGE value="refactor: CreateArticleService 내 그룹 리스트를 저장하는 로직 리펙토링(필드 변수 제거 및 메서드의 분리)" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor: CreateArticleService 내 그룹 리스트를 저장하는 로직 리펙토링(필드 변수 제거 및 메서드의 분리)" />
   </component>
 </project>

@@ -1,6 +1,7 @@
 package foot.footprint.domain.article.dto;
 
-import java.util.List;
+import java.util.Set;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -19,7 +20,7 @@ public class CreateArticleCommand {
     private double longitude;   // 경도
     private boolean publicMap;
     private boolean privateMap;
-    private List<Long> groupIdsToBeIncluded;
+    private Set<Long> groupIdsToBeIncluded;
 
     public static CreateArticleCommand create(CreateArticleRequest request, Long memberId) {
         return CreateArticleCommand.builder()
@@ -33,7 +34,7 @@ public class CreateArticleCommand {
             .groupIdsToBeIncluded(request.getGroupIdsToBeIncluded()).build();
     }
 
-    public void updateGroupIdList(List<Long> groupIdsToBeIncluded) {
+    public void updateGroupIdList(Set<Long> groupIdsToBeIncluded) {
         this.groupIdsToBeIncluded = groupIdsToBeIncluded;
     }
 }
