@@ -150,6 +150,7 @@ public class MeemberGroupRepositoryTest extends RepositoryTest {
 
         //then
         assertThat(responses).hasSize(1);
+        assertThat(responses.get(0).getId()).isEqualTo(group1.getId());
     }
 
     @Test
@@ -167,6 +168,7 @@ public class MeemberGroupRepositoryTest extends RepositoryTest {
 
         //then
         assertThat(responses).hasSize(1);
+        assertThat(responses.get(0).getId()).isEqualTo(group1.getId());
     }
 
     @Test
