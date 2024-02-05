@@ -10,6 +10,7 @@ import foot.footprint.global.error.exception.NotExistsException;
 import foot.footprint.global.error.exception.WrongAccessRedisException;
 import foot.footprint.global.error.exception.WrongInputException;
 import foot.footprint.global.error.exception.WrongMapTypeException;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
@@ -130,5 +131,14 @@ public class ExceptionAdvice {
 
         return ResponseEntity.status(HttpStatus.BAD_REQUEST)
             .body(new ErrorResponse("요청사항중 일부 값이 잘못 설정되었습니다."));
+    }
+
+    //DB에 중복된 값이 들어갈 때
+    @ExceptionHandler(DuplicateKeyException.class)
+    public ResponseEntity<ErrorResponse> handleDuplicateKeyException(
+        DuplicateKeyException e) {
+
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+            .body(new ErrorResponse("이미 처리되었습니다."));
     }
 }
