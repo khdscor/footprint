@@ -2,10 +2,9 @@ package foot.footprint.domain.article.dto;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import lombok.Getter;
-import java.util.List;
+import java.util.Set;
 
 @Getter
 public class CreateArticleRequest {
@@ -24,10 +23,10 @@ public class CreateArticleRequest {
     private double longitude;   // 경도
     private boolean publicMap;
     private boolean privateMap;
-    private List<Long> groupIdsToBeIncluded;
+    private Set<Long> groupIdsToBeIncluded;
 
     public CreateArticleRequest(String title, String content, double latitude, double longitude,
-        boolean publicMap, boolean privateMap, List<Long> groupIdsToBeIncluded) {
+        boolean publicMap, boolean privateMap, Set<Long> groupIdsToBeIncluded) {
         this.title = title;
         this.content = content;
         this.latitude = latitude;

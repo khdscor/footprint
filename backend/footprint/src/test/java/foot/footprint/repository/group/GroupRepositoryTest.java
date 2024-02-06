@@ -11,8 +11,9 @@ import foot.footprint.domain.member.dao.MemberRepository;
 import foot.footprint.domain.member.domain.Member;
 import foot.footprint.repository.RepositoryTest;
 import java.util.Date;
-import java.util.List;
 import java.util.Optional;
+import java.util.Set;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -112,7 +113,7 @@ public class GroupRepositoryTest extends RepositoryTest {
         memberGroupRepository.saveMemberGroup(memberGroup2);
 
         //when
-        List<Long> groupIds = groupRepository.findAllByMemberId(member.getId());
+        Set<Long> groupIds = groupRepository.findAllByMemberId(member.getId());
 
         //then
         assertThat(groupIds.size()).isEqualTo(2);

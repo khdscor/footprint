@@ -16,8 +16,10 @@ import foot.footprint.domain.article.exception.NotIncludedMapException;
 import foot.footprint.domain.group.dao.ArticleGroupRepository;
 import foot.footprint.domain.group.dao.GroupRepository;
 import foot.footprint.domain.group.domain.ArticleGroup;
-import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -48,7 +50,7 @@ public class CreateArticleServiceTest {
         Long memberId = 1L;
         Long groupId1 = 1L;
         Long groupId2 = 2L;
-        List<Long> groupIdsToBeIncluded = new ArrayList<>();
+        Set<Long> groupIdsToBeIncluded = new HashSet<>();
         groupIdsToBeIncluded.add(groupId1);
         groupIdsToBeIncluded.add(groupId2);
 
@@ -79,7 +81,7 @@ public class CreateArticleServiceTest {
 
         //groupIds가 중 내 그룹이 아닌 groupId가 있을 시 예외 처리
         //given
-        List<Long> groupIds = new ArrayList<>();
+        Set<Long> groupIds = new HashSet<>();
         groupIds.add(groupId1);
         groupIds.add(100L);
         createArticleCommand.updateGroupIdList(groupIds);
@@ -96,7 +98,7 @@ public class CreateArticleServiceTest {
         //given
         Long memberId = 1L;
         CreateArticleCommand createArticleCommand = new CreateArticleCommand("title", "content", memberId,
-            10.0, 10.0, false, false, new ArrayList<>());
+            10.0, 10.0, false, false, new HashSet<>());
 
         //when & then
         assertThatThrownBy(

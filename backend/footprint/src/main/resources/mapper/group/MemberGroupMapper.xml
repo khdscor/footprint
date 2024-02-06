@@ -17,12 +17,12 @@
     UPDATE member_group SET important = NOT important
     WHERE group_id = #{groupId} and member_id =#{memberId}
   </update>
-  <select id="findMyImportantGroups" resultType="GroupSummaryResponse">
+  <select id="findMyImportantGroups" resultType="Group">
     SELECT g.*
     FROM group_table g LEFT JOIN member_group m ON (g.id = m.group_id)
     WHERE m.member_id = #{memberId} AND m.important = true
   </select>
-  <select id="findMyGroups" resultType="GroupSummaryResponse">
+  <select id="findMyGroups" resultType="Group">
     SELECT g.*
     FROM group_table g LEFT JOIN member_group m ON (g.id = m.group_id)
     WHERE m.member_id = #{memberId}
