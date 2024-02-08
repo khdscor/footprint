@@ -10,14 +10,14 @@ import lombok.Getter;
 @AllArgsConstructor
 @Getter
 public class AuthRequest {
-    @Email
-    @NotBlank
-    @NotEmpty
+
+    @NotBlank(message = "이메일을 입력해주세요")
+    @NotEmpty(message = "이메일을 입력해주세요")
     @Size(min = 4, max = 30)
     private String email;
 
-    @NotBlank
-    @NotEmpty
+    @NotBlank(message = "비밀번호를 입력해주세요")
+    @NotEmpty(message = "비밀번호를 입력해주세요")
     @Size(min = 4, max = 30)
     private String password;
 }
