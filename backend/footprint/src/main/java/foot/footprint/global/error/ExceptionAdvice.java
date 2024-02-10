@@ -20,6 +20,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
+import java.util.Objects;
+
 @RestControllerAdvice
 public class ExceptionAdvice {
 
@@ -106,13 +108,13 @@ public class ExceptionAdvice {
             .body(new ErrorResponse("요청사항중 일부 값이 잘못 설정되었습니다."));
     }
 
-    //Post시 body내의 argument와 controller에서 설정한 requestParam 내의 요소가 불일치
+    //Post시 body내의 argument와 controller에서 설정한 requestParam 내의 요소가 불일치 혹은 @Valid로 검증한 값이 잘못됨
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<ErrorResponse> handleMethodArgumentNotValidException(
         MethodArgumentNotValidException e) {
 
         return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-            .body(new ErrorResponse("요청사항중 일부 값이 잘못 설정되었습니다."));
+            .body(new ErrorResponse(Objects.requireNonNull(e.getFieldError()).getDefaultMessage()));
     }
 
     //요청시 queryString 값을 잘못입력하거나 입력안함

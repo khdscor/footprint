@@ -4,14 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e9c5eb8d-61e6-4bf1-a075-2ef5ca99f02a" name="변경" comment="refactor: CreateArticleService 내 그룹 리스트를 저장하는 로직 리펙토링(메서드 분리 및 List를 Set로 변경하여 contain 시 발생하는 시간 감소(O(n) -&gt; O(1)))">
-      <change afterPath="$PROJECT_DIR$/footprint/src/test/java/foot/footprint/featureFactory/GroupFeatureFactory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/footprint/src/test/java/foot/footprint/service/group/FindMyGroupsServiceTest.java" afterDir="false" />
+    <list default="true" id="e9c5eb8d-61e6-4bf1-a075-2ef5ca99f02a" name="변경" comment="refactor: FindMyGroupsServiceTest 구현">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/footprint/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/footprint/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/footprint/footprint/log/testLog.log" beforeDir="false" afterPath="$PROJECT_DIR$/footprint/footprint/log/testLog.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/footprint/src/main/resources/mapper/group/MemberGroupMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/footprint/src/main/resources/mapper/group/MemberGroupMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/footprint/src/test/java/foot/footprint/repository/group/MeemberGroupRepositoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/footprint/src/test/java/foot/footprint/repository/group/MeemberGroupRepositoryTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/footprint/src/main/java/foot/footprint/domain/member/dto/auth/AuthRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/footprint/src/main/java/foot/footprint/domain/member/dto/auth/AuthRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/footprint/src/main/java/foot/footprint/domain/member/dto/auth/SignUpRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/footprint/src/main/java/foot/footprint/domain/member/dto/auth/SignUpRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/footprint/src/main/java/foot/footprint/global/error/ExceptionAdvice.java" beforeDir="false" afterPath="$PROJECT_DIR$/footprint/src/main/java/foot/footprint/global/error/ExceptionAdvice.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -120,7 +118,20 @@
       <recent name="foot.footprint.global.domain" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.MeemberGroupRepositoryTest">
+  <component name="RunManager" selected="Application.FootprintApplication">
+    <configuration name="FootprintApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="foot.footprint.FootprintApplication" />
+      <module name="footprint.main" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="foot.footprint.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="FindMyGroupsServiceTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -135,30 +146,6 @@
             <option value=":test" />
             <option value="--tests" />
             <option value="&quot;foot.footprint.service.group.FindMyGroupsServiceTest&quot;" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <ForceTestExec>true</ForceTestExec>
-      <method v="2" />
-    </configuration>
-    <configuration name="FindMyGroupsServiceTest.findGroups" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$/footprint" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":test" />
-            <option value="--tests" />
-            <option value="&quot;foot.footprint.service.group.FindMyGroupsServiceTest.findGroups&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -253,19 +240,19 @@
       </method>
     </configuration>
     <list>
+      <item itemvalue="Application.FootprintApplication" />
       <item itemvalue="Gradle.MeemberGroupRepositoryTest" />
       <item itemvalue="Gradle.MeemberGroupRepositoryTest.findMyImportantGroups" />
       <item itemvalue="Gradle.FindMyGroupsServiceTest" />
-      <item itemvalue="Gradle.FindMyGroupsServiceTest.findGroups" />
       <item itemvalue="Gradle.footprint [dependencies]" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.FootprintApplication" />
         <item itemvalue="Gradle.MeemberGroupRepositoryTest" />
         <item itemvalue="Gradle.MeemberGroupRepositoryTest.findMyImportantGroups" />
         <item itemvalue="Gradle.FindMyGroupsServiceTest" />
         <item itemvalue="Gradle.footprint [dependencies]" />
-        <item itemvalue="Gradle.FindMyGroupsServiceTest.findGroups" />
       </list>
     </recent_temporary>
   </component>
@@ -621,7 +608,7 @@
       <option name="project" value="LOCAL" />
       <updated>1704894267692</updated>
     </task>
-    <option name="localTasksCounter" value="281" />
+    <option name="localTasksCounter" value="285" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -639,9 +626,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="test: createGroup 테스트를 일시적으로 제한(실제 DB 지속 생성 방지)" />
-    <MESSAGE value="feat: 충돌 해결" />
-    <MESSAGE value="fix: 회원 탈퇴 잘못된 url 수정" />
     <MESSAGE value="refactor: ArticleLike 도메인이 dto를 의존하지 않도록 수정" />
     <MESSAGE value="refactor: AutController와 AuthService의 dto 분리" />
     <MESSAGE value="refactor: Member 엔티티의 Dto 의존 제거" />
@@ -664,6 +648,9 @@
     <MESSAGE value="refactor: CreateArticleService 내 그룹 리스트를 저장하는 로직 리펙토링(메서드의 분리)" />
     <MESSAGE value="refactor: CreateArticleService 내 그룹 리스트를 저장하는 로직 리펙토링(필드 변수 제거 및 메서드의 분리)" />
     <MESSAGE value="refactor: CreateArticleService 내 그룹 리스트를 저장하는 로직 리펙토링(메서드 분리 및 List를 Set로 변경하여 contain 시 발생하는 시간 감소(O(n) -&gt; O(1)))" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor: CreateArticleService 내 그룹 리스트를 저장하는 로직 리펙토링(메서드 분리 및 List를 Set로 변경하여 contain 시 발생하는 시간 감소(O(n) -&gt; O(1)))" />
+    <MESSAGE value="refactor: MemberGroupRepository cast 객체 수정" />
+    <MESSAGE value="refactor: 테스트를 위한 GroupFeatureFactory 구현" />
+    <MESSAGE value="refactor: FindMyGroupsServiceTest 구현" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor: FindMyGroupsServiceTest 구현" />
   </component>
 </project>

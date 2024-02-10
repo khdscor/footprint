@@ -8,9 +8,9 @@ import lombok.Getter;
 @Getter
 public class SignUpRequest extends AuthRequest{
 
-    @NotBlank
-    @NotEmpty
-    @Size(min = 4, max = 15)
+    @NotBlank(message = "닉네임을 작성해주세요")
+    @NotEmpty(message = "닉네임을 작성해주세요")
+    @Size(min = 4, max = 15, message = "닉네임은 4~15 글자 사이로 작성해주세요")
     private String nickName;
 
     public SignUpRequest( String email,
