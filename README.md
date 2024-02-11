@@ -11,13 +11,6 @@ https://pickled-slip-03d.notion.site/0de20f6d1da04d8485df5bec9382fc52
 # 배포 URL: 
 https://korea.yourfootprint.shop
 
-## 시연 사진
-<p align="center">
-<img src="https://github.com/khdscor/footprint/assets/45135492/56eb98de-d292-4b94-bfe5-e77bfa07ce7b" width="100%" height="30%">
-<img src="https://github.com/khdscor/footprint/assets/45135492/0a7da629-7bd5-4056-bd23-52753cc1856d" width="100%" height="30%">
-  <img src="https://github.com/khdscor/footprint/assets/45135492/a9d46b3c-ade6-4d95-95ba-9e167fa24d41" width="100%" height="30%">
-</p>
-
 ## ERD
 ![image](https://github.com/khdscor/footprint/assets/45135492/539a3179-18a5-4a38-87ce-ea2d149f4c56)
 
