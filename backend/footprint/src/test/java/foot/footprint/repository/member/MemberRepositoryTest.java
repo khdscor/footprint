@@ -14,11 +14,19 @@ import foot.footprint.domain.group.domain.MemberGroup;
 import foot.footprint.domain.member.dao.MemberRepository;
 import foot.footprint.domain.member.domain.Member;
 import foot.footprint.domain.member.dto.MyPageResponse;
+import foot.footprint.featureFactory.GroupFeatureFactory;
 import foot.footprint.repository.RepositoryTest;
+import java.util.Date;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+import org.jeasy.random.EasyRandom;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.BDDMockito.given;
 
 public class MemberRepositoryTest extends RepositoryTest {
 
@@ -87,10 +95,15 @@ public class MemberRepositoryTest extends RepositoryTest {
         ArticleLike articleLike = buildArticleLike(member.getId(), article.getId());
         articleLikeRepository.saveArticleLike(articleLike);
         createCommentRepository.saveComment(comment);
-        Group group = buildGroup(member.getId());
-        groupRepository.saveGroup(group);
-        MemberGroup memberGroup = buildMemberGroup(group.getId(), member.getId());
-        memberGroupRepository.saveMemberGroup(memberGroup);
+        EasyRandom groupEasyRandom = GroupFeatureFactory.create(member.getId());
+        List<Group> groups =  IntStream.range(0, 10)
+            .parallel()
+            .mapToObj(i -> groupEasyRandom.nextObject(Group.class))
+            .collect(Collectors.toList());
+        for (Group group : groups) {
+            groupRepository.saveGroup(group);
+            memberGroupRepository.saveMemberGroup(buildMemberGroup(group.getId(), member.getId()));
+        }
 
         //when
         MyPageResponse response = memberRepository.findMyPageDetails(member.getId());
@@ -101,8 +114,7 @@ public class MemberRepositoryTest extends RepositoryTest {
         assertThat(response.getMyArticles().get(0).getTotalLikes()).isEqualTo(1);
         assertThat(response.getMyArticles().get(0).getTotalComments()).isEqualTo(1);
         assertThat(response.getMyArticles().get(0).getTitle()).isEqualTo(article.getTitle());
-        assertThat(response.getMyGroups()).hasSize(1);
-        assertThat(response.getMyGroups().get(0).getGroupId()).isEqualTo(group.getId());
+        assertThat(response.getMyGroups()).hasSize(10);
     }
 
     @Test
