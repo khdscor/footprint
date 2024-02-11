@@ -5,13 +5,16 @@ Footprint는 지도 위에 글을 남기고 개인이, 그룹이, 혹은 모든 
 
 진행일지 및 상세 내용은 아래의 노션을 확인하길 바랍니다.
 
-# 노션 주소: 
+
+### 노션 주소: 
 https://pickled-slip-03d.notion.site/0de20f6d1da04d8485df5bec9382fc52
 
-# 배포 URL: 
+
+### 배포 URL: 
 https://korea.yourfootprint.shop
 
-## ERD
+
+# ERD
 ![image](https://github.com/khdscor/footprint/assets/45135492/539a3179-18a5-4a38-87ce-ea2d149f4c56)
 
 
