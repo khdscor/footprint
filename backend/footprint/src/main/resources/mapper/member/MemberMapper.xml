@@ -16,7 +16,7 @@
     count(distinct c.id) as totalComments, g.id as groupId, g.name as name
     FROM member m LEFT JOIN article a ON m.id = a.member_id LEFT JOIN comment c ON a.id = c.article_id
     LEFT JOIN article_like al ON a.id = al.article_id LEFT JOIN member_group mg ON m.id = mg.member_id
-    LEFT JOIN group_table g ON mg.group_id = g.id WHERE m.id = #{memberId} GROUP BY a.id
+    LEFT JOIN group_table g ON mg.group_id = g.id WHERE m.id = #{memberId} GROUP BY a.id, g.id
     ORDER BY a.create_date DESC
   </select>
   <resultMap id="myPageDetails" type="MyPageResponse">

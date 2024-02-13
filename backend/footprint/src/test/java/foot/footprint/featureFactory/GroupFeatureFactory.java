@@ -3,7 +3,6 @@ package foot.footprint.featureFactory;
 import foot.footprint.domain.group.domain.Group;
 import org.jeasy.random.EasyRandom;
 import org.jeasy.random.EasyRandomParameters;
-import org.jeasy.random.randomizers.range.DoubleRangeRandomizer;
 import org.jeasy.random.randomizers.range.LongRangeRandomizer;
 
 import java.lang.reflect.Field;
