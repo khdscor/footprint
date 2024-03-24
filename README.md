@@ -28,8 +28,6 @@ https://pickled-slip-03d.notion.site/0de20f6d1da04d8485df5bec9382fc52
 ### 기술 스택:
 Java, Springboot, Mybatis, MYSQL, Redis, React, Docker, JWT, AWS(EC2, RDS)
 
-### 도메인 주소: 
-https://korea.yourfootprint.shop
 <br><br>
 <br><br>
 # 시연 사진
